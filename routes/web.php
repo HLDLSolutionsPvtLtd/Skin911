@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserAdminController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,3 +28,32 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('/', function () {
+        return Inertia::render('Admin/AdminLogin');
+    })->name('Admin');
+    Route::middleware(['auth:sanctum'])->get('/admin.dashboard', function () {
+        return Inertia::render('Admin/Dashboard');
+    })->name('admin.dashboard')->middleware('is_admin');
+
+    Route::post('admin.login',[UserAdminController::class,'authenticate'])->name('admin.login');
+
+    Route::middleware(['auth:sanctum'])->get('admin.products', function () {
+        return Inertia::render('Admin/Products');
+    })->name('admin.products')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->get('admin.addproduct', function () {
+        return Inertia::render('Admin/AddProduct');
+    })->name('admin.addproduct')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('admin.addbrand', function () {
+        return Inertia::render('Admin/AddBrand');
+    })->name('admin.addbrand')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->post('admin.addproduct',[ProductController::class, 'AddProduct'])->name('admin.addproduct')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->post('admin.addbrand',[BrandController::class, 'AddBrand'])->name('admin.addbrand')->middleware('is_admin');
+
+
+});
