@@ -13,3 +13,46 @@
 {
     color: #814252;
 }
+.modal-open {
+    display: block;
+    transition-duration: 1s;
+    opacity: 1;
+    transform: translateY(0%);
+}
+.modal-close {
+    transition-duration: 0.2s;
+    transform: translateY(-10%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  .dots {
+    width: 100%;
+    text-align: center;
+  }
+  .dots li {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    background: rgba(161, 123, 123, 0.9);
+    display: inline-block;
+    margin: 0 3px;
+    cursor: pointer;
+    transition: opacity 0.4s ease-in-out,width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .liactive {
+    background: rgba(148, 11, 11, 0.9) !important;
+  }
+  .slide{
+    transform: translateX(0%);
+  }
+  .slide-in{
+    transition-duration: 0.5s;
+    transition: ease-in;
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  .slide-out{
+    transition-duration: 0.5s;  
+    transform : translateX(-100%);
+    opacity: 0;
+  }

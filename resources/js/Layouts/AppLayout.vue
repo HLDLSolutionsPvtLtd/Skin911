@@ -5,37 +5,37 @@
         <jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-pink border-b border-gray-100">
+            <nav class="bg-pink sticky top-0 z-10 w-full border-b border-gray-100 border-b shadow-md">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="flex-shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                    <jet-application-mark class="block h-9 w-auto" />
+                            <div class="flex justify-center text-center items-center self-center">
+                                <Link class="flex" :href="route('dashboard')">
+                                    <span class="text-4xl font-serif underline mr-1 font-light text-white   ">SKIN 911</span>
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div @mouseover="shop = true" @mouseleave="shop = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')"  class="font-bold" :active="route().current('dashboard')">
+                                <jet-nav-link :href="route('dashboard')"  class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white ">
                                     SHOP
-                                    <div v-show="shop" class="absolute w-full left-0 right-0 top-16 bg-pink">
+                                    <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute z-10 w-full left-0 right-0 top-16 bg-pink">
                                         <div class="grid grid-cols-12 bg-pink m-4">
                                             <div class="col-span-1">
 
                                             </div>
-                                            <div class="col-span-2 border-r border-gray-200">
+                                            <div class="col-span-2 border-r text-pink-dark border-gray-200">
                                                 <span class="text-pink-dark">SHOP</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>All Products</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>New Arrivals</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Best Sellers</span>
                                                     </li>
                                                 </ul>
@@ -43,13 +43,13 @@
                                             <div class="col-span-2 ml-2 justify-center">
                                                 <span class="text-pink-dark">SKIN CARE</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Double-Cleanse</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Exfoliator</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Toner</span>
                                                     </li>
                                                 </ul>
@@ -57,25 +57,25 @@
                                             <div class="col-span-2 justify-center">
                                                 <span class="text-pink-dark">SKIN CONCERN</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Acne</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Anti-Aging</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Dyness</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Oil Control</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Redness</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Sensitive</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Pigmentation</span>
                                                     </li>
                                                 </ul>
@@ -83,16 +83,16 @@
                                             <div class="col-span-2 justify-center">
                                                 <span class="text-pink-dark">SKIN TYPE</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Dry</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Oily</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Combination</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Normal</span>
                                                     </li>
                                                 </ul>
@@ -102,22 +102,22 @@
                                 </jet-nav-link>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold" :href="route('dashboard')" >
+                                <jet-nav-link class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white" :href="route('dashboard')" >
                                     BEST SELLER
                                 </jet-nav-link>
                             </div>
                             <div @mouseover="routine = true" @mouseleave="routine = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold" :href="route('dashboard')">
+                                <jet-nav-link class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white" :href="route('dashboard')">
                                     ROUTINES
-                                     <div v-show="routine" class="absolute top-16 bg-pink">
+                                     <div :class="{'modal-open': routine, 'modal-close': !routine}" class="absolute top-16 bg-pink">
                                          <ul class="m-2 ">
-                                            <li class="hover:text-white pt-2">
+                                            <li class="hover:text-white text-pink-dark pt-2">
                                                 <span>Collections</span>
                                             </li>
-                                            <li class="hover:text-white pt-2">
+                                            <li class="hover:text-white text-pink-dark pt-2">
                                                 <span>Gifts & Sets</span>
                                             </li>
-                                            <li class="hover:text-white pt-2">
+                                            <li class="hover:text-white text-pink-dark pt-2">
                                                 <span>Travels Kits & Minis</span>
                                             </li>
                                         </ul>
@@ -125,9 +125,9 @@
                                 </jet-nav-link>
                             </div>
                             <div @mouseover="brands = true" @mouseleave="brands = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold" :href="route('dashboard')">
+                                <jet-nav-link class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white" :href="route('dashboard')">
                                     BRANDS
-                                    <div v-show="brands" class="absolute w-full left-0 right-0 top-16 bg-pink transition transform translate duration-700 ease-in-out">
+                                    <div :class="{'modal-open': brands, 'modal-close': !brands}" class="absolute w-full left-0 right-0 top-16 bg-pink transition transform translate duration-700 ease-in-out">
                                         <div class="grid grid-cols-12 bg-pink m-4">
                                             <div class="col-span-1">
 
@@ -135,13 +135,13 @@
                                             <div class="col-span-2 border-r border-gray-200">
                                                 <span class="text-pink-dark">FEATURED BRANDS</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>All Products</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>New Arrivals</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Best Sellers</span>
                                                     </li>
                                                 </ul>
@@ -149,13 +149,13 @@
                                             <div class="col-span-2 ml-2 justify-center">
                                                 <span class="text-pink-dark">SKIN CARE</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Double-Cleanse</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Exfoliator</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Toner</span>
                                                     </li>
                                                 </ul>
@@ -163,25 +163,25 @@
                                             <div class="col-span-2 justify-center">
                                                 <span class="text-pink-dark">SKIN CONCERN</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Acne</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Anti-Aging</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Dyness</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Oil Control</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Redness</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Sensitive</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Pigmentation</span>
                                                     </li>
                                                 </ul>
@@ -189,16 +189,16 @@
                                             <div class="col-span-2 justify-center">
                                                 <span class="text-pink-dark">SKIN TYPE</span>
                                                 <ul>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Dry</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Oily</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Combination</span>
                                                     </li>
-                                                    <li class="hover:text-white pt-2">
+                                                    <li class="hover:text-white text-pink-dark pt-2">
                                                         <span>Normal</span>
                                                     </li>
                                                 </ul>
@@ -208,13 +208,31 @@
                                 </jet-nav-link>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold" :href="route('dashboard')">
+                                <jet-nav-link class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white" :href="route('dashboard')">
                                     SALE
                                 </jet-nav-link>
                             </div>
                         </div>
-
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="font-bold rounded-md border border-gray-100 flex justify-center bg-white self-center">
+                                <div class="ml-2">
+                                    <svg width="24" height="24" class="h-10" viewBox="0,0,26,26">
+                                        <path fill="#747b88" d="M3.438 9.754a6.415 6.415 0 016.408-6.409 6.415 6.415 0 016.409 6.409 6.416 6.416 0 01-6.409 6.408 6.416 6.416 0 01-6.408-6.408M21.816 20.87l-5.974-6.02a7.839 7.839 0 001.88-5.097c0-4.343-3.534-7.875-7.876-7.875-4.342 0-7.875 3.532-7.875 7.875 0 4.342 3.533 7.875 7.875 7.875a7.837 7.837 0 004.946-1.753l5.983 6.029a.73.73 0 001.037.004.733.733 0 00.004-1.038">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <input type="search" placeholder="SEARCH" class="w-48 border-0 placeholder-opacity-50 rounded-md focus:ring-0">
+                            </div>
+                        </div>
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
+                             <div class="font-bold flex justify-center self-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#814252" d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
+                                </svg>
+                                <div class="relative">
+                                    <span class="rounded-full left-0 top-0 absolute h-2 w-2 bg-gray-900"></span>
+                                </div>
+                            </div>
                             <div class="ml-3 relative">
                                 <!-- Teams Dropdown -->
                                 <jet-dropdown align="right" width="60" v-if="$page.props.jetstream.hasTeamFeatures">
