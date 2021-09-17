@@ -1,9 +1,14 @@
 <template>
     <app-layout title="Dashboard">
        <div class="m-2">
-           <div class="">
-                <div class="w-full h-full">
-                    <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="currentImg" class="w-full slide pl-4 pr-4 h-96 transition-transform ease-in-out duration-700" />
+           <div class="h-1/3">
+                <div class="carousel ">
+                    <transition-group class="carousel" name="fade" tag="div">
+                        <div class="w-full h-full" @touchstart="touchstart($event)" @touchend="touchend($event)" v-for="i in [currentIndex]" :key="i">
+                            <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="currentImg" class="w-full pl-4 pr-4 h-full transition-transform ease-in-out duration-700" />
+                        </div>
+                    </transition-group> 
+                    
                 </div>
                 <div class="relative">
                     <ul class="absolute bottom-1 dots">
@@ -15,7 +20,7 @@
                     </ul>
                 </div>
            </div>
-           <div class="p-12 bg-purple-100">
+           <div class="p-12 bg-yellow-100">
                <div class="flex justify-center m-4">
                    <span class="col-span-3 text-4xl font-bold text-gray-700">TO SKIN CARE GOALS AND BEYOND</span>
                </div>
@@ -26,9 +31,9 @@
                </div>
            </div>
 
-           <div class="bg-gray-200">
+           <div class="bg-blue-200">
                <div class="flex justify-center">
-                   <ul class="flex text-lg font-thin text-gray-400">
+                   <ul class="flex text-lg font-semibold text-gray-500">
                        <li class="m-2">SHOP BY SKINCARE</li>
                        <li class="m-2">SHOP BY SKINTYPE</li>
                        <li class="m-2">SHOP BY ROUTINE</li>

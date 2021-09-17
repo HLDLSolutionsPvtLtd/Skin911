@@ -5,22 +5,34 @@
         <jet-banner />
 
         <div class="min-h-screen bg-gray-100">
+            <div class="w-full bg-pink-200 text-pink-dark">
+                <div class="flex justify-center">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="p-1" viewBox="0 0 24 24">
+                            <path fill="#814252" d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>\
+                        </svg>
+                    </div>
+                    <span class="pl-2">Free shipping across India on all orders over</span>
+                    <span class="pl-2 text-pink-dark font-bold">&#8377;2800</span>
+                </div>
+            </div>
             <nav class="bg-pink sticky top-0 z-10 w-full border-b border-gray-100 border-b shadow-md">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="flex justify-center text-center items-center self-center">
+                            <div class="flex justify-center text-center text-white items-center self-center">
                                 <Link class="flex" :href="route('dashboard')">
-                                    <span class="text-4xl font-serif underline mr-1 font-light text-white   ">SKIN 911</span>
+                                    <span class="text-4xl font-serif mr-1 font-bold">SKIN</span>
+                                    <span class="text-md pt-1 font-mono font-bold">911</span>
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div @mouseover="shop = true" @mouseleave="shop = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link :href="route('products')"  class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white ">
-                                    SHOP
+                                    CATEGORIES
                                     <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute z-10 w-full left-0 right-0 top-16 bg-pink">
                                         <div class="grid grid-cols-12 bg-pink m-4">
                                             <div class="col-span-1">
@@ -221,16 +233,16 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <input type="search" placeholder="SEARCH" class="w-48 border-0 placeholder-opacity-50 rounded-md focus:ring-0">
+                                <input type="search" placeholder="SEARCH" class="w-58 border-0 placeholder-opacity-50 rounded-md focus:ring-0">
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                              <div class="font-bold flex justify-center self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path fill="#814252" d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                                    <path fill="#fff" d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
                                 </svg>
                                 <div class="relative">
-                                    <span class="rounded-full left-0 top-0 absolute h-2 w-2 bg-gray-900"></span>
+                                    <span class="rounded-full left-0 top-0 absolute h-2 w-2 bg-pink-900"></span>
                                 </div>
                             </div>
                             <div class="ml-3 relative">
@@ -434,7 +446,7 @@
                     </div>  
                     <div class="m-2">
                         <span class="text-pink-dark text-lg">CUSTOMER CARE</span>
-                        <ul>
+                        <ul class="text-gray-600">
                             <li>My Account</li>
                             <li>Exchange and Refund Policy</li>
                             <li>Rewards</li>
@@ -445,14 +457,14 @@
                     </div>
                     <div class="m-2">
                         <span class="text-pink-dark text-lg">About</span>
-                        <ul>
+                        <ul class="text-gray-600">
                             <li>About Us</li>
                             <li>Store Locator</li>
                             <li>Conscious Beauty</li>
                         </ul>
                     </div>
                     <div class="m-2">
-                        <ul class="flex">
+                        <ul class="flex text-gray-600">
                             <li class="p-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path fill="#814252" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -469,15 +481,15 @@
                                 </svg>
                             </li>
                         </ul>
-                        <div >
+                        <div class="text-gray-600">
                             <span class="p-2">care@Skin911.com</span>
                         </div>
-                        <div>
+                        <div class="text-gray-600">
                             <span class="p-2 flex">Near Aizawl Hospital, 796001 , Aizawl, Mizoram</span>
                         </div>
                     </div>
                     <div class="m-2">
-                        <ul class="text-pink-dark text-lg">
+                        <ul class="text-pink-dark text-lg text-gray-600">
                             <li class="flex">
                                 <div class="p-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

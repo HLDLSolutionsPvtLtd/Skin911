@@ -80,7 +80,7 @@
 
         </div>
        <div class="flex justify-center">
-            <div class="w-2/3 m-4">
+            <div class="w-1/2 m-4">
                 <div class="m-4">
                     <span class="col-span-3 text-lg font-bold text-gray-700">RELATED PRODUCTSS</span>
                 </div>

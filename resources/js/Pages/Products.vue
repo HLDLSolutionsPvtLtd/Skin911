@@ -52,10 +52,10 @@
             <div class="col-span-5">
                 <div class="flex justify-between">
                     <span class="text-lg text-gray-700 font-bold p-2">Products</span>
-                    <div class="flex">
-                        <span class="text-md text-gray-700 font-bold p-2">Sort By</span>
-                        <div>
-                            <select name="" id="">
+                    <div class="flex bg-white border-2 border-pink-700 rounded-md">
+                        <span class="text-sm text-gray-700 font-bold p-2">Sort By :</span>
+                        <div class="text-sm text-gray-700 font-bold">
+                            <select name="" id="" value="" class="border-0 placeholder-gray-700 font-bold text-sm focus:ring-0">
                                 <option value="">Name A-Z</option>
                                 <option value="">Name Z-A</option>
                                 <option value="">Price Low-High</option>
@@ -150,6 +150,12 @@ export default{
                     },
                      {
                         img:'https://beautybarn.in/wp-content/uploads/2021/06/MOOD-RECIPE-LIP-COLOR-220-HIT-ME-UP-WITH-MODEL.jpg'
+                    },
+                    {
+                        img:'https://beautybarn.in/wp-content/uploads/2019/07/VELVET-LIP-TINT-KNOW-BETTER-WITH-MODEL.jpg'
+                    },
+                    {
+                        img:'https://beautybarn.in/wp-content/uploads/2020/10/LIP-COLOR-MATTE231-BAKED-ORANGE-with-model.jpg'
                     }
                 ]
             }

@@ -42,17 +42,29 @@
   .liactive {
     background: rgba(148, 11, 11, 0.9) !important;
   }
-  .slide{
-    transform: translateX(0%);
-  }
-  .slide-in{
-    transition-duration: 0.5s;
-    transition: ease-in;
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  .slide-out{
-    transition-duration: 0.5s;  
-    transform : translateX(-100%);
-    opacity: 0;
-  }
+ 
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.9s ease-in;
+  overflow: hidden;
+  visibility: visible;
+  position: absolute;
+  width:100%;
+  opacity: 1;
+}
+
+.fade-enter,
+.fade-leave-to {
+  visibility: hidden;
+  width:100%;
+  opacity: 0;
+}
+
+.carousel{
+  position: relative;
+  height: 600px;
+}
+.carousel img {
+  height:590px;
+  width:100%
+}
