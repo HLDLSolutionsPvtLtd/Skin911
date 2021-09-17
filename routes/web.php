@@ -28,6 +28,13 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
+    return Inertia::render('Products');
+})->name('products');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/product', function () {
+    return Inertia::render('Product');
+})->name('product');
 
 
 Route::group(['prefix' => 'admin'], function () {

@@ -19,7 +19,7 @@
 
                             <!-- Navigation Links -->
                             <div @mouseover="shop = true" @mouseleave="shop = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')"  class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white ">
+                                <jet-nav-link :href="route('products')"  class="font-bold text-white hover:text-white hover:border-b-4 hover:border-white ">
                                     SHOP
                                     <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute z-10 w-full left-0 right-0 top-16 bg-pink">
                                         <div class="grid grid-cols-12 bg-pink m-4">
@@ -424,9 +424,80 @@
             </nav>
 
             <!-- Page Content -->
-            <main>
+            <main class="w-full h-full">
                 <slot></slot>
             </main>
+            <footer class="flex w-full bg-gray-400 ">
+                <div class="grid grid-cols-5 m-4">
+                    <div class="flex justify-center">
+                        <span class="text-4xl text-pink-dark self-center">SKIN 911</span> 
+                    </div>  
+                    <div class="m-2">
+                        <span class="text-pink-dark text-lg">CUSTOMER CARE</span>
+                        <ul>
+                            <li>My Account</li>
+                            <li>Exchange and Refund Policy</li>
+                            <li>Rewards</li>
+                            <li>Shipping</li>
+                            <li>Terms And Condition</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="m-2">
+                        <span class="text-pink-dark text-lg">About</span>
+                        <ul>
+                            <li>About Us</li>
+                            <li>Store Locator</li>
+                            <li>Conscious Beauty</li>
+                        </ul>
+                    </div>
+                    <div class="m-2">
+                        <ul class="flex">
+                            <li class="p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#814252" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </li>
+                            <li class="p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#814252" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/>
+                                </svg>
+                            </li>
+                            <li  class="p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#814252" d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                                </svg>
+                            </li>
+                        </ul>
+                        <div >
+                            <span class="p-2">care@Skin911.com</span>
+                        </div>
+                        <div>
+                            <span class="p-2 flex">Near Aizawl Hospital, 796001 , Aizawl, Mizoram</span>
+                        </div>
+                    </div>
+                    <div class="m-2">
+                        <ul class="text-pink-dark text-lg">
+                            <li class="flex">
+                                <div class="p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#814252" d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/>
+                                    </svg>
+                                </div>
+                                <span class="p-2">Customer Care: + 918974336234</span>
+                            </li>
+                            <li class="flex">
+                                <div class="p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#814252" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 14h-7v-8h2v6h5v2z"/>
+                                    </svg>
+                                </div>
+                                <span class="p-2">Business hours: 09:30 AM - 5:30 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </template>

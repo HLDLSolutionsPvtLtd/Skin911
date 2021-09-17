@@ -1,9 +1,9 @@
 <template>
     <app-layout title="Dashboard">
-       <div class="m-2 h-screen">
-           <div class="h-2/3">
+       <div class="m-2">
+           <div class="">
                 <div class="w-full h-full">
-                    <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="currentImg" class="w-full slide pl-4 pr-4 h-full transition-transform ease-in-out duration-700" />
+                    <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="currentImg" class="w-full slide pl-4 pr-4 h-96 transition-transform ease-in-out duration-700" />
                 </div>
                 <div class="relative">
                     <ul class="absolute bottom-1 dots">
@@ -101,12 +101,10 @@
 <script>
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
-    import Welcome from '@/Jetstream/Welcome.vue'
 
     export default defineComponent({
         components: {
             AppLayout,
-            Welcome,
         },
         data()
         {
