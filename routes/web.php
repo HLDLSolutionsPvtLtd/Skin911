@@ -35,7 +35,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/product', function () {
     return Inertia::render('Product');
 })->name('product');
+Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
+    return Inertia::render('Cart');
+})->name('cart');
 
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/;
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -58,9 +67,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('admin.addbrand', function () {
         return Inertia::render('Admin/AddBrand');
     })->name('admin.addbrand')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('admin.Orders', function () {
+        return Inertia::render('Admin/Orders');
+    })->name('admin.orders')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('admin.addproduct',[ProductController::class, 'AddProduct'])->name('admin.addproduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->post('admin.addbrand',[BrandController::class, 'AddBrand'])->name('admin.addbrand')->middleware('is_admin');
-
+    Route::middleware(['auth:sanctum'])->get('admin.getproducts',[ProductController::class, 'getall'])->name('admin.getproducts')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('admin.getOrderAll',[OrderController::class, 'fetchAll'])->name('admin.getOrderAll')->middleware('is_admin');
 
 });

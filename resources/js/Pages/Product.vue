@@ -1,8 +1,8 @@
 <template>
     <app-layout>
         <div class="flex justify-center">
-            <div class="w-1/2 flex m-8">
-                <div class="flex flex-1 m-2 h-full">
+            <div class="w-full sm:flex xxl:w-1/2 lg:w-7/12 m-6">
+                <div class="flex sm:flex-1 m-2 sm:h-full">
                     <div class="">
                         <ul v-for="image in products" :key="image">
                             <li @click="currentimg(image.img)" >
@@ -14,7 +14,7 @@
                         <img :src="currentImg" alt="" w-full h-full>
                     </div>
                 </div>
-                <div class="flex-1 m-2">
+                <div class=" sm:flex-1 m-2">
                     <div>
                         <span class="text-lg font-bold p-2 text-pink-dark">Product name</span>
                     </div>
@@ -23,8 +23,8 @@
                         <span class="text-sm">$2323</span>
                     </div>
                     <div class="mt-2 flex justify-start">
-                        <button class="p-4 w-1/2 font-bold bg-pink text-pink-dark text-md m-2">ADD TO CART</button>
-                        <button class="p-4 w-1/2 border-2 border-gray-700 font-bold text-pink-dark text-md m-2">BUY IT NOW</button>
+                        <button class="p-2 w-1/2 font-bold bg-pink text-pink-dark text-md m-2">ADD TO CART</button>
+                        <button class="p-2 w-1/2 border-2 border-gray-700 font-bold text-pink-dark text-md m-2">BUY IT NOW</button>
                     </div>
                     <div class="mt-8 mb-8 border-t">
                         <div>
@@ -80,7 +80,7 @@
 
         </div>
        <div class="flex justify-center">
-            <div class="w-1/2 m-4">
+            <div class="sm:w-1/2 m-2 sm:m-4">
                 <div class="m-4">
                     <span class="col-span-3 text-lg font-bold text-gray-700">RELATED PRODUCTSS</span>
                 </div>

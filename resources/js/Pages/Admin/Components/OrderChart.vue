@@ -1,64 +1,73 @@
 <template>
-    <canvas id="myChart" class="w-full"></canvas>
+    <canvas id="order" style="" class=""></canvas>
 </template>
 <script>
-import Chart from 'chart.js/auto';    
-    export default{
-        data()
+import Chart from 'chart.js/auto';
+export default{
+    data()
+    {
+        return{
+            xValues : [50,60,70,80,90,100,110],
+            yValues : [20,34,50,22,20,4,26],
+
+        }
+    },
+    methods:
+    {
+        loadchart()
         {
-            return{
-                chart: '',
-            }
-        },
-        mounted()
-        {
-            const ctx = document.getElementById('myChart');
-            this.chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [{
-                        tension: 1,
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
             
-                options: {
-                    plugins:
-                    {
-                        legend: {
-                            display: false
+        }
+    },
+    mounted()
+    {
+        Chart.defaults.plugins.legend = false;
+        var ctx = document.getElementById('order'); // node
+        ctx.height = 120;
+        var myChart = new Chart(ctx, {
+                        id:   "sales",
+                        type: "line",
+                        data: {
+                            labels: this.xValues,
+                            datasets: [{
+                                label: 'Sales Chart',
+                                lineTension: 1,
+                                borderWidth: 2,
+                                pointRadius: 4,
+                                pointBackgroundColor: "rgba(58, 5, 255, 0.5)",
+                                pointBorderColor: 'rgba(58, 5, 255, 0.5)',
+                                backgroundColor: "rgba(36,50,64,0.5)",
+                                borderColor: "rgba(58, 5, 255, 0.5)",
+                                data: this.yValues,
+                            }]
                         },
-                        tooltips: {
-                            enabled: false
-                        },
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                        options: {
+                            layout: {
+                                padding: 15
+                            },
+                            legend: {
+                                display: false,
+                            },
+                            scales: {
+                                x: {
+                                    grid:{
+                                        opacity:0.5,
+                                        color:"rgba(158, 105, 100, 0.5)",
+                                    }, 
+                                },
+                                y: {
+                                   grid:{
+                                        display:false,
+                                        
+                                    },
+                                }
+                                    
+                            },
+
                         }
-                    }
-                }
-            });
-        },
-    }
+        });
+    },
+}
+
 </script>
+

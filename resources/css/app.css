@@ -68,3 +68,37 @@
   height:590px;
   width:100%
 }
+.text-ct
+{
+  font-size: 1rem;
+  line-height: 1rem;
+  color: hsl(240deg 2% 82%);
+}
+.text-vs
+{
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+.bg-chart
+{
+  background-color: #27293d;
+}
+.bg-dark
+{
+  background-color: #2a2b36;
+}
+.bg-dark-header
+{
+  background-color: #181924;
+}
+.rotate90{
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+}
+.expand{
+  display: block;
+  transition: ease-in-out;
+  transition-duration: 2s;
+  transform: translateY(0%);
+}

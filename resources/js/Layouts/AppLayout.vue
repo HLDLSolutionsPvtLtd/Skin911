@@ -8,12 +8,12 @@
             <div class="w-full bg-pink-200 text-pink-dark">
                 <div class="flex justify-center">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="p-1" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="p-1" viewBox="0 0 24 24">
                             <path fill="#814252" d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>\
                         </svg>
                     </div>
-                    <span class="pl-2">Free shipping across India on all orders over</span>
-                    <span class="pl-2 text-pink-dark font-bold">&#8377;2800</span>
+                    <span class="pl-2 text-sm">Free shipping across India on all orders over</span>
+                    <span class="pl-2 text-sm text-pink-dark font-semibold">&#8377;2800</span>
                 </div>
             </div>
             <nav class="bg-pink sticky top-0 z-10 w-full border-b border-gray-100 border-b shadow-md">
@@ -38,73 +38,73 @@
                                             <div class="col-span-1">
 
                                             </div>
-                                            <div class="col-span-2 border-r text-pink-dark border-gray-200">
-                                                <span class="text-pink-dark">SHOP</span>
+                                            <div class="col-span-2 border-r text-white border-gray-200">
+                                                <span class="">FEATURED BRANDS</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>All Products</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>New Arrivals</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Best Sellers</span>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 ml-2 justify-center">
-                                                <span class="text-pink-dark">SKIN CARE</span>
+                                            <div class="col-span-2 ml-2 text-white justify-center">
+                                                <span class="">SKIN CARE</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Double-Cleanse</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Exfoliator</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Toner</span>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 justify-center">
-                                                <span class="text-pink-dark">SKIN CONCERN</span>
+                                            <div class="col-span-2 text-white justify-center">
+                                                <span class="">SKIN CONCERN</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Acne</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Anti-Aging</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Dyness</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Oil Control</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Redness</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Sensitive</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Pigmentation</span>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 justify-center">
-                                                <span class="text-pink-dark">SKIN TYPE</span>
+                                            <div class="col-span-2 text-white justify-center">
+                                                <span class="">SKIN TYPE</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Dry</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Oily</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Combination</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Normal</span>
                                                     </li>
                                                 </ul>
@@ -144,73 +144,73 @@
                                             <div class="col-span-1">
 
                                             </div>
-                                            <div class="col-span-2 border-r border-gray-200">
-                                                <span class="text-pink-dark">FEATURED BRANDS</span>
+                                            <div class="col-span-2 border-r text-white border-gray-200">
+                                                <span class="">FEATURED BRANDS</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>All Products</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>New Arrivals</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Best Sellers</span>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 ml-2 justify-center">
-                                                <span class="text-pink-dark">SKIN CARE</span>
+                                            <div class="col-span-2 ml-2 text-white justify-center">
+                                                <span class="">SKIN CARE</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Double-Cleanse</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Exfoliator</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Toner</span>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 justify-center">
-                                                <span class="text-pink-dark">SKIN CONCERN</span>
+                                            <div class="col-span-2 text-white justify-center">
+                                                <span class="">SKIN CONCERN</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Acne</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Anti-Aging</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Dyness</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Oil Control</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Redness</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Sensitive</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Pigmentation</span>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 justify-center">
-                                                <span class="text-pink-dark">SKIN TYPE</span>
+                                            <div class="col-span-2 text-white justify-center">
+                                                <span class="">SKIN TYPE</span>
                                                 <ul>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Dry</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Oily</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Combination</span>
                                                     </li>
-                                                    <li class="hover:text-white text-pink-dark pt-2">
+                                                    <li class="hover:text-gray-300 pt-2">
                                                         <span>Normal</span>
                                                     </li>
                                                 </ul>
@@ -225,25 +225,27 @@
                                 </jet-nav-link>
                             </div>
                         </div>
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div class="hidden sm:flex-shrink-1 space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <div class="font-bold rounded-md border border-gray-100 flex justify-center bg-white self-center">
                                 <div class="ml-2">
-                                    <svg width="24" height="24" class="h-10" viewBox="0,0,26,26">
+                                    <svg width="20" height="20" class="h-10" viewBox="0,0,24,24">
                                         <path fill="#747b88" d="M3.438 9.754a6.415 6.415 0 016.408-6.409 6.415 6.415 0 016.409 6.409 6.416 6.416 0 01-6.409 6.408 6.416 6.416 0 01-6.408-6.408M21.816 20.87l-5.974-6.02a7.839 7.839 0 001.88-5.097c0-4.343-3.534-7.875-7.876-7.875-4.342 0-7.875 3.532-7.875 7.875 0 4.342 3.533 7.875 7.875 7.875a7.837 7.837 0 004.946-1.753l5.983 6.029a.73.73 0 001.037.004.733.733 0 00.004-1.038">
                                         </path>
                                     </svg>
                                 </div>
-                                <input type="search" placeholder="SEARCH" class="w-58 border-0 placeholder-opacity-50 rounded-md focus:ring-0">
+                                <input type="search" placeholder="SEARCH" class="w-full border-0 placeholder-opacity-50 rounded-md focus:ring-0">
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
-                             <div class="font-bold flex justify-center self-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
-                                    <path fill="#fff" d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
-                                </svg>
-                                <div class="relative">
-                                    <span class="rounded-full left-0 top-0 absolute h-2 w-2 bg-pink-900"></span>
-                                </div>
+                            <div class="">
+                                <a href="/cart" class="font-bold flex justify-center self-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                                        <path fill="#fff" d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
+                                    </svg>
+                                    <div class="relative">
+                                        <span class="rounded-full left-0 top-0 absolute h-2 w-2 bg-pink-900"></span>
+                                    </div>
+                                </a>
                             </div>
                             <div class="ml-3 relative">
                                 <!-- Teams Dropdown -->
@@ -445,7 +447,7 @@
                         <span class="text-4xl text-pink-dark self-center">SKIN 911</span> 
                     </div>  
                     <div class="m-2">
-                        <span class="text-pink-dark text-lg">CUSTOMER CARE</span>
+                        <span class="text-pink-dark text-lg">Customer Care</span>
                         <ul class="text-gray-600">
                             <li>My Account</li>
                             <li>Exchange and Refund Policy</li>
@@ -489,18 +491,18 @@
                         </div>
                     </div>
                     <div class="m-2">
-                        <ul class="text-pink-dark text-lg text-gray-600">
+                        <ul class="text-pink-dark text-md text-gray-600">
                             <li class="flex">
-                                <div class="p-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <div class="p-2 flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                         <path fill="#814252" d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/>
                                     </svg>
                                 </div>
-                                <span class="p-2">Customer Care: + 918974336234</span>
+                                <span class="pl-2 ">Customer Care: + 918974336234</span>
                             </li>
                             <li class="flex">
-                                <div class="p-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <div class="p-2 flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                         <path fill="#814252" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 14h-7v-8h2v6h5v2z"/>
                                     </svg>
                                 </div>
