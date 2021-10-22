@@ -1,6 +1,6 @@
 <template>
     <app-layout title="Dashboard">
-       <div class="m-2">
+       <div class="m-4">
            <div class="h-1/3">
                 <div class="carousel ">
                     <transition-group class="carousel" name="fade" tag="div">
@@ -11,7 +11,7 @@
                     
                 </div>
                 <div class="relative">
-                    <ul class="absolute bottom-1 dots">
+                    <ul class="absolute bottom-2 dots">
                         <li :class="{liactive : currentIndex === image.id}" 
                             v-for="image in images" 
                             :key="image.id"
@@ -20,7 +20,7 @@
                     </ul>
                 </div>
            </div>
-           <div class="p-12 bg-yellow-100">
+           <div class="p-12 mx-24 my-12 bg-yellow-100">
                <div class="flex justify-center m-4">
                    <span class="col-span-3 text-4xl font-bold text-gray-700">TO SKIN CARE GOALS AND BEYOND</span>
                </div>
@@ -31,7 +31,7 @@
                </div>
            </div>
 
-           <div class="bg-blue-200">
+           <div class="bg-blue-200 mx-24 my-12">
                <div class="flex justify-center">
                    <ul class="flex text-lg font-semibold text-gray-500">
                        <li class="m-2">SHOP BY SKINCARE</li>
@@ -40,7 +40,7 @@
                        <li class="m-2">SHOP BY BESTSELLER</li>
                    </ul>
                </div>
-               <div class="grid grid-cols-6 p-16">
+               <div class="grid grid-cols-6 mx-24 my-12 p-16">
                     <div class="p-1 border border-gray-100" v-for="image in images" :key="image">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
@@ -55,7 +55,7 @@
                     </div>
                </div>
            </div> 
-           <div class="p-16 bg-yellow-100">
+           <div class="p-16 bg-yellow-100 my-12 mx-24">
                <div class="m-4 flex justify-center">
                    <span class="col-span-3 text-4xl font-bold text-gray-700">SHOP ALL</span>
                </div>
@@ -77,7 +77,7 @@
                     <button class="p-3 border-2 border-gray-900">VIEW ALL PRODUCTS</button>
                 </div>
            </div>
-           <div class="p-16 bg-blue-100">
+           <div class="p-16 bg-blue-100 my-12 mx-24">
                <div class="m-4 flex justify-center">
                    <span class="col-span-3 text-4xl font-bold text-gray-700">FEATURED BRANDS</span>
                </div>
@@ -95,7 +95,7 @@
                         </div>  
                     </div>
                 </div> 
-                <div class="m-4 flex justify-center">
+                <div class="m-4 flex justify-center my-12 mx-24">
                     <button class="p-3 border-2 border-gray-900">VIEW ALL FEATURED BRANDS</button>
                 </div>
            </div>
@@ -123,7 +123,7 @@
                 images:[
                     {
                         id:0,
-                        img:'https://cdsco.gov.in/opencms/export/system/modules/CDSCO.WEB/resources/img/slider/cosmetic4.jpg',
+                        img:'https://cdn.nrf.com/sites/default/files/styles/crop_1027_547/public/2020-09/mens%20cosmetics.png?itok=7EAMtlgN',
                     },
                     {
                         id:1,
@@ -131,19 +131,19 @@
                     },
                     {
                         id:2,
-                        img:'https://imgscf.slidemembers.com/docs/1/1/334/natural_cosmetic_presentation_ppt_333010.jpg',
+                        img:'https://cdn.shopify.com/s/files/1/1280/5953/files/Blog-1-UPDATED_1024x1024.jpg?v=1520984057',
                     },
                     {
                         id:3,
-                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfz8UYc1CQyXKs1tRDEj8i_fDGLUPCqSSuFg&usqp=CAU',
+                        img:'https://www.kingdomofbeauty.co/wp-content/uploads/2019/02/1.jpg',
                     },
                      {
                         id:4,
-                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ50FK7obnjKOi-tIj4f1pihzPg3Nmu9m_bXg&usqp=CAU',
+                        img:'https://www.harrods.com/BWStaticContent/50000/ba521560-2bbd-41d8-b3bc-382e7fae0dbd_d-hero-new-helena-rubenstein-08-21.jpg',
                     },
                     {
                         id:5,
-                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXxqZf5Btz3rjG-3s5GizZXgLjr5I3iRaptQ&usqp=CAU',
+                        img:'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/cosmetics/cosmeticsdesign-europe.com/article/2020/01/22/male-beauty-brand-war-paint-wants-to-overhaul-stigma-and-mainstream-make-up-for-men/10622219-7-eng-GB/Male-beauty-brand-War-Paint-wants-to-overhaul-stigma-and-mainstream-make-up-for-men.jpg',
                     },
                     
                 ],

@@ -2,8 +2,14 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+.bg-g{
+  background-color: #9F8F8F;
+}
 .bg-dark{
     background: rgb(54, 37, 37);
+}
+.color-icon{
+  color: #252020;
 }
 .bg-pink
 {
@@ -11,7 +17,7 @@
 }
 .text-pink-dark
 {
-    color: #814252;
+    color: #1d1618;
 }
 .modal-open {
     display: block;
@@ -33,14 +39,14 @@
     width: 12px;
     height: 12px;
     border-radius: 12px;
-    background: rgba(161, 123, 123, 0.9);
+    background: #cccccc;
     display: inline-block;
     margin: 0 3px;
     cursor: pointer;
     transition: opacity 0.4s ease-in-out,width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   .liactive {
-    background: rgba(148, 11, 11, 0.9) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
   }
  
 .fade-enter-active,
