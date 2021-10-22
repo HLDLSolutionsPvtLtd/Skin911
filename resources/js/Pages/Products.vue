@@ -85,8 +85,12 @@
                                     </div>  
                                 </div>
                         </div>
-                        <div class="w-full bg-gray-400 h-8 ml-2 mr-2">
-                            
+                        <div class="w-full flex self-center justify-center bg-gray-400 h-8 ml-2 mr-2">
+                            <ul class="flex self-center m-1 p-1">
+                                <li class="bg-gray-200 p-1 m-1">1</li>
+                                <li class="bg-gray-200 p-1 m-1">2</li>
+                                <li class="bg-gray-200 p-1 m-1">3</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
