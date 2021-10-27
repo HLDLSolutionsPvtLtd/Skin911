@@ -36,10 +36,10 @@ export default{
                                 borderWidth: 2,
                                 pointRadius: 4,
                                 pointHoverRadius: 4,
-                                pointBackgroundColor: "rgba(58, 5, 255, 0.5)",
-                                pointBorderColor: 'rgba(58, 5, 255, 0.5)',
-                                backgroundColor: "rgba(36,50,64,0.5)",
-                                borderColor: "rgba(58, 5, 255, 0.5)",
+                                pointBackgroundColor: "rgba( 246, 49, 131 ,0.5)",
+                                pointBorderColor: 'rgba( 246, 49, 131 ,0.5)',
+                                backgroundColor: "rgba(160,150,150,0 )",
+                                borderColor: "rgba( 246, 49, 131 ,0.5)",
                                 data: this.yValues,
                             }]
                         },
@@ -82,7 +82,7 @@ export default{
                                     },
                                     ticks: {
                                             font: {
-                                                size: 15,
+                                                size: 12,
                                             },
                                            
                                         },

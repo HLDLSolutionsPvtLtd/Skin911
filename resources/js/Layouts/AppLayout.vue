@@ -440,11 +440,8 @@
             <main class="w-full h-full">
                 <slot></slot>
             </main>
-            <footer class="flex w-full bg-gray-400 ">
-                <div class="grid grid-cols-5 m-4">
-                    <div class="flex self-center justify-center">
-                        <jet-logo></jet-logo>
-                    </div>  
+            <footer class="flex w-full justify-center bg-gray-400 ">
+                <div class="grid grid-cols-4 m-4">  
                     <div class="m-2">
                         <span class="text-pink-dark font-bold text-xs">CUSTOMER CARE</span>
                         <ul class="text-gray-600 text-sm font-semibold">
@@ -483,16 +480,15 @@
                                 </svg>
                             </li>
                         </ul>
-                        <div class="text-gray-600 text-sm font-semibold">
-                            <span class="p-2">Care@Skin911.com</span>
-                        </div>
-                        <div class="text-gray-600 text-sm font-semibold">
-                            <span class="p-2 flex">Near Aizawl Hospital, 796001 , Aizawl, Mizoram</span>
-                        </div>
                     </div>
                     <div class="m-2">
                         <span class="text-pink-dark font-bold text-xs p-2">HELP</span>
                         <ul class="text-sm text-gray-600 font-semibold">
+                            <li>
+                                <div class="p-2 flex text-gray-600 text-sm font-semibold">
+                                    <span class="">care@skin911.com</span>
+                                </div>
+                            </li>
                             <li class="flex">
                                 <div class="p-2 flex">
                                     <span class="pr-2 ">Customer Care: + 918974336234</span>

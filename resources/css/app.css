@@ -15,6 +15,14 @@
 {
     background: #E89EB0;
 }
+.grow{
+  -moz-transition: height .5s;
+  -ms-transition: height .5s;
+  -o-transition: height .5s;
+  -webkit-transition: height .5s;
+  transition: height .5s;
+  height: 0;
+}
 .text-pink-dark
 {
     color: #1d1618;
@@ -101,10 +109,4 @@
 .rotate90{
   transform: rotate(90deg);
   transform-origin: 50% 50%;
-}
-.expand{
-  display: block;
-  transition: ease-in-out;
-  transition-duration: 2s;
-  transform: translateY(0%);
 }

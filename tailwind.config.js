@@ -9,12 +9,20 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
     ],
-
+    variants: {
+        extend: {
+            transitionProperty: ['responsive', 'motion-safe', 'motion-reduce']
+        }
+    },
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            transitionProperty: {
+
+                'height': 'height',
+            }
         },
     },
 

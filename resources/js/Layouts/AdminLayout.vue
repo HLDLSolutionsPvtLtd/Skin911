@@ -1,102 +1,130 @@
 <template>
 <div class="grid grid-cols-12 min-h-screen ">
     <!-- side navbar -->
-    <sidenav class="col-span-2 bg-dark h-screen">
-            <div class="">
-                <div class="bg-dark-header flex justify-center">
-                    <h4 class="text-xl font-serif font-bold text-blue-900 p-4">SKIN911</h4>
+    <sidenav class="col-span-2 bg-white shadow-lg border-r h-screen">
+            <div class="border-b">
+                <div class="bg-white p-4 flex justify-center">
+                    <jet-logo></jet-logo>
                 </div>
             </div>
             <div class="">
-                <div class="m-1 h-full rounded-2xl bg-dark-header border-2 border-blue-900">
+                <div class="m-1 h-full">
+                    <div class="p-3 pl-6">
+                        <span class="text-sm text-gray-500 font-bold">MENU</span>
+                    </div>
                     <ul class="h-full p-2">
-                        <li class="flex hover:bg-blue-900 bg-blue-900 p-2 w-full rounded-md">
-                            <inertia-link class="p-2 pl-2 flex text-ct" :href="route('admin.dashboard')" :active="route().current('admin.products')">
+                        <li class="flex m-1 hover:bg-blue-900 p-3 w-full">
+                            <Link class="flex text-sm text-pink-700" :href="route('admin.dashboard')" :active="route().current('admin.products')">
                                 <!-- <jet-application-mark class="block h-9 w-auto" /> -->
-                                <div class="flex w-full justify-between">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="20" height="20" viewBox="0 0 24 24">
-                                            <path fill="#fff" d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.617 0-12 5.383-12 12s5.383 12 12 12 12-5.383 12-12-5.383-12-12-12zm8.021 9.593c-.141-.427-.314-.844-.516-1.242l-2.454 1.106c.217.393.39.81.517 1.242l2.453-1.106zm-12.573-.904c.271-.354.58-.674.919-.957l-1.89-1.968c-.328.294-.637.615-.918.957l1.889 1.968zm1.715-1.514c.379-.221.781-.396 1.198-.523l-1.034-2.569c-.41.142-.812.318-1.198.524l1.034 2.568zm-2.759 3.616c.121-.435.288-.854.498-1.25l-2.47-1.067c-.197.403-.364.823-.498 1.25l2.47 1.067zm9.434-6.2c-.387-.205-.79-.379-1.2-.519l-1.024 2.573c.417.125.82.299 1.2.519l1.024-2.573zm2.601 2.13c-.282-.342-.59-.664-.918-.957l-1.89 1.968c.339.283.647.604.918.957l1.89-1.968zm-5.791-3.059c-.219-.017-.437-.026-.649-.026s-.431.009-.65.026v2.784c.216-.025.434-.038.65-.038.216 0 .434.013.649.038v-2.784zm-.648 13.782c-1.294 0-2.343-1.049-2.343-2.343 0-.883.489-1.652 1.21-2.051l1.133-5.31 1.133 5.309c.722.399 1.21 1.168 1.21 2.051 0 1.295-1.049 2.344-2.343 2.344z"/>
+                                <div class="flex justify-center self-center items-center">
+                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-700 mr-4" fill-rule="evenodd" clip-rule="evenodd">
+                                            <path d="M13 23h-10l-.002-10.016 8.974-7.989 9.011 7.989.017 10.016h-3v-7h-5v7zm-6-7h-2v3h2v-3zm4 0h-2v3h2v-3zm1-15l11.981 10.632-1.328 1.493-10.672-9.481-10.672 9.481-1.328-1.493 12.019-10.632z"/>
                                         </svg>
-                                        <span class="text-sm pl-8 text-center">Dashboard</span>
+                                        <span class="text-xs uppercase font-bold text-black">Dashboard</span>
                                 </div>
-                            </inertia-link>
+                            </Link>
                         </li>
-                        <li class="w-full m-1">
-                            <div @click="collapse_product=!collapse_product" class="p-4 flex justify-between" >
-                                    <span class="text-sm text-white">Products</span>
-                                    <svg width="18" height="18" :class="{'rotate90': collapse_product}" viewBox="0 0 24 24" class="fill-current p-1 text-white" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                        <li class="w-full m-1 cursor-pointer">
+                            <div @click="collapse_product=!collapse_product" class="p-3 flex justify-between" >
+                                    <div class="flex justify-center self-center items-center">
+                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-700 mr-4" fill-rule="evenodd" clip-rule="evenodd">
+                                            <path d="M11.499 12.03v11.971l-10.5-5.603v-11.835l10.5 5.467zm11.501 6.368l-10.501 5.602v-11.968l10.501-5.404v11.77zm-16.889-15.186l10.609 5.524-4.719 2.428-10.473-5.453 4.583-2.499zm16.362 2.563l-4.664 2.4-10.641-5.54 4.831-2.635 10.474 5.775z"/>
+                                        </svg>
+                                        <span class="text-xs uppercase font-bold text-black">Products</span>
+                                    </div>
+                                    <svg width="18" height="18" :class="{'rotate90': collapse_product}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                         <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
                                     </svg>
                             </div>
-                            <ul :class="{'expand': collapse_product}" class="hidden list-disc ml-4 list-inside transition duration-700 ease-in-out -translate-y-10">
+                            <ul :class="{'h-0': !collapse_product}" class="overflow-hidden ml-8 list-inside transition-all duration-800 ease-in-out ">
                                 <li class="hover:bg-blue-900 p-4">
-                                    <inertia-link class="text-gray-400" :active="route().current('admin.products')" :href="route('admin.products')">
+                                    <Link class="text-gray-400" :active="route().current('products')" :href="route('products')">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
-                                        <span class="text-sm font-bold">All</span>
-                                    </inertia-link>
+                                        <span class="text-xs uppercase font-bold font-bold">All</span>
+                                    </Link>
                                 </li>
                                 <li class="hover:bg-blue-900 p-4">
-                                    <inertia-link class="text-gray-400" :href="route('admin.addproduct')">
+                                    <Link class="text-gray-400" :href="route('addproduct')">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
-                                        <span class="text-sm font-bold">Add</span>
-                                    </inertia-link>
+                                        <span class="text-xs uppercase font-bold font-bold">Add</span>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
                         <li class="w-full m-1">
-                            <div class="p-4 flex justify-between" >
-                                    <span class="text-sm text-white">Brands</span>
-                                    <svg width="18" height="18" :class="{'rotate90': collapse_product}" viewBox="0 0 24 24" class="fill-current p-1 text-white" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                            <div class="p-3 flex justify-between" >
+                                    <div class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" class="fill-current text-pink-700 mr-4" height="24" viewBox="0 0 24 24">
+                                            <path d="M10.605 0h-10.605v10.609l13.392 13.392 10.608-10.605-13.395-13.396zm4.477 10.687l3.535 3.533-.547.547-3.533-3.534.545-.546zm-11.496-4.273c-.781-.782-.781-2.048 0-2.829s2.049-.78 2.828-.001c.781.783.782 2.048 0 2.83-.781.782-2.046.78-2.828 0zm9.651 13.189l-3.536-3.535.547-.546 3.534 3.536-.545.545zm1.115-1.117l-3.534-3.534.728-.729 3.535 3.536-.729.727zm1.31-1.311l-3.534-3.533.546-.546 3.535 3.536-.547.543zm1.135-1.135l-3.533-3.534.729-.729 3.534 3.536-.73.727zm2.404-2.4l-3.537-3.535.4-.4 3.537 3.535-.4.4z"/>
+                                        </svg>
+                                        <span class="text-xs uppercase font-bold text-black">Brands</span>
+                                    </div>
+                                    <svg width="18" height="18" :class="{'rotate90': collapse_brand}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                         <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
                                     </svg>
                             </div>
                         </li>
                         <li class="w-full m-1">
-                            <div class="p-4 flex justify-between" >
-                                    <span class="text-sm text-white">Orders</span>
-                                    <svg width="18" height="18" :class="{'rotate90': collapse_product}" viewBox="0 0 24 24" class="fill-current p-1 text-white" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
-                                    </svg>
-                            </div>
-                        </li>
-                        <li class="w-full m-1">
-                            <div class="p-4 flex justify-between" >
-                                    <span class="text-sm text-white">Categories</span>
-                                    <svg width="18" height="18" :class="{'rotate90': collapse_product}" viewBox="0 0 24 24" class="fill-current p-1 text-white" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
-                                    </svg>
-                            </div>
-                        </li>
-                        <li class="w-full m-1">
-                            <div class="p-4 flex justify-between" >
-                                    <span class="text-sm text-white">Logout</span>
+                            <div class="p-3 flex justify-between" >
+                                    <div class="flex items-center">
+                                       <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-700 mr-4" width="24" height="24" viewBox="0 0 24 24">
+                                            <path d="M21.698 10.658l2.302 1.342-12.002 7-11.998-7 2.301-1.342 9.697 5.658 9.7-5.658zm-9.7 10.657l-9.697-5.658-2.301 1.343 11.998 7 12.002-7-2.302-1.342-9.7 5.657zm12.002-14.315l-12.002-7-11.998 7 11.998 7 12.002-7z"/>
+                                        </svg>
+                                        <span class="text-xs uppercase font-bold text-black">Orders</span>
+                                    </div>
                                     
+                                    <svg width="18" height="18" :class="{'rotate90': collapse_orders}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
+                                    </svg>
+                            </div>
+                        </li>
+                        <li class="w-full m-1">
+                            <div class="p-3 flex justify-between" >
+                                    <div class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-700 mr-4" width="24" height="24" viewBox="0 0 24 24">
+                                            <path d="M22 13v-13h-20v24h8.409c4.857 0 3.335-8 3.335-8 3.009.745 8.256.419 8.256-3zm-4-7h-12v-1h12v1zm0 3h-12v-1h12v1zm0 3h-12v-1h12v1zm-2.091 6.223c2.047.478 4.805-.279 6.091-1.179-1.494 1.998-5.23 5.708-7.432 6.881 1.156-1.168 1.563-4.234 1.341-5.702z"/>
+                                        </svg>
+                                        <span class="text-xs uppercase font-bold text-black">Categories</span>
+                                    </div>
+                                    <svg width="18" height="18" :class="{'rotate90': collapse_categories}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
+                                    </svg>
+                            </div>
+                        </li>
+                        <li class="w-full m-1">
+                            <div class="p-3 flex justify-between" >
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-current text-pink-700 mr-4" viewBox="0 0 24 24">
+                                        <path d="M0 2v20h14v-2h-12v-16h12v-2h-14zm18 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z"/>
+                                    </svg>
+                                    <span class="text-xs uppercase font-bold text-black">Logout</span>
+                                </div>
                             </div>
                         </li>
                     </ul>
                 </div>
         </div>
     </sidenav>
-    <main class="col-span-10 bg-dark-header w-full overflow-hidden h-screen">
-        <header class="bg-white shadow" >
+    <main class="col-span-10 bg-gray-100 w-full overflow-hidden h-screen">
+        <header class="" >
             <div class="">
-               <nav class="bg-dark">
+               <nav class="bg-white rounded-sm ml-4 mr-4 shadow-lg">
                     <div class="flex justify-between self-center p-3">
                         <div class="flex items-center ml-3">
-                            <h4 class="text-md font-semiblod font-serif text-gray-500">
+                            <h4 class="text-md font-semibold text-gray-400">
                                 <slot name="header"></slot>
                             </h4>
                         </div>
                         <div class="mr-3 flex items-center">
                             <div class="relative m-2">
-                                <svg class="h-4 w-4" viewBox="0 0 512 512">
-                                    <path fill="#ffffffbf" d="M16,112V496H496V112ZM236.8,341.6a32.167,32.167,0,0,0,38.4,0L298.667,324,464,448v16H48V448L213.333,324ZM256,316,48,160V144H464v16ZM48,200,186.667,304,48,408ZM464,408,325.333,304,464,200Z"></path>
+                                <svg class="h-5 w-5" viewBox="0 0 512 512">
+                                    <path fill="#000" d="M16,112V496H496V112ZM236.8,341.6a32.167,32.167,0,0,0,38.4,0L298.667,324,464,448v16H48V448L213.333,324ZM256,316,48,160V144H464v16ZM48,200,186.667,304,48,408ZM464,408,325.333,304,464,200Z"></path>
                                 </svg>
                                 <span class="absolute text-vs -m-1 top-0 right-0 bg-blue-500 rounded-full  p-1"></span>
                             </div>
                             <div class="m-2 relative mr-3">
-                                <svg class="h-4 w-4" viewBox="0 0 500 500">
-                                    <path fill="#ffffffbf" d="M450.27,348.569,406.6,267.945V184c0-83.813-68.187-152-152-152s-152,68.187-152,152v83.945L58.928,348.568A24,24,0,0,0,80.031,384h86.935c-.238,2.636-.367,5.3-.367,8a88,88,0,0,0,176,0c0-2.7-.129-5.364-.367-8h86.935a24,24,0,0,0,21.1-35.431ZM310.6,392a56,56,0,1,1-111.419-8H310.018A56.14,56.14,0,0,1,310.6,392ZM93.462,352,134.6,276.055V184a120,120,0,0,1,240,0v92.055L415.736,352Z"></path>
+                                <svg class="h-5 w-5" viewBox="0 0 500 500">
+                                    <path fill="#000" d="M450.27,348.569,406.6,267.945V184c0-83.813-68.187-152-152-152s-152,68.187-152,152v83.945L58.928,348.568A24,24,0,0,0,80.031,384h86.935c-.238,2.636-.367,5.3-.367,8a88,88,0,0,0,176,0c0-2.7-.129-5.364-.367-8h86.935a24,24,0,0,0,21.1-35.431ZM310.6,392a56,56,0,1,1-111.419-8H310.018A56.14,56.14,0,0,1,310.6,392ZM93.462,352,134.6,276.055V184a120,120,0,0,1,240,0v92.055L415.736,352Z"></path>
                                 </svg>
                                 <span class="absolute text-vs -m-1 top-0 right-0 bg-red-500 rounded-full  p-1"></span>
                             </div>
@@ -148,11 +176,13 @@
 </template>
 <script>
     import JetApplicationMark from '@/Jetstream/ApplicationMark'
+    import JetLogo from '@/Jetstream/logo.vue'
     import JetBanner from '@/Jetstream/Banner'
     import JetDropdown from '@/Jetstream/Dropdown'
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import { Link } from '@inertiajs/inertia-vue3'
     import Button from '../Jetstream/Button.vue'
 
     export default {
@@ -163,7 +193,9 @@
                 JetDropdown,
                 JetDropdownLink,
                 JetNavLink,
+                JetLogo,
                 JetResponsiveNavLink,
+                Link
         },
 
         data() {

@@ -57,23 +57,23 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('admin.login',[UserAdminController::class,'authenticate'])->name('admin.login');
 
-    Route::middleware(['auth:sanctum'])->get('admin.products', function () {
+    Route::middleware(['auth:sanctum'])->get('products', function () {
         return Inertia::render('Admin/Products');
     })->name('admin.products')->middleware('is_admin');
 
-    Route::middleware(['auth:sanctum'])->get('admin.addproduct', function () {
+    Route::middleware(['auth:sanctum'])->get('addproduct', function () {
         return Inertia::render('Admin/AddProduct');
-    })->name('admin.addproduct')->middleware('is_admin');
+    })->name('addproduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('admin.addbrand', function () {
         return Inertia::render('Admin/AddBrand');
     })->name('admin.addbrand')->middleware('is_admin');
-    Route::middleware(['auth:sanctum'])->get('admin.Orders', function () {
+    Route::middleware(['auth:sanctum'])->get('Orders', function () {
         return Inertia::render('Admin/Orders');
     })->name('admin.orders')->middleware('is_admin');
 
-    Route::middleware(['auth:sanctum'])->post('admin.addproduct',[ProductController::class, 'AddProduct'])->name('admin.addproduct')->middleware('is_admin');
-    Route::middleware(['auth:sanctum'])->post('admin.addbrand',[BrandController::class, 'AddBrand'])->name('admin.addbrand')->middleware('is_admin');
-    Route::middleware(['auth:sanctum'])->get('admin.getproducts',[ProductController::class, 'getall'])->name('admin.getproducts')->middleware('is_admin');
-    Route::middleware(['auth:sanctum'])->get('admin.getOrderAll',[OrderController::class, 'fetchAll'])->name('admin.getOrderAll')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->post('addproduct',[ProductController::class, 'AddProduct'])->name('addproduct')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->post('addbrand',[BrandController::class, 'AddBrand'])->name('addbrand')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('getproducts',[ProductController::class, 'getall'])->name('getproducts')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('getOrderAll',[OrderController::class, 'fetchAll'])->name('getOrderAll')->middleware('is_admin');
 
 });
