@@ -1,73 +1,41 @@
 <template>
    <AdminLayout>
        <template #header>
-           <div class="bg-dark">
-                ADD Product
+           <div class="">
+                ADD PRODUCT
            </div>
        </template>
        <div class="h-screen overflow-y-scroll p-5">
-            <div class="flex m-2 justify-between border border-gray-600">
-                <div class="flex">
-                    <div class="m-1">
-                        <button @click="back()" class="flex text-xs text-blue-500 border border-white font-mono p-2 rounded-xs">
-                            
-                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                                <path fill="#fff" d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="m-1">
-                        <button @click="submit" type="button" class="flex text-md text-blue-500 border border-blue-600 font-mono p-2 rounded-xs">
-                            CREATE
-                            <svg class="ml-1" width="24" height="24">
-                                <path fill="#0f3fc7" d='M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z'></path>
-                            </svg> 
-                        </button>
-                    </div>
-                </div>
-                <div v-if="message">
-                    <span class="p-1 text-ct text-red-500">{{message}}</span>
-                </div>
-                <div class="flex">
-                    <div class="m-1">
-                        <button @click="resetForm()" type="button" class="flex text-md text-white border border-white font-mono p-2 rounded-xs">
-                            RESET
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-1" width="24" height="24">
-                                <path fill="#fff" d="M1.615 11.375l-1.535-.986 5.399-.618 1.924 5.023-1.518-.961c-1.482 2.402-2.843 5.215-1.979 7.896-2.503-2.122-3.906-3.753-3.906-5.723 0-1.422.924-3.339 1.615-4.631zm4.057 5.625c-.763.931-1.002 2.887-.753 4.071.114.542.592.929 1.147.929h4.934v-5h-5.328zm10.706 5.176v1.824l-3.37-4.263 3.37-4.282v1.797c2.823-.005 5.798-.333 7.622-2.479-.484 3.246-1.131 5.298-2.805 6.336-1.209.748-3.354.973-4.817 1.067zm2.672-6.413c1.193.158 2.982-.669 3.857-1.505.401-.383.478-.993.186-1.464l-2.6-4.192-4.25 2.634 2.807 4.527zm-.937-11.561l1.61-.859-2.097 5.014-5.323-.772 1.579-.856c-1.372-2.467-3.162-5.028-5.925-5.583 1.904-.711 3.438-1.146 4.737-1.146 2.238 0 3.54 1.265 5.419 4.202zm-6.889.795c-.44-1.12-2.031-2.285-3.186-2.645-.529-.165-1.1.063-1.371.547l-2.408 4.307 4.364 2.441 2.601-4.65z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            
            <div class="mb-12">
                <form action="">
-                    <div class="grid grid-cols-2 ">
-                        <div class="col-span-1 m-2 bg-dark">
-                            <div class="flex text-ct font-bold border-b border-gray-500">
+                    <div class="grid grid-cols-2">
+                        <div class="col-span-1 p-4 mr-1 bg-white">
+                            <div class="flex text-sm border-b font-bold">
                                 <span class="p-2 ml-4">Product Deatils</span>
                             </div>
                             <div class="m-6">
                                     <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-ct font-mono" for="productname" value="Name"/>
+                                                <jet-label class="text-sm font-bold my-1" for="productname" value="Name"/>
                                                 <div>
-                                                    <input id="productname" v-model="form.pname" class="w-full text-ct h-8 rounded-sm bg-dark-header" type="text" required autofocus/>
+                                                    <input id="productname" v-model="form.pname" class="w-full my-1 text-sm rounded-md border border-gray-200" type="text" required autofocus/>
                                                 </div>
                                         </div>
                                     </div>
                                     <div class="flex justify-center mt-2">
                                             <div class="w-full">
-                                                <jet-label class="text-ct font-mono" for="description" value="Description"/>
+                                                <jet-label class="text-sm font-bold my-1" for="description" value="Description"/>
                                                 <div> 
-                                                    <textarea class="w-full text-ct rounded-sm bg-dark-header" name="description" v-model="form.description" id="description" cols="30" rows="5" required/>
+                                                    <textarea class="w-full text-sm my-1 rounded-md border border-gray-200" name="description" v-model="form.description" id="description" cols="30" rows="5" required/>
                                                 </div>
                                             </div>
                                     </div>
                                     <div class="flex mt-2 justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-ct font-mono" for="label" value="Label"/>
+                                                <jet-label class="text-sm font-bold my-1" for="label" value="Label"/>
                                                 <div>
-                                                    <select v-model="form.label" class="w-full bg-dark-header placeholder-gray-100 text-ct h-8 rounded-sm" id="Label" required>
+                                                    <select v-model="form.label" class="w-full placeholder-gray-100 text-sm text-sm my-1 rounded-md border border-gray-200" id="Label" required>
                                                         <option selected>Select Label</option>
                                                         <option value="New Arrival">New Arrival</option>
                                                         <option value="Most Popular">Most Popular</option>
@@ -78,9 +46,9 @@
                                     </div>
                                     <div class="flex mt-2 justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-ct font-mono" for="brand" value="Brand"/>
+                                                <jet-label class="text-sm font-bold my-1" for="brand" value="Brand"/>
                                                 <div>
-                                                    <select v-model="form.brand" class="w-full placeholder-gray-100 text-ct h-8 rounded-sm bg-dark-header" id="Label" required>
+                                                    <select v-model="form.brand" class="w-full placeholder-gray-100 my-1 text-sm rounded-md border border-gray-200" id="Label" required>
                                                         <option selected>Select Brand</option>
                                                         <option value="Addidas">Addidas</option>
                                                         <option value="Nike">Nike</option>
@@ -91,9 +59,9 @@
                                     </div>
                                     <div class="flex mt-2 justify-center ">
                                         <div class="w-full">
-                                                <jet-label class="text-ct font-mono" for="type" value="type"/>
+                                                <jet-label class="text-sm font-bold my-1" for="type" value="Type"/>
                                                 <div>
-                                                    <select v-model="form.type" class="w-full placeholder-gray-100 text-ct h-8 rounded-sm bg-dark-header" id="type" required>
+                                                    <select v-model="form.type" class="w-full placeholder-gray-100 text-sm rounded-md my-1 border border-gray-200" id="type" required>
                                                         <option selected>Select type</option>
                                                         <option value="Casual Shoe">Casual Shoe</option>
                                                         <option value="Bascketball shoe">Bascketball shoe</option>
@@ -104,9 +72,9 @@
                                     </div>
                                     <div class="flex mt-2 justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-ct font-mono" for="category" value="Category"/>
+                                                <jet-label class="text-sm font-bold my-1" for="category" value="Category"/>
                                                 <div>
-                                                    <select v-model="form.category" class="w-full placeholder-gray-100 text-ct h-8 rounded-sm bg-dark-header" id="category" required>
+                                                    <select v-model="form.category" class="w-full placeholder-gray-100 text-sm my-1 rounded-md border border-gray-200" id="category" required>
                                                         <option selected>Select category</option>
                                                         <option value="Men">Men</option>
                                                         <option value="Woman">Woman</option>
@@ -117,9 +85,9 @@
                                     </div>
                                     <div class="flex mt-2 justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-ct" for="price" value="Price"/>
+                                                <jet-label class="text-sm font-bold my-1" for="price" value="Price"/>
                                                 <div>
-                                                    <input v-model="form.price" class="w-full text-ct placeholder-gray-100 h-8 rounded-sm bg-dark-header" placeholder="&#8377;" type="text" required/>
+                                                    <input v-model="form.price" class="w-full text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="text" required/>
                                                 </div>
                                             </div>
                                     </div>
@@ -127,14 +95,16 @@
                             
                         </div>
                         
-                        <div class="col-span-1 m-2 bg-dark">
-                            <div class="flex text-ct font-bold border-b border-gray-500">
+                        <div class="col-span-1 bg-white ml-1 p-4">
+                            <div class="flex text-sm font-bold border-b">
                                 <span class="p-2 ml-4">Product Images</span>
                             </div>
                             <div class="m-6">
-                                    <div class="flex justify-center border-dashed border border-gray-600">
-                                        <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
-                                        <label class="p-12 text-ct font-mono text-center text-gray-400" for="image">Drag and Drop/Click to ADD image</label>
+                                    <div class="p-12 border border-dashed border-gray-300">
+                                        <div class="text-sm  p-12 font-mono text-center items-center text-gray-400">
+                                            <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
+                                            <span>Drag and Drop/Click to ADD image</span>
+                                        </div>
                                     </div>
                             </div>
                             <div class="m-6">
@@ -150,30 +120,30 @@
                     </div>
                     </form>
                     <div class="grid grid-cols-2">
-                        <div class="col-span-1 m-2  bg-dark">
-                            <div class="flex text-ct font-bold border-b border-gray-500">
+                        <div class="col-span-1 p-2 mt-2 bg-white">
+                            <div class="flex text-sm font-bold">
                                 <span class="p-2 ml-4">Variants</span>
                             </div>
                             <div class="m-6">
                                     <div class="flex justify-center">
-                                        <div class="w-full">
+                                        <div class="w-full my-1">
                                             
                                             <div>
-                                                <input class="p-1 text-blue-500 h-4 rounded-sm bg-dark-header focus:ring-0" type="checkbox" v-on:input="check()" role="checkbox">
-                                                <span class="p-1 text-ct">this product has different color</span>
+                                                <input class="p-1 text-blue-500 h-4 rounded-sm focus:ring-0" type="checkbox" v-on:input="check()" role="checkbox">
+                                                <span class="p-1 text-sm">this product has different color</span>
                                                 
                                                 <div v-if="form.colorCheck">
                                                     <div class="flex pt-1" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-ct font-mono" for="size" value="Color Name"/>
+                                                            <jet-label class="text-sm font-mono" for="size" value="Color Name"/>
                                                             <div >
-                                                                <input v-model="color" class="w-full text-ct h-8 rounded-sm bg-dark-header" type="text"/>
+                                                                <input v-model="color" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                             </div>
                                                         </div>
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-ct" for="units" value="Color Code"/>
+                                                            <jet-label class="text-sm" for="units" value="Color Code"/>
                                                             <div >
-                                                                <input v-model="colorcode" class="w-full text-ct h-8 rounded-sm bg-dark-header" type="text"/>
+                                                                <input v-model="colorcode" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                             </div>
                                                         </div> 
                                                     </div>
@@ -186,27 +156,27 @@
                                     </div>
                                     <div class="flex justify-center">
                                         <div class="w-full">
-                                                <label class="text-ct font-mono" for="variant">ADD SIZE <span v-if="form.colorCheck&&dropdowncheck">for {{selectedcolor}}</span></label>
+                                                <label class="text-sm my-1 font-mono" for="variant">ADD SIZE <span v-if="form.colorCheck&&dropdowncheck">for {{selectedcolor}}</span></label>
                                                <div class="flex">
-                                                    <select class="flex w-1/2 placeholder-gray-100 text-ct h-8 rounded-sm bg-dark-header" v-if="form.colorCheck&&dropdowncheck" v-model="selectedcolor" name="color" id="">
+                                                    <select class="flex w-1/2 placeholder-gray-100 text-sm h-8 rounded-sm" v-if="form.colorCheck&&dropdowncheck" v-model="selectedcolor" name="color" id="">
                                                         <option v-for="col in form.colors" class="" :key="col.name" :value="col.name">
                                                             <span class="">{{col.name}}</span>
                                                         </option>
                                                     </select>
-                                                    <button @click="removeColor()" v-if="form.colorCheck&&dropdowncheck" class="w-1/2 p-1 justify-center items-center bg-dark border border-red-100 rounded-sm font-semibold text-xs text-red-600 uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Remove</button>
+                                                    <button @click="removeColor()" v-if="form.colorCheck&&dropdowncheck" class="w-1/2 p-1 justify-center items-center  border border-red-100 rounded-sm font-semibold text-xs text-red-600 uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Remove</button>
                                                </div>
                                             <div class="pt-1">                                   
                                                 <div class="flex">
                                                     <div class="w-1/2">
-                                                        <jet-label class="text-ct font-mono" for="size" value="Size" />
+                                                        <jet-label class="text-sm font-mono" for="size" value="Size" />
                                                         <div >
-                                                            <input id="size" v-model="size" class="w-full text-ct h-8 rounded-sm bg-dark-header" type="text"/>
+                                                            <input id="size" v-model="size" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                         </div>
                                                     </div>
                                                     <div class="w-1/2">
-                                                        <jet-label class="text-ct font-mono" for="units" value="Units"/>
+                                                        <jet-label class="text-sm font-mono" for="units" value="Units"/>
                                                         <div >
-                                                            <input id="units" v-model="qty" class="w-full text-ct h-8 rounded-sm bg-dark-header" type="text"/>
+                                                            <input id="units" v-model="qty" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                         </div>
                                                     </div> 
                                                 </div>
@@ -220,20 +190,20 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="col-span-1 m-2 bg-dark overflow-hidden">
-                            <div class="flex text-ct font-bold border-b border-gray-500">
+                        <div class="col-span-1 p-2 mt-2 bg-white overflow-hidden">
+                            <div class="flex text-sm font-bold">
                                 <span class="p-2 ml-4">Size Table</span>
                             </div>
                                 <div v-if="form.colors[0]" class="m-8 h-45 overflow-hidden">
                                     <div class="overflow-y-scroll">
-                                        <table class="bg-dark text-ct border border-gray-700 w-full">
+                                        <table class="text-sm border border-gray-700 w-full">
                                             <tr>
                                                 <th class="text-center w-1/3">Size</th>
                                                 <th class="text-center w-1/3">Quantity</th>
                                                 <th class="text-center w-1/3">Action</th>
                                             </tr>
                                         </table>
-                                        <table class="bg-dark border border-gray-700 text-ct w-full" v-for="color in form.colors" :key="color.name">
+                                        <table class= "border border-gray-700 text-sm w-full" v-for="color in form.colors" :key="color.name">
                                             
                                             <tr v-if="sizecheck">
                                                     <td class="text-center w-1/3">

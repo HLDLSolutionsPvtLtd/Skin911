@@ -23,7 +23,7 @@ export default{
     {
         Chart.defaults.plugins.legend = false;
         var ctx = document.getElementById('newuser'); // node
-        ctx.height = 120;
+        ctx.height = 70;
         var myChart = new Chart(ctx, {
                         id:   "sales",
                         type: "bar",
