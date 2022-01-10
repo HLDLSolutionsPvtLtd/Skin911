@@ -9,17 +9,18 @@
             
            <div class="mb-12">
                <form action="">
-                    <div class="grid grid-cols-2">
+                    <div class="grid grid-cols-2 bg-white">
                         <div class="col-span-1 p-4 mr-1 bg-white">
                             <div class="flex text-sm border-b font-bold">
-                                <span class="p-2 ml-4">Product Deatils</span>
+                                <span class="p-2 ml-4 text-blue-400 tracking-wide">Product Deatils</span>
                             </div>
                             <div class="m-6">
                                     <div class="flex justify-center">
                                         <div class="w-full">
                                                 <jet-label class="text-sm font-bold my-1" for="productname" value="Name"/>
                                                 <div>
-                                                    <input id="productname" v-model="form.pname" class="w-full my-1 text-sm rounded-md border border-gray-200" type="text" required autofocus/>
+                                                    <jet-input-error :message="form.errors.name" class="mt-2" />
+                                                    <input id="productname" v-model="form.name" class="w-full my-1 text-sm rounded-md border border-gray-200" type="text" required autofocus/>
                                                 </div>
                                         </div>
                                     </div>
@@ -27,20 +28,8 @@
                                             <div class="w-full">
                                                 <jet-label class="text-sm font-bold my-1" for="description" value="Description"/>
                                                 <div> 
+                                                    <jet-input-error :message="form.errors.description" class="mt-2" />
                                                     <textarea class="w-full text-sm my-1 rounded-md border border-gray-200" name="description" v-model="form.description" id="description" cols="30" rows="5" required/>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="flex mt-2 justify-center">
-                                        <div class="w-full">
-                                                <jet-label class="text-sm font-bold my-1" for="label" value="Label"/>
-                                                <div>
-                                                    <select v-model="form.label" class="w-full placeholder-gray-100 text-sm text-sm my-1 rounded-md border border-gray-200" id="Label" required>
-                                                        <option selected>Select Label</option>
-                                                        <option value="New Arrival">New Arrival</option>
-                                                        <option value="Most Popular">Most Popular</option>
-                                                        <option value="Trending">Trending</option>
-                                                    </select>
                                                 </div>
                                             </div>
                                     </div>
@@ -48,7 +37,8 @@
                                         <div class="w-full">
                                                 <jet-label class="text-sm font-bold my-1" for="brand" value="Brand"/>
                                                 <div>
-                                                    <select v-model="form.brand" class="w-full placeholder-gray-100 my-1 text-sm rounded-md border border-gray-200" id="Label" required>
+                                                    <jet-input-error :message="form.errors.brand_id" class="mt-2" />
+                                                    <select v-model="form.brand_id" class="w-full placeholder-gray-100 my-1 text-sm rounded-md border border-gray-200" id="Label" required>
                                                         <option selected>Select Brand</option>
                                                         <option value="Addidas">Addidas</option>
                                                         <option value="Nike">Nike</option>
@@ -57,24 +47,13 @@
                                                 </div>
                                             </div>
                                     </div>
-                                    <div class="flex mt-2 justify-center ">
-                                        <div class="w-full">
-                                                <jet-label class="text-sm font-bold my-1" for="type" value="Type"/>
-                                                <div>
-                                                    <select v-model="form.type" class="w-full placeholder-gray-100 text-sm rounded-md my-1 border border-gray-200" id="type" required>
-                                                        <option selected>Select type</option>
-                                                        <option value="Casual Shoe">Casual Shoe</option>
-                                                        <option value="Bascketball shoe">Bascketball shoe</option>
-                                                        <option value="Formal">Formal</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                    </div>
+                                    
                                     <div class="flex mt-2 justify-center">
                                         <div class="w-full">
                                                 <jet-label class="text-sm font-bold my-1" for="category" value="Category"/>
                                                 <div>
-                                                    <select v-model="form.category" class="w-full placeholder-gray-100 text-sm my-1 rounded-md border border-gray-200" id="category" required>
+                                                    <jet-input-error :message="form.errors.category_id" class="mt-2" />
+                                                    <select v-model="form.category_id" class="w-full placeholder-gray-100 text-sm my-1 rounded-md border border-gray-200" id="category" required>
                                                         <option selected>Select category</option>
                                                         <option value="Men">Men</option>
                                                         <option value="Woman">Woman</option>
@@ -87,6 +66,7 @@
                                         <div class="w-full">
                                                 <jet-label class="text-sm font-bold my-1" for="price" value="Price"/>
                                                 <div>
+                                                    <jet-input-error :message="form.errors.price" class="mt-2" />
                                                     <input v-model="form.price" class="w-full text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="text" required/>
                                                 </div>
                                             </div>
@@ -97,13 +77,13 @@
                         
                         <div class="col-span-1 bg-white ml-1 p-4">
                             <div class="flex text-sm font-bold border-b">
-                                <span class="p-2 ml-4">Product Images</span>
+                                <span class="p-2 ml-4 text-blue-400 tracking-wide">Product Images</span>
                             </div>
                             <div class="m-6">
-                                    <div class="p-12 border border-dashed border-gray-300">
-                                        <div class="text-sm  p-12 font-mono text-center items-center text-gray-400">
+                                    <div class="p-12 border border-dashed border-gray-400">
+                                        <div class="text-sm  p-12 tracking-wider text-center items-center text-blue-400">
                                             <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
-                                            <span>Drag and Drop/Click to ADD image</span>
+                                            <span>Drag and Drop / Click to Add images</span>
                                         </div>
                                     </div>
                             </div>
@@ -111,7 +91,11 @@
                                 <div class="flex container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                                     <div class="relative p-1" v-for="preview in previews" :key="preview">
                                         <img class="w-full h-full transition transform ease-in-out duration-500" :src="preview" alt="PREVIEW">
-                                        <i @click="removeimg(preview)" class="fas fa-times-circle fa-sm absolute bg-white text-red-900 top-2 right-2 cursor-pointer hover:text-red-400"></i>
+                                        <i @click="removeimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600" width="24" height="24" viewBox="0 0 24 24">
+                                                <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 15.538l-3.592-3.548 3.546-3.587-1.416-1.403-3.545 3.589-3.588-3.543-1.405 1.405 3.593 3.552-3.547 3.592 1.405 1.405 3.555-3.596 3.591 3.55 1.403-1.416z"/>
+                                            </svg>
+                                        </i>
                                     </div>
                                 </div>
                             </div>
@@ -119,125 +103,89 @@
                         </div>
                     </div>
                     </form>
-                    <div class="grid grid-cols-2">
-                        <div class="col-span-1 p-2 mt-2 bg-white">
+                    <div class="grid grid-cols-2 p-2 bg-white">
+                        <div class="col-span-1 ">
                             <div class="flex text-sm font-bold">
-                                <span class="p-2 ml-4">Variants</span>
+                                <span class="p-2 ml-4 text-blue-400 tracking-wide">Variants</span>
                             </div>
-                            <div class="m-6">
+                            <div class="mx-6">
                                     <div class="flex justify-center">
                                         <div class="w-full my-1">
                                             
                                             <div>
-                                                <input class="p-1 text-blue-500 h-4 rounded-sm focus:ring-0" type="checkbox" v-on:input="check()" role="checkbox">
-                                                <span class="p-1 text-sm">this product has different color</span>
+                                                <div class="flex items-center">
+                                                    <input class="p-1 text-blue-500 h-4 rounded-sm cursor-pointer focus:ring-0 mr-1" type="checkbox" v-on:input="check()" role="checkbox">
+                                                    <span class="p-1 text-sm text-blue-400 flex pr-2">This product has different variants</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-purple-400" viewBox="0 0 24 24">
+                                                        <path d="M13.25 7c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25zm10.75 5c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-2 0c0-5.514-4.486-10-10-10s-10 4.486-10 10 4.486 10 10 10 10-4.486 10-10zm-13-2v2h2v6h2v-8h-4z"/>
+                                                    </svg>
+                                                </div>
                                                 
-                                                <div v-if="form.colorCheck">
-                                                    <div class="flex pt-1" >
+                                                <div v-if="checked">
+                                                    <div class="py-2">
+                                                        <span class="text-sm text-red-400">{{message}}</span>
+                                                    </div>
+                                                    <div class="flex pt-2 gap-2" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm font-mono" for="size" value="Color Name"/>
+                                                            <jet-label class="text-sm font-mono" for="size" value="Name"/>
                                                             <div >
-                                                                <input v-model="color" class="w-full text-sm h-8 rounded-sm" type="text"/>
+                                                                <input v-model="variant" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                             </div>
                                                         </div>
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm" for="units" value="Color Code"/>
+                                                            <jet-label class="text-sm" for="units" value="Price"/>
                                                             <div >
-                                                                <input v-model="colorcode" class="w-full text-sm h-8 rounded-sm" type="text"/>
+                                                                <input v-model="variant_price" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                             </div>
                                                         </div> 
                                                     </div>
                                                     <div class="w-full pt-1">
-                                                        <button @click.prevent="addnewcolor()" class="w-full p-2 justify-center items-center bg-gray-800 border border-gray-100 rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Add</button>
+                                                        <button @click.prevent="addnewVariant()" class="w-full p-2 justify-center items-center bg-blue-400 font-bold rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Add</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="flex justify-center">
-                                        <div class="w-full">
-                                                <label class="text-sm my-1 font-mono" for="variant">ADD SIZE <span v-if="form.colorCheck&&dropdowncheck">for {{selectedcolor}}</span></label>
-                                               <div class="flex">
-                                                    <select class="flex w-1/2 placeholder-gray-100 text-sm h-8 rounded-sm" v-if="form.colorCheck&&dropdowncheck" v-model="selectedcolor" name="color" id="">
-                                                        <option v-for="col in form.colors" class="" :key="col.name" :value="col.name">
-                                                            <span class="">{{col.name}}</span>
-                                                        </option>
-                                                    </select>
-                                                    <button @click="removeColor()" v-if="form.colorCheck&&dropdowncheck" class="w-1/2 p-1 justify-center items-center  border border-red-100 rounded-sm font-semibold text-xs text-red-600 uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Remove</button>
-                                               </div>
-                                            <div class="pt-1">                                   
-                                                <div class="flex">
-                                                    <div class="w-1/2">
-                                                        <jet-label class="text-sm font-mono" for="size" value="Size" />
-                                                        <div >
-                                                            <input id="size" v-model="size" class="w-full text-sm h-8 rounded-sm" type="text"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-1/2">
-                                                        <jet-label class="text-sm font-mono" for="units" value="Units"/>
-                                                        <div >
-                                                            <input id="units" v-model="qty" class="w-full text-sm h-8 rounded-sm" type="text"/>
-                                                        </div>
-                                                    </div> 
-                                                </div>
-                                                <div class="w-full pt-2">
-                                                    <button @click.prevent="addnewsize()" class="w-full p-2 justify-center items-center bg-gray-800 border border-gray-100 rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">ADD</button>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-
                                     </div>
                                 </div>
                         </div>
                         <div class="col-span-1 p-2 mt-2 bg-white overflow-hidden">
-                            <div class="flex text-sm font-bold">
-                                <span class="p-2 ml-4">Size Table</span>
-                            </div>
-                                <div v-if="form.colors[0]" class="m-8 h-45 overflow-hidden">
-                                    <div class="overflow-y-scroll">
-                                        <table class="text-sm border border-gray-700 w-full">
+                            
+                                <div v-if="form.variants[0]" class="mx -8 h-45 overflow-hidden">
+                                    <div class="flex text-sm font-bold">
+                                        <span class="">Variants</span>
+                                    </div>
+                                    <div class="">
+                                        <table class="text-sm mt-4 border border-gray-700 w-full">
                                             <tr>
-                                                <th class="text-center w-1/3">Size</th>
-                                                <th class="text-center w-1/3">Quantity</th>
+                                                <th class="text-center w-1/3">Name</th>
+                                                <th class="text-center w-1/3">Price</th>
                                                 <th class="text-center w-1/3">Action</th>
                                             </tr>
-                                        </table>
-                                        <table class= "border border-gray-700 text-sm w-full" v-for="color in form.colors" :key="color.name">
-                                            
-                                            <tr v-if="sizecheck">
+                                            <template  v-for="variant in form.variants" :key="variant.name">
+                                                <tr class= "border border-gray-700 text-sm w-full">
                                                     <td class="text-center w-1/3">
-                                                        {{color.name}}
+                                                        {{variant.name}}
                                                     </td>
                                                     <td class="text-center w-1/3">
-                                                        {{color.qty}}
+                                                        {{variant.price}}
                                                     </td>
-                                                    <td @click="removeSize(color)" class="w-1/3"> 
+                                                    <td @click="removeVariant(variant)" class="w-1/3 cursor-pointer hover:bg-red-100"> 
                                                         <svg class="mx-auto w-6 h-6" viewBox="0 0 20 20">
                                                             <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
                                                         </svg>
                                                     </td>
-                                            </tr>
-                                            <tr v-else-if="color.sizes[0]" v-for="size in color.sizes" :key="size.index">
-                                                <td class="text-center w-1/3" >
-                                                    {{size.name}}/{{color.name}}
-                                                </td>
-                                                <td class="text-center w-1/3"> 
-                                                    {{size.qty}}
-                                                </td>
-                                                <td @click="removeColorSize(color,size)" class="w-1/3">
-                                                    <svg class="mx-auto w-6 h-6" viewBox="0 0 20 20">
-                                                        <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
-                                                    </svg>
-                                                </td>
-                                            </tr>
+                                                </tr>
+                                            </template>
                                         </table>
                                     </div>   
                                 </div>
                         </div>
                     </div>
-
-
+                    <div class="bg-white pt-2">
+                        <div class="w-full mx-8 py-4 flex">
+                            <button @click="submit()" class="p-2 text-xs font-bold tracking-wider rounded-sm shadow-md bg-blue-300 text-pink-800">CREATE</button>
+                        </div>
+                    </div>
            </div>
        </div>
    </AdminLayout>    
@@ -248,39 +196,30 @@
     import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
     import JetButton from '@/Jetstream/Button'
     import JetInput from '@/Jetstream/Input'
+    import JetInputError from '@/Jetstream/InputError'
     import JetCheckbox from '@/Jetstream/Checkbox'
     import JetLabel from '@/Jetstream/Label'
     import JetValidationErrors from '@/Jetstream/ValidationErrors'
     import AdminLayout from '@/Layouts/AdminLayout'
-    import axios from "axios"
 
  export default{
      data()
      {
          return{
              form:this.$inertia.form({
-                    pname: '',
+                    name: '',
                     description: '',
-                    label: '',
-                    type: '',
-                    brand: '',
-                    category: '',
+                    brand_id: '',
+                    category_id: '',
                     price : '',
                     images: [],
-                    colors : [],
-                    colorCheck : false,
+                    variants : [],
 
                 }),
              message: '',
              previews : [],
-             size : '',
-             qty  : '',
-             selectedcolor: '',
-             selectedindex: '',
-             color: '',
-             colorcode: '',
-             sizecheck : false,
-             dropdowncheck: false,
+             variant: '',
+             variant_price: '',
              checked : false,
              response: [],
          }
@@ -293,6 +232,7 @@
         JetAuthenticationCardLogo,
         JetButton,
         JetInput,
+        JetInputError,
         JetCheckbox,
         JetLabel,
         JetValidationErrors
@@ -300,74 +240,31 @@
     methods:
     {
         check(){
-            this.form.colorCheck = !this.form.colorCheck;
-            if(this.checked)
-            {
-                this.dropdowncheck = !this.dropdowncheck;
-            }
-            this.checked = true;
-            this.form.colors = [];
-            this.sizecheck = false;
+            this.checked = !this.checked;
+            this.form.variants = [];
+            this.variant_price = '';
+            this.variant = '';
         },
-        addnewcolor(){
-             let newcolor = {
-                 'name' : this.color,
-                 'code' : this.colorcode,
-                 'sizes': [],
-             };
-            this.form.colors.push(newcolor);
-            this.color = '';
-            this.colorcode = '';
-            console.log(this.form.colors);
-            this.dropdowncheck = true;
-            this.selectedcolor = newcolor.name;
-        },
-        addnewsize(){
-            if(!this.form.colorCheck)
-            {
-                this.sizecheck = true;
-            }
-            let newsize = {
-                 'name' : this.size,
-                 'qty' : this.qty,
-             };
-            if(!this.form.colorCheck)
-            {
-                this.form.colors.push(newsize);
-                console.log(this.colors);
-                this.size = '';
-                this.qty = '';
-            }
-            else
-            {
-                if(this.selectedcolor === null)
-                {
-                    console.log('color not selected error');
-                }
-                else
-                {
-                    var index = this.arrayindex();
-                    if(index === -1)
-                    {
-                        console.log('array not found');
-                    }
-                    else
-                    {
-                        this.form.colors[index].sizes.push(newsize);
-                        console.log(this.form.colors);
-                        this.size = '';
-                        this.qty = '';
-                    }
-
-                }
-                
-                
-            }
-
+        addnewVariant(){
+             if(this.variant && this.variant_price)
+             {
+                this.message = '';
+                let newvariant = {
+                    'name' : this.variant,
+                    'price' : this.variant_price,
+                };
+                this.form.variants.push(newvariant);
+                this.variant = '';
+                this.variant_price = '';
+             }
+             else
+             {
+                 this.message = "please fill all the input fields!"
+             }
         },
         arrayindex()
         {
-            return this.form.colors.findIndex( element => {
+            return this.form.variants.findIndex( element => {
                 
                 if (element.name === this.selectedcolor) {
                     return true;
@@ -389,12 +286,11 @@
         },
         submit(){
             
-            console.log(this.form);
-            axios.post(this.route('admin.addproduct'))
-            .then(res => this.response = res.data)
-            .then(error =>
-            {
-                console.error(error);
+            this.form.post('/admin/product/new', {
+                onSuccess:() =>
+                {
+                    alert("scuccess");
+                }
             });
         },
         removeimg(preview)
@@ -407,56 +303,16 @@
             });
             this.form.images.splice(index,1);
         },
-        removeColorSize(color,size)
+        
+        removeVariant(variant)
         {
-            var index = this.form.colors.findIndex(el =>{
-                if (el === color) {
-                    return true;
-                }
-            });
-            var size_index = this.form.colors[index].sizes.findIndex(el =>{
-                if (el === size) {
-                    return true;
-                }
-            });
-            this.form.colors[index].sizes.splice(size_index,1);
-            if(this.form.colors[0])
-            {
-                this.selectedcolor = this.form.colors[0].name;
-            }
-            else
-            {
-                this.selectedcolor = '';
-                this.dropdowncheck = false;
-            }
-        },
-        removeSize(size)
-        {
-            var index = this.form.colors.findIndex(el =>{
-                if (el === size) {
-                    return true;
-                }
-            });
-            this.form.colors.splice(index,1);
-        },
-        removeColor()
-        {
-            var index = this.form.colors.findIndex(el =>{
-                if (el.name === this.selectedcolor) {
+            var index = this.form.variants.findIndex(el =>{
+                if (el.name === variant) {
                     return true;
                 }
             })
             
-            this.form.colors.splice(index,1);
-            if(this.form.colors[0])
-            {
-                this.selectedcolor = this.form.colors[0].name;
-            }
-            else
-            {
-                this.selectedcolor = '';
-                this.dropdowncheck = false;
-            }
+            this.form.variants.splice(index,1);
         },
         back() {
             window.history.back();
@@ -464,16 +320,13 @@
         resetForm()
         {
             this.form = {
-                    pname: '',
+                    name: '',
                     description: '',
                     label: '',
-                    type: '',
-                    brand: '',
                     category: '',
                     price : '',
                     images: [],
-                    colors : [],
-                    colorCheck : false,
+                    variants : [],
 
                 };
         }
