@@ -98,9 +98,17 @@
                             </div>
                             <div class="m-6">
                                 <div class="flex container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                                    <div class="relative p-1" v-for="preview in product.image" :key="preview">
+                                        <img class="w-full h-full transition transform ease-in-out duration-500" :src="'/storage/'+preview.link" alt="PREVIEW">
+                                        <i @click.prevent="deleteimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600" width="24" height="24" viewBox="0 0 24 24">
+                                                <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 15.538l-3.592-3.548 3.546-3.587-1.416-1.403-3.545 3.589-3.588-3.543-1.405 1.405 3.593 3.552-3.547 3.592 1.405 1.405 3.555-3.596 3.591 3.55 1.403-1.416z"/>
+                                            </svg>
+                                        </i>
+                                    </div>
                                     <div class="relative p-1" v-for="preview in previews" :key="preview">
                                         <img class="w-full h-full transition transform ease-in-out duration-500" :src="preview" alt="PREVIEW">
-                                        <i @click="removeimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
+                                        <i @click.prevent="removeimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600" width="24" height="24" viewBox="0 0 24 24">
                                                 <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 15.538l-3.592-3.548 3.546-3.587-1.416-1.403-3.545 3.589-3.588-3.543-1.405 1.405 3.593 3.552-3.547 3.592 1.405 1.405 3.555-3.596 3.591 3.55 1.403-1.416z"/>
                                             </svg>
@@ -112,7 +120,43 @@
                         </div>
                     </div>
                     </form>
-                    <div class="grid grid-cols-2 p-2 bg-white">
+                    <div class="grid grid-cols-2 p-2 relative bg-white">
+                            <div v-show="editVariant" class="absolute shadow-lg m-4 p-4 w-full border border-gray-300 rounded-lg bg-white">
+                                <div class="flex justify-between border-b">
+                                    <div>
+                                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Edit Variant</span>
+                                    </div>
+                                   
+                                </div>
+                                <div class="flex gap-2 mt-2 text-gray-500">
+                                    <div class="flex flex-col">
+                                        <label class="text-sm tracking-wider" for="name">Name</label>
+                                        <div>
+                                            <input type="text" v-model="selectedVariant.name" class="text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <label class="text-sm tracking-wider" for="name">Price</label>
+                                        <div>
+                                            <input type="text" v-model="selectedVariant.price" class="text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <label class="text-sm tracking-wider" for="name">Quantity</label>
+                                        <div>
+                                            <input type="text" v-model="selectedVariant.quantity" class="text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex mt-4 gap-2">
+                                    <div>
+                                        <button @click.="updateVariant()" class="bg-green-600 text-xs font-bold text-white tracking-wider p-2 rounded-md shadow-lg">SUBMIT</button>
+                                    </div>
+                                     <div>
+                                        <button @click.prevent="editVariant = !editVariant" class="bg-red-600 text-xs font-bold text-white tracking-wider p-2 rounded-md shadow-lg">CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="col-span-1 ">
                             <div class="flex text-sm font-bold">
                                 <span class="p-2 ml-4 text-blue-400 tracking-wide">Variants</span>
@@ -123,7 +167,7 @@
                                             
                                             <div>
                                                 <div class="flex items-center">
-                                                    <input class="p-1 text-blue-500 h-4 rounded-sm cursor-pointer focus:ring-0 mr-1" type="checkbox" v-on:input="check()" role="checkbox">
+                                                    <input class="p-1 text-blue-500 h-4 rounded-sm cursor-pointer focus:ring-0 mr-1" type="checkbox" v-on:input="check()" v-model="checked" role="checkbox">
                                                     <span class="p-1 text-sm text-blue-400 flex pr-2">This product has different variants</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-purple-400" viewBox="0 0 24 24">
                                                         <path d="M13.25 7c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25zm10.75 5c0 6.627-5.373 12-12 12s-12-5.373-12-12 5.373-12 12-12 12 5.373 12 12zm-2 0c0-5.514-4.486-10-10-10s-10 4.486-10 10 4.486 10 10 10 10-4.486 10-10zm-13-2v2h2v6h2v-8h-4z"/>
@@ -165,20 +209,47 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="col-span-1 p-2 mt-2 bg-white overflow-hidden">
+                        <div class="col-span-1 p-2 mt-9 bg-white overflow-hidden">
                             
-                                <div v-if="form.variants[0]" class="mx -8 h-45 overflow-hidden">
+                                <div v-if="product.variant" class="mx-8 overflow-hidden">
                                     <div class="flex text-sm font-bold">
                                         <span class="">Variants</span>
                                     </div>
                                     <div class="">
                                         <table class="text-sm mt-4 border border-gray-700 w-full">
-                                            <tr>
-                                                <th class="text-center w-1/3">Name</th>
-                                                <th class="text-center w-1/3">Price</th>
-                                                <th class="text-center w-1/3">Quantity</th>
-                                                <th class="text-center w-1/3">Action</th>
+                                            <tr class="">
+                                                <th class="text-center p-2 w-1/3">Name</th>
+                                                <th class="text-center p-2 w-1/3">Price</th>
+                                                <th class="text-center p-2 w-1/3">Quantity</th>
+                                                <th class="text-center p-2 w-1/3">Action</th>
                                             </tr>
+                                            <template  v-for="variant in product.variant" :key="variant.name">
+                                                <tr class= "border border-gray-700 text-sm w-full">
+                                                    <td class="text-center w-1/4">
+                                                        {{variant.name}}
+                                                    </td>
+                                                    <td class="text-center w-1/4">
+                                                        {{variant.price}}
+                                                    </td>
+                                                    <td class="text-center w-1/4">
+                                                        {{variant.quantity}}
+                                                    </td>
+                                                    <td  class="w-1/4 cursor-pointer"> 
+                                                        <div class="flex justify-center items-centers gap-2 mx-2">
+                                                            <div @click.prevent="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                                <svg  class="mx-auto" width="17" height="17" viewBox="0 0 24 24">
+                                                                    <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div @click.prevent="removeVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                                <svg width="17" height="17" class="" viewBox="0 0 20 20">
+                                                                    <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </template>
                                             <template  v-for="variant in form.variants" :key="variant.name">
                                                 <tr class= "border border-gray-700 text-sm w-full">
                                                     <td class="text-center w-1/4">
@@ -190,10 +261,19 @@
                                                     <td class="text-center w-1/4">
                                                         {{variant.quantity}}
                                                     </td>
-                                                    <td @click="removeVariant(variant)" class="w-1/4 cursor-pointer hover:bg-red-100"> 
-                                                        <svg class="mx-auto w-6 h-6" viewBox="0 0 20 20">
-                                                            <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
-                                                        </svg>
+                                                    <td  class="w-1/4 cursor-pointer"> 
+                                                        <div class="flex justify-center items-centers gap-2 mx-2">
+                                                            <div @click="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                                <svg  class="mx-auto" width="17" height="17" viewBox="0 0 24 24">
+                                                                    <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div @click="removeVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                                <svg width="17" height="17" class="" viewBox="0 0 20 20">
+                                                                    <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </template>
@@ -204,10 +284,11 @@
                     </div>
                     <div class="bg-white pt-2">
                         <div class="w-full mx-8 py-4 flex">
-                            <button @click="submit()" class="p-2 text-xs font-bold tracking-wider rounded-sm shadow-md bg-blue-300 text-pink-800">CREATE</button>
+                            <button @click.prevent="submit()" class="p-2 text-xs font-bold tracking-wider rounded-sm shadow-md bg-blue-300 text-pink-800">UPDATE</button>
                         </div>
                     </div>
            </div>
+           
        </div>
    </AdminLayout>    
 </template>
@@ -222,28 +303,32 @@
     import JetLabel from '@/Jetstream/Label'
     import JetValidationErrors from '@/Jetstream/ValidationErrors'
     import AdminLayout from '@/Layouts/AdminLayout'
+    import axios from 'axios'
 
  export default{
+     props:['product'],
      data()
      {
          return{
              form:this.$inertia.form({
-                    name: '',
-                    description: '',
-                    brand_id: '',
-                    category_id: '',
-                    price : '',
+                    name: this.product.name,
+                    description: this.product.description,
+                    brand_id: this.product.brand_id,
+                    category_id: this.product.category_id,
+                    price : this.product.price,
                     images: [],
                     variants : [],
-                    quantity: 0
+                    quantity: this.product.quantity
 
                 }),
              message: '',
+             selectedVariant: '',
+             editVariant: false,
              previews : [],
              quantity: 0,
              variant: '',
              variant_price: '',
-             checked : false,
+             checked :  Boolean(this.product.variant.length),
              response: [],
          }
      },
@@ -257,11 +342,54 @@
         JetInput,
         JetInputError,
         JetCheckbox,
-        JetLabel,
+        JetLabel, 
         JetValidationErrors
     },
     methods:
     {
+        editVar(variant){
+            const v = {...variant}
+            this.selectedVariant = v; 
+            this.editVariant = true;
+        },
+
+        updateVariant()
+        {
+            var id = this.selectedVariant.id;
+            if(typeof id === 'number')
+            {
+                id = toString(id);
+            }
+
+            if(id.includes('new'))
+            {
+                var index = this.form.variants.findIndex( element => {
+                
+                    if (element.id === this.selectedVariant.id) {
+                        return true;
+                    }
+                });
+                this.form.variants[index] = this.selectedVariant;
+                this.selectedVariant = [];
+                this.editVariant = !this.editVariant;
+            }
+            else
+            {
+                axios.put('/admin/variant/'+this.selectedVariant.id+'/update', this.selectedVariant)
+                .then(
+                    this.editVariant = !this.editVariant
+                );
+                var index = this.product.variant.findIndex( element => {
+                
+                    if (element.id === this.selectedVariant.id) {
+                        return true;
+                    }
+                });
+                this.product.variant[index] = this.selectedVariant
+
+            }
+        },
+
         check(){
             this.checked = !this.checked;
             this.form.variants = [];
@@ -274,6 +402,7 @@
              {
                 this.message = '';
                 let newvariant = {
+                    'id' : 'new'+this.form.variants.length,
                     'name' : this.variant,
                     'price' : this.variant_price,
                     'quantity' : this.quantity
@@ -310,11 +439,11 @@
             }
         },
         submit(){
-            
-            this.form.post('/admin/product/new', {
+            this.form.post('/admin/product/'+this.product.id+'/update', {
                 onSuccess:() =>
                 {
                     alert("scuccess");
+                    this.resetForm();
                 }
             });
         },
@@ -329,6 +458,21 @@
             this.form.images.splice(index,1);
         },
         
+       deleteimg(preview)
+        {
+            var index = this.product.image.findIndex( element => {
+                
+                if (element === preview) {
+                    return true;
+                }
+            });
+            axios.delete('/admin/image/'+preview.id+'/delete')
+            .then(
+                this.product.image.splice(index,1)
+            );
+            
+        },
+
         removeVariant(variant)
         {
             var index = this.form.variants.findIndex(el =>{

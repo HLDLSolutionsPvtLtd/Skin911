@@ -19,7 +19,8 @@ class AddProducts extends Migration
             $table->text('description');
             $table->string('category_id');
             $table->string('brand_id');
-            $table->string('price');
+            $table->integer('quantity')->nullable();
+            $table->string('price')->nullable();
             $table->timestamps();
         });
     }

@@ -9,11 +9,16 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['brand', 'category', 'variant'];
+    protected $with = ['brand', 'category', 'variant', 'image'];
 
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function image()
+    {
+        return $this->hasMany(Image::class, 'product_id');
     }
 
     public function category()

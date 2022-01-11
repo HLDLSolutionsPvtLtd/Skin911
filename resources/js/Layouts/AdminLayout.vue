@@ -38,15 +38,15 @@
                             </div>
                             <ul :class="{'h-0': !collapse_product}" class="overflow-hidden ml-8 list-inside transition-all duration-800 ease-in-out ">
                                 <li class="hover:bg-blue-900 p-4">
-                                    <Link class="text-gray-400" :active="route().current('products')" :href="route('products')">
+                                    <Link class="text-gray-400" :active="route().current('allproducts')" :href="route('allproducts')">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
-                                        <span class="text-xs uppercase font-bold font-bold">All</span>
+                                        <span class="text-xs uppercase font-bold">All</span>
                                     </Link>
                                 </li>
                                 <li class="hover:bg-blue-900 p-4">
                                     <Link class="text-gray-400" :href="route('addproduct')">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
-                                        <span class="text-xs uppercase font-bold font-bold">Add</span>
+                                        <span class="text-xs uppercase font-bold">Add</span>
                                     </Link>
                                 </li>
                             </ul>

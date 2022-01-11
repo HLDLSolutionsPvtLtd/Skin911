@@ -76,8 +76,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->post('addbrand',[BrandController::class, 'AddBrand'])->name('addbrand')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('/product/new',[ProductsController::class, 'addProduct'])->name('/product/new')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('allproducts', function () {
+        return Inertia::render('Admin/Products');
+    })->name('allproducts')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('/product/{product:id}/edit',[ProductsController::class, 'editProduct'])->name('editProduct')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->delete('/image/{image:id}/delete',[ProductsController::class, 'deleteProductImage'])->name('deleteProductImage')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->put('/variant/{variant:id}/update',[ProductsController::class, 'updateVariant'])->name('updateVariant')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->post('/product/{product:id}/update',[ProductsController::class, 'updateProduct'])->name('updateVariant')->middleware('is_admin');
 
-    Route::middleware(['auth:sanctum'])->get('getproducts',[ProductController::class, 'getall'])->name('getproducts')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('admin.getproducts',[ProductsController::class, 'getAll'])->name('admin.getproducts')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('getOrderAll',[OrderController::class, 'fetchAll'])->name('getOrderAll')->middleware('is_admin');
 
 });

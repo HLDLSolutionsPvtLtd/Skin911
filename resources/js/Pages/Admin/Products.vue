@@ -4,73 +4,52 @@
            Products
        </template>
        <div class="">
-           <div class="m-2 container-fluid bg-dark-header rounded p-1">
-                <div class="flex m-2 justify-between border border-gray-600">
-                    <div class="flex">
-                        <div class="m-1">
-                            <button @click="back()" class="flex text-xs text-blue-500 border border-white font-mono p-2 rounded-xs">
-                                
-                                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                                    <path fill="#fff" d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="m-1">
-                            <a href="admin.addproduct" type="button" class="flex text-md text-blue-500 border border-blue-600 font-mono p-2 rounded-xs">
-                                <svg  width="24" height="24" class="mr-1">
-                                    <path fill="#0f3fc7" d='M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z'></path>
-                                </svg> 
-                        NEW</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex m-1 rounded-sm border border-blue-500">
-                            <input class="w-full text-ct h-full border-0 rounded-sm focus:ring-0 bg-dark-header" placeholder="Search product" type="text">
-                            <button class="justify-center items-center border-1 rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                                <i class="fas fa-search fa-sm pl-2 pr-2 text-blue-600"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+           <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1">
                <div class="flex  m-2">
-                   <table class="border border-gray-600 w-full text-ct">
-                        <tr class="border-b border-gray-600">
-                            <th class="text-left border-r border-gray-600 p-2">
-                                <div class="flex">
-                                    <span class="flex pr-1">Name</span>
-                                    <svg viewBox="0 0 24 24" class="flex h-4 w-4">
-                                        <path class="fill-current" d="M5.293 2.293a.997.997 0 0 1 1.414 0l3 3a1 1 0 0 1-1.414 1.414L7 5.414V13a1 1 0 1 1-2 0V5.414L3.707 6.707a1 1 0 0 1-1.414-1.414l3-3zM13 7a1 1 0 0 1 2 0v7.585l1.293-1.292a.999.999 0 1 1 1.414 1.414l-3 3a.997.997 0 0 1-1.414 0l-3-3a.997.997 0 0 1 0-1.414.999.999 0 0 1 1.414 0L13 14.585V7z">
-                                        </path>
-                                    </svg>
-                                </div>
+                   <table class="border border-gray-300 w-full text-ct">
+                        <tr class="border-b border-gray-300 text-gray-400 tracking-wider text-sm">
+                            <th class="text-left border-r border-gray-300 p-2">
+                                <span class="flex pr-1">Name</span>
                             </th>
-                            <th class="text-center border-r border-gray-600 p-2">
-                                <div class="flex justify-center">
-                                    <span class="flex pr-1">Type</span>
-                                    <svg viewBox="0 0 24 24" class="flex h-4 w-4">
-                                        <path class="fill-current" d="M5.293 2.293a.997.997 0 0 1 1.414 0l3 3a1 1 0 0 1-1.414 1.414L7 5.414V13a1 1 0 1 1-2 0V5.414L3.707 6.707a1 1 0 0 1-1.414-1.414l3-3zM13 7a1 1 0 0 1 2 0v7.585l1.293-1.292a.999.999 0 1 1 1.414 1.414l-3 3a.997.997 0 0 1-1.414 0l-3-3a.997.997 0 0 1 0-1.414.999.999 0 0 1 1.414 0L13 14.585V7z">
-                                        </path>
-                                    </svg>
-                                </div>
+                            <th class="text-center border-r border-gray-300 p-2">
+                                <span class="flex pr-1">Type</span>
                             </th>
-                            <th class="text-left border-r border-gray-600 p-2">
-                                <div class="flex justify-center">
-                                    <span class="flex pr-1">Categories</span>
-                                    <svg viewBox="0 0 24 24" class="flex h-4 w-4">
-                                        <path class="fill-current" d="M5.293 2.293a.997.997 0 0 1 1.414 0l3 3a1 1 0 0 1-1.414 1.414L7 5.414V13a1 1 0 1 1-2 0V5.414L3.707 6.707a1 1 0 0 1-1.414-1.414l3-3zM13 7a1 1 0 0 1 2 0v7.585l1.293-1.292a.999.999 0 1 1 1.414 1.414l-3 3a.997.997 0 0 1-1.414 0l-3-3a.997.997 0 0 1 0-1.414.999.999 0 0 1 1.414 0L13 14.585V7z">
-                                        </path>
-                                    </svg>
-                                </div>
+                            <th class="text-left border-r border-gray-300 p-2">
+                                <span class="flex pr-1">Categories</span>
+                            </th>
+                            <th class="text-left border-r border-gray-300 p-2">
+                                <span class="flex pr-1">Price</span>
+                            </th>
+                            <th class="text-left border-r border-gray-300 p-2">
+                                <span class="flex pr-1">Quantity</span>
+                            </th>
+                            <th class="text-left border-r border-gray-300 p-2">
+                                <span class="flex pr-1">Variant</span>
                             </th>
                             <th class="text-center p-2">Actions</th>
                         </tr>
                         
-                        <tr v-for="product in products" :key="product.id" class="border-b border-gray-600">   
-                            <td class="p-2 flex border-r border-gray-600"><img class="h-14 w-14 flex mr-1" :src="'/images/'+product.img" alt=""><span class="flex self-center justify-center text-center">{{product.name}}</span></td>
-                            <td class="text-center border-r border-gray-600 p-2">{{product.type}}</td>
-                            <td class="text-center border-r border-gray-600 p-2">{{product.categories}}</td>
-                            <td class="text-center p-2">Edit</td>
+                        <tr v-for="product in products" :key="product.id" class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
+                            <td class="p-2 flex border-r border-gray-300"><img class="h-14 w-14 flex mr-1" :src="'/storage/'+product.image[0].link" alt=""><span class="flex self-center justify-center text-lg text-center font-bold">{{product.name}}</span></td>
+                            <td class="text-center border-r border-gray-300 p-2">{{product.type}}</td>
+                            <td class="text-center border-r border-gray-300 p-2">{{product.categories}}</td>
+                            <td class="text-center border-r border-gray-300 p-2">{{product.price}}</td>
+                            <td class="text-center border-r border-gray-300 p-2">{{product.quantity}}</td>
+                            <td class="text-center border-r border-gray-300 p-2">{{product.variant.length}}</td>
+                            <td class="p-2">
+                                <div class="flex gap-2 justify-center items-center">
+                                    <a :href="'/admin/product/'+product.id+'/edit'" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
+                                            <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
+                                        </svg>
+                                    </a>
+                                    <button class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
+                                            <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                         
                     </table>
@@ -83,7 +62,6 @@
 <script>
  
  import AdminLayout from '@/Layouts/AdminLayout'
-import { watch } from '@vue/runtime-core'
 
 
  export default{
@@ -106,17 +84,17 @@ import { watch } from '@vue/runtime-core'
     },
     mounted()
     {
-        // axios.get('admin.getproducts')
-        // .then(res => this.response = res.data)
-        // .then(error => {
-        //     console.error(error);
-        // })
+        axios.get('admin.getproducts')
+        .then(res => this.response = res.data)
+        .then(error => {
+            console.error(error);
+        })
     },
     watch:
     {
         response()
         {
-            this.products = this.response.data;
+            this.products = this.response;
         }
     }
  }

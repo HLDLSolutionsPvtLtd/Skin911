@@ -18,6 +18,7 @@ class CreateVariants extends Migration
             $table->string('product_id');
             $table->string('name');
             $table->string('price');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
