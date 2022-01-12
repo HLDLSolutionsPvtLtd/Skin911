@@ -8,7 +8,6 @@
        <div class="h-screen overflow-y-scroll p-5">
             
            <div class="mb-12">
-               <form action="">
                     <div class="grid grid-cols-2 bg-white">
                         <div class="col-span-1 p-4 mr-1 bg-white">
                             <div class="flex text-sm border-b font-bold">
@@ -100,7 +99,7 @@
                                 <div class="flex container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                                     <div class="relative p-1" v-for="preview in product.image" :key="preview">
                                         <img class="w-full h-full transition transform ease-in-out duration-500" :src="'/storage/'+preview.link" alt="PREVIEW">
-                                        <i @click.prevent="deleteimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
+                                        <i @click="deleteimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600" width="24" height="24" viewBox="0 0 24 24">
                                                 <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 15.538l-3.592-3.548 3.546-3.587-1.416-1.403-3.545 3.589-3.588-3.543-1.405 1.405 3.593 3.552-3.547 3.592 1.405 1.405 3.555-3.596 3.591 3.55 1.403-1.416z"/>
                                             </svg>
@@ -108,7 +107,7 @@
                                     </div>
                                     <div class="relative p-1" v-for="preview in previews" :key="preview">
                                         <img class="w-full h-full transition transform ease-in-out duration-500" :src="preview" alt="PREVIEW">
-                                        <i @click.prevent="removeimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
+                                        <i @click="removeimg(preview)" class="absolute top-2 right-2 cursor-pointer hover:text-red-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600" width="24" height="24" viewBox="0 0 24 24">
                                                 <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 15.538l-3.592-3.548 3.546-3.587-1.416-1.403-3.545 3.589-3.588-3.543-1.405 1.405 3.593 3.552-3.547 3.592 1.405 1.405 3.555-3.596 3.591 3.55 1.403-1.416z"/>
                                             </svg>
@@ -119,7 +118,6 @@
                             
                         </div>
                     </div>
-                    </form>
                     <div class="grid grid-cols-2 p-2 relative bg-white">
                             <div v-show="editVariant" class="absolute shadow-lg m-4 p-4 w-full border border-gray-300 rounded-lg bg-white">
                                 <div class="flex justify-between border-b">
@@ -150,10 +148,10 @@
                                 </div>
                                 <div class="flex mt-4 gap-2">
                                     <div>
-                                        <button @click.="updateVariant()" class="bg-green-600 text-xs font-bold text-white tracking-wider p-2 rounded-md shadow-lg">SUBMIT</button>
+                                        <button @click="updateVariant()" class="bg-green-600 cursor-pointer text-xs font-bold text-white tracking-wider p-2 rounded-md shadow-lg">SUBMIT</button>
                                     </div>
                                      <div>
-                                        <button @click.prevent="editVariant = !editVariant" class="bg-red-600 text-xs font-bold text-white tracking-wider p-2 rounded-md shadow-lg">CANCEL</button>
+                                        <button @click="editVariant = !editVariant" class="bg-red-600 cursor-pointer text-xs font-bold text-white tracking-wider p-2 rounded-md shadow-lg">CANCEL</button>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +199,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="w-full pt-2">
-                                                        <button @click.prevent="addnewVariant()" class="w-full p-2 justify-center items-center bg-blue-400 font-bold rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Add</button>
+                                                        <button @click.prevent.self="addnewVariant()" class="w-full p-2 justify-center items-center bg-blue-400 font-bold rounded-sm font-semibold text-center text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Add</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,7 +209,7 @@
                         </div>
                         <div class="col-span-1 p-2 mt-9 bg-white overflow-hidden">
                             
-                                <div v-if="product.variant" class="mx-8 overflow-hidden">
+                                <div v-if="product.variant || form.variants" class="mx-8 overflow-hidden">
                                     <div class="flex text-sm font-bold">
                                         <span class="">Variants</span>
                                     </div>
@@ -236,16 +234,16 @@
                                                     </td>
                                                     <td  class="w-1/4 cursor-pointer"> 
                                                         <div class="flex justify-center items-centers gap-2 mx-2">
-                                                            <div @click.prevent="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                            <button @click="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
                                                                 <svg  class="mx-auto" width="17" height="17" viewBox="0 0 24 24">
                                                                     <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
                                                                 </svg>
-                                                            </div>
-                                                            <div @click.prevent="removeVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                            </button>
+                                                            <button @click="deleteVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
                                                                 <svg width="17" height="17" class="" viewBox="0 0 20 20">
                                                                     <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
                                                                 </svg>
-                                                            </div>
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -263,16 +261,16 @@
                                                     </td>
                                                     <td  class="w-1/4 cursor-pointer"> 
                                                         <div class="flex justify-center items-centers gap-2 mx-2">
-                                                            <div @click="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                            <button @click="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
                                                                 <svg  class="mx-auto" width="17" height="17" viewBox="0 0 24 24">
                                                                     <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
                                                                 </svg>
-                                                            </div>
-                                                            <div @click="removeVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
+                                                            </button>
+                                                            <button @click="removeVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
                                                                 <svg width="17" height="17" class="" viewBox="0 0 20 20">
                                                                     <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
                                                                 </svg>
-                                                            </div>
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -284,7 +282,7 @@
                     </div>
                     <div class="bg-white pt-2">
                         <div class="w-full mx-8 py-4 flex">
-                            <button @click.prevent="submit()" class="p-2 text-xs font-bold tracking-wider rounded-sm shadow-md bg-blue-300 text-pink-800">UPDATE</button>
+                            <button id="submit" @click.prevent="update()" class="p-2 text-xs font-bold tracking-wider cursor-pointer rounded-sm shadow-md bg-blue-300 text-pink-800">UPDATE</button>
                         </div>
                     </div>
            </div>
@@ -438,15 +436,18 @@
                 this.form.images.push(selectedFiles[i]);
             }
         },
-        submit(){
+
+        update()
+        {
             this.form.post('/admin/product/'+this.product.id+'/update', {
                 onSuccess:() =>
                 {
                     alert("scuccess");
-                    this.resetForm();
+                    this.back();
                 }
             });
         },
+
         removeimg(preview)
         {
             var index = this.previews.findIndex( element => {
@@ -471,6 +472,19 @@
                 this.product.image.splice(index,1)
             );
             
+        },
+        deleteVariant(variant)
+        {
+            var index = this.product.variant.findIndex( element => {
+                
+                if (element === variant) {
+                    return true;
+                }
+            });
+            axios.delete('/admin/variant/'+variant.id+'/delete')
+            .then(
+                this.product.variant.splice(index,1)
+            );
         },
 
         removeVariant(variant)

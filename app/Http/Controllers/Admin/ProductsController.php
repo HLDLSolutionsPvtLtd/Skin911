@@ -26,8 +26,9 @@ class ProductsController extends Controller
 
         $product = Product::create($validated);
 
-        if(count($request->variants) != 0)
+        if($request->has('variants'))
         {
+            return 0;
             foreach($request->variants as $variant)
             {
                 Variant::create([
@@ -39,7 +40,7 @@ class ProductsController extends Controller
             }
         }
 
-        if(count($request->images) != 0)
+        if($request->has('images'))
         {
             foreach($request->images as $image)
             {
@@ -94,7 +95,7 @@ class ProductsController extends Controller
 
         $product->update($validated);
 
-        if(count($request->variants) != 0)
+        if($request->has('variants'))
         {
             foreach($request->variants as $variant)
             {
@@ -107,7 +108,7 @@ class ProductsController extends Controller
             }
         }
 
-        if(count($request->images) != 0)
+        if($request->has('images'))
         {
             foreach($request->images as $image)
             {
@@ -120,5 +121,31 @@ class ProductsController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function deleteVariant(Variant $variant)
+    {
+        $variant->delete();
+
+        return response('success', 200);
+    }
+
+    public function deleteProduct(Product $product)
+    {
+        $variants = Variant::where('product_id', $product->id)->get();
+        $images = Image::where('product_id', $product->id)->get();
+
+        foreach($variants as $variant)
+        {
+            $variant->delete();
+        }
+
+        foreach($images as $image)
+        {
+            Storage::disk('public')->delete($image->link);
+            $image->delete();
+        }
+        $product->delete();
+        return response('success', 200);
     }
 }
