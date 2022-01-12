@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\UserAdminController;
 use Illuminate\Foundation\Application;
@@ -68,6 +69,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('admin.addbrand', function () {
         return Inertia::render('Admin/AddBrand');
     })->name('admin.addbrand')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->get('brands', function () {
+        return Inertia::render('Admin/Brand');
+    })->name('admin.brands')->middleware('is_admin');
+
     Route::middleware(['auth:sanctum'])->get('Orders', function () {
         return Inertia::render('Admin/Orders');
     })->name('admin.orders')->middleware('is_admin');
@@ -86,6 +92,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::middleware(['auth:sanctum'])->post('/product/{product:id}/update',[ProductsController::class, 'updateProduct'])->name('updateProduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->delete('/product/{product:id}/delete',[ProductsController::class, 'deleteProduct'])->name('deleteProduct')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->post('/brand/create',[Brandcontroller::class, 'create'])->name('brand.create')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('/brand/all',[Brandcontroller::class, 'all'])->name('/admin.getbrands')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->post('/brand/{brand:id}/update',[Brandcontroller::class, 'update'])->name('/admin.updatebrand')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->delete('/brand/{brand:id}/delete',[Brandcontroller::class, 'delete'])->name('/admin.deletebrand')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('admin.getproducts',[ProductsController::class, 'getAll'])->name('admin.getproducts')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('getOrderAll',[OrderController::class, 'fetchAll'])->name('getOrderAll')->middleware('is_admin');

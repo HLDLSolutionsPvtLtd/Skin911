@@ -52,7 +52,7 @@
                             </ul>
                         </li>
                         <li class="w-full m-1">
-                            <div class="p-3 flex justify-between" >
+                            <Link :href="route('admin.brands')" class="p-3 flex justify-between" >
                                     <div class="flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" class="fill-current text-pink-700 mr-4" height="24" viewBox="0 0 24 24">
                                             <path d="M10.605 0h-10.605v10.609l13.392 13.392 10.608-10.605-13.395-13.396zm4.477 10.687l3.535 3.533-.547.547-3.533-3.534.545-.546zm-11.496-4.273c-.781-.782-.781-2.048 0-2.829s2.049-.78 2.828-.001c.781.783.782 2.048 0 2.83-.781.782-2.046.78-2.828 0zm9.651 13.189l-3.536-3.535.547-.546 3.534 3.536-.545.545zm1.115-1.117l-3.534-3.534.728-.729 3.535 3.536-.729.727zm1.31-1.311l-3.534-3.533.546-.546 3.535 3.536-.547.543zm1.135-1.135l-3.533-3.534.729-.729 3.534 3.536-.73.727zm2.404-2.4l-3.537-3.535.4-.4 3.537 3.535-.4.4z"/>
@@ -62,7 +62,7 @@
                                     <svg width="18" height="18" :class="{'rotate90': collapse_brand}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                         <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
                                     </svg>
-                            </div>
+                            </Link>
                         </li>
                         <li class="w-full m-1">
                             <div class="p-3 flex justify-between" >
