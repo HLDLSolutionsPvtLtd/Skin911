@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class Brandcontroller extends Controller
+class CategoryController extends Controller
 {
-    //
     public function all()
     {
-        return Brand::all();
+        return Category::all();
     }
 
     public function create(Request $request)
@@ -26,7 +25,7 @@ class Brandcontroller extends Controller
         {
             $path = $request->image->storeAs('media', Str::uuid() . '.' . $request->image->getClientOriginalExtension(), [ 'disk'=> 'public']);
         }
-        Brand::create([
+        Category::create([
             'name' => $request->name,
             'img' => $path
         ]);
@@ -34,32 +33,31 @@ class Brandcontroller extends Controller
         return redirect()->back();
     }
 
-    public function update(Brand $brand, Request $request)
+    public function update(Category $category, Request $request)
     {
-        $brand->name = $request->name;
-        if($brand->image)
+        $category->name = $request->name;
+        if($category->image)
         {
-            Storage::disk('public')->delete($brand->img);
+            Storage::disk('public')->delete($category->img);
         }
         if($request->image)
         {
             $path = $request->image->storeAs('media', Str::uuid() . '.' . $request->image->getClientOriginalExtension(), [ 'disk'=> 'public']);
-            $brand->img = $path;
+            $category->img = $path;
         }
-
-        $brand->save();
+        $category->save();
 
         return redirect()->back();
 
     }
 
-    public function delete(Brand $brand)
+    public function delete(Category $category)
     {
-        if($brand->image)
+        if($category->image)
         {
-            Storage::disk('public')->delete($brand->img);
+            Storage::disk('public')->delete($category->img);
         }
-        $brand->delete();
+        $category->delete();
 
         return response('success', 200);
 

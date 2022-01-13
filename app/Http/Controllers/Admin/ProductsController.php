@@ -28,7 +28,6 @@ class ProductsController extends Controller
 
         if($request->has('variants'))
         {
-            return 0;
             foreach($request->variants as $variant)
             {
                 Variant::create([
