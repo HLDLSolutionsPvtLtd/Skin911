@@ -1,35 +1,56 @@
 <template>
     <app-layout>
-        <div class="flex justify-center">
+        <div class="flex justify-center relative">
+            <div v-show="quantityPop" class="absolute w-1/2 top-1/4 p-4 bg-white">
+                <div class="flex justify-between">
+                    <div>
+                        <span class="tracking-wider text-xs font-bold uppercase">Select Quantity</span>
+                    </div>
+                    <div @click="quantityPop = !quantityPop">
+                        X
+                    </div>
+                </div>
+                <div>
+                    <div >
+
+                    </div>
+                </div>
+            </div>
             <div class="w-full sm:flex xxl:w-1/2 lg:w-7/12 m-6">
-                <div class="flex sm:flex-1 m-2 sm:h-full">
+                <div class="flex flex-col sm:flex-1 m-2 sm:h-full">
+                    
                     <div class="">
-                        <ul v-for="image in products" :key="image">
-                            <li @click="currentimg(image.img)" >
-                                <img :src="image.img" alt="" class="w-12 h-12 cursor-pointer border-gray-600 hover:border" >
+                        <img :src="'/storage/'+currentImg" alt="" class="w-full h-full">
+                    </div>
+                    <div class="flex mt-2">
+                        <ul class="flex flex-col mr-1" v-for="image in product.image" :key="image">
+                            <li class="w-full" @click="currentimg(image.link)" >
+                                <img :src="'/storage/'+image.link" alt="" class="h-12 w-10 cursor-pointer border-gray-600 hover:border" >
                             </li>
                         </ul>
-                    </div>
-                    <div class="ml-2 flex">
-                        <img :src="currentImg" alt="" w-full h-full>
                     </div>
                 </div>
                 <div class=" sm:flex-1 m-2">
                     <div>
-                        <span class="text-lg font-bold p-2 text-pink-dark">Product name</span>
+                        <span class="text-md tracking-wider font-bold p-2 text-pink-dark">{{product.name}}</span>
+                        <div class="mt-2 flex gap-2 mx-2" v-if="product.variant[0]">
+                            <div v-for="variantq in product.variant" :key="variantq.id">
+                                <span @click="this.variant = variantq.id" :class="{'bg-gray-200':variantq.id == variant}" class="p-2 font-bold cursor-pointer bg-gray-100 rounded-lg text-green-400 border text-xs uppercase">{{variantq.name}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-2">
-                        <span class="line-through text-sm text-gray-500 pr-2">$5000</span>
-                        <span class="text-sm">$2323</span>
+                    <div class="p-2 mt-2">
+                        <span class="line-through text-sm font-bold text-gray-500 pr-2">$5000</span>
+                        <span class="text-sm font-bold tracking-wider">${{product.price}}</span>
                     </div>
                     <div class="mt-2 flex justify-start">
-                        <button class="p-2 w-1/2 font-bold bg-pink text-pink-dark text-md m-2">ADD TO CART</button>
+                        <button @click="quantityPop = !quantityPop" class="p-2 w-1/2 font-bold bg-pink text-pink-dark text-md m-2">ADD TO CART</button>
                         <button class="p-2 w-1/2 border-2 border-gray-700 font-bold text-pink-dark text-md m-2">BUY IT NOW</button>
                     </div>
                     <div class="mt-8 mb-8 border-t">
                         <div>
                             <ul class="flex font-sans font-semibold text-sm">
-                                <li class="p-2 text-pink-dark hover:text-gray-300 cursor-pointer">Description</li>
+                                <li class="p-2 text-pink-dark hover:text-gray-300 cursor-pointer">{{product.description}}</li>
                                 
                             </ul>
                         </div>
@@ -108,39 +129,16 @@
 <script>
  import AppLayout from '@/Layouts/AppLayout.vue'
  export default{
+     props: ['product'],
     components:
     {
         AppLayout
     },
     data() {
         return {
+            quantityPop: false,
+            variant: '',
             currentImg:'',
-            products:[
-                    {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/08/Offer-Green-Peace-Trio-1.jpg'
-                    },
-                     {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/09/Mini-Set-600x800.jpg'
-                    },
-                     {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/08/Offer-Fantastic-4-Brightening-Set-1.jpg'
-                    },
-                     {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/08/Offer-Anti-aging-Brightening-Powerhouse-Duo-1.jpg'
-                    },
-                     {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/08/Play-Color-Eye-Palette-Rose-Bomb.jpg'
-                    },
-                     {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/08/Vitamin-C-Brightening-Serum-30ml.jpg'
-                    },
-                     {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/08/Vitamin-C-Brightening-Serum-30ml.jpg'
-                    },
-                     {
-                        img:'https://beautybarn.in/wp-content/uploads/2021/08/Vitamin-C-Brightening-Serum-30ml.jpg'
-                    },
-            ]
         }
     },
     methods:
@@ -151,7 +149,11 @@
         }
     },
     mounted() {
-        this.currentImg = this.products[0].img;
+        this.currentImg = this.product.image[0].link;
+        if(this.product.variant[0])
+        {
+            this.variant = this.product.variant[0].id;
+        }
     },
 }
 </script>

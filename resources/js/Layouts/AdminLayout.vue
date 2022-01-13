@@ -59,9 +59,6 @@
                                         </svg>
                                         <span class="text-xs uppercase font-bold text-black">Brands</span>
                                     </div>
-                                    <svg width="18" height="18" :class="{'rotate90': collapse_brand}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
-                                    </svg>
                             </Link>
                         </li>
                         <li class="w-full m-1">
@@ -79,17 +76,16 @@
                             </div>
                         </li>
                         <li class="w-full m-1">
-                            <div class="p-3 flex justify-between" >
+                            <Link :href="route('admin.categories')">
+                                <div class="p-3 flex justify-between" >
                                     <div class="flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-700 mr-4" width="24" height="24" viewBox="0 0 24 24">
                                             <path d="M22 13v-13h-20v24h8.409c4.857 0 3.335-8 3.335-8 3.009.745 8.256.419 8.256-3zm-4-7h-12v-1h12v1zm0 3h-12v-1h12v1zm0 3h-12v-1h12v1zm-2.091 6.223c2.047.478 4.805-.279 6.091-1.179-1.494 1.998-5.23 5.708-7.432 6.881 1.156-1.168 1.563-4.234 1.341-5.702z"/>
                                         </svg>
                                         <span class="text-xs uppercase font-bold text-black">Categories</span>
                                     </div>
-                                    <svg width="18" height="18" :class="{'rotate90': collapse_categories}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
-                                    </svg>
-                            </div>
+                                </div>
+                            </Link>
                         </li>
                         <li class="w-full m-1">
                             <div class="p-3 flex justify-between" >

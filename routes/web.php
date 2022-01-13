@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\Brandcontroller;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\BrandController as ControllersBrandController;
+use App\Http\Controllers\CategoryController as ControllersCategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAdminController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -34,12 +38,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
     return Inertia::render('Products');
 })->name('products');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/product', function () {
-    return Inertia::render('Product');
-})->name('product');
+Route::middleware(['auth:sanctum', 'verified'])->get('/product/{product:id}/details',[ProductController::class, 'detailView'])->name('product.view');
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
     return Inertia::render('Cart');
 })->name('cart');
+Route::middleware(['auth:sanctum'])->get('products/all',[ProductController::class, 'all'])->name('products.all');
+Route::middleware(['auth:sanctum'])->get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
+Route::middleware(['auth:sanctum'])->get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
 
 
 /*
@@ -78,6 +83,10 @@ Route::group(['prefix' => 'admin'], function () {
         return Inertia::render('Admin/Orders');
     })->name('admin.orders')->middleware('is_admin');
 
+    Route::middleware(['auth:sanctum'])->get('categories', function () {
+        return Inertia::render('Admin/Categories');
+    })->name('admin.categories')->middleware('is_admin');
+
     Route::middleware(['auth:sanctum'])->post('addproduct',[ProductController::class, 'AddProduct'])->name('addproduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->post('addbrand',[BrandController::class, 'AddBrand'])->name('addbrand')->middleware('is_admin');
 
@@ -97,6 +106,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('/brand/all',[Brandcontroller::class, 'all'])->name('/admin.getbrands')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->post('/brand/{brand:id}/update',[Brandcontroller::class, 'update'])->name('/admin.updatebrand')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->delete('/brand/{brand:id}/delete',[Brandcontroller::class, 'delete'])->name('/admin.deletebrand')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->post('/category/create',[CategoryController::class, 'create'])->name('category.create')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('/category/all',[CategoryController::class, 'all'])->name('/admin.getcategorys')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->post('/category/{category:id}/update',[CategoryController::class, 'update'])->name('/admin.updatecategory')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->delete('/category/{category:id}/delete',[CategoryController::class, 'delete'])->name('/admin.deletecategory')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('admin.getproducts',[ProductsController::class, 'getAll'])->name('admin.getproducts')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('getOrderAll',[OrderController::class, 'fetchAll'])->name('getOrderAll')->middleware('is_admin');

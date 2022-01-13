@@ -16,7 +16,7 @@
                     <span class="pl-2 text-sm text-pink-dark font-semibold">&#8377;2800</span>
                 </div>
             </div>
-            <nav class="bg-white sticky top-0 z-10 w-full border-b border-gray-100 border-b shadow-md">
+            <nav class="bg-white sticky top-0 z-10 w-full border-b border-gray-100 shadow-md">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
                     <div class="flex justify-between h-16">
@@ -113,8 +113,8 @@
                                 </jet-nav-link>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('dashboard')" >
-                                    BEST SELLER
+                                <jet-nav-link class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('products')" >
+                                    PRODUCTS
                                 </jet-nav-link>
                             </div>
                             <div @mouseover="routine = true" @mouseleave="routine = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

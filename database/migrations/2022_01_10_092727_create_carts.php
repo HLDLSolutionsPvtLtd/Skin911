@@ -15,8 +15,7 @@ class CreateCarts extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('usr_id');
-            $table->string('total')->default('0');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
