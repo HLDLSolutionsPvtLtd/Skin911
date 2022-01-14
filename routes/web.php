@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\BrandController as ControllersBrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAdminController;
@@ -45,7 +46,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
 Route::middleware(['auth:sanctum'])->get('products/all',[ProductController::class, 'all'])->name('products.all');
 Route::middleware(['auth:sanctum'])->get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
 Route::middleware(['auth:sanctum'])->get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
-
+Route::middleware(['auth:sanctum'])->post('cart/product/{product:id}/add',[CartController::class, 'addToCart'])->name('addToCart');
+Route::middleware(['auth:sanctum'])->get('cart/all',[CartController::class, 'all'])->name('cart.all');
+Route::middleware(['auth:sanctum'])->post('cart/product/quantity/update',[CartController::class, 'updateQty'])->name('updateQty');
 
 /*
 |--------------------------------------------------------------------------

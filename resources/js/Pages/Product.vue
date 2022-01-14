@@ -1,24 +1,28 @@
 <template>
     <app-layout>
         <div class="flex justify-center relative">
-            <div v-show="quantityPop" class="absolute w-1/2 top-1/4 p-4 bg-white">
-                <div class="flex justify-between">
-                    <div>
-                        <span class="tracking-wider text-xs font-bold uppercase">Select Quantity</span>
+            <div v-show="success" class="absolute w-full transform shadow-lg sm:w-1/4 top-1/4">
+                <div class=" bg-white rounded-sm">
+                    <div class="bg-gray-400 p-2 flex justify-center">
+                        <div class="p-4 flex flex-col justify-center">
+                            <div class="flex justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 24 24"  class="fill-current transition transform translate-Y-60 duration-700 text-green-400">
+                                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
+                                </svg>
+                            </div>
+                            <div class="mt-2">
+                                <span class="font-bold text-md tracking-wider text-white">ADDED TO CART</span>
+                            </div>
+                        </div>
                     </div>
-                    <div @click="quantityPop = !quantityPop">
-                        X
+                    <div class="flex justify-center m-2 p-2">
+                        <button @click="success=!success" class="p-2 bg-gray-400 rounded-md font-bold tracking-wider text-white">OK</button>
                     </div>
                 </div>
-                <div>
-                    <div >
-
-                    </div>
-                </div>
+                
             </div>
             <div class="w-full sm:flex xxl:w-1/2 lg:w-7/12 m-6">
                 <div class="flex flex-col sm:flex-1 m-2 sm:h-full">
-                    
                     <div class="">
                         <img :src="'/storage/'+currentImg" alt="" class="w-full h-full">
                     </div>
@@ -31,20 +35,31 @@
                     </div>
                 </div>
                 <div class=" sm:flex-1 m-2">
-                    <div>
-                        <span class="text-md tracking-wider font-bold p-2 text-pink-dark">{{product.name}}</span>
+                    <div class="p-2">
+                        <span class="text-md tracking-wider font-bold text-pink-dark">{{product.name}}</span>
                         <div class="mt-2 flex gap-2 mx-2" v-if="product.variant[0]">
                             <div v-for="variantq in product.variant" :key="variantq.id">
-                                <span @click="this.variant = variantq.id" :class="{'bg-gray-200':variantq.id == variant}" class="p-2 font-bold cursor-pointer bg-gray-100 rounded-lg text-green-400 border text-xs uppercase">{{variantq.name}}</span>
+                                <span @click="this.form.variant = variantq.id" :class="{'bg-gray-200':variantq.id == form.variant}" class="p-2 font-bold cursor-pointer bg-gray-100 rounded-lg text-green-400 border text-xs uppercase">{{variantq.name}}</span>
                             </div>
+                        </div>
+                        <div class="mt-2">
+                            <span class="text-green-500 text-sm flex items-center">
+                                <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current mr-2 text-green-500" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"/>
+                                </svg>
+                                In Stock</span>
                         </div>
                     </div>
                     <div class="p-2 mt-2">
                         <span class="line-through text-sm font-bold text-gray-500 pr-2">$5000</span>
                         <span class="text-sm font-bold tracking-wider">${{product.price}}</span>
                     </div>
+                    <div class="p-2 flex items-center">
+                        <input type="number" class="w-12 h-12 p-0 mr-2" pattern="\d*" v-model="form.quantity" max="6" min="1">
+                        <span class="text-xs font-bold uppercase tracking-wider">Quantity</span>
+                    </div>
                     <div class="mt-2 flex justify-start">
-                        <button @click="quantityPop = !quantityPop" class="p-2 w-1/2 font-bold bg-pink text-pink-dark text-md m-2">ADD TO CART</button>
+                        <button @click="addtocart()" class="p-2 w-1/2 font-bold bg-pink text-pink-dark text-md m-2">ADD TO CART</button>
                         <button class="p-2 w-1/2 border-2 border-gray-700 font-bold text-pink-dark text-md m-2">BUY IT NOW</button>
                     </div>
                     <div class="mt-8 mb-8 border-t">
@@ -128,6 +143,7 @@
 </template>
 <script>
  import AppLayout from '@/Layouts/AppLayout.vue'
+import { Inertia } from '@inertiajs/inertia';
  export default{
      props: ['product'],
     components:
@@ -137,8 +153,12 @@
     data() {
         return {
             quantityPop: false,
-            variant: '',
+            form : this.$inertia.form({
+                variant: '',
+                quantity : 1,
+            }),
             currentImg:'',
+            success : false,
         }
     },
     methods:
@@ -146,13 +166,22 @@
         currentimg(img)
         {
             this.currentImg = img;
+        },
+        addtocart()
+        {
+            this.form.post('/cart/product/'+this.product.id+'/add', {
+                onSuccess: () =>
+                {
+                    this.success = true;
+                }
+            })
         }
     },
     mounted() {
         this.currentImg = this.product.image[0].link;
         if(this.product.variant[0])
         {
-            this.variant = this.product.variant[0].id;
+            this.form.variant = this.product.variant[0].id;
         }
     },
 }

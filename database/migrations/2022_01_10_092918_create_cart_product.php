@@ -18,8 +18,8 @@ class CreateCartProduct extends Migration
             $table->string('product_id');
             $table->string('cart_id');
             $table->string('quantity');
+            $table->string('variant')->nullable();
             $table->string('subtotal');
-            $table->timestamps();
         });
     }
 

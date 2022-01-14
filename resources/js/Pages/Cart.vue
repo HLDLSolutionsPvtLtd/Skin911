@@ -18,18 +18,22 @@
                             </div> -->
                             <div class="flex justify-between bg-white border mb-2">
                                 <div class="flex p-1">
-                                    <img :src="product.img" alt="" class="w-24 h-24 self-center ">
+                                    <img :src="'/storage/'+product.image[0].link" alt="" class="w-24 h-24 self-center ">
                                     <div class="flex m-4 text-gray-700 text-sm font-sans text-thin self-center">
                                         <div class="p-2">
                                             <div class="p-1">
                                                 <span>{{product.name}}</span>
                                             </div>
-                                            <span class="p-1 font-semibold">&#8377; 1231</span>
-                                            <div class="p-1 my-1 text-xs font-bold">
-                                                <div>
-                                                    <span class="p-1 border bg-gray-400">&#8722;</span>
-                                                    <span class="p-1 border bg-gray-400">1</span>
-                                                    <span class="p-1 border bg-gray-400">&#x2B;</span>
+                                            <span class="p-1 font-semibold">&#8377; {{product.price}}</span>
+                                            <div class="p-1 mt-2 text-xs font-bold">
+                                                <div class="flex items-center">
+                                                    <span>QTY :</span>
+                                                    <select name="" id="" :value="product.pivot.quantity" class="border-0 focus:ring-0">
+                                                        <option @click="changequantity(product, 1)" value="1">1</option>
+                                                        <option @click="changequantity(product, 2)" value="2">2</option>
+                                                        <option @click="changequantity(product, 3)" value="3">3</option>
+                                                        <option @click="changequantity(product, 4)" value="4">4</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,31 +92,26 @@ export default {
 
     data(){
         return{
-            products:[
-                    {
-                        id:0,
-                        name:'Dear Klairs Supple Preparation Unscented Toner Mini 30ml',
-                        img:'https://cdsco.gov.in/opencms/export/system/modules/CDSCO.WEB/resources/img/slider/cosmetic4.jpg',
-                    },
-                    {
-                        id:1,
-                        name:'Dear Klairs Supple Preparation Unscented Toner Mini 30ml',
-                        img:'https://www.ics-world.com/wp-content/uploads/2021/03/Sustainable-2.jpg',
-                    },
-                    {
-                        id:2,
-                        name:'Dear Klairs Supple Preparation Unscented Toner Mini 30ml',
-                        img:'https://imgscf.slidemembers.com/docs/1/1/334/natural_cosmetic_presentation_ppt_333010.jpg',
-                    },
-                    {
-                        id:3,
-                        name:'Dear Klairs Supple Preparation Unscented Toner Mini 30ml',
-                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfz8UYc1CQyXKs1tRDEj8i_fDGLUPCqSSuFg&usqp=CAU',
-                    },
-                    
-                ],
+            products:[]
         }
-    }
+    },
+    methods:{
+        changequantity(product, qty)
+        {
+            this.$inertia.post('/cart/product/quantity/update', {
+                'qty': qty,
+                'id' : product.id,
+                onSuccess: () =>{
+                    alert('successss')
+                }
+            })
+        }
+    },
+    mounted(){
+        axios.get('cart/all')
+        .then(res => this.products = res.data);
+    },
+    
 
 }
 </script>

@@ -8,15 +8,29 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    //
 
+    public function all(Request $request)
+    {
+        $user = $request->user();
+        return $user->cart->products;
+    }
+
+    public function updateQty(Request $request)
+    {
+        $cart = $request->user()->cart;
+        $cart->products()->updateExistingPivot($request->id, ['quantity' => $request->qty,]);
+        return redirect()->back();        
+    }
     public function addToCart(Product $product, Request $request)
     {
         $user = $request->user();
         $price = 0;
-        if($request->has('variant'))
+        $variant = '';
+        if($request->variant != null)
         {
-            $price = $product->variant->find($request->variant)->price->get();
+            $svariant = $product->variant->find($request->variant);
+            $price = $svariant->price;
+            $variant = $svariant->name;
         }
         else
         {
@@ -32,9 +46,9 @@ class CartController extends Controller
                 'user_id' => $user->id
             ]);
 
-            $cart->products()->attach($product, ['quantity'=> $request->quantity, 'subtotal' => $request->quantity * $price]);
+            $cart->products()->attach($product, ['quantity'=> $request->quantity, 'subtotal' => $request->quantity * $price, 'variant' => $variant]);
         }
 
-        return response('success', 200);
+        return redirect()->back();
     }
 }
