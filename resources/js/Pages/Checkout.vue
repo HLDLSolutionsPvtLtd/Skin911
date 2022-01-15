@@ -1,0 +1,136 @@
+<template>
+    <app-layout>
+        <div class="w-full flex justify-center">
+            <div class="w-10/12 m-2">
+                <div class="w-full m-2 border">
+                    <div class="flex w-full bg-white shadow-md justify-center">
+                        <span class="text-md text-pink-dark p-2">CHECKOUT</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-5 m-2 ">
+                    <div class="col-span-3 mr-8">
+                        <div class="bg-white p-4 shadow-md">
+                            <div class="flex items-center">
+                                <input type="checkbox" class="mr-2" v-model="form.cod">
+                                <span class="text-xs font-bold tracking-wider">CASH ON DELIVERY<span class="text-green-600 tracking-widest">(Available)</span></span>
+                            </div>
+                        </div>
+                        <div class="bg-white mt-2 p-4 shadow-md">
+                            <div class="">
+                                <div>
+                                    <span class="text-xs font-bold tracking-wider">BILLING ADDRESS</span>
+                                </div>
+                                <div class="m-2">
+                                    <div v-if="addresses.length" class="pt-4" v-for="address in addresses" :key="address.id">
+                                        <div>
+                                            <input type="radio" :value="address.id" v-model="form.selectedAddress" :checked="form.selectedAddress === address.id" class="mr-2">
+                                            <span class="text-xs font-bold uppercase tracking-wider text-gray-800">{{address.name}}</span>
+                                            <div class="flex text-xs m-2 tracking-wider font-semibold text-gray-700">
+                                                <span>{{address.house_no}}, {{address.street}}, Near {{address.landmark}}, {{address.district}}, {{address.state}}, 
+                                                    Phone No - {{address.phone_number}},
+                                                    {{address.pincode}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="pt-2 flex">
+                                            <a :href="'/address/'+address.id+'/edit'" class="p-1 rounded-sm shadow-lg text-sm bg-green-500 font-bold tracking-wider text-white flex items-center flex-wrap">
+                                                <span>EDIT</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" class="fill-current text-white ml-1" viewBox="0 0 24 24">
+                                                    <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div v-else class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current mr-2 text-blue-400" viewBox="0 0 24 24">
+                                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/>
+                                        </svg>
+                                        <span class="text-sm tracking-wider font-semibold text-blue-400">Please add new Address first</span>
+                                    </div>
+                                </div>
+                                <div class="pt-2 border-t">
+                                    <a href="/address/new" class="text-white text-xs font-bold tracking-wider bg-green-500 rounded-md shadow-lg p-2">NEW ADDRESS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-2 ml-8">
+                        <div class="border bg-white">
+                            <div class="m-4 text-gray-600">
+                                <div class="flex border-b p-4 font-semibold tracking-widest text-xs uppercase justify-between">
+                                    <span class="">Subtotal</span>
+                                    <span>&#8377; {{subtotal}}</span>
+                                </div>
+                                <div class="flex border-b p-4 font-semibold tracking-widest text-xs uppercase justify-between">
+                                    <span>ITEMS</span>
+                                    <span>{{this.n_items}}</span>
+                                </div>
+                                <div class="flex font-semibold tracking-widest text-xs uppercase border-b p-4 justify-between">
+                                    <span>Shipping fee</span>
+                                    <span>&#8377; 150</span>
+                                </div>
+                                <div class="flex font-bold tracking-widest text-sm uppercase p-4 justify-between">
+                                    <span>Total </span>
+                                    <span>&#8377; {{total}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full mt-2">
+                            <button class="p-2 bg-pink rounded-sm w-full text-pink-dark">PLACE ORDER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </app-layout>
+</template>
+<script>
+import AppLayout from '@/Layouts/AppLayout.vue'
+export default {
+    components:
+    {
+        AppLayout,
+    },
+
+    data(){
+        return{
+            products:[],
+            subtotal: 0,
+            n_items: 0,
+            addresses: [],
+            total : 0,
+            form: this.$inertia.form({
+                cod: false,
+                selectedAddress: '',
+            }),
+        }
+    },
+    methods:{
+        
+    },
+    mounted(){
+        axios.get('cart/all')
+        .then(res => this.products = res.data);
+        axios.get('/address/all')
+        .then(res => this.addresses = res.data);
+    },
+    watch: {
+        products()
+        {
+            this.subtotal = 0;
+            this.n_items = 0;
+            this.products.forEach(element => {
+                this.subtotal = this.subtotal + element.price * element.pivot.quantity;
+                this.n_items = this.n_items + parseInt(element.pivot.quantity);
+            });
+            this.total = this.subtotal + 150;
+        },
+
+        addresses()
+        {
+            this.form.selectedAddress = this.addresses[0].id;
+        }
+   },
+
+}
+</script>
