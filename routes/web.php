@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -43,12 +44,27 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/product/{product:id}/deta
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
     return Inertia::render('Cart');
 })->name('cart');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/checkout', function () {
+    return Inertia::render('Checkout');
+})->name('checkout');
+Route::middleware(['auth:sanctum', 'verified'])->get('/address/new', function () {
+    return Inertia::render('AddAddress');
+})->name('address.new');
+Route::middleware(['auth:sanctum'])->get('address/{address:id}/edit',[AddressController::class, 'edit'])->name('products.edit');
+Route::middleware(['auth:sanctum'])->post('address/{address:id}/edit',[AddressController::class, 'update'])->name('products.update');
+
 Route::middleware(['auth:sanctum'])->get('products/all',[ProductController::class, 'all'])->name('products.all');
 Route::middleware(['auth:sanctum'])->get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
 Route::middleware(['auth:sanctum'])->get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
 Route::middleware(['auth:sanctum'])->post('cart/product/{product:id}/add',[CartController::class, 'addToCart'])->name('addToCart');
 Route::middleware(['auth:sanctum'])->get('cart/all',[CartController::class, 'all'])->name('cart.all');
 Route::middleware(['auth:sanctum'])->post('cart/product/quantity/update',[CartController::class, 'updateQty'])->name('updateQty');
+Route::middleware(['auth:sanctum'])->post('cart/{cart:id}/product/{product:id}/delete',[CartController::class, 'removeProduct'])->name('cart.remove.product');
+
+Route::middleware(['auth:sanctum'])->post('address/new',[AddressController::class, 'store'])->name('address.new');
+Route::middleware(['auth:sanctum'])->get('address/all',[AddressController::class, 'all'])->name('address.all');
+Route::middleware(['auth:sanctum'])->delete('address/{address:id}/delete',[AddressController::class, 'remove'])->name('address.remove');
 
 /*
 |--------------------------------------------------------------------------

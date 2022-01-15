@@ -18,18 +18,16 @@ class CartController extends Controller
     public function updateQty(Request $request)
     {
         $cart = $request->user()->cart;
-        $cart->products()->updateExistingPivot($request->id, ['quantity' => $request->qty,]);
+        $cart->products()->wherePivot('id', $request->id)->updateExistingPivot($request->p_id, ['quantity' => $request->qty]);
         return redirect()->back();        
     }
     public function addToCart(Product $product, Request $request)
     {
         $user = $request->user();
-        $price = 0;
         $variant = '';
         if($request->variant != null)
         {
             $svariant = $product->variant->find($request->variant);
-            $price = $svariant->price;
             $variant = $svariant->name;
         }
         else
@@ -38,7 +36,7 @@ class CartController extends Controller
         }
         if($user->cart)
         {
-            $user->cart->products()->attach($product, ['quantity'=> $request->quantity, 'subtotal' => $request->quantity * $price]);
+            $user->cart->products()->attach($product, ['quantity'=> $request->quantity]);
         }
         else
         {
@@ -46,9 +44,15 @@ class CartController extends Controller
                 'user_id' => $user->id
             ]);
 
-            $cart->products()->attach($product, ['quantity'=> $request->quantity, 'subtotal' => $request->quantity * $price, 'variant' => $variant]);
+            $cart->products()->attach($product, ['quantity'=> $request->quantity, 'variant' => $variant]);
         }
 
+        return redirect()->back();
+    }
+
+    public function removeProduct(Cart $cart, Product $product, Request $request)
+    {
+        $cart->products()->wherePivot('id', $request->id)->detach();
         return redirect()->back();
     }
 }

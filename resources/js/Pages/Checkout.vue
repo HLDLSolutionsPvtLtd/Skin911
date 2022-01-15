@@ -32,13 +32,14 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="pt-2 flex">
-                                            <a :href="'/address/'+address.id+'/edit'" class="p-1 rounded-sm shadow-lg text-sm bg-green-500 font-bold tracking-wider text-white flex items-center flex-wrap">
-                                                <span>EDIT</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" class="fill-current text-white ml-1" viewBox="0 0 24 24">
-                                                    <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
-                                                </svg>
+                                        <div class="pt-2 flex gap-2">
+                                            <a :href="'/address/'+address.id+'/edit'" class="p-1 rounded-sm shadow-lg text-xs bg-green-500 font-bold tracking-wider text-white flex items-center flex-wrap">
+                                                <span>Edit</span>
+                                               
                                             </a>
+                                            <button @click="deleteAddress(address)" class="p-1 rounded-sm shadow-lg text-xs text-white bg-red-400 font-bold">
+                                                Delete
+                                            </button>
                                         </div>
                                     </div>
                                     <div v-else class="flex items-center">
@@ -106,7 +107,28 @@ export default {
         }
     },
     methods:{
-        
+        deleteAddress(address)
+        {
+            if(confirm("Address will be deleted permanently!"))
+            {
+                this.$inertia.delete('/address/'+address.id+'/delete', {
+                    onSuccess: () =>
+                    {
+                        location.reload();
+                    }
+                });
+            }
+        },
+
+        checkout()
+        {
+            this.form.post('/checkout',{
+                onSuccess: () =>
+                {
+
+                }
+            })
+        }
     },
     mounted(){
         axios.get('cart/all')

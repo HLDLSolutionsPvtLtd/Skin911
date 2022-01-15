@@ -18,6 +18,7 @@ class CreateOrderProduct extends Migration
             $table->string('order_id');
             $table->string('product_id');
             $table->string('quantity');
+            $table->string('variant')->nullable();
             $table->string('subtotal');
             $table->timestamps();
         });

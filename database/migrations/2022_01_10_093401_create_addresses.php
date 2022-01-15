@@ -22,6 +22,7 @@ class CreateAddresses extends Migration
             $table->string('city');
             $table->string('district');
             $table->string('street');
+            $table->string('pincode');
             $table->string('landmark');
             $table->string('house_no');
             $table->timestamps();

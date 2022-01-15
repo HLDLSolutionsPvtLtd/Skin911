@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e16e57f39939dc3b012decb9eb05b80283364f87',
+        'reference' => 'd6b47a28e9e897db60bfdea707cfcbbd77050bc0',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -463,7 +463,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e16e57f39939dc3b012decb9eb05b80283364f87',
+            'reference' => 'd6b47a28e9e897db60bfdea707cfcbbd77050bc0',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -850,8 +850,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0',
+                0 => '1.0.0 || 2.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -905,11 +905,29 @@
             'reference' => 'fe665a03df4f056aa65af552a96e1976df8c8dae',
             'dev_requirement' => false,
         ),
+        'razorpay/razorpay' => array(
+            'pretty_version' => '2.8.1',
+            'version' => '2.8.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../razorpay/razorpay',
+            'aliases' => array(),
+            'reference' => '4ad7b6a5bd9896305858ec0a861f66020e39f628',
+            'dev_requirement' => false,
+        ),
         'rhumsaa/uuid' => array(
             'dev_requirement' => false,
             'replaced' => array(
                 0 => '4.2.1',
             ),
+        ),
+        'rmccue/requests' => array(
+            'pretty_version' => 'v1.8.0',
+            'version' => '1.8.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rmccue/requests',
+            'aliases' => array(),
+            'reference' => 'afbe4790e4def03581c4a0963a1e8aa01f6030f1',
+            'dev_requirement' => false,
         ),
         'sebastian/cli-parser' => array(
             'pretty_version' => '1.0.1',
