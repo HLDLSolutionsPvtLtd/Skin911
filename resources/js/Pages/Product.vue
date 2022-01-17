@@ -3,7 +3,7 @@
         <div class="flex justify-center relative">
             <div v-show="success" class="absolute w-full transform shadow-lg sm:w-1/4 top-1/4">
                 <div class=" bg-white rounded-sm">
-                    <div class="bg-gray-400 p-2 flex justify-center">
+                    <div class="bg-pink-300 p-2 flex justify-center">
                         <div class="p-4 flex flex-col justify-center">
                             <div class="flex justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 24 24"  class="fill-current transition transform translate-Y-60 duration-700 text-green-400">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="flex justify-center m-2 p-2">
-                        <button @click="success=!success" class="p-2 bg-gray-400 rounded-md font-bold tracking-wider text-white">OK</button>
+                        <button @click="success=!success" class="p-2 bg-pink-300 rounded-md font-bold tracking-wider text-white">OK</button>
                     </div>
                 </div>
                 

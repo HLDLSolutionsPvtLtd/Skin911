@@ -17,8 +17,8 @@ class CreateTransactions extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('order_id');
-            $table->string('razorpay_transaction_id');
-            $table->string('razorpay_transaction_signature');
+            $table->string('razorpay_transaction_id')->nullable();
+            $table->string('razorpay_transaction_signature')->nullable();
             $table->string('razorpay_order_id');
             $table->string('amount');
             $table->enum('status', ['paid', 'pending'])->default('pending');

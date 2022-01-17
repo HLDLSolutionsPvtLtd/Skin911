@@ -151,6 +151,7 @@
                                         Profile
                                     </jet-dropdown-link>
 
+                                    
 
                                     <!-- Authentication -->
                                     <form @submit.prevent="logout">
@@ -158,6 +159,7 @@
                                             Log Out
                                         </jet-dropdown-link>
                                     </form>
+                                     
                                 </template>
                             </jet-dropdown>
                         </div>

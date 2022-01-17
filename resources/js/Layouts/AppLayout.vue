@@ -334,7 +334,9 @@
                                             API Tokens
                                         </jet-dropdown-link>
 
-                                        <div class="border-t border-gray-100"></div>
+                                        <jet-dropdown-link :href="route('order.view')">
+                                            Orders
+                                        </jet-dropdown-link>
 
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">

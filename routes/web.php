@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\BrandController as ControllersBrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAdminController;
 use Illuminate\Foundation\Application;
@@ -41,9 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
 })->name('products');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/product/{product:id}/details',[ProductController::class, 'detailView'])->name('product.view');
-Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function () {
-    return Inertia::render('Cart');
-})->name('cart');
+Route::middleware(['auth:sanctum', 'verified'])->get('/cart', [CartController::class, 'view'])->name('cart');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/checkout', function () {
     return Inertia::render('Checkout');
@@ -65,6 +64,11 @@ Route::middleware(['auth:sanctum'])->post('cart/{cart:id}/product/{product:id}/d
 Route::middleware(['auth:sanctum'])->post('address/new',[AddressController::class, 'store'])->name('address.new');
 Route::middleware(['auth:sanctum'])->get('address/all',[AddressController::class, 'all'])->name('address.all');
 Route::middleware(['auth:sanctum'])->delete('address/{address:id}/delete',[AddressController::class, 'remove'])->name('address.remove');
+
+Route::middleware(['auth:sanctum'])->get('order',[OrderController::class, 'view'])->name('order.view');
+Route::middleware(['auth:sanctum'])->post('order/create',[OrderController::class, 'create'])->name('order.create');
+Route::middleware(['auth:sanctum'])->post('order/transaction',[OrderController::class, 'transaction'])->name('transaction.create');
+Route::middleware(['auth:sanctum'])->post('order/{order:id}/cancel',[OrderController::class, 'cancel'])->name('order.cancel');
 
 /*
 |--------------------------------------------------------------------------

@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-2">
-                            <button class="p-2 bg-pink rounded-sm w-full text-pink-dark">PLACE ORDER</button>
+                            <button @click="checkout" class="p-2 bg-pink rounded-sm w-full text-pink-dark">PLACE ORDER</button>
                         </div>
                     </div>
                 </div>
@@ -95,6 +95,8 @@ export default {
 
     data(){
         return{
+            RZPScript: '',
+            order: '',
             products:[],
             subtotal: 0,
             n_items: 0,
@@ -119,26 +121,39 @@ export default {
                 });
             }
         },
-
+        pay()
+        {
+            this.RZPScript = new Razorpay(this.options);
+            this.RZPScript.on('payment.failed', function (response){
+                    window.location.replace("/order");
+            });
+            this.RZPScript.open();
+        },
         checkout()
         {
-            this.form.post('/checkout',{
-                onSuccess: () =>
-                {
-
-                }
-            })
-        }
+            axios.post('/order/create', this.form)
+            .then(res => this.order = res.data);
+        },
+        
     },
     mounted(){
         axios.get('cart/all')
         .then(res => this.products = res.data);
         axios.get('/address/all')
         .then(res => this.addresses = res.data);
+
+        this.RZPScript = document.createElement('script');
+        this.RZPScript.setAttribute('src', 'https://checkout.razorpay.com/v1/checkout.js');
+        document.head.appendChild(this.RZPScript);
     },
     watch: {
         products()
         {
+            if(!this.products[0])
+            {
+                window.location = "/cart";
+
+            }
             this.subtotal = 0;
             this.n_items = 0;
             this.products.forEach(element => {
@@ -147,7 +162,51 @@ export default {
             });
             this.total = this.subtotal + 150;
         },
-
+        order()
+        {
+            if(this.order.razorpayId)
+            {
+                this.options = {
+                    "key": 'rzp_test_znof4x4ZLxITZX', // Enter the Key ID generated from the Dashboard
+                    "amount": this.order['amount'], // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
+                    "currency": this.order['currency'],
+                    "name": "Modern Shoe Store",
+                    "description": "Test Transaction",
+                    "image": "https://www.nicesnippets.com/image/imgpsh_fullsize.png",
+                    "order_id": this.order['razorpayId'], 
+                    "handler": function (response){
+                        axios.post('/order/transaction',response)
+                        .then(res => console.log(res.data))
+                        .then( alert("success!"))
+                        .then(window.location.replace(`/order`));
+                    },
+                    "prefill": {
+                        "name": "Terinao",
+                        "email": "terinao86@gmail.com",
+                        "contact": "8974393643"
+                    },
+                    "notes": {
+                        "address": "test test"
+                    },
+                    "theme": {
+                        "color": "#F37254"
+                    },
+                    "modal": {
+                        "ondismiss": function(){
+                            window.location.replace(`/alert/payment/aborted`);
+                        }
+                    }
+        
+                }
+                this.pay();
+            }
+            else
+            {
+                this.payloading = false;
+                alert('Order Placed');
+                window.location.replace('/order');
+            }
+        },
         addresses()
         {
             this.form.selectedAddress = this.addresses[0].id;

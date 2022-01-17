@@ -18,6 +18,8 @@ class CreateOrders extends Migration
             $table->string('user_id');
             $table->enum('status', ['placed', 'accepted', 'denied', 'cancelled', 'out_for_delivery', 'delivered'])->default('placed');
             $table->string('total')->default('0');
+            $table->string('address_id');
+            $table->enum('payment_type', ['cod', 'rzp']);
             $table->timestamps();
         });
     }

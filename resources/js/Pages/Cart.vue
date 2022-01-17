@@ -7,9 +7,9 @@
                         <span class="text-md text-pink-dark p-2">CART</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-5 m-2 ">
-                    <div class="col-span-3 mr-8">
-                        <div v-for="product in products" :key="product">
+                <div v-show="products[0]" class="grid grid-cols-5 m-2 ">
+                    <div  class="col-span-3 mr-8">
+                        <div v-for="product in products.slice().reverse()" :key="product">
                             <!-- <div class="flex bg-g text-center self-center p-1   ">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="39.855" height="34.257" viewBox="0 0 47.855 30.257">
                                     <path id="box" d="M13.468,1022.923h0a.616.616,0,0,0-.2.05l-12.9,5.6a.615.615,0,0,0-.118,1.061l5.534,4.023-5.534,4.023a.615.615,0,0,0,.118,1.062l5.779,2.51v9.012a1.258,1.258,0,0,0,.382.848l12.891,5.5a.6.6,0,0,0,.077.023h.017l.024.012.048.012H19.6a.617.617,0,0,0,.12,0l.053-.012H19.8l.046-.012.058-.02.024-.012,12.893-5.5a1.269,1.269,0,0,0,.382-.848v-9.065l5.779-2.51a.615.615,0,0,0,.118-1.059l-5.748-4.179,0-.012,0-.012,5.188-3.771a.615.615,0,0,0-.118-1.062l-12.9-5.6a.606.606,0,0,0-.608.065l-5.5,4-5.534-4.023a.615.615,0,0,0-.406-.118Zm-.031,1.321,5.022,3.653L6.8,1032.881l-4.955-3.6,11.589-5.034Zm11.913.02,11.589,5.034-4.729,3.437-11.656-4.984,4.8-3.488Zm-5.673,4.451,11.534,4.933-11.534,4.933-3.713-1.588-4.768-2.037-3.06-1.309,11.541-4.933Zm12.893,5.692,4.936,3.589-11.589,5.034-5.005-3.639Zm-25.741.02,3.884,1.66,4.768,2.039,3,1.285-5.046,3.67-11.589-5.034,4.981-3.62Zm13.462,6.033,5.188,3.771a.615.615,0,0,0,.605.068l5.889-2.558v8.4l-11.683,4.986V1040.46Zm-1.23.048v14.62L7.38,1050.141v-8.351l5.889,2.558a.614.614,0,0,0,.605-.068l5.188-3.773Zm6.118,6.812h-.007a.618.618,0,0,0-.219.053l-3.271,1.4a.615.615,0,1,0,.485,1.131l3.269-1.4a.615.615,0,0,0-.257-1.186Zm3.269.838h-.007a.615.615,0,0,0-.219.052l-3.269,1.4-3.271,1.4a.615.615,0,1,0,.485,1.129l3.269-1.4,3.269-1.4a.615.615,0,0,0-.257-1.187Z" transform="translate(0.251 -1022.659)" fill="#fff" stroke="#fff" stroke-width="0.5" fill-rule="evenodd"/>
@@ -49,6 +49,7 @@
                             </div>
                             
                         </div>
+                        
                         <div class="w-full">
 
                         </div>
@@ -79,6 +80,11 @@
                         </div>
                     </div>
                 </div>
+                <div v-show="!products[0]">
+                    <div class="flex justify-center my-12">
+                        <span class="text-sm tracking-widest text-blue-500 font-bold">your cart is empty!</span>
+                    </div>
+                </div>
             </div>
         </div>
     </app-layout>
@@ -90,10 +96,9 @@ export default {
     {
         AppLayout,
     },
-
+    props: ['products'],
     data(){
         return{
-            products:[],
             subtotal: 0,
             n_items: 0,
             total : 0,
@@ -128,8 +133,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('cart/all')
-        .then(res => this.products = res.data);
+       
     },
     watch: {
         products()
