@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CartController extends Controller
 {
+
+    public function view(Request $request)
+    {
+        return Inertia::render('Cart', ['products' => $request->user()->cart->products]);
+    }
 
     public function all(Request $request)
     {
