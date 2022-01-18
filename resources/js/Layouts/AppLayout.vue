@@ -6,14 +6,14 @@
 
         <div class="min-h-screen bg-gray-100">
             <div class="w-full bg-pink-200 text-pink-dark">
-                <div class="flex justify-center">
+                <div class="flex items-center justify-center">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="p-1" viewBox="0 0 24 24">
                             <path fill="#814252" d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>\
                         </svg>
                     </div>
-                    <span class="pl-2 text-sm">Free shipping across India on all orders over</span>
-                    <span class="pl-2 text-sm text-pink-dark font-semibold">&#8377;2800</span>
+                    <span class="pl-2 text-xs tracking-wider font-thin">Free shipping across India on all orders over</span>
+                    <span class="pl-2 text-xs tracking-wider text-pink-dark font-semibold">&#8377;2800</span>
                 </div>
             </div>
             <nav class="bg-white sticky top-0 z-10 w-full border-b border-gray-100 shadow-md">
@@ -334,7 +334,7 @@
                                             API Tokens
                                         </jet-dropdown-link>
 
-                                        <jet-dropdown-link :href="route('order.view')">
+                                        <jet-dropdown-link :href="route('myorder.view')">
                                             Orders
                                         </jet-dropdown-link>
 

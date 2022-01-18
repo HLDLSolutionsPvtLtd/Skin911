@@ -76,10 +76,9 @@
 
 .carousel{
   position: relative;
-  height: 600px;
+  height: calc(100vh - 400px);
 }
 .carousel img {
-  height:590px;
   width:100%
 }
 .text-ct

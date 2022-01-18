@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-5 m-2 ">
-                    <div class="col-span-5">
+                    <div class="col-span-3">
                         <div v-for="order in orders.slice().reverse()" class="bg-white shadow-lg mt-2 rounded-sm">
                             <div class="p-2 bg-pink-300 flex justify-between rounded-t-sm text-white">
                                 <div class="">
@@ -89,6 +89,7 @@ export default {
         return{
             selectedOrder: '',
             RZPScript: '',
+            options: ''
         }
     },
     methods:{
@@ -102,30 +103,32 @@ export default {
         {
             this.RZPScript = new Razorpay(this.options);
             this.RZPScript.on('payment.failed', function (response){
-                    window.location.replace("/order");
+                    window.location.replace("/myorder");
             });
             this.RZPScript.open();
         },
     },
     mounted(){
-        
+        this.RZPScript = document.createElement('script');
+        this.RZPScript.setAttribute('src', 'https://checkout.razorpay.com/v1/checkout.js');
+        document.head.appendChild(this.RZPScript);
     },
     watch: {
         selectedOrder()
         {
                 this.options = {
                     "key": 'rzp_test_znof4x4ZLxITZX', // Enter the Key ID generated from the Dashboard
-                    "amount": this.selectedOrder['amount'], // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
+                    "amount": this.selectedOrder['amount']*100, // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
                     "currency": this.selectedOrder['currency'],
                     "name": "Modern Shoe Store",
                     "description": "Test Transaction",
                     "image": "https://www.nicesnippets.com/image/imgpsh_fullsize.png",
-                    "order_id": this.selectedOrder['razorpayId'], 
+                    "order_id": this.selectedOrder['razorpay_order_id'], 
                     "handler": function (response){
                         axios.post('/order/transaction',response)
                         .then(res => console.log(res.data))
                         .then( alert("success!"))
-                        .then(window.location.replace(`/order`));
+                        .then(window.location.replace(`/myorder`));
                     },
                     "prefill": {
                         "name": "Terinao",

@@ -2,10 +2,10 @@
     <app-layout title="Dashboard">
        <div class="m-4">
            <div class="h-1/3">
-                <div class="carousel ">
+                <div class="carousel">
                     <transition-group class="carousel" name="fade" tag="div">
                         <div class="w-full h-full" @touchstart="touchstart($event)" @touchend="touchend($event)" v-for="i in [currentIndex]" :key="i">
-                            <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="currentImg" class="w-full pl-4 pr-4 h-full transition-transform ease-in-out duration-700" />
+                            <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="currentImg" class="w-full sm:px-4 h-full transition-transform ease-in-out duration-700" />
                         </div>
                     </transition-group> 
                     
@@ -20,28 +20,28 @@
                     </ul>
                 </div>
            </div>
-           <div class="p-12 mx-24 my-12 bg-yellow-100">
+           <div class="md:p-12 md:mx-4 md:my-12 bg-yellow-100">
                <div class="flex justify-center m-4">
-                   <span class="col-span-3 text-4xl font-bold text-gray-700">TO SKIN CARE GOALS AND BEYOND</span>
+                   <span class="col-span-3 text-lg tracking-wider sm:text-4xl text-center p-2 font-bold text-gray-700">TO SKIN CARE GOALS AND BEYOND</span>
                </div>
                <div class="flex justify-center m-4">
-                   <span class="text-xl font-thin w-3/5 text-gray-500 text-center leading-loose">
+                   <span class="text-md sm:text-xl font-thin w-3/5 text-gray-500 text-center leading-loose">
                        Begin your skincare journey confidently and shop from the best curated K-Beauty innovations With Skin 911. Every good decision counts.
                    </span>
                </div>
            </div>
 
-           <div class="bg-blue-200 mx-24 my-12">
+           <div class="bg-blue-200 md:mx-24 md:my-12">
                <div class="flex justify-center">
-                   <ul class="flex text-lg font-semibold text-gray-500">
+                   <ul class="flex text-xs sm:text-lg font-semibold text-gray-500">
                        <li class="m-2">SHOP BY SKINCARE</li>
                        <li class="m-2">SHOP BY SKINTYPE</li>
                        <li class="m-2">SHOP BY ROUTINE</li>
                        <li class="m-2">SHOP BY BESTSELLER</li>
                    </ul>
                </div>
-               <div class="grid grid-cols-6 mx-24 my-12 p-16">
-                    <div class="p-1 border border-gray-100" v-for="image in images" :key="image">
+               <div class="overflow-y-hidden whitespace-nowrap h-60 sm:h-auto p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:mx-24 md:my-12 md:p-16">
+                    <div class="border w-2/5 sm:w-auto inline-block border-gray-100" v-for="image in images" :key="image">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
@@ -49,7 +49,7 @@
                             </div>
                             </a>
                             <div class="">
-                                <button class="p-2 w-full bg-pink text-pink-dark text-md">Add To Cart</button>
+                                <button class="p-2 w-full bg-pink text-white text-sm font-bold tracking-wide">ADD TO CART</button>
                             </div>
                         </div>  
                     </div>

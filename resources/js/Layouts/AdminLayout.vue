@@ -1,7 +1,7 @@
 <template>
 <div class="grid grid-cols-12 min-h-screen ">
     <!-- side navbar -->
-    <sidenav class="col-span-2 bg-white shadow-lg border-r h-screen">
+    <div class="col-span-2 bg-white shadow-lg border-r h-screen">
             <div class="border-b">
                 <div class="bg-white p-4 flex justify-center">
                     <jet-logo></jet-logo>
@@ -62,18 +62,16 @@
                             </Link>
                         </li>
                         <li class="w-full m-1">
-                            <div class="p-3 flex justify-between" >
+                            <Link href="/admin/order">
+                                 <div class="p-3 flex justify-between" >
                                     <div class="flex items-center">
                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-700 mr-4" width="24" height="24" viewBox="0 0 24 24">
                                             <path d="M21.698 10.658l2.302 1.342-12.002 7-11.998-7 2.301-1.342 9.697 5.658 9.7-5.658zm-9.7 10.657l-9.697-5.658-2.301 1.343 11.998 7 12.002-7-2.302-1.342-9.7 5.657zm12.002-14.315l-12.002-7-11.998 7 11.998 7 12.002-7z"/>
                                         </svg>
                                         <span class="text-xs uppercase font-bold text-black">Orders</span>
                                     </div>
-                                    
-                                    <svg width="18" height="18" :class="{'rotate90': collapse_orders}" viewBox="0 0 24 24" class="fill-current p-1 text-pink-700" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
-                                    </svg>
-                            </div>
+                                </div>
+                            </Link>
                         </li>
                         <li class="w-full m-1">
                             <Link :href="route('admin.categories')">
@@ -100,7 +98,7 @@
                     </ul>
                 </div>
         </div>
-    </sidenav>
+    </div>
     <main class="col-span-10 bg-gray-100 w-full overflow-hidden h-screen">
         <header class="" >
             <div class="">

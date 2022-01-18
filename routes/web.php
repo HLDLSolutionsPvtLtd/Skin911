@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\BrandController as ControllersBrandController;
 use App\Http\Controllers\CartController;
@@ -65,7 +66,7 @@ Route::middleware(['auth:sanctum'])->post('address/new',[AddressController::clas
 Route::middleware(['auth:sanctum'])->get('address/all',[AddressController::class, 'all'])->name('address.all');
 Route::middleware(['auth:sanctum'])->delete('address/{address:id}/delete',[AddressController::class, 'remove'])->name('address.remove');
 
-Route::middleware(['auth:sanctum'])->get('order',[OrderController::class, 'view'])->name('order.view');
+Route::middleware(['auth:sanctum'])->get('myorder',[OrderController::class, 'view'])->name('myorder.view');
 Route::middleware(['auth:sanctum'])->post('order/create',[OrderController::class, 'create'])->name('order.create');
 Route::middleware(['auth:sanctum'])->post('order/transaction',[OrderController::class, 'transaction'])->name('transaction.create');
 Route::middleware(['auth:sanctum'])->post('order/{order:id}/cancel',[OrderController::class, 'cancel'])->name('order.cancel');
@@ -137,5 +138,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::middleware(['auth:sanctum'])->get('admin.getproducts',[ProductsController::class, 'getAll'])->name('admin.getproducts')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('getOrderAll',[OrderController::class, 'fetchAll'])->name('getOrderAll')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('order',[AdminOrderController::class, 'view'])->name('order.view');
+    Route::middleware(['auth:sanctum'])->put('order/{order:id}/markas',[AdminOrderController::class, 'updateStatus'])->name('order.statusupdate');
+    Route::middleware(['auth:sanctum'])->post('order/{order:id}/payment/refund',[AdminOrderController::class, 'refund'])->name('order.refund');
 
 });

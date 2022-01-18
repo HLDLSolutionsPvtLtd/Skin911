@@ -21,7 +21,7 @@ class CreateTransactions extends Migration
             $table->string('razorpay_transaction_signature')->nullable();
             $table->string('razorpay_order_id');
             $table->string('amount');
-            $table->enum('status', ['paid', 'pending'])->default('pending');
+            $table->enum('status', ['paid', 'pending', 'refunded'])->default('pending');
             $table->timestamps();
         });
     }

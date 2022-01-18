@@ -127,16 +127,7 @@ export default {
                 }
             })
         },
-        checkout()
-        {
-            window.location.href = "/checkout"
-        }
-    },
-    mounted(){
-       
-    },
-    watch: {
-        products()
+        calculate()
         {
             this.subtotal = 0;
             this.n_items = 0;
@@ -145,6 +136,19 @@ export default {
                 this.n_items = this.n_items + parseInt(element.pivot.quantity);
             });
             this.total = this.subtotal + 150;
+        },
+        checkout()
+        {
+            window.location.href = "/checkout"
+        }
+    },
+    mounted(){
+       this.calculate();
+    },
+    watch: {
+        products()
+        {
+            this.calculate();
         }
    },
 

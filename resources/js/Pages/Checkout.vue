@@ -125,7 +125,7 @@ export default {
         {
             this.RZPScript = new Razorpay(this.options);
             this.RZPScript.on('payment.failed', function (response){
-                    window.location.replace("/order");
+                    window.location.replace("/myorder");
             });
             this.RZPScript.open();
         },
@@ -178,7 +178,7 @@ export default {
                         axios.post('/order/transaction',response)
                         .then(res => console.log(res.data))
                         .then( alert("success!"))
-                        .then(window.location.replace(`/order`));
+                        .then(window.location.replace(`/myorder`));
                     },
                     "prefill": {
                         "name": "Terinao",
@@ -204,7 +204,7 @@ export default {
             {
                 this.payloading = false;
                 alert('Order Placed');
-                window.location.replace('/order');
+                window.location.replace('/myorder');
             }
         },
         addresses()
