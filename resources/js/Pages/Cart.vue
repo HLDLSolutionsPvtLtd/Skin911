@@ -1,14 +1,14 @@
 <template>
     <app-layout>
-        <div class="w-full flex justify-center">
-            <div class="w-10/12 m-2">
-                <div class="w-full m-2 border">
+        <div class="w-full sm:flex justify-center">
+            <div class="sm:w-10/12 m-2 mb-4">
+                <div class="w-full mb-2 border">
                     <div class="flex w-full bg-white shadow-md justify-center">
                         <span class="text-md text-pink-dark p-2">CART</span>
                     </div>
                 </div>
-                <div v-show="products[0]" class="grid grid-cols-5 m-2 ">
-                    <div  class="col-span-3 mr-8">
+                <div v-show="products[0]" class="flex flex-col sm:grid sm:grid-cols-5 sm:m-2 ">
+                    <div  class="sm:col-span-3 sm:mr-8">
                         <div v-for="product in products.slice().reverse()" :key="product">
                             <!-- <div class="flex bg-g text-center self-center p-1   ">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="39.855" height="34.257" viewBox="0 0 47.855 30.257">
@@ -25,16 +25,20 @@
                                                 <span class="font-bold tracking-wider text-md">{{product.name}}</span>
                                             </div>
                                             <span class="p-1 font-semibold">&#8377; {{product.price}}</span>
-                                            <div class="p-1 mt-2 text-xs font-bold">
-                                                <div class="flex items-center">
-                                                    <span>QTY :</span>
-                                                    <select name="" id="" :value="product.pivot.quantity" class="border-0 focus:ring-0">
-                                                        <option @click="changequantity(product, 1), product.pivot.quantity = 1" value="1">1</option>
-                                                        <option @click="changequantity(product, 2), product.pivot.quantity = 2" value="2">2</option>
-                                                        <option @click="changequantity(product, 3), product.pivot.quantity = 3" value="3">3</option>
-                                                        <option @click="changequantity(product, 4), product.pivot.quantity = 4" value="4">4</option>
-                                                    </select>
+                                            <div class="my-2 flex gap-1">
+                                                <div @click="setQuantity('in', product)" class="bg-white cursor-pointer flex items-center border py-0 px-2 shadow-sm rounded-full">
+                                                    <span class="flex">&#43;</span>
                                                 </div>
+                                                <div class="bg-white py-0 px-4 flex items-center shadow-md border rounded-sm">
+                                                    <span class="">{{product.pivot.quantity}}</span>
+                                                </div>
+                                                <div @click="setQuantity('de', product)" class="bg-white cursor-pointer py-0 px-2 border flex items-center shadow-sm rounded-full">
+                                                    <span class="">&#8722;</span>
+                                                </div>
+                                            </div>
+                                            <div class="m-2 text-xs tracking-wider text-blue-400 flex items-center" v-show="qerror">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" class="fill-current text-red-600 mr-1" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c.564-1.789 1.632-3.932 1.821-4.474.273-.787-.211-1.136-1.74.209l-.34-.64c1.744-1.897 5.335-2.326 4.113.613-.763 1.835-1.309 3.074-1.621 4.03-.455 1.393.694.828 1.819-.211.153.25.203.331.356.619-2.498 2.378-5.271 2.588-4.408-.146zm4.742-8.169c-.532.453-1.32.443-1.761-.022-.441-.465-.367-1.208.164-1.661.532-.453 1.32-.442 1.761.022.439.466.367 1.209-.164 1.661z"/></svg>
+                                                <span>{{qerror}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +58,7 @@
 
                         </div>
                     </div>
-                    <div class="col-span-2 ml-8">
+                    <div class="sm:col-span-2 sm:ml-8 relative">
                         <div class="border bg-white">
                             <div class="m-4 text-gray-600">
                                 <div class="flex border-b p-4 font-semibold tracking-widest text-xs uppercase justify-between">
@@ -75,9 +79,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full mt-2">
-                            <button @click="checkout()" class="p-2 bg-pink rounded-sm w-full text-pink-dark">PROCEED TO CHECKOUT</button>
+
+                        <div class="w-full flex mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-500 mr-2" width="24" height="24" viewBox="0 0 24 24"><path d="M5.48 10.089l1.583-1.464c1.854.896 3.028 1.578 5.11 3.063 3.916-4.442 6.503-6.696 11.311-9.688l.516 1.186c-3.965 3.46-6.87 7.314-11.051 14.814-2.579-3.038-4.301-4.974-7.469-7.911zm14.407.557c.067.443.113.893.113 1.354 0 4.962-4.038 9-9 9s-9-4.038-9-9 4.038-9 9-9c1.971 0 3.79.644 5.274 1.723.521-.446 1.052-.881 1.6-1.303-1.884-1.511-4.271-2.42-6.874-2.42-6.075 0-11 4.925-11 11s4.925 11 11 11 11-4.925 11-11c0-1.179-.19-2.313-.534-3.378-.528.633-1.052 1.305-1.579 2.024z"/></svg>
+                            <span class="text-md tracking-wider font-serif text-gray-500 font-bold">Safe and Secure Payments powered by Razorpay</span>
                         </div>
+
+                        <div class="w-full mt-4">
+                            <button @click="checkout()" class="p-2 font-bold tracking-wide bg-pink rounded-sm w-full text-pink-dark">PROCEED TO CHECKOUT</button>
+                        </div>
+                       
                     </div>
                 </div>
                 <div v-show="!products[0]">
@@ -101,21 +112,53 @@ export default {
         return{
             subtotal: 0,
             n_items: 0,
+            qerror: '',
             total : 0,
         }
     },
     methods:{
-        changequantity(product, qty)
+        setQuantity(q, product)
         {
-            this.$inertia.post('/cart/product/quantity/update', {
-                'qty': qty,
-                'id' : product.pivot.id,
-                'p_id': product.id,
-                onSuccess: () =>{
-                    alert('successss')
+            if(q == 'in')
+            {
+                if(product.pivot.quantity >= 6)
+                {
+                    this.qerror = "max quantity exceeded!!";
                 }
-            })
+                else
+                {
+                    this.qerror = "";
+                    this.$inertia.post('/cart/product/quantity/update', {
+                        'qty': ++product.pivot.quantity,
+                        'id' : product.pivot.id,
+                        'p_id': product.id,
+                        onSuccess: () =>{
+                            alert('successss')
+                        }
+                    })
+                }
+            }
+            else
+            {
+                 if(product.pivot.quantity <= 1)
+                {
+                    this.qerror = "min quantity exceeded!!";
+                }
+                else
+                {
+                    this.qerror = "";
+                    this.$inertia.post('/cart/product/quantity/update', {
+                        'qty': --product.pivot.quantity,
+                        'id' : product.pivot.id,
+                        'p_id': product.id,
+                        onSuccess: () =>{
+                            alert('successss')
+                        }
+                    })
+                }
+            }
         },
+        
         removeProduct(product)
         {
             this.$inertia.post('/cart/'+product.pivot.cart_id+'/product/'+product.id+'/delete', {

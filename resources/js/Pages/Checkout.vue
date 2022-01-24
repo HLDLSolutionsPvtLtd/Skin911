@@ -1,14 +1,14 @@
 <template>
     <app-layout>
         <div class="w-full flex justify-center">
-            <div class="w-10/12 m-2">
-                <div class="w-full m-2 border">
+            <div class="sm:w-10/12 m-2">
+                <div class="w-full border">
                     <div class="flex w-full bg-white shadow-md justify-center">
                         <span class="text-md text-pink-dark p-2">CHECKOUT</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-5 m-2 ">
-                    <div class="col-span-3 mr-8">
+                <div class="sm:grid sm:grid-cols-5 mt-2">
+                    <div class="sm:col-span-3 sm:mr-8">
                         <div class="bg-white p-4 shadow-md">
                             <div class="flex items-center">
                                 <input type="checkbox" class="mr-2" v-model="form.cod">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-2 ml-8">
+                    <div class="sm:col-span-2 sm:ml-8 mt-2 sm:mt-0">
                         <div class="border bg-white">
                             <div class="m-4 text-gray-600">
                                 <div class="flex border-b p-4 font-semibold tracking-widest text-xs uppercase justify-between">
@@ -76,7 +76,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full mt-2">
+
+                        <div class="w-full flex mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-500 mr-2" width="24" height="24" viewBox="0 0 24 24"><path d="M5.48 10.089l1.583-1.464c1.854.896 3.028 1.578 5.11 3.063 3.916-4.442 6.503-6.696 11.311-9.688l.516 1.186c-3.965 3.46-6.87 7.314-11.051 14.814-2.579-3.038-4.301-4.974-7.469-7.911zm14.407.557c.067.443.113.893.113 1.354 0 4.962-4.038 9-9 9s-9-4.038-9-9 4.038-9 9-9c1.971 0 3.79.644 5.274 1.723.521-.446 1.052-.881 1.6-1.303-1.884-1.511-4.271-2.42-6.874-2.42-6.075 0-11 4.925-11 11s4.925 11 11 11 11-4.925 11-11c0-1.179-.19-2.313-.534-3.378-.528.633-1.052 1.305-1.579 2.024z"/></svg>
+                            <span class="text-md tracking-wider font-serif text-gray-500 font-bold">Safe and Secure Payments powered by Razorpay</span>
+                        </div>
+
+                        <div class="w-full mt-4">
                             <button @click="checkout" class="p-2 bg-pink rounded-sm w-full text-pink-dark">PLACE ORDER</button>
                         </div>
                     </div>

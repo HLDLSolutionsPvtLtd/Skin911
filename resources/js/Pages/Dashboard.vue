@@ -25,22 +25,17 @@
                    <span class="col-span-3 text-lg tracking-wider sm:text-4xl text-center p-2 font-bold text-gray-700">TO SKIN CARE GOALS AND BEYOND</span>
                </div>
                <div class="flex justify-center m-4">
-                   <span class="text-md sm:text-xl font-thin w-3/5 text-gray-500 text-center leading-loose">
+                   <span class="text-sm sm:text-lg font-thin w-3/5 text-gray-500 text-center leading-loose">
                        Begin your skincare journey confidently and shop from the best curated K-Beauty innovations With Skin 911. Every good decision counts.
                    </span>
                </div>
            </div>
 
-           <div class="bg-blue-200 md:mx-24 md:my-12">
+           <div class="bg-blue-200 md:mx-12 md:my-12">
                <div class="flex justify-center">
-                   <ul class="flex text-xs sm:text-lg font-semibold text-gray-500">
-                       <li class="m-2">SHOP BY SKINCARE</li>
-                       <li class="m-2">SHOP BY SKINTYPE</li>
-                       <li class="m-2">SHOP BY ROUTINE</li>
-                       <li class="m-2">SHOP BY BESTSELLER</li>
-                   </ul>
+                   <span class="text-gray-700 p-2 mt-4 font-bold sm:text-4xl">TRENDING</span>
                </div>
-               <div class="overflow-y-hidden whitespace-nowrap h-60 sm:h-auto p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:mx-24 md:my-12 md:p-16">
+               <div class="overflow-y-hidden whitespace-nowrap p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:mx-12 md:px-4">
                     <div class="border w-2/5 sm:w-auto inline-block border-gray-100" v-for="image in images" :key="image">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
@@ -55,9 +50,9 @@
                     </div>
                </div>
            </div> 
-           <div class="p-16 bg-yellow-100 my-12 mx-24">
+           <div class="sm:p-16 p-4 bg-yellow-100 sm:my-12 sm:mx-24">
                <div class="m-4 flex justify-center">
-                   <span class="col-span-3 text-4xl font-bold text-gray-700">SHOP ALL</span>
+                   <span class="col-span-3 sm:text-4xl font-bold text-gray-700">SHOP ALL</span>
                </div>
                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
                     <div class="p-1 border border-gray-100" v-for="image in products" :key="image">
@@ -68,21 +63,21 @@
                             </div>
                             </a>
                             <div class="">
-                                <button class="p-2 w-full bg-pink text-pink-dark text-md">Add To Cart</button>
+                                <button class="p-2 w-full bg-pink text-pink-dark text-xs font-bold tracking-wider">ADD TO CART</button>
                             </div>
                         </div>  
                     </div>
                 </div> 
                 <div class="m-4 flex justify-center">
-                    <button class="p-3 border-2 border-gray-900">VIEW ALL PRODUCTS</button>
+                    <button class="sm:p-3 p-1 border-2 border-gray-900">VIEW ALL PRODUCTS</button>
                 </div>
            </div>
-           <div class="p-16 bg-blue-100 my-12 mx-24">
-               <div class="m-4 flex justify-center">
-                   <span class="col-span-3 text-4xl font-bold text-gray-700">FEATURED BRANDS</span>
+           <div class="sm:p-16 p-2 mt-2 bg-blue-100 sm:my-12 sm:mx-24">
+               <div class="flex justify-center">
+                   <span class="col-span-3 text-center sm:text-4xl font-bold text-gray-700">FEATURED BRANDS</span>
                </div>
-               <div class="grid grid-cols-2 m-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-                    <div class="p-1 border border-gray-100" v-for="image in brands" :key="image">
+               <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
+                    <div class="p-1" v-for="image in brands" :key="image">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
@@ -90,13 +85,13 @@
                             </div>
                             </a>
                             <div class="">
-                                <button class="p-2 w-full bg-pink text-pink-dark text-md">EXPLORE</button>
+                                <button class="p-2 w-full bg-pink text-pink-dark text-xs font-bold">EXPLORE</button>
                             </div>
                         </div>  
                     </div>
                 </div> 
-                <div class="m-4 flex justify-center my-12 mx-24">
-                    <button class="p-3 border-2 border-gray-900">VIEW ALL FEATURED BRANDS</button>
+                <div class="m-4 flex justify-center sm:my-12 sm:mx-24">
+                    <button class="sm:p-3 p-2 text-xs font-bold border-2 border-gray-900">VIEW ALL FEATURED BRANDS</button>
                 </div>
            </div>
        </div>

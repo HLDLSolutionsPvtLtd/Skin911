@@ -21,9 +21,9 @@
                 </div>
                 
             </div>
-            <div class="w-full sm:flex xxl:w-1/2 lg:w-7/12 m-6">
-                <div class="flex flex-col sm:flex-1 m-2 sm:h-full">
-                    <div class="">
+            <div class=" sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6">
+                <div class="flex flex-col sm:flex-1 bg-white p-2 border-b sm:border-0 shadow-lg sm:shadow-none">
+                    <div class="flex" style="height:calc(100vh - 400px)" >
                         <img :src="'/storage/'+currentImg" alt="" class="w-full h-full">
                     </div>
                     <div class="flex mt-2">
@@ -34,33 +34,48 @@
                         </ul>
                     </div>
                 </div>
-                <div class=" sm:flex-1 m-2">
+                <div class=" sm:flex-1 bg-white p-2 mt-2 sm:mt-0 shadow-lg border-t sm:border-0 sm:shadow-none">
                     <div class="p-2">
-                        <span class="text-md tracking-wider font-bold text-pink-dark">{{product.name}}</span>
-                        <div class="mt-2 flex gap-2 mx-2" v-if="product.variant[0]">
-                            <div v-for="variantq in product.variant" :key="variantq.id">
-                                <span @click="this.form.variant = variantq.id" :class="{'bg-gray-200':variantq.id == form.variant}" class="p-2 font-bold cursor-pointer bg-gray-100 rounded-lg text-green-400 border text-xs uppercase">{{variantq.name}}</span>
+                        <span class="text-md tracking-wider font-semibold text-gray-500">{{product.name}}</span>
+                        <div class="py-2 mr-2" v-if="product.variant[0]">
+                            <span style="font-size: 10px" class="font-semibold text-gray-500 tracking-wider">SELECT VARIANT</span>
+                            <div class="flex gap-2 pt-2">
+                                <div v-for="variantq in product.variant" :key="variantq.id">
+                                    <span @click="this.form.variant = variantq.id" :class="{'bg-gray-400 text-black':variantq.id == form.variant}" class="p-2 font-bold cursor-pointer rounded-lg tracking-widest uppercase text-green-400 border" style="font-size:10px">{{variantq.name}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-2">
-                            <span class="text-green-500 text-sm flex items-center">
-                                <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current mr-2 text-green-500" fill-rule="evenodd" clip-rule="evenodd">
+                            <span class="text-green-500 text-sm flex items-center tracking-wider">
+                                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current mr-2 text-green-500" fill-rule="evenodd" clip-rule="evenodd">
                                     <path d="M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"/>
                                 </svg>
-                                In Stock</span>
+                                In Stock
+                            </span>
                         </div>
                     </div>
-                    <div class="p-2 mt-2">
-                        <span class="line-through text-sm font-bold text-gray-500 pr-2">$5000</span>
-                        <span class="text-sm font-bold tracking-wider">${{product.price}}</span>
+                    <div class="p-2">
+                        <span class="line-through text-xs font-bold text-gray-500 pr-2">&#8377;5000</span>
+                        <span class="text-xs font-semibold tracking-wider">&#8377;{{product.price}}</span>
                     </div>
-                    <div class="p-2 flex items-center">
-                        <input type="number" class="w-12 h-12 p-0 mr-2" pattern="\d*" v-model="form.quantity" max="6" min="1">
-                        <span class="text-xs font-bold uppercase tracking-wider">Quantity</span>
+                    <div class="m-2 flex gap-1">
+                        <div @click="setQuantity('in')" class="bg-white border flex items-center py-0 px-2 shadow-sm rounded-full">
+                            <span class="flex">&#43;</span>
+                        </div>
+                        <div class="bg-white py-0 px-4 flex items-center border shadow-sm rounded-sm">
+                            <span class="">{{form.quantity}}</span>
+                        </div>
+                        <div @click="setQuantity('de')" class="bg-white border py-0 px-2 flex items-center shadow-sm rounded-full">
+                             <span class="">&#8722;</span>
+                        </div>
+                    </div>
+                    <div class="m-2 text-xs tracking-wider text-blue-400 flex items-center" v-show="qerror">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" class="fill-current text-red-600 mr-1" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c.564-1.789 1.632-3.932 1.821-4.474.273-.787-.211-1.136-1.74.209l-.34-.64c1.744-1.897 5.335-2.326 4.113.613-.763 1.835-1.309 3.074-1.621 4.03-.455 1.393.694.828 1.819-.211.153.25.203.331.356.619-2.498 2.378-5.271 2.588-4.408-.146zm4.742-8.169c-.532.453-1.32.443-1.761-.022-.441-.465-.367-1.208.164-1.661.532-.453 1.32-.442 1.761.022.439.466.367 1.209-.164 1.661z"/></svg>
+                        <span>{{qerror}}</span>
                     </div>
                     <div class="mt-2 flex justify-start">
-                        <button @click="addtocart()" class="p-2 w-1/2 font-bold bg-pink text-pink-dark text-md m-2">ADD TO CART</button>
-                        <button class="p-2 w-1/2 border-2 border-gray-700 font-bold text-pink-dark text-md m-2">BUY IT NOW</button>
+                        <button @click="addtocart()" class="p-2 w-1/2 rounded-sm font-semibold bg-pink text-pink-dark text-sm m-2">ADD TO CART</button>
+                        <button class="p-2 w-1/2 border border-gray-700 rounded-sm font-semibold text-pink-dark text-sm m-2">BUY IT NOW</button>
                     </div>
                     <div class="mt-8 mb-8 border-t">
                         <div>
@@ -112,16 +127,14 @@
                 </div>
             </div>
         </div>
-        <div class="flex w-full h-4 border-2 m-2">
-
-        </div>
+        
        <div class="flex justify-center">
-            <div class="sm:w-1/2 m-2 sm:m-4">
-                <div class="m-4">
+            <div class="w-full border sm:border-0 sm:mt-0 mt-2 sm:shadow-none shadow-lg sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6 bg-white p-2">
+                <div class="">
                     <span class="col-span-3 text-lg font-bold text-gray-700">RELATED PRODUCTSS</span>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-                    <div class="p-1 border border-gray-100" v-for="image in products" :key="image">
+                    <div class="border border-gray-100" v-for="image in products" :key="image">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
@@ -157,6 +170,7 @@ import { Inertia } from '@inertiajs/inertia';
                 variant: '',
                 quantity : 1,
             }),
+            qerror: '',
             currentImg:'',
             success : false,
         }
@@ -175,6 +189,31 @@ import { Inertia } from '@inertiajs/inertia';
                     this.success = true;
                 }
             })
+        },
+        setQuantity(q)
+        {
+            if(q == 'in')
+            {
+                if(this.form.quantity >= 6)
+                {
+                    this.qerror = "max quantity exceeded!!";
+                }
+                else
+                {
+                    this.form.quantity++;
+                }
+            }
+            else
+            {
+                 if(this.form.quantity <= 1)
+                {
+                    this.qerror = "min quantity exceeded!!";
+                }
+                else
+                {
+                    this.form.quantity--;
+                }
+            }
         }
     },
     mounted() {

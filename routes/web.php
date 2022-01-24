@@ -41,6 +41,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
     return Inertia::render('Products');
 })->name('products');
+Route::middleware(['auth:sanctum'])->get('view/categories', function () {
+    return Inertia::render('Admin/Categories');
+})->name('categories');
+Route::middleware(['auth:sanctum'])->get('view/brands', function () {
+    return Inertia::render('Admin/Categories');
+})->name('brands');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/product/{product:id}/details',[ProductController::class, 'detailView'])->name('product.view');
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', [CartController::class, 'view'])->name('cart');
@@ -106,6 +112,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('Orders', function () {
         return Inertia::render('Admin/Orders');
     })->name('admin.orders')->middleware('is_admin');
+    
 
     Route::middleware(['auth:sanctum'])->get('categories', function () {
         return Inertia::render('Admin/Categories');
