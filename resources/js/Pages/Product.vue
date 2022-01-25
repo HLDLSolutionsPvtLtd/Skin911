@@ -127,14 +127,15 @@
                 </div>
             </div>
         </div>
-        
-       <div class="flex justify-center">
-            <div class="w-full border sm:border-0 sm:mt-0 mt-2 sm:shadow-none shadow-lg sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6 bg-white p-2">
-                <div class="">
-                    <span class="col-span-3 text-lg font-bold text-gray-700">RELATED PRODUCTSS</span>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-                    <div class="border border-gray-100" v-for="image in products" :key="image">
+        <div class="bg-white my-2 shadow-lg sm:shadow-none border-t sm:border-0 md:mx-12 md:my-12 ">
+               <div class="flex justify-between pt-4 px-2 sm:px-16 items-center">
+                   <span class="text-gray-700 text-md font-bold sm:text-xl">RELATED PRODUCTS</span>
+                   <div class="flex items-center">
+                       <span class="text-sm sm:text-lg text-blue-500 tracking-wide">see more</span>
+                   </div>
+               </div>
+               <div class="overflow-y-hidden whitespace-nowrap p-2 overflow-x-scroll no-scrollbar sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:mx-12 md:px-4">
+                    <div class="border w-5/12 sm:w-auto inline-block border-gray-100 mr-1" v-for="image in products" :key="image">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
@@ -142,16 +143,12 @@
                             </div>
                             </a>
                             <div class="">
-                                <button class="p-2 w-full bg-pink text-pink-dark text-md">Add To Cart</button>
+                                <button class="p-2 w-full bg-pink text-white text-sm font-bold tracking-wide">ADD TO CART</button>
                             </div>
                         </div>  
                     </div>
-                </div> 
-                <div class="m-4 flex justify-center">
-                    <button class="p-3 border-2 border-gray-900">VIEW ALL RELATED PRODUCTS</button>
-                </div>
-            </div>
-       </div>
+               </div>
+           </div> 
     </app-layout>
 </template>
 <script>
@@ -170,6 +167,25 @@ import { Inertia } from '@inertiajs/inertia';
                 variant: '',
                 quantity : 1,
             }),
+            products:[
+                    {
+                        id:0,
+                        img:'https://cdsco.gov.in/opencms/export/system/modules/CDSCO.WEB/resources/img/slider/cosmetic4.jpg',
+                    },
+                    {
+                        id:1,
+                        img:'https://www.ics-world.com/wp-content/uploads/2021/03/Sustainable-2.jpg',
+                    },
+                    {
+                        id:2,
+                        img:'https://imgscf.slidemembers.com/docs/1/1/334/natural_cosmetic_presentation_ppt_333010.jpg',
+                    },
+                    {
+                        id:3,
+                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfz8UYc1CQyXKs1tRDEj8i_fDGLUPCqSSuFg&usqp=CAU',
+                    },
+                    
+                ],
             qerror: '',
             currentImg:'',
             success : false,

@@ -2,7 +2,7 @@
    <AdminLayout>
        <template #header>
            <div class="">
-                ADD PRODUCT
+                EDIT PRODUCT
            </div>
        </template>
        <div class="h-screen overflow-y-scroll p-5">
@@ -38,10 +38,8 @@
                                                 <div>
                                                     <jet-input-error :message="form.errors.brand_id" class="mt-2" />
                                                     <select v-model="form.brand_id" class="w-full placeholder-gray-100 my-1 text-sm rounded-md border border-gray-200" id="Label" required>
-                                                        <option selected>Select Brand</option>
-                                                        <option value="Addidas">Addidas</option>
-                                                        <option value="Nike">Nike</option>
-                                                        <option value="Puma">Puma</option>
+                                                        <option selected value="">Select Brand</option>
+                                                        <option v-for="brand in brands" :key="brand.id" :value="brand.name">{{brand.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -53,10 +51,8 @@
                                                 <div>
                                                     <jet-input-error :message="form.errors.category_id" class="mt-2" />
                                                     <select v-model="form.category_id" class="w-full placeholder-gray-100 text-sm my-1 rounded-md border border-gray-200" id="category" required>
-                                                        <option selected>Select category</option>
-                                                        <option value="Men">Men</option>
-                                                        <option value="Woman">Woman</option>
-                                                        <option value="Kids">Kids</option>
+                                                        <option selected value="">Select category</option>
+                                                        <option v-for="category in categories" :key="category.id" :value="category.name">{{category.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -308,6 +304,8 @@
      data()
      {
          return{
+             brands: [],
+             categories: [],
              form:this.$inertia.form({
                     name: this.product.name,
                     description: this.product.description,
@@ -514,6 +512,12 @@
                 };
         }
 
+    },
+    mounted() {
+        axios.get('/admin/category/all')
+        .then(res => this.categories = res.data);
+        axios.get('/admin/brand/all')
+        .then(res => this.brands = res.data);
     },
     watch:
     {

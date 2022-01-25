@@ -42,10 +42,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
     return Inertia::render('Products');
 })->name('products');
 Route::middleware(['auth:sanctum'])->get('view/categories', function () {
-    return Inertia::render('Admin/Categories');
+    return Inertia::render('Categories');
 })->name('categories');
 Route::middleware(['auth:sanctum'])->get('view/brands', function () {
-    return Inertia::render('Admin/Categories');
+    return Inertia::render('Brands');
 })->name('brands');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/product/{product:id}/details',[ProductController::class, 'detailView'])->name('product.view');

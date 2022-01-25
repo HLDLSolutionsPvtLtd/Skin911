@@ -1,19 +1,19 @@
 <template>
     <app-layout>
-        <div class="w-full flex justify-center">
-            <div class="sm:w-10/12 m-2">
+        <div class="sm:flex justify-center">
+            <div class="sm:w-7/12 m-2">
                 <div class="w-full border">
                     <div class="flex w-full bg-white shadow-md justify-center">
                         <span class="text-md text-pink-dark p-2">ORDERS</span>
                     </div>
                 </div>
-                <div class="grid sm:grid-cols-5 m-2 ">
-                    <div class="sm:col-span-3">
+                <div class="border w-full">
+                    <div class="w-full ">
                         <div v-for="order in orders.slice().reverse()" class="bg-white shadow-lg mt-2 rounded-sm">
                             <div class="p-2 bg-pink-300 flex justify-between rounded-t-sm text-white">
                                 <div class="">
                                     <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-WHITE" width="24" height="24" viewBox="0 0 24 24">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-white h-5 w-5" viewBox="0 0 24 24">
                                             <path d="M21.698 10.658l2.302 1.342-12.002 7-11.998-7 2.301-1.342 9.697 5.658 9.7-5.658zm-9.7 10.657l-9.697-5.658-2.301 1.343 11.998 7 12.002-7-2.302-1.342-9.7 5.657zm12.002-14.315l-12.002-7-11.998 7 11.998 7 12.002-7z"/>
                                         </svg>
                                         <div class="">
@@ -21,41 +21,41 @@
                                         </div>
                                     </div>
                                     <div class="pl-8">
-                                        <span class="text-xs tracking-widest font-bold">On {{formatDate(order.updated_at)}}</span>
+                                        <span class="text-xs sm:tracking-widest font-bold">On {{formatDate(order.updated_at)}}</span>
                                     </div>
                                 </div>
                                 <div class="flex border-l-2 pl-2 items-center">
-                                    <button class="text-sm sm:text-md font-bold tracking-wider p-2">CANCEL</button>
+                                    <button class="text-xs sm:text-md font-bold tracking-wider p-2">CANCEL</button>
                                 </div>
                             </div>
-                            <div class="m-4 p-2" v-for="product in order.products">
+                            <div class="m-2 p-2" v-for="product in order.products">
                                 <div class="flex sm:justify-between bg-white border mb-2">
                                     <div class="flex flex-col sm:flex-row p-1">
                                         <img :src="'/storage/'+product.image[0].link" alt="" class="w-24 h-24 self-center ">
                                     </div>
                                     <div class="flex flex-col sm:w-full sm:flex-row justify-start sm:justify-between items-start sm:items-center">
                                         <div class="flex text-gray-700 text-sm font-sans text-thin items-center">
-                                                <span class="font-semibold p-2 text-gray-600 tracking-wider">{{product.name}}</span>
+                                                <span class="font-semibold p-2 text-gray-600 smtracking-wider">{{product.name}}</span>
                                         </div>
                                         <div class="p-1 text-xs">
                                             <div class="flex items-center">
-                                                <span class="flex tems-center font-semibold text-gray-600 tracking-wider p-1">QTY : {{product.pivot.quantity}}</span>
+                                                <span class="flex tems-center font-semibold text-gray-600 p-1">QTY : {{product.pivot.quantity}}</span>
                                             </div>
                                         </div>
                                         <div class="flex items-center p-1">
                                             <div class="flex">
-                                                <span class="p-1 font-semibold text-gray-600 tracking-wider">&#8377; {{product.price}}</span>
+                                                <span class="p-1 text-sm sm:text-md font-semibold text-gray-600">&#8377; {{product.price}}</span>
                                             </div>
                                         </div>
                                     </div>
                                    
                                 </div>
                             </div>
-                            <div class="ml-4 p-2 pb-4 flex justify-between">
+                            <div class="ml-2 p-2 pb-4 flex justify-between">
                                 <div class="" v-if="order.payment_type == 'rzp'">
-                                    <span class="text-xs bg-pink-400 text-white p-2 rounded-md font-bold tracking-wider">Payment status : {{order.transaction.status}}</span>
+                                    <span class="text-xs bg-pink-400 text-white p-2 rounded-sm font-semibold tracking-wide">Payment status : {{order.transaction.status}}</span>
                                     <div v-if="order.transaction.status === 'pending'" class="pt-2">
-                                        <button @click="selectedOrder = order.transaction" class="p-2 bg-green-400 rounded-md font-bold text-xs tracking-wider">Pay Now</button>
+                                        <button @click="selectedOrder = order.transaction" class="p-2 bg-green-400 rounded-sm font-bold text-xs tracking-wider">Pay Now</button>
                                     </div>
                                 </div>
                                 <div v-else>

@@ -8,9 +8,16 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function all()
+    public function all(Request $request)
     {
-        return Product::all();
+        if($request->has('filter'))
+        {
+            return Product::where('brand_id', $request->filter)->orWhere('category_id', $request->filter)->orderBy($request->var, $request->val)->paginate(1);
+        }
+        else
+        {
+            return Product::orderBy($request->var, $request->val)->paginate(1);
+        }
     }
 
     public function detailView(Product $product)
