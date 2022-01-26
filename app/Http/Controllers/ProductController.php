@@ -8,6 +8,13 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
+    public function search(Request $request)
+    {
+        $products = Product::search($request->key)->get();
+        return Inertia::render('Search', ['products' => $products]);
+
+    }
+
     public function all(Request $request)
     {
         if($request->has('filter'))

@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full grid grid-cols-2 sm:grid-cols-4">
+                        <div class="w-full  grid grid-cols-2 sm:grid-cols-4">
                             <div class="p-1 border border-gray-100 mt-2" v-for="product in products" :key="product">
                                     <div class="">
                                         <a :href="'/product/'+product.id+'/details'" class="overflow-hidden">
@@ -51,19 +51,22 @@
                                             </div>
                                         </a>
                                         <div class="px-2">
-                                            <span class="text-sm text-gray-600 font-bold tracking-wide">{{product.name}}</span>
+                                            <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{product.name}}</p>
                                         </div>
-                                        <div class="px-2">
+                                        <!-- <div class="px-2">
                                             <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{product.description}}</span>
-                                        </div>
-                                        <div class="px-2">
+                                        </div> -->
+                                        <div class="px-2 h-6">
                                             <span class="line-through text-xs text-gray-300 pr-2">&#8377;5000</span>
                                             <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price}}</span>
                                         </div>
-                                        <div class="mt-2">
-                                            <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
-                                        </div>
+                                       
                                     </div>  
+                                    <div class="mt-2">
+                                        <a :href="'/product/'+product.id+'/details'" class="overflow-hidden">
+                                            <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
+                                        </a>
+                                    </div>
                                 </div>
                         </div>
                         <div v-show="next" class="w-full flex self-center mt-6 justify-center">

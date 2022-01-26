@@ -30,7 +30,7 @@
 
                             <!-- Navigation Links -->
                             <div @mouseover="shop = true" @mouseleave="shop = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('products')"  class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white ">
+                                <jet-nav-link :href="route('categories')"  class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white ">
                                     CATEGORIES
                                     <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute z-10 w-full left-0 right-0 top-16 bg-white">
                                         <div class="grid grid-cols-12 bg- m-4">
@@ -226,13 +226,13 @@
                         </div>
                         <div class="hidden sm:flex-shrink-1 space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <div class="font-bold rounded-md border border-gray-100 flex justify-center bg-white self-center">
-                                <div class="ml-2">
+                                <div class="ml-2" @click=" search()">
                                     <svg width="20" height="20" class="h-10" viewBox="0,0,24,24">
                                         <path fill="#747b88" d="M3.438 9.754a6.415 6.415 0 016.408-6.409 6.415 6.415 0 016.409 6.409 6.416 6.416 0 01-6.409 6.408 6.416 6.416 0 01-6.408-6.408M21.816 20.87l-5.974-6.02a7.839 7.839 0 001.88-5.097c0-4.343-3.534-7.875-7.876-7.875-4.342 0-7.875 3.532-7.875 7.875 0 4.342 3.533 7.875 7.875 7.875a7.837 7.837 0 004.946-1.753l5.983 6.029a.73.73 0 001.037.004.733.733 0 00.004-1.038">
                                         </path>
                                     </svg>
                                 </div>
-                                <input type="search" placeholder="SEARCH" class="w-full border-0 placeholder-opacity-50 rounded-md focus:ring-0">
+                                <input type="search" placeholder="SEARCH" v-model="key" @keyup.enter="search()" class="w-full border-0 placeholder-opacity-50 rounded-md focus:ring-0">
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -387,21 +387,22 @@
                             </div>
                         </div> -->
 
-                        <div class="mt-3 space-y-1">
-                            <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
-                                Profile
+                        <div class="mt-3 font-bold space-y-1">
+                            <jet-responsive-nav-link :href="route('products')" :active="route().current('products')">
+                                Products
                             </jet-responsive-nav-link>
+                            
                             <jet-responsive-nav-link :href="route('categories')" :active="route().current('categories')">
                                 Categories
                             </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('brands')" :active="route().current('brands')">
                                 Brands
                             </jet-responsive-nav-link>
-                            <jet-responsive-nav-link :href="route('cart')" :active="route().current('cart')">
-                                Cart
-                            </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('myorder.view')" :active="route().current('myorder.view')">
                                 My Orders
+                            </jet-responsive-nav-link>
+                            <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
+                                Profile
                             </jet-responsive-nav-link>
                             <!-- Authentication -->
                             <form method="POST" @submit.prevent="logout">
@@ -525,6 +526,7 @@
                 routine:false,
                 brands:false,
                 sales:false,
+                key: '',
             }
         },
 
@@ -543,6 +545,12 @@
             hover()
             {
 
+            },
+            search()
+            {
+                this.$inertia.get('/products/search', {
+                    'key' : this.key
+                });
             }
         }
     })

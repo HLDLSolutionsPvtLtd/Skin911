@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
     use HasFactory;
+    use Searchable;
+    
     protected $guarded = [];
     protected $with = ['brand', 'category', 'variant', 'image'];
 
@@ -30,4 +33,10 @@ class Product extends Model
     {
         return $this->hasMany(Variant::class, 'product_id');
     }
+
+    public function searchableAs()
+    {
+        return 'products_index';
+    }
+   
 }

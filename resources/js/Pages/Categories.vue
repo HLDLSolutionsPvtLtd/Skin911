@@ -2,17 +2,16 @@
     <app-layout>
         <div class="flex flex-col sm:p-6 items-center w-full min-h-screen bg-white">
             <div class="mt-2 sm:mt-6">
-                <span class="text-xl tracking-wider font-bold">BRANDS</span>
+                <span class="text-xl tracking-wider font-bold">CATEGORIES</span>
             </div>
             <div class="w-full sm:grid sm:grid-cols-6 m-2">
-                
-                <div v-for="brand in brands" class="m-2 p-2 border">
-                     <a :href="'/products?key='+brand.name" >
+                <div v-for="category in categories" class="m-2 p-2 border">
+                     <a :href="'/products?key='+category.name">
                         <div>
-                            <img class="w-full" :src="'/storage/'+brand.img" alt="">
+                            <img class="w-full" :src="'/storage/'+category.img" alt="">
                         </div>
                         <div class="flex justify-center">
-                            <span class="p-2 font-semibold text-gray-900 tracking-wider">{{brand.name}}</span>
+                            <span class="p-2 font-semibold text-gray-900 tracking-wider">{{category.name}}</span>
                         </div>
                     </a>
                 </div>
@@ -31,12 +30,12 @@ export default{
     data()
         {
             return{
-                brands: [],
+                categories: [],
             }
         },
     mounted() {
-        axios.get('/brands/all')
-        .then(res => this.brands = res.data);
+        axios.get('/categories/all')
+        .then(res => this.categories = res.data);
     },
 
 }

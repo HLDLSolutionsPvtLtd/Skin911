@@ -23,11 +23,11 @@
             </div>
             <div class=" sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6">
                 <div class="flex flex-col sm:flex-1 bg-white p-2 border-b sm:border-0 shadow-lg sm:shadow-none">
-                    <div class="flex" style="height:calc(100vh - 400px)" >
+                    <div class="flex border" style="height:calc(100vh - 400px)" >
                         <img :src="'/storage/'+currentImg" alt="" class="w-full h-full">
                     </div>
                     <div class="flex mt-2">
-                        <ul class="flex flex-col mr-1" v-for="image in product.image" :key="image">
+                        <ul class="flex flex-col mr-1 border" v-for="image in product.image" :key="image">
                             <li class="w-full" @click="currentimg(image.link)" >
                                 <img :src="'/storage/'+image.link" alt="" class="h-12 w-10 cursor-pointer border-gray-600 hover:border" >
                             </li>
@@ -79,8 +79,8 @@
                     </div>
                     <div class="mt-8 mb-8 border-t">
                         <div>
-                            <ul class="flex font-sans font-semibold text-sm">
-                                <li class="p-2 text-pink-dark hover:text-gray-300 cursor-pointer">{{product.description}}</li>
+                            <ul class="flex text-gray-500 font-light text-sm">
+                                <li class="p-2 hover:text-gray-300 tracking-wider cursor-pointer">{{product.description}}</li>
                                 
                             </ul>
                         </div>
@@ -129,7 +129,7 @@
         </div>
         <div class="bg-white my-2 shadow-lg sm:shadow-none border-t sm:border-0 md:mx-12 md:my-12 ">
                <div class="flex justify-between pt-4 px-2 sm:px-16 items-center">
-                   <span class="text-gray-700 text-md font-bold sm:text-xl">RELATED PRODUCTS</span>
+                   <span class="text-gray-700 text-md font-bold sm:text-lg">RELATED PRODUCTS</span>
                    <div class="flex items-center">
                        <span class="text-sm sm:text-lg text-blue-500 tracking-wide">see more</span>
                    </div>

@@ -60,6 +60,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/address/new', function ()
 Route::middleware(['auth:sanctum'])->get('address/{address:id}/edit',[AddressController::class, 'edit'])->name('products.edit');
 Route::middleware(['auth:sanctum'])->post('address/{address:id}/edit',[AddressController::class, 'update'])->name('products.update');
 
+Route::middleware(['auth:sanctum'])->get('products/search',[ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth:sanctum'])->get('products/all',[ProductController::class, 'all'])->name('products.all');
 Route::middleware(['auth:sanctum'])->get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
 Route::middleware(['auth:sanctum'])->get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
@@ -97,6 +98,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('products', function () {
         return Inertia::render('Admin/Products');
     })->name('admin.products')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->get('discounts', function () {
+        return Inertia::render('Admin/Discount');
+    })->name('admin.discounts')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('addproduct', function () {
         return Inertia::render('Admin/AddProduct');
