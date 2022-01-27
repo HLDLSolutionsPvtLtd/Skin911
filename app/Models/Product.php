@@ -38,5 +38,9 @@ class Product extends Model
     {
         return 'products_index';
     }
-   
+    
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable');
+    }
 }

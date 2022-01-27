@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\BrandController as ControllersBrandController;
@@ -153,5 +154,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('order',[AdminOrderController::class, 'view'])->name('order.view');
     Route::middleware(['auth:sanctum'])->put('order/{order:id}/markas',[AdminOrderController::class, 'updateStatus'])->name('order.statusupdate');
     Route::middleware(['auth:sanctum'])->post('order/{order:id}/payment/refund',[AdminOrderController::class, 'refund'])->name('order.refund');
-
+   
+    Route::middleware(['auth:sanctum'])->get('discounts/all',[DiscountController::class, 'all'])->name('discount.all');
+    Route::middleware(['auth:sanctum'])->post('discounts/create',[DiscountController::class, 'create'])->name('discount.create');
+    Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/update',[DiscountController::class, 'update'])->name('discount.update');
+    Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/add/items',[DiscountController::class, 'attachProduct'])->name('discount.attach');
 });

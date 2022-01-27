@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiscountsTable extends Migration
+class CreateDiscountables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateDiscountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('discounts', function (Blueprint $table) {
+        Schema::create('discountables', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->enum('type', ['fixed_amount', 'percentage']);
-            $table->string('amount');
-            $table->date('valid_from');
-            $table->date('valid_upto');
-            $table->string('img')->nullable();
+            $table->integer('discount_id');
+            $table->integer('discountable_id');
+            $table->string('discountable_type');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateDiscountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('discounts');
+        Schema::dropIfExists('discountables');
     }
 }

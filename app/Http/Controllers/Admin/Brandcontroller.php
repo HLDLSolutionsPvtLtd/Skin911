@@ -36,13 +36,17 @@ class Brandcontroller extends Controller
 
     public function update(Brand $brand, Request $request)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
         $brand->name = $request->name;
-        if($brand->image)
-        {
-            Storage::disk('public')->delete($brand->img);
-        }
+        
         if($request->image)
         {
+            if($brand->image)
+            {
+                Storage::disk('public')->delete($brand->img);
+            }
             $path = $request->image->storeAs('media', Str::uuid() . '.' . $request->image->getClientOriginalExtension(), [ 'disk'=> 'public']);
             $brand->img = $path;
         }

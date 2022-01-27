@@ -35,13 +35,17 @@ class CategoryController extends Controller
 
     public function update(Category $category, Request $request)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
         $category->name = $request->name;
-        if($category->image)
-        {
-            Storage::disk('public')->delete($category->img);
-        }
+        
         if($request->image)
         {
+            if($category->image)
+            {
+                Storage::disk('public')->delete($category->img);
+            }
             $path = $request->image->storeAs('media', Str::uuid() . '.' . $request->image->getClientOriginalExtension(), [ 'disk'=> 'public']);
             $category->img = $path;
         }
