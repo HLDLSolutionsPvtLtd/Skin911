@@ -40,6 +40,24 @@ class DiscountController extends Controller
         }
         return redirect()->back();
     }
+
+    public function detachProduct(Discount $discount, Request $request)
+    {
+        if($request->data['type'] == 'product')
+        {
+            $discount->products()->detach($request->data['data']['id']);
+        }
+        elseif($request->data['type'] == 'category')
+        {
+            $discount->categories()->detach($request->data['data']['id']);
+        }
+        else
+        {
+            $discount->brands()->detach($request->data['data']['id']);
+        }
+        return redirect()->back();
+    }
+
     public function create(Request $request)
     {
         $path = '';

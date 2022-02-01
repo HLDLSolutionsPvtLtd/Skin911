@@ -185,7 +185,7 @@
                             </td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <button @click="updatediscount = !updatediscount, newform.name = discount.name,newform.id = discount.id, newform.type = discount.type, newform.amount = discount.amount" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
+                                    <button @click="updatediscount = !updatediscount,newform.valid_upto = discount.valid_upto, newform.valid_from = discount.valid_from, newform.name = discount.name,newform.id = discount.id, newform.type = discount.type, newform.amount = discount.amount" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-indigo-900" viewBox="0 0 24 24">
                                             <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
                                         </svg>
@@ -337,6 +337,9 @@
                                             </td>
                                             <td class="text-center border-r border-gray-300 p-2">{{category.name}}</td>
                                             <td class="p-2 flex justify-center border-r border-gray-300"><img v-if="category.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+category.img" alt=""></td>
+                                            <td class="text-center border-r border-gray-300 p-2">
+                                                 <button @click="removefromDiscount('category', category)" class="bg-red-400 p-2 text-xs tracking-wider rounded-md text-white font-bold">REMOVE</button>
+                                            </td>
                                         </tr>
                                     </template>
                                     <template v-for="brand in selectedDiscount.brands" :key="brand.id">
@@ -346,8 +349,9 @@
                                             </td>
                                             <td class="text-center border-r border-gray-300 p-2">{{brand.name}}</td>
                                             <td class="p-2 flex justify-center border-r border-gray-300"><img v-if="brand.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+brand.img" alt=""></td>
-                                            <td class="p-2 flex justify-center border-r border-gray-300"></td>
-
+                                            <td class="text-center border-r border-gray-300 p-2">
+                                                 <button @click="removefromDiscount('brand', brand)" class="bg-red-400 p-2 text-xs tracking-wider rounded-md text-white font-bold">REMOVE</button>
+                                            </td>
                                         </tr>
                                     </template>
                                     <template v-for="product in selectedDiscount.products" :key="product.id">
@@ -357,6 +361,9 @@
                                             </td>
                                             <td class="text-center border-r border-gray-300 p-2">{{product.name}}</td>
                                             <td class="p-2 flex justify-center border-r border-gray-300"><img v-if="product.image[0]" class="h-14 w-14 flex mr-1" :src="'/storage/'+product.image[0].link" alt=""></td>
+                                            <td class="text-center border-r border-gray-300 p-2">
+                                                 <button @click="removefromDiscount('product', product)" class="bg-red-400 p-2 text-xs tracking-wider rounded-md text-white font-bold">REMOVE</button>
+                                            </td>
                                         </tr>
                                     </template>
                                 </table>
@@ -381,9 +388,9 @@
 
 
  export default{
+    props: ['discounts'],
     data(){
         return{
-           discounts: [],
            selectedDiscount: '',
            selectToadd: 'products',
            active: 'items',
@@ -444,6 +451,22 @@
             this.preview = '';
             this.form.image = '';
         },
+        removefromDiscount(type, data)
+        {
+            this.$inertia.post('/admin/discounts/'+this.selectedDiscount.id+'/remove/items',
+            {
+                preserveState: true,
+                data:{
+                    'type': type,
+                    'data': data
+                },
+                onSuccess: () => 
+                {
+                    alert('success');
+                }
+
+            });
+        },
         newdiscountimage(e)
         {
             let selectedFile = e.target.files[0];
@@ -499,40 +522,40 @@
         addToDiscount()
         {
             this.$inertia.post('/admin/discounts/'+this.selectedDiscount.id+'/add/items', {
+                preserveState: true,
                 'items' : this.selectedItems,
                 'type' : this.selectToadd,
-                onSuccess: () =>
+                onSuccess:() =>
                 {
-                    alert('success');
+                    
                 }
             });
+            
         }
     },
     mounted()
     {
-        axios.get('/admin/discounts/all')
-        .then(res => this.discounts = res.data);
-
         axios.get('/admin/brand/all')
-        .then(res => this.brands = res.data)
-        .then(error => {
-            console.error(error);
-        });
+        .then(res => this.brands = res.data);
 
         axios.get('/admin/category/all')
-        .then(res => this.categories = res.data)
-        .then(error => {
-            console.error(error);
-        });
+        .then(res => this.categories = res.data);
 
         axios.get('admin.getproducts')
-        .then(res => this.products = res.data)
-        .then(error => {
-            console.error(error);
-        });
+        .then(res => this.products = res.data);
     },
     watch:
     {
+        discounts()
+        {
+            var index = this.discounts.findIndex(el =>{
+                if(el.id == this.selectedDiscount.id)
+                {
+                    return true;
+                }
+            });
+            this.selectedDiscount = this.discounts[index];
+        },
         selectToadd(){
             this.selectedItems = [];
         },

@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAdminController;
+use App\Models\Discount;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -101,7 +102,8 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.products')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('discounts', function () {
-        return Inertia::render('Admin/Discount');
+        $discounts = Discount::all();
+        return Inertia::render('Admin/Discount', ['discounts' => $discounts]);
     })->name('admin.discounts')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('addproduct', function () {
@@ -159,4 +161,5 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->post('discounts/create',[DiscountController::class, 'create'])->name('discount.create');
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/update',[DiscountController::class, 'update'])->name('discount.update');
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/add/items',[DiscountController::class, 'attachProduct'])->name('discount.attach');
+    Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/remove/items',[DiscountController::class, 'detachProduct'])->name('discount.detach');
 });
