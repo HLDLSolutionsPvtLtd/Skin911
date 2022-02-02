@@ -55,8 +55,16 @@
                         </div>
                     </div>
                     <div class="p-2">
-                        <span class="line-through text-xs font-bold text-gray-500 pr-2">&#8377;5000</span>
-                        <span class="text-xs font-semibold tracking-wider">&#8377;{{product.price}}</span>
+                        <template v-if="product.discounts[0]">
+                            <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                            <template v-if="product.discounts[0].type == 'percentage'">
+                                <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.discounts[0].amount / 100)}}</span>
+                            </template>
+                            <template v-else>
+                                <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.discounts[0].amount}}</span>
+                            </template>
+                        </template>
+                        <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{product.price}}</span>
                     </div>
                     <div class="m-2 flex gap-1">
                         <div @click="setQuantity('in')" class="bg-white border flex items-center py-0 px-2 shadow-sm rounded-full">

@@ -22,11 +22,11 @@
            </div>
 
            <div class="md:mx-4 md:my-12 mt-2">
-               <div class="flex justify-center">
+               <div class="flex justify-start sm:justify-center">
                    <span class="text-gray-700 p-2 mt-4 font-bold sm:text-4xl">TRENDING</span>
                </div>
                <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:mx-12 md:px-4">
-                    <div class="border w-3/5 sm:w-auto mr-1 inline-block border-gray-100" v-for="image in images" :key="image">
+                    <div class="border w-5/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="image in images" :key="image">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
                                 <div class="relative pb-48 overflow-hidden">

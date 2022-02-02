@@ -45,9 +45,19 @@
                         <div class="w-full  grid grid-cols-2 sm:grid-cols-4">
                             <div class="p-1 border border-gray-100 mt-2" v-for="product in products" :key="product">
                                     <div class="">
-                                        <a :href="'/product/'+product.id+'/details'" class="overflow-hidden">
+                                        <a :href="'/product/'+product.id+'/details'" class="overflow-hidden relative">
                                             <div class="relative pb-48 overflow-hidden">
                                                 <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+product.image[0].link" alt="">
+                                            </div>
+                                            <div class="absolute ribbon top-4 left-0">
+                                                <span v-if="product.discounts[0]" class="flag-discount transform rotate-90">
+                                                    <template v-if="product.discounts[0].type == 'percentage'">
+                                                        {{product.discounts[0].amount}}%
+                                                    </template>
+                                                    <template v-else>
+                                                        -{{product.discounts[0].amount}}
+                                                    </template>
+                                                </span>
                                             </div>
                                         </a>
                                         <div class="px-2">
@@ -57,8 +67,17 @@
                                             <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{product.description}}</span>
                                         </div> -->
                                         <div class="px-2 h-6">
-                                            <span class="line-through text-xs text-gray-300 pr-2">&#8377;5000</span>
-                                            <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price}}</span>
+                                            
+                                            <template v-if="product.discounts[0]">
+                                                <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                                                <template v-if="product.discounts[0].type == 'percentage'">
+                                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.discounts[0].amount / 100)}}</span>
+                                                </template>
+                                                <template v-else>
+                                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.discounts[0].amount}}</span>
+                                                </template>
+                                            </template>
+                                            <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{product.price}}</span>
                                         </div>
                                        
                                     </div>  
