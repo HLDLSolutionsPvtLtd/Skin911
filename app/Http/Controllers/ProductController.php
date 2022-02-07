@@ -10,8 +10,8 @@ class ProductController extends Controller
 {
     public function search(Request $request)
     {
-        $products = Product::search($request->key)->with('discounts')->get();
-        return Inertia::render('Search', ['products' => $products]);
+        $products = Product::search($request->key)->get();
+        return Inertia::render('Search', ['products' => $products->load('discounts')]);
 
     }
 
