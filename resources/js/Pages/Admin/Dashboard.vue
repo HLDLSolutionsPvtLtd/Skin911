@@ -1,7 +1,7 @@
 <template>
    <AdminLayout>
        <template #header>
-            DASHBOARD
+            Dashboard
        </template>
        <div>
            <div class="m-4 flex">

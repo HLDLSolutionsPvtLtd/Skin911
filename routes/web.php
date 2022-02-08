@@ -64,6 +64,8 @@ Route::middleware(['auth:sanctum'])->post('address/{address:id}/edit',[AddressCo
 
 Route::middleware(['auth:sanctum'])->get('products/search',[ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth:sanctum'])->get('products/all',[ProductController::class, 'all'])->name('products.all');
+Route::middleware(['auth:sanctum'])->get('products/related',[ProductController::class, 'related'])->name('products.related');
+
 Route::middleware(['auth:sanctum'])->get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
 Route::middleware(['auth:sanctum'])->get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
 Route::middleware(['auth:sanctum'])->post('cart/product/{product:id}/add',[CartController::class, 'addToCart'])->name('addToCart');
@@ -140,6 +142,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::middleware(['auth:sanctum'])->post('/product/{product:id}/update',[ProductsController::class, 'updateProduct'])->name('updateProduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->delete('/product/{product:id}/delete',[ProductsController::class, 'deleteProduct'])->name('deleteProduct')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('/product/search',[ProductsController::class, 'search'])->name('search.admin')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('/product/outofstock',[ProductsController::class, 'outOfStock'])->name('search.admin')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('/brand/create',[Brandcontroller::class, 'create'])->name('brand.create')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('/brand/all',[Brandcontroller::class, 'all'])->name('/admin.getbrands')->middleware('is_admin');

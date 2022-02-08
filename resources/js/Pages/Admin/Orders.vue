@@ -4,7 +4,9 @@
            Orders
        </template>
        <div class="">
+          
            <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1 relative">
+                
                <div v-show="visible" class="absolute h-4/5 w-full overflow-y-scroll bg-white shadow-lg">
                     <div class="flex justify-between border-b p-4">
                         <div>
@@ -38,35 +40,80 @@
                         
                     </div>
                </div>
-               <div class="flex  m-2">
-                   <table class="border border-gray-300 w-full text-ct">
-                        <tr class="border-b border-gray-300 text-gray-400 tracking-wider text-xs font-bold uppercase">
-                            <th class="text-center border-r border-gray-300 p-2">
+               <div class="flex justify-between m-4">
+                    <div class="flex gap-2">
+                        <div>
+                            <span class="text-xs tracking-wider text-gray-500 p-2 bg-gray-200 font-bold rounded-md">ALL</span>
+                        </div>
+                        <div class="">
+                            <span class="p-2 bg-gray-200 rounded-md font-bold text-xs text-gray-500">ACCEPTED</span>
+                        </div>
+                        <div class="">
+                            <span class="p-2 bg-gray-200 rounded-md font-bold text-xs text-gray-500">DENIED</span>
+                        </div>
+                        <div class="">
+                            <span class="p-2 bg-gray-200 rounded-md font-bold text-xs text-gray-500">CANCELLED</span>
+                        </div>
+                        <div class="">
+                            <span class="p-2 bg-gray-200 rounded-md font-bold text-xs text-gray-500">OUT FOR DELIVERY</span>
+                        </div>
+                        <div class="">
+                            <span class="p-2 bg-gray-200 rounded-md font-bold text-xs text-gray-500">DELIVERED</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <input type="search" class="h-8 border border-gray-300 rounded-md pl-8 text-blue-400 placeholder-gray-300 text-sm tracking-wider" placeholder="Search products">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="fill-current text-blue-500 absolute top-2 left-2" viewBox="0 0 24 24">
+                            <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>\
+                        </svg>
+                    </div>
+                </div>
+               <div class="flex m-4 border-t-2 py-4">
+                   
+                   <table class="w-full text-ct">
+                        <tr class="border-b border-gray-300 text-blue-500 font-bold tracking-wider text-xs font-bold uppercase">
+                            <th class="text-left p-1 py-4">
                                 <span class="">Id</span>
                             </th>
-                            <th class="text-center border-r border-gray-300 p-2">
-                                <span class="">Status</span>
-                            </th>
-                            <th class="text-center border-r border-gray-300 p-2">
+                            
+                            <th class="text-left p-1 py-4">
                                 <span class="">Customer</span>
                             </th>
-                            <th class="text-center border-r border-gray-300 p-2">
+                            <th class="text-left p-1">
                                 <span class="">Total Price</span>
                             </th>
-                            <th class="text-center border-r border-gray-300 p-2">
+                            <th class="text-center p-1 py-4">
                                 <span class="">Items</span>
                             </th>
-                            <th class="text-center border-r border-gray-300 p-2">
+                            <th class="text-left p-1 py-4">
                                 <span class="">Created-At</span>
                             </th>
-                            <th class="text-center p-2">Payment</th>
+                            <th class="text-left p-1 py-4">
+                                <span class="">Status</span>
+                            </th>
+                            <th class="text-center p-1 py-4">
+                                <span class="">Action</span>
+                            </th>
+                            <th class="text-left p-1 py-4">Payment</th>
                         </tr>
                         
-                        <tr v-for="(order, index) in orders" :key="order.id" class="border-b text-sm font-bold text-gray-400 tracking-wider border-gray-300">   
-                            <td class="p-2 text-center border-r border-gray-300">{{order.id}}</td>
-                            <td class="text-center border-r p-2 text-xs uppercase">
-                                <span class="mr-4 text-white font-bold bg-green-400 p-2 rounded-md shadow-lg">{{order.status}} </span>
-                                <select name="" id="" @change="markAs(order, index)" v-model="status" class="border border-pink-500 text-green-400 focus:ring-0 text-xs uppercase rounded-md">
+                        <tr v-for="(order, index) in orders" :key="order.id" class="border-b-2 text-sm font-semibold text-gray-500 tracking-wider border-gray-200">   
+                            <td class="p-1 font-bold text-left text-gray-500 py-4">
+                               {{order.id}}
+                            </td>
+                            
+                            <td class="text-left font-bold p-1">{{order.customer.name}}</td>
+                            <td class="text-left font-bold p-1">&#8377; {{order.total}}</td>
+                            <td class="text-center p-1  mr-2">
+                                    <span @click="this.products = order.products, visible = !visible" class="text-xs tracking-wider py-1 cursor-pointer text-blue-500">{{order.products.length}}ITEMS</span>
+                            </td>
+                            <td class="text-left p-1 text-xs uppercase">{{formatDate(order.created_at)}}</td>
+                            <td class="text-left p-1 text-xs uppercase">
+                                <span class="mr-4 font-bold text-yellow-500">{{order.status}} </span>
+                                
+                            </td>
+                            <td class="text-left p-1 text-xs uppercase py-6">
+                                <select name="" id="" @change="markAs(order, index)" v-model="status" class="bg-green-200 border-0 text-green-800 focus:ring-0 text-xs uppercase rounded-md">
                                     <option value="" selected>Mark As</option>
                                     <option value="accepted">Accepted</option>
                                     <option value="denied">Denied</option>
@@ -75,14 +122,10 @@
                                     <option value="delivered">Delivered</option>
                                 </select>
                             </td>
-                            <td class="text-center border-r p-2">{{order.customer.name}}</td>
-                            <td class="text-center border-r p-2">&#8377; {{order.total}}</td>
-                            <td class="text-center border-r p-2 flex flex-col">{{order.products.length}}
-                                <span @click="this.products = order.products, visible = !visible" class="text-xs tracking-wider p-2 cursor-pointer font-thin text-blue-500">VIEW ITEMS</span>
+                            <td class="text-left p-1"><span class="text-red-400 uppercase font-bold text-xs">{{order.transaction.status}}</span>
                             </td>
-                            <td class="text-center border-r p-2 font-thin">{{formatDate(order.created_at)}}</td>
-                            <td class="text-center border-r p-2"><span class="text-green-400 uppercase font-bold text-xs">{{order.transaction.status}}</span>
-                                <button @click="refund(order)" v-if="order.transaction.status == 'paid'" class="p-2 ml-2 text-xs rounded-md tracking-wider font-bold shadow-lg bg-blue-400 text-white">REFUND</button>
+                            <td>
+                                <button @click="refund(order)" v-if="order.transaction.status == 'paid'" class="p-2 ml-2 text-xs rounded-md tracking-wider font-bold shadow-sm bg-pink  -400 text-white">REFUND</button>
                             </td>
                         </tr>
                         

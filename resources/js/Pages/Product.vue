@@ -139,20 +139,51 @@
                <div class="flex justify-between pt-4 px-2 sm:px-16 items-center">
                    <span class="text-gray-700 text-md font-bold sm:text-lg">RELATED PRODUCTS</span>
                    <div class="flex items-center">
-                       <span class="text-sm sm:text-lg text-blue-500 tracking-wide">see more</span>
+                       <a :href="'/products?key='+product.category_id">
+                           <span class="text-xs sm:text-sm text-blue-500 font-bold underline tracking-wider">See All</span>
+                       </a>
                    </div>
                </div>
                <div class="overflow-y-hidden whitespace-nowrap p-2 overflow-x-scroll no-scrollbar sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:mx-12 md:px-4">
-                    <div class="border w-5/12 sm:w-auto inline-block border-gray-100 mr-1" v-for="image in products" :key="image">
-                        <div class="">
-                            <a href="/ProductDetail" class="overflow-hidden">
-                            <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" :src="image.img" alt="">
-                            </div>
+                    <div class="border w-5/12 sm:w-auto inline-block border-gray-100 mr-1 relative" v-for="sproduct in products" :key="sproduct.id">
+                            <a :href="'/product/'+sproduct.id+'/details'" class="overflow-hidden relative">
+                                <div class="relative pb-48 overflow-hidden">
+                                    <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+sproduct.image[0].link" alt="">
+                                </div>
+                                <div class="absolute ribbon top-4 left-0">
+                                    <span v-if="sproduct.discounts[0]" class="flag-discount transform rotate-90">
+                                        <template v-if="sproduct.discounts[0].type == 'percentage'">
+                                            {{sproduct.discounts[0].amount}}%
+                                        </template>
+                                        <template v-else>
+                                            -{{sproduct.discounts[0].amount}}
+                                        </template>
+                                    </span>
+                                </div>
                             </a>
-                            <div class="">
-                                <button class="p-2 w-full bg-pink text-white text-sm font-bold tracking-wide">ADD TO CART</button>
+                            <div class="px-2">
+                                <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{sproduct.name}}</p>
                             </div>
+                            <!-- <div class="px-2">
+                                <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{sproduct.description}}</span>
+                            </div> -->
+                            <div class="px-2 h-6">
+                                
+                                <template v-if="sproduct.discounts[0]">
+                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{sproduct.price}}</span>
+                                    <template v-if="sproduct.discounts[0].type == 'percentage'">
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - (sproduct.price * sproduct.discounts[0].amount / 100)}}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - sproduct.discounts[0].amount}}</span>
+                                    </template>
+                                </template>
+                                <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{sproduct.price}}</span>
+                            </div>
+                        <div class="mt-2">
+                            <a :href="'/product/'+sproduct.id+'/details'" class="overflow-hidden">
+                                <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
+                            </a>
                         </div>  
                     </div>
                </div>
@@ -162,6 +193,7 @@
 <script>
  import AppLayout from '@/Layouts/AppLayout.vue'
 import { Inertia } from '@inertiajs/inertia';
+import axios from 'axios';
  export default{
      props: ['product'],
     components:
@@ -175,25 +207,7 @@ import { Inertia } from '@inertiajs/inertia';
                 variant: '',
                 quantity : 1,
             }),
-            products:[
-                    {
-                        id:0,
-                        img:'https://cdsco.gov.in/opencms/export/system/modules/CDSCO.WEB/resources/img/slider/cosmetic4.jpg',
-                    },
-                    {
-                        id:1,
-                        img:'https://www.ics-world.com/wp-content/uploads/2021/03/Sustainable-2.jpg',
-                    },
-                    {
-                        id:2,
-                        img:'https://imgscf.slidemembers.com/docs/1/1/334/natural_cosmetic_presentation_ppt_333010.jpg',
-                    },
-                    {
-                        id:3,
-                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfz8UYc1CQyXKs1tRDEj8i_fDGLUPCqSSuFg&usqp=CAU',
-                    },
-                    
-                ],
+            products:[],
             qerror: '',
             currentImg:'',
             success : false,
@@ -246,6 +260,8 @@ import { Inertia } from '@inertiajs/inertia';
         {
             this.form.variant = this.product.variant[0].id;
         }
+        axios.get('/products/related', {params: {'brand_id': this.product.brand_id, 'category_id': this.product.category_id}})
+        .then(res => this.products = res.data);
     },
 }
 </script>

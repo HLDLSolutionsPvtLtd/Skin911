@@ -147,4 +147,14 @@ class ProductsController extends Controller
         $product->delete();
         return response('success', 200);
     }
+
+    public function search(Request $request)
+    {
+        return Product::search($request->key)->get();
+    }
+
+    public function outOfStock()
+    {
+        return Product::where('quantity', 0)->get();
+    }
 }
