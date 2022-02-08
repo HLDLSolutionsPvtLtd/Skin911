@@ -21,7 +21,6 @@ export default{
     },
     mounted()
     {
-        Chart.defaults.plugins.legend = false;
         var ctx = document.getElementById('myChart'); // node
         ctx.height = 320;
         var myChart = new Chart(ctx, {
@@ -48,10 +47,11 @@ export default{
                                
                             },
                             plugins: {
+                                legend: {
+                                    display: false,
+                                }
                             },
-                            legend: {
-                                display: false,
-                            },
+                            
                             scales: {
                                 y: {
                                     beginAtZero: true,

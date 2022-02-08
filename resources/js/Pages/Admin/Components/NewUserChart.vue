@@ -21,9 +21,7 @@ export default{
     },
     mounted()
     {
-        Chart.defaults.plugins.legend = false;
         var ctx = document.getElementById('newuser'); // node
-        ctx.height = 70;
         var myChart = new Chart(ctx, {
                         id:   "sales",
                         type: "bar",
@@ -45,8 +43,10 @@ export default{
                             layout: {
                                 padding: 15
                             },
-                            legend: {
-                                display: false,
+                            plugins:{
+                                legend: {
+                                    display: false,
+                                }
                             },
                             scales: {
                                 x: {

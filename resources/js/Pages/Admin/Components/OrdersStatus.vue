@@ -1,5 +1,5 @@
 <template>
-    <canvas id="order" style="" class=""></canvas>
+    <canvas id="orderStatus" style="width:100%;height:100%" class=""></canvas>
 </template>
 <script>
 import Chart from 'chart.js/auto';
@@ -7,8 +7,8 @@ export default{
     data()
     {
         return{
-            xValues : [50,60,70,80,90,100,110],
-            yValues : [20,34,50,22,20,4,26],
+            xValues : ['delivered', 'denied', 'cancelled', 'returned'],
+            yValues : [20,34,50, 20],
 
         }
     },
@@ -21,14 +21,15 @@ export default{
     },
     mounted()
     {
-        var ctx = document.getElementById('order'); // node
+        var ctx = document.getElementById('orderStatus'); // node
+        ctx.height = 70;
         var myChart = new Chart(ctx, {
-                        id:   "sales",
-                        type: "line",
+                        id:   "Status",
+                        type: "doughnut",
                         data: {
                             labels: this.xValues,
                             datasets: [{
-                                label: 'Sales Chart',
+                                label: 'Order Status',
                                 lineTension: 1,
                                 borderWidth: 2,
                                 pointRadius: 4,
@@ -46,7 +47,7 @@ export default{
                             },
                             plugins: {
                                 legend: {
-                                    display: false,
+                                    position: 'bottom',
                                 },
                             },
                             
@@ -72,7 +73,8 @@ export default{
                                 },
                                 x:{
                                     grid:{
-                                        display:false
+                                        display:false,
+                                        drawBorder:false,
                                     },
                                     ticks: {
                                             display:false

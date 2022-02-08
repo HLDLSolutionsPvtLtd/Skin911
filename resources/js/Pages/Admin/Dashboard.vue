@@ -5,7 +5,7 @@
        </template>
        <div>
            <div class="m-4 flex">
-               <div class="rounded-sm p-2 w-1/2 mr-2 bg-white shadow-sm">
+               <div class="rounded-sm p-2 w-1/3 mr-2 bg-white shadow-sm">
                    <div class="p-2">
                        <span class="p-2 text-sm uppercase text-gray-500">Orders</span>
                        <div class="flex p-2">
@@ -17,7 +17,7 @@
                    </div>
                    <order-chart class=""/>
                </div>
-               <div class="rounded-sm p-2 ml-2 w-1/2 bg-white shadow-sm">
+               <div class="rounded-sm p-2 ml-2 w-1/3 bg-white shadow-sm">
                    <div class="p-2">
                        <span class="p-2 text-sm uppercase text-gray-500">New Users</span>
                        <div class="p-2 flex">
@@ -29,11 +29,23 @@
                    </div>
                    <new-user-chart class=""/>
                </div>
+               <div class="rounded-sm p-2 ml-2 w-1/3 bg-white shadow-sm">
+                   <div class="p-2">
+                       <span class="p-2 text-sm uppercase text-gray-500">New Users</span>
+                       <div class="p-2 flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/>
+                            </svg>
+                            <span class="text-md text-gray-600 ml-2">45</span>
+                       </div>
+                   </div>
+                   <Traffic/>
+               </div>
            </div>
        </div>
        <div class="">
-            <div class="m-4">
-                   <div class="p-6 rounded-sm w-full bg-white shadow-sm">
+            <div class="m-4 flex">
+                   <div class="p-6 w-4/5 rounded-sm w-full bg-white shadow-sm">
                        <div class="p-1 flex justify-between">
                             <div>
                                 <div class="text-sm font-mono text-gray-500">
@@ -56,7 +68,12 @@
                        </div>
                        <new-sales-chart class="" />  
                    </div>
-                   
+                   <div class="rounded-sm p-2 ml-2 w-1/5 bg-white shadow-sm">
+                        <div class="text-xs font-bold uppercase my-2 mb-6">
+                            <span>Order Status</span>
+                        </div>
+                        <orders-status class=""/>
+                   </div>
             </div>
        </div>
    </AdminLayout>    
@@ -71,6 +88,8 @@
  import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
  import AdminLayout from '@/Layouts/AdminLayout'
  import NewSalesChart from '../Admin/Components/NewSalesChart.vue'
+ import Traffic from '../Admin/Components/Traffic.vue'
+ import OrdersStatus from '../Admin/Components/OrdersStatus.vue'
  import OrderChart from '../Admin/Components/OrderChart.vue'
  import NewUserChart from '../Admin/Components/NewUserChart.vue'
 
@@ -89,6 +108,8 @@
         NewSalesChart,
         OrderChart,
         NewUserChart,
+        OrdersStatus,
+        Traffic,
         AdminLayout,
     },
     
