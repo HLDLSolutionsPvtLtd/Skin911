@@ -82,6 +82,8 @@ Route::middleware(['auth:sanctum'])->post('order/create',[OrderController::class
 Route::middleware(['auth:sanctum'])->post('order/transaction',[OrderController::class, 'transaction'])->name('transaction.create');
 Route::middleware(['auth:sanctum'])->post('order/{order:id}/cancel',[OrderController::class, 'cancel'])->name('order.cancel');
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -160,7 +162,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('order',[AdminOrderController::class, 'view'])->name('order.view');
     Route::middleware(['auth:sanctum'])->put('order/{order:id}/markas',[AdminOrderController::class, 'updateStatus'])->name('order.statusupdate');
     Route::middleware(['auth:sanctum'])->post('order/{order:id}/payment/refund',[AdminOrderController::class, 'refund'])->name('order.refund');
-   
+    Route::middleware(['auth:sanctum'])->get('order/search',[AdminOrderController::class, 'search'])->name('order.search');
+    Route::middleware(['auth:sanctum'])->get('order/getby/status',[AdminOrderController::class, 'searchOrders'])->name('order.filter');
+
     Route::middleware(['auth:sanctum'])->get('discounts/all',[DiscountController::class, 'all'])->name('discount.all');
     Route::middleware(['auth:sanctum'])->post('discounts/create',[DiscountController::class, 'create'])->name('discount.create');
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/update',[DiscountController::class, 'update'])->name('discount.update');

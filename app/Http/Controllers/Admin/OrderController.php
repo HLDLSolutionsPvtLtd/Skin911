@@ -35,4 +35,14 @@ class OrderController extends Controller
         return redirect()->back();
 
     }
+
+    public function searchOrders(Request $request)
+    {
+        return Order::where('status', $request->status)->get();
+    }
+
+    public function search(Request $request)
+    {
+        return Order::where('status', $request->key)->get();
+    }
 }

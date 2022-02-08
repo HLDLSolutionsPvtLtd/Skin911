@@ -12,7 +12,8 @@ use ReflectionMethod;
 
 class Ziggy implements JsonSerializable
 {
-    protected $port;
+    protected static $cache;
+
     protected $url;
     protected $group;
     protected $routes;
@@ -22,9 +23,17 @@ class Ziggy implements JsonSerializable
         $this->group = $group;
 
         $this->url = rtrim($url ?? url('/'), '/');
-        $this->port = parse_url($this->url)['port'] ?? null;
 
-        $this->routes = $this->nameKeyedRoutes();
+        if (! static::$cache) {
+            static::$cache = $this->nameKeyedRoutes();
+        }
+
+        $this->routes = static::$cache;
+    }
+
+    public static function clearRoutes()
+    {
+        static::$cache = null;
     }
 
     private function applyFilters($group)
@@ -100,7 +109,7 @@ class Ziggy implements JsonSerializable
 
         return $routes->merge($fallbacks)
             ->map(function ($route) use ($bindings) {
-                return collect($route)->only(['uri', 'methods'])
+                return collect($route)->only(['uri', 'methods', 'wheres'])
                     ->put('domain', $route->domain())
                     ->put('bindings', $bindings[$route->getName()] ?? [])
                     ->when($middleware = config('ziggy.middleware'), function ($collection) use ($middleware, $route) {
@@ -120,7 +129,7 @@ class Ziggy implements JsonSerializable
     {
         return [
             'url' => $this->url,
-            'port' => $this->port,
+            'port' => parse_url($this->url)['port'] ?? null,
             'defaults' => method_exists(app('url'), 'getDefaultParameters')
                 ? app('url')->getDefaultParameters()
                 : [],
@@ -157,6 +166,10 @@ class Ziggy implements JsonSerializable
             $bindings = [];
 
             foreach ($route->signatureParameters(UrlRoutable::class) as $parameter) {
+                if (! in_array($parameter->getName(), $route->parameterNames())) {
+                    break;
+                }
+
                 $model = class_exists(Reflector::class)
                     ? Reflector::getParameterClassName($parameter)
                     : $parameter->getType()->getName();
