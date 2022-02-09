@@ -84,9 +84,16 @@ class OrderController extends Controller
     {
         if($request->user()->id == $order->user_id)
         {
-            $order->status ='canceled';
-            $order->save();
-            return response('success', 200);
+            if($order->status != "out_for_delivery")
+            {
+                $order->status ='canceled';
+                $order->save();
+                return response('success', 200);
+            }
+            else
+            {
+                return response("This order can not be canceled", 419);
+            }
         }
         else
         {

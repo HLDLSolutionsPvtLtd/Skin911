@@ -9,7 +9,7 @@
                 </div>
                 <div class="border w-full">
                     <div class="w-full ">
-                        <div v-for="order in orders.slice().reverse()" class="bg-white shadow-lg mt-2 rounded-sm">
+                        <div v-for="order in orders.slice().reverse()" :key="order.id" class="bg-white shadow-lg mt-2 rounded-sm">
                             <div class="p-2 bg-pink-300 flex justify-between rounded-t-sm text-white">
                                 <div class="">
                                     <div class="flex items-center">
@@ -25,10 +25,10 @@
                                     </div>
                                 </div>
                                 <div class="flex border-l-2 pl-2 items-center">
-                                    <button class="text-xs sm:text-md font-bold tracking-wider p-2">CANCEL</button>
+                                    <button @click="cancel(order.id)" class="text-xs sm:text-md font-bold tracking-wider p-2">CANCEL</button>
                                 </div>
                             </div>
-                            <div class="m-2 p-2" v-for="product in order.products">
+                            <div class="m-2 p-2" v-for="product in order.products" :key="product.id">
                                 <div class="flex sm:justify-between bg-white border mb-2">
                                     <div class="flex flex-col sm:flex-row p-1">
                                         <img :src="'/storage/'+product.image[0].link" alt="" class="w-24 h-24 self-center ">
@@ -102,6 +102,13 @@ export default {
             });
             this.RZPScript.open();
         },
+        cancel(){
+            this.$inertia.post("/order/"+id+"/cancel", {
+                onSuccess: () =>{
+                    alert("success!");
+                }
+            })
+        }
     },
     mounted(){
         this.RZPScript = document.createElement('script');
