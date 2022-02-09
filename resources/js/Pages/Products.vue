@@ -25,6 +25,16 @@
                                 </ul>
                             </div>
                         </div>
+                         <div>
+                            <span class="text-md font-semibold text-pink-dark">Discounts</span>
+                            <div>
+                                <ul class="text-gray-500 font-semibold text-sm border-l p-2">
+                                    <template v-for="discount in discounts" :key="discount.id">
+                                        <li class="p-1 cursor-pointer" @click="key = discount.name, productAll()">{{discount.name}}</li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="sm:col-span-5">
                         <div class="flex justify-between">
@@ -147,6 +157,9 @@
                                      <div @click="filters = 'categories'" :class="{'bg-gray-100 text-gray-600':filters == 'categories'}" class="p-2 w-full cursor-pointer">
                                         <span>Categories</span>
                                     </div>
+                                    <div @click="filters = 'discounts'" :class="{'bg-gray-100 text-gray-600':filters == 'discounts'}" class="p-2 w-full cursor-pointer">
+                                        <span>Discounts</span>
+                                    </div>
                                 </div>
                                 <div class="w-1/2 h-screen text-sm pb-12 bg-gray-100 overflow-y-scroll pl-4">
                                    <ul v-show="filters == 'brands'" class="overflow-y-scroll" >
@@ -158,6 +171,11 @@
                                    <ul v-show="filters == 'categories'">
                                        <template v-for="category in categories" :key="category.id">
                                             <li class="p-1 mt-2 list-none cursor-pointer" @click="key= category.name, filter=!filter, productAll()">{{category.name}}</li>
+                                        </template>
+                                   </ul>
+                                   <ul v-show="filters == 'discounts'">
+                                       <template v-for="discount in discounts" :key="discount.id">
+                                            <li class="p-1 mt-2 list-none cursor-pointer" @click="key= discount.name, filter=!filter, productAll()">{{discount.name}}</li>
                                         </template>
                                    </ul>
                                 </div>
@@ -201,6 +219,8 @@ export default{
         .then(res => this.brands = res.data);
         axios.get('/categories/all')
         .then(res => this.categories = res.data);
+        axios.get('/discounts/all')
+        .then(res => this.discounts = res.data);
     },
     methods: {
         nextProd()

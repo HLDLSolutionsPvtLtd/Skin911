@@ -22,7 +22,6 @@ export default{
     mounted()
     {
         var ctx = document.getElementById('orderStatus'); // node
-        ctx.height = 70;
         var myChart = new Chart(ctx, {
                         id:   "Status",
                         type: "doughnut",
@@ -35,19 +34,23 @@ export default{
                                 pointRadius: 4,
                                 pointBackgroundColor: "rgba( 246, 49, 131 ,0.5)",
                                 pointBorderColor: 'rgba( 246, 49, 131 ,0.5)',
-                                backgroundColor: "rgba(160,150,150,0 )",
+                                backgroundColor: ["#f472b6", "#f4743b", "#c4f2b6", "#b4d2b6"],
                                 borderColor: "rgba( 246, 49, 131 ,0.5)",
                                 data: this.yValues,
                             }]
                         },
                         options: {
-                            maintainAspectRatio: true,
                             layout: {
                             
                             },
                             plugins: {
                                 legend: {
                                     position: 'bottom',
+                                    labels: {
+                                            usePointStyle: true,
+                                            color: '#000',
+                                            padding: 14,
+                                        }
                                 },
                             },
                             

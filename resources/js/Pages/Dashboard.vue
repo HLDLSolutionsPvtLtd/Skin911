@@ -5,17 +5,16 @@
                 <div class="carousel">
                     <transition-group class="carousel" name="fade" tag="div">
                         <div class="w-full h-full" @touchstart="touchstart($event)" @touchend="touchend($event)" v-for="i in [currentIndex]" :key="i">
-                            <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="currentImg" class="w-full h-full transition-transform ease-in-out duration-700" />
+                            <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="'/storage/'+currentImg" class="w-full h-full transition-transform ease-in-out duration-700" />
                         </div>
                     </transition-group> 
-                    
                 </div>
                 <div class="relative">
                     <ul class="absolute bottom-2 dots">
-                        <li :class="{liactive : currentIndex === image.id}" 
-                            v-for="image in images" 
-                            :key="image.id"
-                            @click="jump(image.id)">
+                        <li :class="{liactive : currentIndex === index}" 
+                            v-for="(banner, index) in banners" 
+                            :key="banner.id"
+                            @click="jump(banner.id)">
                         </li>
                     </ul>
                 </div>
@@ -112,6 +111,7 @@
         data()
         {
             return{
+                banners: [],
                 slidein: false,
                 slideout:false,
                 ouchstartX : 0,
@@ -196,7 +196,7 @@
                 this.startSlide();
             },
             next: function() {
-                if(this.currentIndex == this.images.length-1)
+                if(this.currentIndex == this.banners.length-1)
                 {
                     this.currentIndex = 0;
                     this.slideout = true;
@@ -214,7 +214,7 @@
             prev: function() {
                 if(this.currentIndex == 0)
                 {
-                    this.currentIndex = this.images.length-1;
+                    this.currentIndex = this.banners.length-1;
                      this.slideout = true;
                     setTimeout(this.sliderout, 500);
                 }
@@ -270,13 +270,16 @@
             // }
                 
         },
-       computed: {
-            currentImg: function() {
-            return this.images[Math.abs(this.currentIndex) % this.images.length].img;
+       watch: {
+            currentIndex() {
+                console.log( )
+                this.currentImg =  this.banners[Math.abs(this.currentIndex)% this.banners.length].image;
             }
         },
         mounted: function() {
             this.startSlide();
+            axios.get('/banner/all')
+            .then(res => this.banners = res.data);
         },
     })
 </script>

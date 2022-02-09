@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DiscountController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAdminController;
+use App\Models\Banner;
 use App\Models\Discount;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -82,7 +84,9 @@ Route::middleware(['auth:sanctum'])->post('order/create',[OrderController::class
 Route::middleware(['auth:sanctum'])->post('order/transaction',[OrderController::class, 'transaction'])->name('transaction.create');
 Route::middleware(['auth:sanctum'])->post('order/{order:id}/cancel',[OrderController::class, 'cancel'])->name('order.cancel');
 
+Route::middleware(['auth:sanctum'])->get('discounts/all',[DiscountController::class, 'all'])->name('discount.all');
 
+Route::middleware(['auth:sanctum'])->get('banner/all',[BannerController::class, 'all'])->name('banner.all');
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +102,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('/admin.dashboard', function () {
         return Inertia::render('Admin/Dashboard');
     })->name('admin.dashboard')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->get('/admin.banners', function () {
+        return Inertia::render('Admin/Banner', ['banners' => Banner::all()]);
+    })->name('admin.banners')->middleware('is_admin');
 
     Route::post('admin.login',[UserAdminController::class,'authenticate'])->name('admin.login');
 
@@ -170,4 +178,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/update',[DiscountController::class, 'update'])->name('discount.update');
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/add/items',[DiscountController::class, 'attachProduct'])->name('discount.attach');
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/remove/items',[DiscountController::class, 'detachProduct'])->name('discount.detach');
+
+    Route::middleware(['auth:sanctum'])->post('banner/add',[BannerController::class, 'store'])->name('banner.add');
+    Route::middleware(['auth:sanctum'])->get('banner/all',[BannerController::class, 'all'])->name('banner.all');
+    Route::middleware(['auth:sanctum'])->delete('banner/{banner:id}/delete',[BannerController::class, 'remove'])->name('banner.remove');
+    Route::middleware(['auth:sanctum'])->post('banner/{banner:id}/update',[BannerController::class, 'update'])->name('banner.update');
+
 });

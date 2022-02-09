@@ -56,7 +56,6 @@ export default{
                                 y: {
                                     beginAtZero: true,
                                     grid:{
-                                        display:false,
                                         
                                     },
                                     title: {
@@ -77,6 +76,7 @@ export default{
                                 },
                                 x:{
                                      grid:{
+                                        display:false,
                                         opacity:0.5,
                                         color:"rgba(158, 105, 100, 0.5)",
                                     },
