@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function topSelling()
     {
         $products = Product::withCount('orders')
-            ->get()
+            ->with('discounts')->get()
             ->sortBy('orders_count', SORT_REGULAR, true)
             ->take(10);
 
@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function newArrivals()
     {
-        $startDate = now()->subDays(2);
+        $startDate = now()->subDays(12);
         $endDate = now();
 
         $products = Product::whereDate('created_at', '>=', $startDate)

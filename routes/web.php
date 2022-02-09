@@ -88,6 +88,9 @@ Route::middleware(['auth:sanctum'])->get('discounts/all',[DiscountController::cl
 
 Route::middleware(['auth:sanctum'])->get('banner/all',[BannerController::class, 'all'])->name('banner.all');
 
+Route::middleware(['auth:sanctum'])->get('topselling',[ProductController::class, 'topselling'])->name('topselling');
+Route::middleware(['auth:sanctum'])->get('newarrivals',[ProductController::class, 'newArrivals'])->name('newarrivals');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

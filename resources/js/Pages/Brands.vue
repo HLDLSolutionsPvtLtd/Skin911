@@ -6,7 +6,7 @@
             </div>
             <div class="w-full sm:grid sm:grid-cols-6 m-2">
                 
-                <div v-for="brand in brands" class="m-2 p-2 border">
+                <div v-for="brand in brands" :key="brand.id" class="m-2 p-2 border">
                      <a :href="'/products?key='+brand.name" >
                         <div>
                             <img class="w-full" :src="'/storage/'+brand.img" alt="">

@@ -21,21 +21,53 @@
            </div>
 
            <div class="md:mx-4 md:my-12 mt-2">
-               <div class="flex justify-start sm:justify-center">
-                   <span class="text-gray-700 p-2 mt-4 font-bold sm:text-4xl">TRENDING</span>
+               <div class="flex justify-start">
+                   <span class="text-gray-700 p-2 mt-4 font-bold sm:text-3xl">TOP SELLING PRODUCTS</span>
                </div>
-               <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:mx-12 md:px-4">
-                    <div class="border w-5/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="image in images" :key="image">
+               <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
+                    <div class="border w-5/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="tproduct in topselling" :key="tproduct">
                         <div class="">
-                            <a href="/ProductDetail" class="overflow-hidden">
+                            <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img class="absolute inset-0 h-full w-full object-cover" :src="image.img" alt="">
+                                    <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
+                                </div>
+                                <div class="absolute ribbon top-4 left-0">
+                                    <span v-if="tproduct.discounts[0]" class="flag-discount transform rotate-90">
+                                        <template v-if="tproduct.discounts[0].type == 'percentage'">
+                                            {{tproduct.discounts[0].amount}}%
+                                        </template>
+                                        <template v-else>
+                                            -{{tproduct.discounts[0].amount}}
+                                        </template>
+                                    </span>
                                 </div>
                             </a>
-                            <div class="">
-                                <button class="p-2 w-full bg-pink text-white text-sm font-bold tracking-wide">ADD TO CART</button>
+                            <div class="px-2">
+                                <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{tproduct.name}}</p>
                             </div>
+                            <!-- <div class="px-2">
+                                <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{tproduct.description}}</span>
+                            </div> -->
+                            <div class="px-2 h-6">
+                                
+                                <template v-if="tproduct.discounts[0]">
+                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{tproduct.price}}</span>
+                                    <template v-if="tproduct.discounts[0].type == 'percentage'">
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{tproduct.price - (tproduct.price * tproduct.discounts[0].amount / 100)}}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{tproduct.price - tproduct.discounts[0].amount}}</span>
+                                    </template>
+                                </template>
+                                <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{tproduct.price}}</span>
+                            </div>
+                            
                         </div>  
+                        <div class="mt-2">
+                            <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden">
+                                <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
+                            </a>
+                        </div> 
                     </div>
                </div>
            </div> 
@@ -57,11 +89,11 @@
                    <span class="col-span-3 sm:text-4xl font-bold text-gray-700">SHOP ALL</span>
                </div>
                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-                    <div class="p-1 border-gray-100" v-for="image in products" :key="image">
+                    <div class="p-1 border-gray-100" v-for="nproduct in products" :key="nproduct">
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" :src="image.img" alt="">
+                                <img class="absolute inset-0 h-full w-full object-cover" :src="nproduct.img" alt="">
                             </div>
                             </a>
                             <div class="">
@@ -81,19 +113,22 @@
                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
                     <div class="p-1" v-for="image in brands" :key="image">
                         <div class="">
-                            <a href="/ProductDetail" class="overflow-hidden">
-                            <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" :src="image.img" alt="">
-                            </div>
+                            <a :href="'/products?key='+brand.name" >
+                                <div>
+                                    <img class="w-full" :src="'/storage/'+brand.img" alt="">
+                                </div>
+                                <div class="flex justify-center">
+                                    <span class="p-2 font-semibold text-gray-900 tracking-wider">{{brand.name}}</span>
+                                </div>
                             </a>
                             <div class="">
-                                <button class="p-2 w-full bg-pink text-pink-dark text-xs font-bold">EXPLORE</button>
+                                <a :href="'/products?key='+brand.name" class="p-2 w-full bg-pink text-pink-dark text-xs font-bold">EXPLORE</a>
                             </div>
                         </div>  
                     </div>
                 </div> 
                 <div class="m-4 flex justify-center sm:my-12 sm:mx-24">
-                    <button class="sm:p-2 p-2 text-xs font-bold border-2 border-gray-900">VIEW ALL FEATURED BRANDS</button>
+                    <a href="/view/brands" class="sm:p-2 p-2 text-xs font-bold border-2 border-gray-900">VIEW ALL FEATURED BRANDS</a>
                 </div>
            </div>
        </div>
@@ -118,6 +153,9 @@
                 touchendX : 0,
                 currentIndex: 0,
                 timer: null,
+                topselling: [],
+                newarrivals: [],
+                brands: [],
                 images:[
                     {
                         id:0,
@@ -164,25 +202,6 @@
                     },
                     
                 ],
-                brands:[
-                    {
-                        id:0,
-                        img:'https://i.pinimg.com/originals/66/70/e3/6670e3d671398b842511a522ae879a0a.png',
-                    },
-                    {
-                        id:1,
-                        img:'https://www.dior.com/couture/var/dior/storage/images/horizon/logo-dior/25334685-1-fre-FR/logo-dior_mobile_share.jpg',
-                    },
-                    {
-                        id:2,
-                        img:'https://thumbs.dreamstime.com/b/logo-mac-cosmetics-201939806.jpg',
-                    },
-                    {
-                        id:3,
-                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2-2Y25e11r4cuXrN0GUHrtf8z54JwsJe-oA&usqp=CAU',
-                    },
-                    
-                ]
             }
         },
          methods: {
@@ -280,6 +299,12 @@
             this.startSlide();
             axios.get('/banner/all')
             .then(res => this.banners = res.data);
+            axios.get('/topselling')
+            .then(res => this.topselling = res.data);
+            axios.get('/newarrivals')
+            .then(res => this.newarrivals = res.data);
+             axios.get('/brands/all')
+            .then(res => this.brands = res.data);
         },
     })
 </script>
