@@ -1,5 +1,27 @@
 <template>
     <app-layout title="Dashboard">
+        <div class="flex justify-center relative">
+            <div v-show="success" class="fixed w-full z-50 transform shadow-lg sm:w-1/4 top-1/4">
+                <div class=" bg-white rounded-sm">
+                    <div class="bg-pink-300 p-2 flex justify-center">
+                        <div class="p-4 flex flex-col justify-center">
+                            <div class="flex justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 24 24"  class="fill-current transition transform translate-Y-60 duration-700 text-green-400">
+                                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
+                                </svg>
+                            </div>
+                            <div class="mt-2">
+                                <span class="font-bold text-md tracking-wider text-white">ADDED TO CART</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center m-2 p-2">
+                        <button @click="success=!success" class="p-2 bg-pink-300 rounded-md font-bold tracking-wider text-white">OK</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
        <div class="bg-white">
            <div class="h-1/3 m-4">
                 <div class="carousel">
@@ -21,7 +43,7 @@
            </div>
 
            <div class="md:mx-4 md:my-12 mt-2">
-               <div class="flex justify-start">
+               <div class="flex justify-center">
                    <span class="text-gray-700 p-2 mt-4 font-bold sm:text-3xl">TOP SELLING PRODUCTS</span>
                </div>
                <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
@@ -63,11 +85,14 @@
                             </div>
                             
                         </div>  
-                        <div class="mt-2">
-                            <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden">
+                        <div v-if="!tproduct.variant[0]" class="mt-2">
+                            <button @click="addToCart(tproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                        </div> 
+                        <div v-else class="mt-2">
+                            <a :href="'/product/'+tproduct.id+'/details'">
                                 <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
                             </a>
-                        </div> 
+                        </div>
                     </div>
                </div>
            </div> 
@@ -111,7 +136,7 @@
                    <span class="col-span-3 text-center sm:text-4xl font-bold text-gray-700">FEATURED BRANDS</span>
                </div>
                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-                    <div class="p-1" v-for="image in brands" :key="image">
+                    <div class="m-2 border" v-for="brand in brands" :key="brand">
                         <div class="">
                             <a :href="'/products?key='+brand.name" >
                                 <div>
@@ -122,13 +147,13 @@
                                 </div>
                             </a>
                             <div class="">
-                                <a :href="'/products?key='+brand.name" class="p-2 w-full bg-pink text-pink-dark text-xs font-bold">EXPLORE</a>
+                                <a :href="'/products?key='+brand.name" class="p-2 w-full flex justify-center bg-pink text-pink-dark text-xs font-bold">EXPLORE</a>
                             </div>
                         </div>  
                     </div>
                 </div> 
                 <div class="m-4 flex justify-center sm:my-12 sm:mx-24">
-                    <a href="/view/brands" class="sm:p-2 p-2 text-xs font-bold border-2 border-gray-900">VIEW ALL FEATURED BRANDS</a>
+                    <a href="/view/brands" class="sm:p-2 p-2 text-sm font-bold border rounded-md text-gray-600 border-gray-400">VIEW ALL FEATURED BRANDS</a>
                 </div>
            </div>
        </div>
@@ -153,9 +178,15 @@
                 touchendX : 0,
                 currentIndex: 0,
                 timer: null,
+                popup:false,
+                form: this.$inertia.form({
+                    variant : '',
+                    quantity : 1,
+                }),
                 topselling: [],
                 newarrivals: [],
                 brands: [],
+                success: false,
                 images:[
                     {
                         id:0,
@@ -205,7 +236,17 @@
             }
         },
          methods: {
-
+            addToCart(id){
+                this.form.post('/cart/product/'+id+'/add',
+                {
+                    preserveScroll: true,
+                    onFinish: () =>  {
+                        this.success = true;
+                        
+                    }
+                       
+                })
+            },
             startSlide: function() {
                 this.timer = setInterval(this.next, 4000);
             },

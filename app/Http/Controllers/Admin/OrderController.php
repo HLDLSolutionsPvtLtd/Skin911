@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Razorpay\Api\Api;
 
@@ -18,6 +19,13 @@ class OrderController extends Controller
     public function updateStatus(Order $order, Request $request)
     {
         $order->status = $request->status;
+        if($request->status == 'cancelled' || $request->status == 'denied' || $request->status == 'returned')
+        {
+            foreach($order->products as $product)
+            {
+                $product->quantity = $product->quantity++;
+            }
+        }
         $order->save();
 
         return redirect()->back();
@@ -38,11 +46,18 @@ class OrderController extends Controller
 
     public function searchOrders(Request $request)
     {
-        return Order::where('status', $request->status)->get();
+        if($request->status == 'all')
+        {
+            return Inertia::render('Admin/Orders', ['orders' => Order::all()]);
+        }
+        else
+        {
+            return Inertia::render('Admin/Orders', ['orders' => Order::where('status', $request->status)->get()]);
+        }
     }
 
     public function search(Request $request)
     {
-        return Order::where('status', $request->key)->get();
+        return Inertia::render('Admin/Orders', ['orders' => Order::where('status', $request->status)->get()]);
     }
 }

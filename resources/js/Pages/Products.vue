@@ -1,5 +1,27 @@
 <template>
     <app-layout>
+        <div class="flex justify-center relative">
+            <div v-show="success" class="fixed w-full z-50 transform shadow-lg sm:w-1/4 top-1/4">
+                <div class=" bg-white rounded-sm">
+                    <div class="bg-pink-300 p-2 flex justify-center">
+                        <div class="p-4 flex flex-col justify-center">
+                            <div class="flex justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 24 24"  class="fill-current transition transform translate-Y-60 duration-700 text-green-400">
+                                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
+                                </svg>
+                            </div>
+                            <div class="mt-2">
+                                <span class="font-bold text-md tracking-wider text-white">ADDED TO CART</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center m-2 p-2">
+                        <button @click="success=!success" class="p-2 bg-pink-300 rounded-md font-bold tracking-wider text-white">OK</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
         <div class="flex justify-center w-full min-h-screen bg-white">
             <div class="w-full sm:m-0 sm:w-11/12 md:11/12 xl:w-10/12">
                 <div class="sm:grid sm:grid-cols-6 m-2 sm:mt-12 mb-12">
@@ -92,9 +114,14 @@
                                        
                                     </div>  
                                     <div class="mt-2">
-                                        <a :href="'/product/'+product.id+'/details'" class="overflow-hidden">
-                                            <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
-                                        </a>
+                                         <div v-if="!product.variant[0]" class="mt-2">
+                                            <button @click="addToCart(product.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                                        </div> 
+                                        <div v-else class="mt-2">
+                                            <a :href="'/product/'+product.id+'/details'">
+                                                <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                         </div>
@@ -209,7 +236,12 @@ export default{
                 brands: [],
                 categories: [],
                 res: [],
+                form: this.$inertia.form({
+                    variant : '',
+                    quantity : 1,
+                }),
                 next: '',
+                success: false,
             }
         },
     mounted() {
@@ -258,7 +290,19 @@ export default{
                     this.next = res.data.next_page_url;
                 });
             }
-        }
+        },
+
+        addToCart(id){
+                this.form.post('/cart/product/'+id+'/add',
+                {
+                    preserveScroll: true,
+                    onFinish: () =>  {
+                        this.success = true;
+                        
+                    }
+                       
+                })
+            },
     },
 }
 </script>

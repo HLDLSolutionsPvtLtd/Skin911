@@ -43,7 +43,7 @@
                <div class="flex justify-between m-4">
                     <div class="flex gap-2">
                         <div>
-                            <span @click="Rorders = orders" class="text-xs cursor-pointer tracking-wider text-gray-500 p-2 bg-gray-200 font-bold rounded-md">ALL</span>
+                            <span @click="searchFilter('all')" class="text-xs cursor-pointer tracking-wider text-gray-500 p-2 bg-gray-200 font-bold rounded-md">ALL</span>
                         </div>
                         <div class="">
                             <span @click="searchFilter('accepted')" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">ACCEPTED</span>
@@ -97,7 +97,7 @@
                             <th class="text-left p-1 py-4">Payment</th>
                         </tr>
                         
-                        <tr v-for="(order, index) in Rorders" :key="order.id" class="border-b-2 text-sm font-semibold text-gray-500 tracking-wider border-gray-200">   
+                        <tr v-for="(order, index) in orders" :key="order.id" class="border-b-2 text-sm font-semibold text-gray-500 tracking-wider border-gray-200">   
                             <td class="p-1 font-bold text-left text-gray-500 py-4">
                                {{order.id}}
                             </td>
@@ -149,7 +149,6 @@
             products: [],
             status: '',
             key: '',
-            Rorders: this.orders,
         }
     },
      components:
@@ -169,10 +168,7 @@
         {
             this.$inertia.put('/admin/order/'+order.id+'/markas',{
                 'status': this.status,
-                onSuccess: () =>
-                {
-
-                }
+                
             });
             this.status = '';
         },
@@ -188,12 +184,13 @@
         },
         search(){
             axios.get("/admin/order/search", {params: {'key': this.key}})
-            .then(res => this.Rorders = res.data);
+            .then(res => this.orders = res.data);
         },
 
         searchFilter(filter){
-            axios.get("/admin/order/getby/status", {params: {'status': filter}})
-            .then(res => this.Rorders = res.data);
+            this.$inertia.get("/admin/order/getby/status", {
+                status: filter,
+            })
         }
     },
     mounted()

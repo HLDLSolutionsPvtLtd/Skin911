@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class CartController extends Controller
@@ -42,7 +43,7 @@ class CartController extends Controller
         }
         if($user->cart)
         {
-            $user->cart->products()->attach($product, ['quantity'=> $request->quantity]);
+            $user->cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1']);
         }
         else
         {
@@ -50,10 +51,10 @@ class CartController extends Controller
                 'user_id' => $user->id
             ]);
 
-            $cart->products()->attach($product, ['quantity'=> $request->quantity, 'variant' => $variant]);
+            $cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1', 'variant' => $variant]);
         }
 
-        return redirect()->back();
+        return  Redirect::back()->with('success');
     }
 
     public function removeProduct(Cart $cart, Product $product, Request $request)

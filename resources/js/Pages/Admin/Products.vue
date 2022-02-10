@@ -14,6 +14,7 @@
                             <span @click="outOfStock()" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">OUT OF STOCK</span>
                         </div>
                     </div>
+                    
                     <div class="relative">
                         <input type="search" v-model="key" @keydown.enter="search()" class="h-8 border border-gray-300 rounded-md pl-8 text-blue-400 placeholder-gray-300 text-sm tracking-wider" placeholder="Search products">
                         <svg @click="search()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="fill-current cursor-pointer text-blue-500 absolute top-2 left-2" viewBox="0 0 24 24">
@@ -21,9 +22,25 @@
                         </svg>
                     </div>
                 </div>
+                <div v-show="selectedItems[0]" class="flex items-center mx-4 gap-2">
+                    <button class="text-xs flex items-center p-2 border border-blue-200 rounded-md text-blue-400  font-bold tracking-wider shadow-sm">ADD TO TRENDING
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" class="fill-current text-blue-400 ml-2">
+                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm2 12l-4.5 4.5 1.527 1.5 5.973-6-5.973-6-1.527 1.5 4.5 4.5z"/>
+                        </svg>
+                    </button>
+                    <button class="text-xs p-2 flex items-center border border-blue-200 rounded-md text-blue-400  font-bold tracking-wider shadow-sm">
+                        ADD TO NEW-ARRIVALS
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" class="fill-current text-blue-400 ml-2">
+                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm2 12l-4.5 4.5 1.527 1.5 5.973-6-5.973-6-1.527 1.5 4.5 4.5z"/>
+                        </svg>
+                    </button>
+                </div>
                <div class="flex  m-2">
                    <table class="m-2 w-full text-ct border-collapse table-auto">
                         <tr class="border-t-2 shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
+                            <td>
+
+                            </td>
                             <th class="flex p-4">
                                 <span class="flex pr-1">ID</span>
                             </th>
@@ -48,7 +65,10 @@
                             <th class="text-center py-4">Actions</th>
                         </tr>
                         
-                        <tr v-for="product in products" :key="product.id" class="border-t-2 shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
+                        <tr v-for="product in products" :key="product.id" class="border-t-2 shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">
+                            <td>
+                                <input type="checkbox" :value="product.id" v-model="selectedItems">
+                            </td>   
                             <td class="text-left p-4">{{product.id}}</td>
                             <td class="p-2 flex "><img v-if="product.image[0]" class="h-12 w-12 flex mr-3" :src="'/storage/'+product.image[0].link" alt=""><span class="flex self-center justify-center text-md text-center font-bold">{{product.name}}</span></td>
                             <td class="text-left  p-1">{{product.brand_id}}</td>
@@ -90,6 +110,7 @@
             products: [],
             response: [],
             key: '',
+            selectedItems: []
         }
     },
      components:

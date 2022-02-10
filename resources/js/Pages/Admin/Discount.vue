@@ -330,7 +330,7 @@
                                             <span class="pr-1">Actions</span>
                                         </th>
                                     </tr>
-                                    <template v-for="category in selectedDiscount.categories" :key="category.id">
+                                    <template v-for="category in discounts[findIndex(selectedDiscount)].categories" :key="category.id">
                                         <tr  class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
                                             <td class="p-2 text-center border-r border-gray-300">
                                                 Category
@@ -342,7 +342,7 @@
                                             </td>
                                         </tr>
                                     </template>
-                                    <template v-for="brand in selectedDiscount.brands" :key="brand.id">
+                                    <template v-for="brand in discounts[findIndex(selectedDiscount)].brands" :key="brand.id">
                                         <tr  class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
                                             <td class="p-2 text-center border-r border-gray-300">
                                                 Brand
@@ -354,7 +354,7 @@
                                             </td>
                                         </tr>
                                     </template>
-                                    <template v-for="product in selectedDiscount.products" :key="product.id">
+                                    <template v-for="product in discounts[findIndex(selectedDiscount)].products" :key="product.id">
                                         <tr  class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
                                             <td class="p-2 text-center border-r border-gray-300">
                                                 Product
@@ -432,6 +432,14 @@
     },
     methods:
     {
+        findIndex(discount){
+            return this.discounts.findIndex(el =>{
+                if(discount.id == el.id)
+                {
+                    return true;
+                }
+            });
+        },
         formatdate(date)
         {
             var date = new Date(date);
@@ -527,7 +535,8 @@
                 'type' : this.selectToadd,
                 onSuccess:() =>
                 {
-                    
+                    this.selectedItems = []
+
                 }
             });
             

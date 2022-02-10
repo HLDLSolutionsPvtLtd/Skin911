@@ -24,7 +24,7 @@
                                         <span class="text-xs sm:tracking-widest font-bold">On {{formatDate(order.updated_at)}}</span>
                                     </div>
                                 </div>
-                                <div class="flex border-l-2 pl-2 items-center">
+                                <div v-if="order.status == 'placed' || order.status == 'accepted'" class="flex border-l-2 pl-2 items-center">
                                     <button @click="cancel(order.id)" class="text-xs sm:text-md font-bold tracking-wider p-2">CANCEL</button>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ export default {
             });
             this.RZPScript.open();
         },
-        cancel(){
+        cancel(id){
             this.$inertia.post("/order/"+id+"/cancel", {
                 onSuccess: () =>{
                     alert("success!");

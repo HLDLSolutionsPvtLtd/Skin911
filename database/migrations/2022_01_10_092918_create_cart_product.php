@@ -17,7 +17,7 @@ class CreateCartProduct extends Migration
             $table->id();
             $table->string('product_id');
             $table->string('cart_id');
-            $table->string('quantity');
+            $table->string('quantity')->default('1');
             $table->string('variant')->nullable();
         });
     }

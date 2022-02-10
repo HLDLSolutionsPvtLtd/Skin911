@@ -53,6 +53,8 @@ class OrderController extends Controller
 
             $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $product->pivot->variant, 'subtotal' => $product->pivot->quantity * $price]);
             $cart->products()->wherePivot('id', $product->pivot->id)->detach();
+            $product->quantity = $product->quantity--;
+            $product->save();
         }
 
         if(!$request->cod)
@@ -86,9 +88,13 @@ class OrderController extends Controller
         {
             if($order->status != "out_for_delivery")
             {
-                $order->status ='canceled';
+                $order->status ='cancelled';
+                foreach($order->products as $product)
+                {
+                    $product->quantity = $product->quantity++;
+                }
                 $order->save();
-                return response('success', 200);
+                return redirect()->back();
             }
             else
             {
