@@ -23,13 +23,12 @@
                     </div>
                 </div>
                 <div v-show="selectedItems[0]" class="flex items-center mx-4 gap-2">
-                    <button class="text-xs flex items-center p-2 border border-blue-200 rounded-md text-blue-400  font-bold tracking-wider shadow-sm">ADD TO TRENDING
+                    <button @click="markAs('trending')" class="text-xs flex items-center p-2 border border-blue-200 rounded-md text-blue-400  font-bold tracking-wider shadow-sm">ADD TO TRENDING
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" class="fill-current text-blue-400 ml-2">
                             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm2 12l-4.5 4.5 1.527 1.5 5.973-6-5.973-6-1.527 1.5 4.5 4.5z"/>
                         </svg>
                     </button>
-                    <button class="text-xs p-2 flex items-center border border-blue-200 rounded-md text-blue-400  font-bold tracking-wider shadow-sm">
-                        ADD TO NEW-ARRIVALS
+                    <button @click="markAs('just here')" class="text-xs flex items-center p-2 border border-blue-200 rounded-md text-blue-400  font-bold tracking-wider shadow-sm">ADD TO NEW-ARRIVAL
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" class="fill-current text-blue-400 ml-2">
                             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm2 12l-4.5 4.5 1.527 1.5 5.973-6-5.973-6-1.527 1.5 4.5 4.5z"/>
                         </svg>
@@ -57,6 +56,9 @@
                                 <span class="flex pr-1">Price</span>
                             </th>
                             <th class="text-left  py-4">
+                                <span class="flex pr-1">Tag</span>
+                            </th>
+                            <th class="text-left  py-4">
                                 <span class="flex pr-1">Quantity</span>
                             </th>
                             <th class="text-left  py-4">
@@ -74,6 +76,7 @@
                             <td class="text-left  p-1">{{product.brand_id}}</td>
                             <td class="text-left  p-1">{{product.category_id}}</td>
                             <td class="text-left  p-1">{{product.price}}</td>
+                            <td class="text-left  p-1">{{product.tag}}</td>
                             <td class="text-left  p-1">{{product.quantity}}</td>
                             <td class="text-left  p-1">{{product.variant.length}}</td>
                             <td class="p-1">
@@ -105,10 +108,9 @@
 
 
  export default{
+    props: ['products'],
     data(){
         return{
-            products: [],
-            response: [],
             key: '',
             selectedItems: []
         }
@@ -149,36 +151,42 @@
                 }
             }
         },
+        markAs(itag)
+        {
+            this.$inertia.post('/admin/product/markas', {
+                ids: this.selectedItems,
+                tag: itag,
+                preserveState: false,
+                onSucess: () =>
+                {
+                    this.selectedItems = [];
+                }
+            })
+        },
         search()
         {
-            axios.get('/admin/product/search', {params: {'key': this.key}})
-            .then(res => this.products = res.data);
+            this.$inertia.get('/admin/product/search', {
+                'key': this.key
+            })
         },
 
         outOfStock()
         {
-            axios.get('/admin/product/outofstock')
-            .then(res => this.products = res.data);
+            this.$inertia.get('/admin/product/outofstock',
+            )
         },
         all()
         {
-             axios.get('admin.getproducts')
-            .then(res => this.response = res.data)
-            .then(error => {
-                console.error(error);
-            })
+            this.$inertia.get('/admin/allproducts')
         }
+       
     },
-    mounted()
-    {
-       this.all();
+    mounted(){
+        this.selectedItems = [];
     },
     watch:
     {
-        response()
-        {
-            this.products = this.response;
-        }
+        
     }
  }
 </script>

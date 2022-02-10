@@ -13,7 +13,17 @@ class CartController extends Controller
 
     public function view(Request $request)
     {
-        return Inertia::render('Cart', ['products' => $request->user()->cart->products]);
+        if($request->user()->cart)
+        {
+            return Inertia::render('Cart', ['products' => $request->user()->cart->products]);
+        }
+        else
+        {
+            $cart = Cart::create([
+                'user_id' => $request->user()->id
+            ]);
+            return Inertia::render('Cart', ['products' => $cart->products]);
+        }
     }
 
     public function all(Request $request)

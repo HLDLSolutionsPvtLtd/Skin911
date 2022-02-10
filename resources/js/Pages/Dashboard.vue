@@ -23,20 +23,25 @@
             </div>
         </div>
        <div class="bg-white">
-           <div class="h-1/3 m-4">
+           <div class="h-1/3 m-4 relative">
+                 <!-- <div class="absolute z-30 top-1/2 left-1/4">
+                    <span class="text-lg uppercase ">{{this.currentImg.description}}</span>
+                </div>   -->
                 <div class="carousel">
+                       
                     <transition-group class="carousel" name="fade" tag="div">
                         <div class="w-full h-full" @touchstart="touchstart($event)" @touchend="touchend($event)" v-for="i in [currentIndex]" :key="i">
-                            <img :class="{'slide-in':slidein,'slide-out':slideout}" :src="'/storage/'+currentImg" class="w-full h-full transition-transform ease-in-out duration-700" />
+                            <img @click="redirectTo()" :class="{'slide-in':slidein,'slide-out':slideout}" :src="'/storage/'+currentImg.image" class="w-full h-full transition-transform ease-in-out duration-700" />
                         </div>
                     </transition-group> 
                 </div>
                 <div class="relative">
+                    
                     <ul class="absolute bottom-2 dots">
                         <li :class="{liactive : currentIndex === index}" 
                             v-for="(banner, index) in banners" 
                             :key="banner.id"
-                            @click="jump(banner.id)">
+                            @click="jump(index)">
                         </li>
                     </ul>
                 </div>
@@ -118,11 +123,16 @@
                         <div class="">
                             <a href="/ProductDetail" class="overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" :src="nproduct.img" alt="">
+                                <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
                             </div>
                             </a>
-                            <div class="">
-                                <button class="p-2 w-full bg-pink text-pink-dark text-xs font-bold tracking-wider">ADD TO CART</button>
+                            <div v-if="!nproduct.variant[0]" class="mt-2">
+                                <button @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                            </div> 
+                            <div v-else class="mt-2">
+                                <a :href="'/product/'+nproduct.id+'/details'">
+                                    <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
+                                </a>
                             </div>
                         </div>  
                     </div>
@@ -174,6 +184,7 @@
                 banners: [],
                 slidein: false,
                 slideout:false,
+                currentImg:  {},
                 ouchstartX : 0,
                 touchendX : 0,
                 currentIndex: 0,
@@ -214,25 +225,7 @@
                     },
                     
                 ],
-                products:[
-                    {
-                        id:0,
-                        img:'https://cdsco.gov.in/opencms/export/system/modules/CDSCO.WEB/resources/img/slider/cosmetic4.jpg',
-                    },
-                    {
-                        id:1,
-                        img:'https://www.ics-world.com/wp-content/uploads/2021/03/Sustainable-2.jpg',
-                    },
-                    {
-                        id:2,
-                        img:'https://imgscf.slidemembers.com/docs/1/1/334/natural_cosmetic_presentation_ppt_333010.jpg',
-                    },
-                    {
-                        id:3,
-                        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfz8UYc1CQyXKs1tRDEj8i_fDGLUPCqSSuFg&usqp=CAU',
-                    },
-                    
-                ],
+                products:[],
             }
         },
          methods: {
@@ -311,6 +304,17 @@
                 clearInterval(this.timer);
                 this.startSlide();
             },
+            redirectTo()
+            {
+                if(this.currentImg.type == 'single')
+                {
+                    this.$inertia.get('/product/'+this.currentImg.id);
+                }
+                else if(this.currentImg.type == 'multiple')
+                {
+                    this.$inertia.get('/products?key='+this.currentImg.key);
+                }
+            }
             // mouseEnter: function(e)
             // {
             //     this.touchstartX = e.screenX;
@@ -333,19 +337,25 @@
        watch: {
             currentIndex() {
                 console.log( )
-                this.currentImg =  this.banners[Math.abs(this.currentIndex)% this.banners.length].image;
+                this.currentImg =  this.banners[Math.abs(this.currentIndex)% this.banners.length];
             }
         },
         mounted: function() {
             this.startSlide();
             axios.get('/banner/all')
-            .then(res => this.banners = res.data);
+            .then(res => {
+                this.banners = res.data;
+                this.currentImg = this.banners[0]
+            });
             axios.get('/topselling')
             .then(res => this.topselling = res.data);
             axios.get('/newarrivals')
             .then(res => this.newarrivals = res.data);
              axios.get('/brands/all')
             .then(res => this.brands = res.data);
+
+            axios.get('/products/all', {params: {'var': 'updated_at', 'val': 'desc'}})
+            .then(res => this.products = res.data.data);
         },
     })
 </script>

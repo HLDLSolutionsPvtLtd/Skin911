@@ -150,11 +150,23 @@ class ProductsController extends Controller
 
     public function search(Request $request)
     {
-        return Product::search($request->key)->get();
+        return Inertia::render('Admin/Products', ['products' => Product::search($request->key)->get()]);
     }
 
     public function outOfStock()
     {
-        return Product::where('quantity', 0)->get();
+        return Inertia::render('Admin/Products', ['products' => Product::where('quantity', 0)->get()]);
+    }
+
+    public function updateTag(Request $request)
+    {
+        foreach($request->ids as $id)
+        {
+            $product = Product::find($id);
+            $product->tag = $request->tag;
+            $product->save();
+        }
+
+        return redirect()->back();
     }
 }

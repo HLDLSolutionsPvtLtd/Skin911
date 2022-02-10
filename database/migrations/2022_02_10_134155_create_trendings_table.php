@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProducts extends Migration
+class CreateTrendingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class AddProducts extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('trendings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('category_id');
-            $table->string('brand_id');
-            $table->string('tag')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->string('price')->nullable();
+            $table->integer('product_id');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ class AddProducts extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('trendings');
     }
 }
