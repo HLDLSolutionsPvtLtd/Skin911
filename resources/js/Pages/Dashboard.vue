@@ -94,7 +94,7 @@
                                 <div class="relative pb-48 overflow-hidden">
                                     <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
                                 </div>
-                                <div class="absolute ribbon top-4 left-0">
+                                <div class="absolute top-4 left-0">
                                     <span v-if="tproduct.discounts[0]" class="flag-discount transform rotate-90">
                                         <template v-if="tproduct.discounts[0].type == 'percentage'">
                                             {{tproduct.discounts[0].amount}}%
