@@ -4,19 +4,20 @@
 
         <jet-banner />
 
-        <div class="min-h-screen bg-white">
-            <div class="w-full bg-pink-200 py-1 text-pink-dark">
-                <div class="flex items-center justify-center">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="p-1" viewBox="0 0 24 24">
-                            <path fill="#814252" d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>\
-                        </svg>
+        <div class="min-h-screen bg-transparent">
+            
+            <nav :class="{'bg-transparent fixed ' : bgSet, 'bg-white sticky shadow-md' : !bgSet}" class="top-0 z-10 w-full transition-all duration-700  border-gray-100  checkpoint">
+                <div :class="{'transform -translate-y-24 h-0' : bgSet, 'transform translate-0': !bgSet}" class="w-full bg-pink-200 py-1 text-pink-dark transition-all duration-700">
+                    <div class="flex items-center justify-center">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="p-1" viewBox="0 0 24 24">
+                                <path fill="#814252" d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>\
+                            </svg>
+                        </div>
+                        <span class="text-xs tracking-wider font-thin">Free shipping across India on all orders over</span>
+                        <span class="pl-2 text-xs tracking-wider text-pink-dark font-semibold">&#8377;2800</span>
                     </div>
-                    <span class="text-xs tracking-wider font-thin">Free shipping across India on all orders over</span>
-                    <span class="pl-2 text-xs tracking-wider text-pink-dark font-semibold">&#8377;2800</span>
                 </div>
-            </div>
-            <nav class="bg-white sticky top-0 z-10 w-full border-b border-gray-100 shadow-md">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
                     <div class="flex justify-between h-16">
@@ -32,7 +33,7 @@
                             <div @mouseover="shop = true" @mouseleave="shop = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link :href="route('categories')"  class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white ">
                                     CATEGORIES
-                                    <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute z-10 w-full left-0 right-0 top-16 bg-white">
+                                    <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute z-10 w-full left-0 right-0 top-24 bg-white">
                                         <div class="grid grid-cols-12 bg- m-4">
                                             <div class="col-span-1">
 
@@ -120,7 +121,7 @@
                             <div @mouseover="routine = true" @mouseleave="routine = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('dashboard')">
                                     ROUTINES
-                                     <div :class="{'modal-open': routine, 'modal-close': !routine}" class="absolute top-16 bg-white">
+                                     <div :class="{'modal-open': routine, 'modal-close': !routine}" class="absolute top-24 bg-white">
                                          <ul class="m-2 ">
                                             <li class="hover:text-gray-700 text-pink-dark pt-2">
                                                 <span>Collections</span>
@@ -138,7 +139,7 @@
                             <div @mouseover="brands = true" @mouseleave="brands = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link class="font-bold color-icon text-pink-dark hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('brands')">
                                     BRANDS
-                                    <div :class="{'modal-open': brands, 'modal-close': !brands}" class="absolute w-full left-0 right-0 top-16 bg-white transition transform translate duration-700 ease-in-out">
+                                    <div :class="{'modal-open': brands, 'modal-close': !brands}" class="absolute w-full left-0 right-0 top-24 bg-white transition transform translate duration-700 ease-in-out">
                                         <div class="grid grid-cols-12 bg- m-4">
                                             <div class="col-span-1">
 
@@ -225,14 +226,14 @@
                             </div>
                         </div>
                         <div class="hidden sm:flex-shrink-1 space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <div class="font-bold rounded-md border border-gray-100 flex justify-center bg-white self-center">
+                            <div class="font-bold rounded-md border border-gray-100 flex justify-center self-center">
                                 <div class="ml-2" @click=" search()">
                                     <svg width="20" height="20" class="h-10" viewBox="0,0,24,24">
                                         <path fill="#747b88" d="M3.438 9.754a6.415 6.415 0 016.408-6.409 6.415 6.415 0 016.409 6.409 6.416 6.416 0 01-6.409 6.408 6.416 6.416 0 01-6.408-6.408M21.816 20.87l-5.974-6.02a7.839 7.839 0 001.88-5.097c0-4.343-3.534-7.875-7.876-7.875-4.342 0-7.875 3.532-7.875 7.875 0 4.342 3.533 7.875 7.875 7.875a7.837 7.837 0 004.946-1.753l5.983 6.029a.73.73 0 001.037.004.733.733 0 00.004-1.038">
                                         </path>
                                     </svg>
                                 </div>
-                                <input type="search" placeholder="SEARCH" v-model="key" @keyup.enter="search()" class="w-full border-0 placeholder-opacity-50 rounded-md focus:ring-0">
+                                <input type="search" placeholder="SEARCH" v-model="key" @keyup.enter="search()" style="placeholder: bold" class="w-full bg-transparent border-0 placeholder-opacity-90 text-sm rounded-md focus:ring-0">
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -349,6 +350,11 @@
                             </div>
                         </div>
                         <div class="flex gap-3 items-center">
+                            <div @click="search_mobile = !search_mobile" class="cursor-pointer sm:hidden"> 
+                                <svg width="18" height="18" class="fill-current text-gray-500" viewBox="0,0,24,24">
+                                    <path d="M23.822 20.88l-6.353-6.354c.93-1.465 1.467-3.2 1.467-5.059.001-5.219-4.247-9.467-9.468-9.467s-9.468 4.248-9.468 9.468c0 5.221 4.247 9.469 9.468 9.469 1.768 0 3.421-.487 4.839-1.333l6.396 6.396 3.119-3.12zm-20.294-11.412c0-3.273 2.665-5.938 5.939-5.938 3.275 0 5.94 2.664 5.94 5.938 0 3.275-2.665 5.939-5.94 5.939-3.274 0-5.939-2.664-5.939-5.939z"/>
+                                </svg>
+                            </div>
                             <div class="flex items-center sm:hidden">
                                 <a href="/cart" class="font-bold flex justify-center self-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-500" width="22" height="22" viewBox="0 0 24 24">
@@ -371,7 +377,17 @@
                         </div>
                     </div>
                 </div>
-                
+                <div v-show="search_mobile" class="m-2">
+                    <div class="font-bold rounded-md border border-gray-200 flex justify-center bg-white self-center">
+                        <div class="ml-2" @click=" search()">
+                            <svg width="20" height="20" class="h-10 " viewBox="0,0,24,24">
+                                <path fill="#747b88" d="M3.438 9.754a6.415 6.415 0 016.408-6.409 6.415 6.415 0 016.409 6.409 6.416 6.416 0 01-6.409 6.408 6.416 6.416 0 01-6.408-6.408M21.816 20.87l-5.974-6.02a7.839 7.839 0 001.88-5.097c0-4.343-3.534-7.875-7.876-7.875-4.342 0-7.875 3.532-7.875 7.875 0 4.342 3.533 7.875 7.875 7.875a7.837 7.837 0 004.946-1.753l5.983 6.029a.73.73 0 001.037.004.733.733 0 00.004-1.038">
+                                </path>
+                            </svg>
+                        </div>
+                        <input type="search" placeholder="SEARCH" v-model="key" @keyup.enter="search()" class="w-full text-sm border-0 placeholder-opacity-50 rounded-md focus:ring-0">
+                    </div>                
+                </div>
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden absolute bg-white w-full shadow-lg">
                     <!-- Responsive Settings Options -->
@@ -520,8 +536,11 @@
 
         data() {
             return {
+                search_mobile : false,
                 showingNavigationDropdown: false,
                 shop:false,
+                bgSet: false,
+                stick: false,
                 bestSeller:false,
                 routine:false,
                 brands:false,
@@ -551,7 +570,28 @@
                 this.$inertia.get('/products/search', {
                     'key' : this.key
                 });
+            },
+            handleSCroll (event) {
+                let header = document.querySelector("#checkpoint");
+                if (window.scrollY > 100) {
+                    this.bgSet = false;
+                } else if (window.scrollY < 100) {
+                   this.bgSet = true;
+                }
             }
-        }
+        },
+        mounted() {
+            if(this.title == 'Dashboard')
+            {
+                this.bgSet = true;
+
+                window.addEventListener('scroll', this.handleSCroll);
+            }
+            else
+            {
+                this.bgSet =false;
+                this.stick = true;
+            }
+        },
     })
 </script>

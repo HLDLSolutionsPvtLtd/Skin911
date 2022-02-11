@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\BrandController as ControllersBrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
+use App\Http\Controllers\DiscountController as ControllersDiscountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAdminController;
@@ -65,9 +66,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/address/new', function ()
 Route::middleware(['auth:sanctum'])->get('address/{address:id}/edit',[AddressController::class, 'edit'])->name('products.edit');
 Route::middleware(['auth:sanctum'])->post('address/{address:id}/edit',[AddressController::class, 'update'])->name('products.update');
 
+Route::middleware(['auth:sanctum'])->get('discount/get/random',[ControllersDiscountController::class, 'getRand'])->name('discount.random');
+
 Route::middleware(['auth:sanctum'])->get('products/search',[ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth:sanctum'])->get('products/all',[ProductController::class, 'all'])->name('products.all');
 Route::middleware(['auth:sanctum'])->get('products/related',[ProductController::class, 'related'])->name('products.related');
+Route::middleware(['auth:sanctum'])->get('products/shopall',[ProductController::class, 'shopAll'])->name('products.shopall');
 
 Route::middleware(['auth:sanctum'])->get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
 Route::middleware(['auth:sanctum'])->get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');

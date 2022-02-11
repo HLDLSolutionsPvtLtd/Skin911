@@ -14,6 +14,10 @@ class ProductController extends Controller
         return Inertia::render('Search', ['products' => $products->load('discounts')]);
 
     }
+    public function shopAll()
+    {
+        return Product::limit(8)->get();
+    }
 
     public function all(Request $request)
     {
@@ -38,7 +42,7 @@ class ProductController extends Controller
 
     public function related(Request $request)
     {
-        return Product::where('category_id', $request->category_id)->where('id' , '!=', $request->id)->orWhere('brand_id', $request->brand_id)->where('id' , '!=', $request->id)->with('discounts')->get();
+        return Product::where('category_id', $request->category_id)->orWhere('brand_id', $request->brand_id)->with('discounts')->get()->where('id' , '!=', $request->id);
     }
 
     public function topSelling()
@@ -46,7 +50,7 @@ class ProductController extends Controller
         $products = Product::withCount('orders')
             ->with('discounts')->get()
             ->sortBy('orders_count', SORT_REGULAR, true)
-            ->take(10);
+            ->take(6);
 
         return $products;
     }
@@ -58,12 +62,12 @@ class ProductController extends Controller
      */
     public function newArrivals()
     {
-        $startDate = now()->subDays(12);
+        $startDate = now()->subDays(32);
         $endDate = now();
 
         $products = Product::whereDate('created_at', '>=', $startDate)
             ->whereDate('created_at', '<=', $endDate)
-            ->get();
+            ->with('discounts')->get();
 
         return $products;
     }

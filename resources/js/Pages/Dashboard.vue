@@ -1,7 +1,43 @@
 <template>
     <app-layout title="Dashboard">
         <div class="flex justify-center relative">
-            <div v-show="success" class="fixed w-full z-50 transform shadow-lg sm:w-1/4 top-1/4">
+            <div v-show="success" class="modal z-50" id="modal">
+                <div class='modal__container bg-red-400'>
+                                        
+                   <div class="modal__content pt-12 relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 right-1/3 fill-current transition transform translate-Y-60 duration-700 text-green-400 rounded-full bg-white">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
+                        </svg>
+                        <h1 class="text-4xl"><span class="text-gray-800 font-semibold">ADDED TO CART</span></h1>
+                        <a href="/cart">
+                            <button class="modal__button mt-4 tracking-widest font-bold bg-blue-400 w-full">VIEW CART</button>
+                        </a>
+                    </div>
+                    <i @click="success=!success" class="absolute right-4 top-4 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
+                        </svg>
+                    </i>
+                </div>
+            </div>
+            <div v-show="discount_popup" class="modal z-50" id="modal">
+                <div class='modal__container'>
+                    <img class="modal__img" src="https://drive.google.com/uc?export=view&id=1hsqRgrdpr5T673KZLyUmHVoLWcv159MC">
+                    <div class="modal__content">
+                        <h1 class="modal__title uppercase"><span>{{Discount.name}}</span></h1>
+                        <p class="modal__paragraph my-4">UPTO {{Discount.amount}} <span class="px-2" v-if="Discount.type == 'percentage'">%</span> OFF</p>
+                        <a :href="'/products?key='+Discount.name">
+                            <button class="modal__button mt-4 uppercase">view products</button>
+                        </a>
+                    </div>
+                    <i @click="discount_popup=!discount_popup" class="absolute right-4 top-4 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
+                        </svg>
+                    </i>
+                </div>
+            </div>
+            <div v-show="" class="fixed w-5/6 z-50 transform shadow-lg sm:w-1/4 top-1/4">
                 <div class=" bg-white rounded-sm">
                     <div class="bg-pink-300 p-2 flex justify-center">
                         <div class="p-4 flex flex-col justify-center">
@@ -23,11 +59,11 @@
             </div>
         </div>
        <div class="bg-white">
-           <div class="h-1/3 m-4 relative">
+           <div class="relative">
                  <!-- <div class="absolute z-30 top-1/2 left-1/4">
                     <span class="text-lg uppercase ">{{this.currentImg.description}}</span>
                 </div>   -->
-                <div class="carousel">
+                <div class="carousel h-full">
                        
                     <transition-group class="carousel" name="fade" tag="div">
                         <div class="w-full h-full" @touchstart="touchstart($event)" @touchend="touchend($event)" v-for="i in [currentIndex]" :key="i">
@@ -114,7 +150,7 @@
            </div>
 
            
-           <div class="sm:p-16 p-1 sm:my-12 sm:mx-24">
+           <div class=" p-1 sm:my-12 sm:mx-4">
                <div class="m-4 flex justify-center">
                    <span class="col-span-3 sm:text-4xl font-bold text-gray-700">SHOP ALL</span>
                </div>
@@ -138,10 +174,12 @@
                     </div>
                 </div> 
                 <div class="m-4 flex justify-center">
-                    <button class="sm:p-2 p-1 text-xs font-bold tracking-wider sm:text-sm border-2 border-gray-900">VIEW ALL PRODUCTS</button>
+                    <a href="/products">
+                        <button class="sm:p-2 p-2 text-sm font-bold border rounded-md text-gray-600 border-gray-400">VIEW ALL PRODUCTS</button>
+                    </a>
                 </div>
            </div>
-           <div class="sm:p-16 p-1 mt-2 sm:my-12 sm:mx-24">
+           <div class=" p-1 mt-2 sm:my-12 sm:mx-4">
                <div class="flex justify-center">
                    <span class="col-span-3 text-center sm:text-4xl font-bold text-gray-700">FEATURED BRANDS</span>
                </div>
@@ -166,6 +204,61 @@
                     <a href="/view/brands" class="sm:p-2 p-2 text-sm font-bold border rounded-md text-gray-600 border-gray-400">VIEW ALL FEATURED BRANDS</a>
                 </div>
            </div>
+
+           <div class="md:mx-4 md:my-12 mt-2">
+               <div class="flex justify-center">
+                   <span class="text-gray-700 p-2 mt-4 font-bold sm:text-3xl">NEW ARRIVALS</span>
+               </div>
+               <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
+                    <div class="border w-5/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="nproduct in newarrivals" :key="nproduct">
+                        <div class="">
+                            <a :href="'/product/'+nproduct.id+'/details'" class="overflow-hidden relative">
+                                <div class="relative pb-48 overflow-hidden">
+                                    <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
+                                </div>
+                                <div class="absolute ribbon top-4 left-0">
+                                    <span v-if="nproduct.discounts[0]" class="flag-discount transform rotate-90">
+                                        <template v-if="nproduct.discounts[0].type == 'percentage'">
+                                            {{nproduct.discounts[0].amount}}%
+                                        </template>
+                                        <template v-else>
+                                            -{{nproduct.discounts[0].amount}}
+                                        </template>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="px-2">
+                                <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{nproduct.name}}</p>
+                            </div>
+                            <!-- <div class="px-2">
+                                <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{nproduct.description}}</span>
+                            </div> -->
+                            <div class="px-2 h-6">
+                                
+                                <template v-if="nproduct.discounts[0]">
+                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{nproduct.price}}</span>
+                                    <template v-if="nproduct.discounts[0].type == 'percentage'">
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{nproduct.price - (nproduct.price * nproduct.discounts[0].amount / 100)}}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{nproduct.price - nproduct.discounts[0].amount}}</span>
+                                    </template>
+                                </template>
+                                <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{nproduct.price}}</span>
+                            </div>
+                            
+                        </div>  
+                        <div v-if="!nproduct.variant[0]" class="mt-2">
+                            <button @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                        </div> 
+                        <div v-else class="mt-2">
+                            <a :href="'/product/'+nproduct.id+'/details'">
+                                <button class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">VIEW</button>
+                            </a>
+                        </div>
+                    </div>
+               </div>
+           </div> 
        </div>
     </app-layout>
 </template>
@@ -182,6 +275,8 @@
         {
             return{
                 banners: [],
+                Discount: '',
+                discount_popup: false,
                 slidein: false,
                 slideout:false,
                 currentImg:  {},
@@ -198,33 +293,6 @@
                 newarrivals: [],
                 brands: [],
                 success: false,
-                images:[
-                    {
-                        id:0,
-                        img:'https://cdn.nrf.com/sites/default/files/styles/crop_1027_547/public/2020-09/mens%20cosmetics.png?itok=7EAMtlgNhttps://beautybarn.in/product/mandelic-acid-5-skin-prep-water/',
-                    },
-                    {
-                        id:1,
-                        img:'https://www.ics-world.com/wp-content/uploads/2021/03/Sustainable-2.jpg',
-                    },
-                    {
-                        id:2,
-                        img:'https://cdn.shopify.com/s/files/1/1280/5953/files/Blog-1-UPDATED_1024x1024.jpg?v=1520984057',
-                    },
-                    {
-                        id:3,
-                        img:'https://www.kingdomofbeauty.co/wp-content/uploads/2019/02/1.jpg',
-                    },
-                     {
-                        id:4,
-                        img:'https://www.harrods.com/BWStaticContent/50000/ba521560-2bbd-41d8-b3bc-382e7fae0dbd_d-hero-new-helena-rubenstein-08-21.jpg',
-                    },
-                    {
-                        id:5,
-                        img:'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/cosmetics/cosmeticsdesign-europe.com/article/2020/01/22/male-beauty-brand-war-paint-wants-to-overhaul-stigma-and-mainstream-make-up-for-men/10622219-7-eng-GB/Male-beauty-brand-War-Paint-wants-to-overhaul-stigma-and-mainstream-make-up-for-men.jpg',
-                    },
-                    
-                ],
                 products:[],
             }
         },
@@ -314,6 +382,12 @@
                 {
                     this.$inertia.get('/products?key='+this.currentImg.key);
                 }
+            },
+            countdown()
+            {
+                setTimeout(() =>{
+                    this.discount_popup = true;
+                }, 1000) ;
             }
             // mouseEnter: function(e)
             // {
@@ -354,8 +428,12 @@
              axios.get('/brands/all')
             .then(res => this.brands = res.data);
 
-            axios.get('/products/all', {params: {'var': 'updated_at', 'val': 'desc'}})
-            .then(res => this.products = res.data.data);
+            axios.get('/products/shopall')
+            .then(res => this.products = res.data);
+
+            axios.get('/discount/get/random')
+            .then(res => this.Discount = res.data)
+            .then(this.countdown());
         },
     })
 </script>
