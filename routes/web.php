@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -90,6 +91,9 @@ Route::middleware(['auth:sanctum'])->post('order/transaction',[OrderController::
 Route::middleware(['auth:sanctum'])->post('order/{order:id}/cancel',[OrderController::class, 'cancel'])->name('order.cancel');
 
 Route::middleware(['auth:sanctum'])->get('discounts/all',[DiscountController::class, 'all'])->name('discount.all');
+
+Route::middleware(['auth:sanctum'])->get('checkpop',[ControllersDiscountController::class, 'checkPop'])->name('checkPop');
+Route::middleware(['auth:sanctum'])->post('updatepop',[ControllersDiscountController::class, 'updatePop'])->name('updatePop');
 
 Route::middleware(['auth:sanctum'])->get('banner/all',[BannerController::class, 'all'])->name('banner.all');
 
@@ -195,5 +199,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('banner/all',[BannerController::class, 'all'])->name('banner.all');
     Route::middleware(['auth:sanctum'])->delete('banner/{banner:id}/delete',[BannerController::class, 'remove'])->name('banner.remove');
     Route::middleware(['auth:sanctum'])->post('banner/{banner:id}/update',[BannerController::class, 'update'])->name('banner.update');
+
+    Route::middleware(['auth:sanctum'])->get('chart/traffic',[ChartController::class, 'traffic'])->name('traffic');
+    Route::middleware(['auth:sanctum'])->get('chart/users',[ChartController::class, 'newUserYear'])->name('newuser');
+    Route::middleware(['auth:sanctum'])->get('chart/orders',[ChartController::class, 'sales'])->name('orders.chart');
+    Route::middleware(['auth:sanctum'])->get('chart/sales',[ChartController::class, 'orders'])->name('sales.chart');
 
 });

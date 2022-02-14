@@ -23,24 +23,24 @@
                             <span class="p-2 text-sm uppercase text-gray-500">New Users</span>
                             <div class="p-2 flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" width="20" height="20" viewBox="0 0 24 24">
-                                        <path d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/>
+                                        <path d="M16.488 20l3.414 4h-2.627l-3.42-4h2.633zm1.512-14h-4v1h4v-1zm-7 18h2v-4h-2v4zm-6.918 0h2.628l3.42-4h-2.633l-3.415 4zm13.918-16h-4v1h4v-1zm0 2h-4v1h4v-1zm-8.5 3c1.762 0 3.205-1.306 3.45-3h-3.95v-3.95c-1.694.245-3 1.688-3 3.45 0 1.933 1.567 3.5 3.5 3.5zm.5-6.95v2.95h2.95c-.221-1.529-1.421-2.729-2.95-2.95zm8 5.95h-4v1h4v-1zm5-9h-1v15h-20v-15h-1v-3h22v3zm-3 0h-16v13h16v-13z"/>
                                     </svg>
-                                    <span class="text-md text-gray-600 ml-2">45</span>
+                                    <span class="text-md text-gray-600 ml-2">{{newusers}}</span>
                             </div>
                         </div>
-                        <new-user-chart class=""/>
+                        <new-user-chart v-on:newuser="setNewusers" class=""/>
                     </div>
                     <div class="rounded-sm p-2 ml-2 w-1/3 bg-white shadow-sm">
                         <div class="p-2">
-                            <span class="p-2 text-sm uppercase text-gray-500">New Users</span>
+                            <span class="p-2 text-sm uppercase text-gray-500">Traffic</span>
                             <div class="p-2 flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" width="20" height="20" viewBox="0 0 24 24">
                                         <path d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/>
                                     </svg>
-                                    <span class="text-md text-gray-600 ml-2">45</span>
+                                    <span class="text-md text-gray-600 ml-2">{{no_traffic}}</span>
                             </div>
                         </div>
-                        <Traffic/>
+                        <Traffic v-on:traffic="setTraffic"/>
                     </div>
                 </div>
             </div>
@@ -61,9 +61,9 @@
                                     </div>
                                     <div class="pr-3">
                                         <div class="text-xs text-gray-400 flex gap-1">
-                                            <button class="border border-gray-300 p-2 font-bold">MONTHLY</button>
-                                            <button class="border border-gray-300 p-2 font-bold">WEEKLY</button>
-                                            <button class="border border-gray-300 p-2 font-bold">DAILY</button>
+                                            <button :class="{'bg-blue-400 text-white': filter=='monthly'}" @click="filter = 'monthly'" class="border border-gray-300 p-2 font-bold">MONTHLY</button>
+                                            <button :class="{'bg-blue-400 text-white': filter=='daily'}" @click="filter = 'weekly'" class="border border-gray-300 p-2 font-bold">WEEKLY</button>
+                                            <button :class="{'bg-blue-400 text-white': filter=='yearly'}" @click="filter = 'daily'" class="border border-gray-300 p-2 font-bold">DAILY</button>
                                         </div>
                                     </div>
                             </div>
@@ -73,7 +73,10 @@
                                 <div class="text-xs font-bold uppercase my-4">
                                     <span>Order Status :</span>
                                 </div>
-                                <orders-status class="flex"/>
+                                <orders-status v-if="filter== 'daily'" v-on:sales="setSales" :filter="filter" class="flex"/>
+                                <orders-status v-if="filter== 'monthly'" v-on:sales="setSales" :filter="filter" class="flex"/>
+                                <orders-status v-if="filter== 'yearly'" v-on:sales="setSales" :filter="filter" class="flex"/>
+
                         </div>
                     </div>
             </div>
@@ -100,7 +103,9 @@
  export default{
     data() {
         return {
-            
+            no_traffic: 0,
+            newusers: 0,
+            filter: 'monthly'
         }
     },
      components:
@@ -120,7 +125,15 @@
     },
 
     methods: {
-        
+        setTraffic(num)
+        {
+            this.no_traffic = num;
+        },
+
+        setNewusers(num)
+        {
+            this.newusers = num;
+        }
     },
 
     mounted() {

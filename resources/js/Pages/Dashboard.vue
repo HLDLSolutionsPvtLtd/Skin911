@@ -59,13 +59,13 @@
             </div>
         </div>
        <div class="bg-white">
-           <div class="relative">
+           <div class="relative h-full">
                  <!-- <div class="absolute z-30 top-1/2 left-1/4">
                     <span class="text-lg uppercase ">{{this.currentImg.description}}</span>
                 </div>   -->
-                <div class="carousel h-full">
+                <div class="">
                        
-                    <transition-group class="carousel" name="fade" tag="div">
+                    <transition-group style="" class="carousel h-[calc(100vh-300px)] sm:h-screen" name="fade" tag="div">
                         <div class="w-full h-full" @touchstart="touchstart($event)" @touchend="touchend($event)" v-for="i in [currentIndex]" :key="i">
                             <img @click="redirectTo()" :class="{'slide-in':slidein,'slide-out':slideout}" :src="'/storage/'+currentImg.image" class="w-full h-full transition-transform ease-in-out duration-700" />
                         </div>
@@ -88,13 +88,13 @@
                    <span class="text-gray-700 p-2 mt-4 font-bold sm:text-3xl">TOP SELLING PRODUCTS</span>
                </div>
                <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
-                    <div class="border w-5/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="tproduct in topselling" :key="tproduct">
+                    <div class="border w-7/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="tproduct in topselling" :key="tproduct">
                         <div class="">
                             <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
                                     <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
                                 </div>
-                                <div class="absolute top-4 left-0">
+                                <div class="absolute top-5 left-0">
                                     <span v-if="tproduct.discounts[0]" class="flag-discount transform rotate-90">
                                         <template v-if="tproduct.discounts[0].type == 'percentage'">
                                             {{tproduct.discounts[0].amount}}%
@@ -105,7 +105,7 @@
                                     </span>
                                 </div>
                             </a>
-                            <div class="px-2">
+                            <div class="px-2 pt-4">
                                 <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{tproduct.name}}</p>
                             </div>
                             <!-- <div class="px-2">
@@ -143,7 +143,7 @@
                    <span class="col-span-3 text-lg tracking-wider sm:text-4xl text-center p-2 font-bold text-gray-700">TO SKIN CARE GOALS AND BEYOND</span>
                </div>
                <div class="flex justify-center m-4">
-                   <span class="text-sm sm:text-lg font-thin w-3/5 text-gray-500 text-center leading-loose">
+                   <span class="text-md my-2 mx-6 sm:text-lg font-thin  text-gray-500 text-center leading-loose">
                        Begin your skincare journey confidently and shop from the best curated K-Beauty innovations With Skin 911. Every good decision counts.
                    </span>
                </div>
@@ -155,13 +155,43 @@
                    <span class="col-span-3 sm:text-4xl font-bold text-gray-700">SHOP ALL</span>
                </div>
                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-                    <div class="p-1 border-gray-100" v-for="nproduct in products" :key="nproduct">
+                    <div class="m-2 border border-gray-100" v-for="nproduct in products" :key="nproduct">
                         <div class="">
-                            <a href="/ProductDetail" class="overflow-hidden">
-                            <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
-                            </div>
+                            <a :href="'/product/'+nproduct.id+'/details'" class="overflow-hidden relative">
+                                <div class="relative pb-48 overflow-hidden">
+                                    <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
+                                </div>
+                                <div class="absolute top-5 left-0">
+                                    <span v-if="nproduct.discounts[0]" class="flag-discount transform rotate-90">
+                                        <template v-if="nproduct.discounts[0].type == 'percentage'">
+                                            {{nproduct.discounts[0].amount}}%
+                                        </template>
+                                        <template v-else>
+                                            -{{nproduct.discounts[0].amount}}
+                                        </template>
+                                    </span>
+                                </div>
                             </a>
+                            <div class="px-2 pt-4">
+                                <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{nproduct.name}}</p>
+                            </div>
+                            <!-- <div class="px-2">
+                                <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{nproduct.description}}</span>
+                            </div> -->
+                            <div class="px-2 h-6">
+                                
+                                <template v-if="nproduct.discounts[0]">
+                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{nproduct.price}}</span>
+                                    <template v-if="nproduct.discounts[0].type == 'percentage'">
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{nproduct.price - (nproduct.price * nproduct.discounts[0].amount / 100)}}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{nproduct.price - nproduct.discounts[0].amount}}</span>
+                                    </template>
+                                </template>
+                                <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{nproduct.price}}</span>
+                            </div>
+                            
                             <div v-if="!nproduct.variant[0]" class="mt-2">
                                 <button @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                             </div> 
@@ -171,6 +201,7 @@
                                 </a>
                             </div>
                         </div>  
+                        
                     </div>
                 </div> 
                 <div class="m-4 flex justify-center">
@@ -183,7 +214,7 @@
                <div class="flex justify-center">
                    <span class="col-span-3 text-center sm:text-4xl font-bold text-gray-700">FEATURED BRANDS</span>
                </div>
-               <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
+               <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-6 4xl:grid-cols-8">
                     <div class="m-2 border" v-for="brand in brands" :key="brand">
                         <div class="">
                             <a :href="'/products?key='+brand.name" >
@@ -227,7 +258,7 @@
                                     </span>
                                 </div>
                             </a>
-                            <div class="px-2">
+                            <div class="px-2 pt-4">
                                 <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{nproduct.name}}</p>
                             </div>
                             <!-- <div class="px-2">
@@ -294,6 +325,7 @@
                 brands: [],
                 success: false,
                 products:[],
+                check: false,
             }
         },
          methods: {
@@ -383,11 +415,19 @@
                     this.$inertia.get('/products?key='+this.currentImg.key);
                 }
             },
-            countdown()
+            showPopup()
             {
-                setTimeout(() =>{
-                    this.discount_popup = true;
-                }, 1000) ;
+                console.log("zdxsad");
+                 if(!this.check)
+                 {
+                     axios.get('/discount/get/random')
+                    .then(res => this.Discount = res.data);
+                    setTimeout(() =>{
+                        this.discount_popup = true;
+                    }, 1000) ;
+
+                    axios.post('/updatepop', {val : 'true'});
+                 }
             }
             // mouseEnter: function(e)
             // {
@@ -408,11 +448,13 @@
             // }
                 
         },
-       watch: {
+
+        watch: {
             currentIndex() {
                 console.log( )
                 this.currentImg =  this.banners[Math.abs(this.currentIndex)% this.banners.length];
-            }
+            },
+
         },
         mounted: function() {
             this.startSlide();
@@ -421,19 +463,22 @@
                 this.banners = res.data;
                 this.currentImg = this.banners[0]
             });
+            axios.get('/checkpop')
+            .then(res => this.check = res.data)
+            .then(this.showPopup());
             axios.get('/topselling')
             .then(res => this.topselling = res.data);
+
             axios.get('/newarrivals')
             .then(res => this.newarrivals = res.data);
+
              axios.get('/brands/all')
             .then(res => this.brands = res.data);
 
             axios.get('/products/shopall')
             .then(res => this.products = res.data);
 
-            axios.get('/discount/get/random')
-            .then(res => this.Discount = res.data)
-            .then(this.countdown());
+           
         },
     })
 </script>

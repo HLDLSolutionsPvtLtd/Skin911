@@ -76,7 +76,6 @@
 
 .carousel{
   position: relative;
-  height: 100vh;
 }
 .carousel img {
   width:100%
@@ -180,7 +179,6 @@
   transition: 0.3s background-color ease-in-out;
 }
 .modal__button:hover{background-color:#0a9372;}
-main{text-align: center;}
 .modal__container{
   padding: 1rem 2rem;
   display: flex;

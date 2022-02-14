@@ -9,11 +9,12 @@ export default{
         return{
             chart: [],
             no: 0,
+            response: [],
             active: 0,
             chartCheck: true,
             response :[],
-            xValues : [50,60,70,80,90,100,110],
-            yValues : [20,34,50,22,20,4,26],
+            xValues : [0],
+            yValues : [0],
             pointBackgroundColor: "#b45547",
             pointBorderColor: '#b45547',
             backgroundColor: "#b45547",
@@ -28,91 +29,15 @@ export default{
                 this.yValues.push(element.visitors);
                 this.no = this.no + element.visitors;
             });
-
-            this.$emit('traffic', this.yValues[this.yValues.length-1], this.no, this.active);
+            this.$emit('traffic', this.yValues[this.yValues.length-1]);
             this.chartCheck = false;
-            // var ctx = document.getElementById('myChart4');
-            // this.chart = new Chart(ctx, {
-            //             id:   "Traffic",
-            //             type: "line",
-            //             data: {
-            //                 labels: this.xValues,
-            //                 datasets: [{
-                                
-            //                     label: 'Booking',
-            //                     fill: true,
-            //                     lineTension: 0.4,
-            //                     borderWidth: 1,
-            //                     pointRadius: 0,
-            //                     pointHoverRadius: 4,
-            //                     pointBackgroundColor: this.pointBackgroundColor,
-            //                     pointBorderColor: this.pointBorderColor,
-            //                     backgroundColor: this.backgroundColor,
-            //                     borderColor: this.borderColor,
-            //                     data: this.yValues,
-            //                 }]
-            //             },
-            //             options: {
-            //                 maintainAspectRatio: true,
-            //                 layout: {
-                            
-            //                 },
-            //                 plugins: {
-            //                     legend: {
-            //                         display: false,
-            //                     },
-            //                 },
-                            
-            //                 scales: {
-            //                     y: {
-            //                         beginAtZero: true,
-                                    
-            //                         grid:{
-            //                             display:false,
-            //                             drawBorder:false,
-            //                         },
-            //                         title: {
-            //                                 font: {
-            //                                     size: 14,
-            //                                 },
-            //                                 color: 'black'
-            //                             },
-
-            //                             ticks: {
-            //                                 display:false,
-                                        
-            //                             },
-            //                     },
-            //                     x:{
-            //                         grid:{
-            //                             display:false
-            //                         },
-            //                         ticks: {
-            //                                 display:false
-            //                             },
-            //                     }
-            //                 },
-
-            //             }
-            //     });
-        },
-        filter()
-        {
-            //  axios.get('/chart/data/'+this.filter)
-            // .then(res => this.response = res.data);
-            //  console.log(this.response);
-        }
-    },
-    mounted()
-    {
-        var ctx = document.getElementById('myChart4');
+            var ctx = document.getElementById('myChart4');
             this.chart = new Chart(ctx, {
                         id:   "Traffic",
                         type: "line",
                         data: {
                             labels: this.xValues,
                             datasets: [{
-                                
                                 label: 'Booking',
                                 lineTension: 0.4,
                                 borderWidth: 1,
@@ -125,7 +50,7 @@ export default{
                                 data: this.yValues,
                             }]
                         },
-                        options: {
+                       options: {
                             maintainAspectRatio: true,
                             layout: {
                             
@@ -167,13 +92,20 @@ export default{
                             },
 
                         }
-                });
-        // axios.get('/chart/traffic/active')
-        // .then(res => {
-        //     this.active = res.data;
-        //     axios.get('/chart/traffic/month')
-        //     .then(res => this.response = res.data);
-        // });
+                });          
+        },
+        filter()
+        {
+            //  axios.get('/chart/data/'+this.filter)
+            // .then(res => this.response = res.data);
+            //  console.log(this.response);
+        }
+    },
+    mounted()
+    {
+        
+        axios.get('/admin/chart/traffic')
+        .then(res => this.response = res.data);
        
         // .then(res => this.response = res.data);
         // if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches))

@@ -1,25 +1,23 @@
 <template>
     <app-layout>
         <div class="flex justify-center relative">
-            <div v-show="success" class="fixed w-full z-50 transform shadow-lg sm:w-1/4 top-1/4">
-                <div class=" bg-white rounded-sm">
-                    <div class="bg-pink-300 p-2 flex justify-center">
-                        <div class="p-4 flex flex-col justify-center">
-                            <div class="flex justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 24 24"  class="fill-current transition transform translate-Y-60 duration-700 text-green-400">
-                                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
-                                </svg>
-                            </div>
-                            <div class="mt-2">
-                                <span class="font-bold text-md tracking-wider text-white">ADDED TO CART</span>
-                            </div>
-                        </div>
+            <div v-show="success" class="modal z-50" id="modal">
+                <div class='modal__container bg-pink-300'>
+                   <div class="modal__content pt-12 relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 hidden sm:block right-1/3 fill-current transition transform translate-Y-60 duration-700 text-pink-400 rounded-full">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
+                        </svg>
+                        <h1 ><span class="text-white text-xl font-semibold sm:text-4xl">ADDED TO CART</span></h1>
+                        <a href="/cart">
+                            <button class="modal__button mt-4 tracking-widest text-sm font-bold bg-blue-400 w-full">VIEW CART</button>
+                        </a>
                     </div>
-                    <div class="flex justify-center m-2 p-2">
-                        <button @click="success=!success" class="p-2 bg-pink-300 rounded-md font-bold tracking-wider text-white">OK</button>
-                    </div>
+                    <i @click="success=!success" class="absolute right-4 top-4 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
+                        </svg>
+                    </i>
                 </div>
-                
             </div>
         </div>
         <div class="flex justify-center w-full min-h-screen bg-white">
@@ -92,7 +90,7 @@
                                                 </span>
                                             </div>
                                         </a>
-                                        <div class="px-2">
+                                        <div class="px-2 pt-4">
                                             <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{product.name}}</p>
                                         </div>
                                         <!-- <div class="px-2">

@@ -7,8 +7,9 @@ export default{
     data()
     {
         return{
-            xValues : [50,60,70,80,90,100,110],
-            yValues : [20,34,50,22,20,4,26],
+            response: [],
+            xValues : [],
+            yValues : [],
 
         }
     },
@@ -21,68 +22,78 @@ export default{
     },
     mounted()
     {
-        var ctx = document.getElementById('order'); // node
-        var myChart = new Chart(ctx, {
-                        id:   "sales",
-                        type: "line",
-                        data: {
-                            labels: this.xValues,
-                            datasets: [{
-                                label: 'Sales Chart',
-                                lineTension: 1,
-                                borderWidth: 2,
-                                pointRadius: 4,
-                                pointBackgroundColor: "rgba( 246, 49, 131 ,0.5)",
-                                pointBorderColor: 'rgba( 246, 49, 131 ,0.5)',
-                                backgroundColor: "rgba(160,150,150,0 )",
-                                borderColor: "rgba( 246, 49, 131 ,0.5)",
-                                data: this.yValues,
-                            }]
-                        },
-                        options: {
-                            maintainAspectRatio: true,
-                            layout: {
-                            
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false,
-                                },
-                            },
-                            
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    
-                                    grid:{
-                                        display:false,
-                                        drawBorder:false,
-                                    },
-                                    title: {
-                                            font: {
-                                                size: 14,
-                                            },
-                                            color: 'black'
-                                        },
+        axios.get("/admin/chart/orders")
+        .then(res => this.response = res.data);
+    },
 
-                                        ticks: {
-                                            display:false,
-                                        
-                                        },
+    watch:{
+        response()
+        {
+            this.yValues = this.response.y;
+            this.xValues = this.response.x;
+            var ctx = document.getElementById('order'); // node
+            var myChart = new Chart(ctx, {
+                            id:   "sales",
+                            type: "line",
+                            data: {
+                                labels: this.xValues,
+                                datasets: [{
+                                    label: 'Sales Chart',
+                                    lineTension: 1,
+                                    borderWidth: 2,
+                                    pointRadius: 4,
+                                    pointBackgroundColor: "rgba( 246, 49, 131 ,0.5)",
+                                    pointBorderColor: 'rgba( 246, 49, 131 ,0.5)',
+                                    backgroundColor: "rgba(160,150,150,0 )",
+                                    borderColor: "rgba( 246, 49, 131 ,0.5)",
+                                    data: this.yValues,
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: true,
+                                layout: {
+                                
                                 },
-                                x:{
-                                    grid:{
-                                        display:false
+                                plugins: {
+                                    legend: {
+                                        display: false,
                                     },
-                                    ticks: {
+                                },
+                                
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        
+                                        grid:{
+                                            display:false,
+                                            drawBorder:false,
+                                        },
+                                        title: {
+                                                font: {
+                                                    size: 14,
+                                                },
+                                                color: 'black'
+                                            },
+
+                                            ticks: {
+                                                display:false,
+                                            
+                                            },
+                                    },
+                                    x:{
+                                        grid:{
                                             display:false
                                         },
-                                }
-                            },
+                                        ticks: {
+                                                display:false
+                                            },
+                                    }
+                                },
 
-                        }
-        });
-    },
+                            }
+            });
+        }
+    }
 }
 
 </script>

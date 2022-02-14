@@ -16,7 +16,7 @@ class ProductController extends Controller
     }
     public function shopAll()
     {
-        return Product::limit(8)->get();
+        return Product::limit(8)->with('discounts')->get();
     }
 
     public function all(Request $request)

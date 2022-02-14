@@ -377,15 +377,15 @@
                         </div>
                     </div>
                 </div>
-                <div v-show="search_mobile" class="m-2">
-                    <div class="font-bold rounded-md border border-gray-200 flex justify-center bg-white self-center">
+                <div v-show="search_mobile" class="m-2 pb-2">
+                    <div class="font-bold rounded-md border border-gray-200 flex justify-center self-center">
                         <div class="ml-2" @click=" search()">
                             <svg width="20" height="20" class="h-10 " viewBox="0,0,24,24">
                                 <path fill="#747b88" d="M3.438 9.754a6.415 6.415 0 016.408-6.409 6.415 6.415 0 016.409 6.409 6.416 6.416 0 01-6.409 6.408 6.416 6.416 0 01-6.408-6.408M21.816 20.87l-5.974-6.02a7.839 7.839 0 001.88-5.097c0-4.343-3.534-7.875-7.876-7.875-4.342 0-7.875 3.532-7.875 7.875 0 4.342 3.533 7.875 7.875 7.875a7.837 7.837 0 004.946-1.753l5.983 6.029a.73.73 0 001.037.004.733.733 0 00.004-1.038">
                                 </path>
                             </svg>
                         </div>
-                        <input type="search" placeholder="SEARCH" v-model="key" @keyup.enter="search()" class="w-full text-sm border-0 placeholder-opacity-50 rounded-md focus:ring-0">
+                        <input type="search" placeholder="SEARCH" v-model="key" @keyup.enter="search()" class="w-full bg-transparent text-sm border-0 placeholder-opacity-50 rounded-md focus:ring-0">
                     </div>                
                 </div>
                 <!-- Responsive Navigation Menu -->
