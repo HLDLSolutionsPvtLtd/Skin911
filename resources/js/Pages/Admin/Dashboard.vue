@@ -6,7 +6,7 @@
        <div class="h-screen">
             <div>
                 <div class="m-4 flex">
-                    <div class="rounded-sm p-2 w-1/3 mr-2 bg-white shadow-sm">
+                    <div class="rounded-sm p-2 w-1/3 bg-white shadow-sm">
                         <div class="p-2">
                             <span class="p-2 text-sm uppercase text-gray-500">Orders</span>
                             <div class="flex p-2">
@@ -61,21 +61,21 @@
                                     </div>
                                     <div class="pr-3">
                                         <div class="text-xs text-gray-400 flex gap-1">
-                                            <button :class="{'bg-blue-400 text-white': filter=='monthly'}" @click="filter = 'monthly'" class="border border-gray-300 p-2 font-bold">MONTHLY</button>
-                                            <button :class="{'bg-blue-400 text-white': filter=='daily'}" @click="filter = 'weekly'" class="border border-gray-300 p-2 font-bold">WEEKLY</button>
-                                            <button :class="{'bg-blue-400 text-white': filter=='yearly'}" @click="filter = 'daily'" class="border border-gray-300 p-2 font-bold">DAILY</button>
+                                            <button :class="{'bg-blue-400 text-white': filter=='month'}" @click="filter = 'month'" class="border border-gray-300 p-2 font-bold">MONTHLY</button>
+                                            <button :class="{'bg-blue-400 text-white': filter=='year'}" @click="filter = 'year'" class="border border-gray-300 p-2 font-bold">YEARLY</button>
+                                            <button :class="{'bg-blue-400 text-white': filter=='day'}" @click="filter = 'day'" class="border border-gray-300 p-2 font-bold">DAILY</button>
                                         </div>
                                     </div>
                             </div>
-                            <new-sales-chart class="" />  
+                            <new-sales-chart v-if="filter== 'day'" v-on:sales="setSales" :filter="filter" />
+                            <new-sales-chart v-if="filter== 'year'" v-on:sales="setSales" :filter="filter" />
+                            <new-sales-chart v-if="filter== 'month'" v-on:sales="setSales" :filter="filter" />
                         </div>
                         <div class="rounded-sm col-span-1 p-2 ml-2 bg-white shadow-sm">
-                                <div class="text-xs font-bold uppercase my-4">
-                                    <span>Order Status :</span>
+                                <div class=" uppercase my-4">
+                                    <span class="p-2 text-sm text-gray-500">Order Status :</span>
                                 </div>
-                                <orders-status v-if="filter== 'daily'" v-on:sales="setSales" :filter="filter" class="flex"/>
-                                <orders-status v-if="filter== 'monthly'" v-on:sales="setSales" :filter="filter" class="flex"/>
-                                <orders-status v-if="filter== 'yearly'" v-on:sales="setSales" :filter="filter" class="flex"/>
+                                <orders-status  class="flex"/>
 
                         </div>
                     </div>
@@ -105,7 +105,7 @@
         return {
             no_traffic: 0,
             newusers: 0,
-            filter: 'monthly'
+            filter: 'month'
         }
     },
      components:

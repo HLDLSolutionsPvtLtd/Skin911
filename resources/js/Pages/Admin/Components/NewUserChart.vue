@@ -59,7 +59,7 @@ export default{
                                     x: {
                                         grid:{
                                             display:false,
-                                            
+                                            drawBorder:false,
                                         },
 
                                         ticks: {
@@ -70,6 +70,7 @@ export default{
                                     y: {
                                         grid:{
                                             display:false,
+                                            drawBorder:false,
                                         },
 
                                          ticks: {

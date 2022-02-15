@@ -27,6 +27,7 @@
                                 <div v-if="order.status == 'placed' || order.status == 'accepted'" class="flex border-l-2 pl-2 items-center">
                                     <button @click="cancel(order.id)" class="text-xs sm:text-md font-bold tracking-wider p-2">CANCEL</button>
                                 </div>
+                               
                             </div>
                             <div class="m-2 p-2" v-for="product in order.products" :key="product.id">
                                 <div class="flex sm:justify-between bg-white border mb-2">
@@ -53,7 +54,7 @@
                             </div>
                             <div class="ml-2 p-2 pb-4 flex justify-between">
                                 <div class="" v-if="order.payment_type == 'rzp'">
-                                    <span class="text-xs bg-pink-400 text-white p-2 rounded-sm font-semibold tracking-wide">Payment status : {{order.transaction.status}}</span>
+                                    <span class="text-xs bg-pink-400 text-white p-2 rounded-sm font-semibold tracking-wider">Payment status : {{order.transaction.status}}</span>
                                     <div v-if="order.transaction.status === 'pending'" class="pt-2">
                                         <button @click="selectedOrder = order.transaction" class="p-2 bg-green-400 rounded-sm font-bold text-xs tracking-wider">Pay Now</button>
                                     </div>

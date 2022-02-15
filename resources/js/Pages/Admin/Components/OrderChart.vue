@@ -39,9 +39,9 @@ export default{
                                 labels: this.xValues,
                                 datasets: [{
                                     label: 'Sales Chart',
-                                    lineTension: 1,
+                                    lineTension: 0.4,
                                     borderWidth: 2,
-                                    pointRadius: 4,
+                                    pointRadius: 0,
                                     pointBackgroundColor: "rgba( 246, 49, 131 ,0.5)",
                                     pointBorderColor: 'rgba( 246, 49, 131 ,0.5)',
                                     backgroundColor: "rgba(160,150,150,0 )",
@@ -82,7 +82,9 @@ export default{
                                     },
                                     x:{
                                         grid:{
-                                            display:false
+                                            display:false,
+                                            drawBorder:false,
+
                                         },
                                         ticks: {
                                                 display:false

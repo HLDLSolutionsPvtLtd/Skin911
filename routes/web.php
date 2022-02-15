@@ -202,7 +202,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::middleware(['auth:sanctum'])->get('chart/traffic',[ChartController::class, 'traffic'])->name('traffic');
     Route::middleware(['auth:sanctum'])->get('chart/users',[ChartController::class, 'newUserYear'])->name('newuser');
-    Route::middleware(['auth:sanctum'])->get('chart/orders',[ChartController::class, 'sales'])->name('orders.chart');
-    Route::middleware(['auth:sanctum'])->get('chart/sales',[ChartController::class, 'orders'])->name('sales.chart');
+    Route::middleware(['auth:sanctum'])->get('chart/orders',[ChartController::class, 'ordersAll'])->name('orders.chart');
+    Route::middleware(['auth:sanctum'])->get('chart/order/day',[ChartController::class, 'orderDataDay'])->name('order.day');
+    Route::middleware(['auth:sanctum'])->get('chart/order/month',[ChartController::class, 'orderDataMonth'])->name('order.month');
+    Route::middleware(['auth:sanctum'])->get('chart/order/year',[ChartController::class, 'orderDataYear'])->name('order.year');
+    Route::middleware(['auth:sanctum'])->get('chart/order/status',[ChartController::class, 'orderStatus'])->name('order.status');
 
 });

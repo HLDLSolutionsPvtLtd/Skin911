@@ -44,7 +44,7 @@ class ChartController extends Controller
             array_push($x, $monthname->shortMonthName);
             array_push($y, count($users));
         }
-        $users = User::whereMonth('created_at',Carbon::now())->whereYear('created_at',Carbon::now())->whereDate('created_at', Carbon::now())->get();
+        $users = User::whereMonth('created_at', date("m", strtotime(Carbon::now())))->whereYear('created_at',date("Y", strtotime(Carbon::now())))->whereDate('created_at',date("d", strtotime(Carbon::now())))->get();
         $day = count($users);
         return response()->json([
             'x' => $x,
@@ -52,23 +52,32 @@ class ChartController extends Controller
             'day' => $day,
         ]);
     }
+    public function orderStatus()
+    {
+        $y = [];
+        $date = Carbon::now();
+        $y[0] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'delivered')->count();
+        $y[1] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'denied')->count();
+        $y[2] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'cancelled')->count();
+        $y[3] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'returned')->count();
+        
+        return $y;
+    }
 
-    public function orders(Request $request)
+    public function ordersAll()
     {
         $x= [];
         $y = [];
-        for($i = 30; $i >= 0; $i--)
+        for($i = 20; $i >= 0; $i--)
         {
 
             $date = date("Y-m-d", strtotime("+$i days"));   
-            $orders = Order::whereMonth('created_at',Carbon::parse($date))->whereYear('created_at',Carbon::parse($date))->get();
+            $orders = Order::whereMonth('created_at', date("m", strtotime($date)))->whereYear('created_at', date("Y", strtotime($date)))->get();
             $no = 0;
-            foreach($orders as $order)
-            {
-                $no = $no + count($order->slots);
-            }
-                array_push($x,date("M j", strtotime("+$i days")));
-                array_push($y, $no);
+           
+            $no = $no + count($orders);
+            array_push($x,date("M j", strtotime("+$i days")));
+            array_push($y, $no);
         }
         
         return response()->json([
@@ -77,24 +86,59 @@ class ChartController extends Controller
         ]);
     }
 
-    public function sales(Request $request)
+    public function orderDataMonth()
     {
         $x= [];
         $y = [];
-        for($i = 30; $i >= 0; $i--)
+        for ($i = 11; $i >= 0; $i--) {
+            $monthname = Carbon::today()->startOfMonth()->subMonth($i);
+            $month = Carbon::today()->startOfMonth()->subMonth($i)->format('Y-m-d');
+            $orders = Order::whereYear('created_at', date("Y", strtotime($month)))->whereMonth('created_at', date("m", strtotime($month)))->where('status', 'delivered')->get();
+            array_push($x, $monthname->shortMonthName);
+            $no = 0;
+            $no = $no + count($orders);
+            array_push($y, $no);
+        }
+
+        return response()->json([
+            'x' => $x,
+            'y' => $y, 
+        ]);
+    }
+    public function orderDataDay(Request $request)
+    {
+        $x= [];
+        $y = [];
+        for($i = 18; $i >= 0; $i--)
         {
 
-            $date = date("Y-m-d", strtotime("+$i days"));   
-            $orders = Order::whereMonth('created_at',Carbon::parse($date))->whereYear('created_at',Carbon::parse($date))->where('status', 'delivered')->get();
+            $date = date("Y-m-d", strtotime("-$i days"));   
+            $orders = Order::whereYear('created_at', date("Y", strtotime($date)))->whereMonth('created_at', date("m", strtotime($date)))->whereDay('created_at', date("d", strtotime($date)))->where('status', 'delivered')->get();
             $no = 0;
-            foreach($orders as $order)
-            {
-                $no = $no + count($order->slots);
-            }
-            if($no){
-                array_push($x,date("M j", strtotime("+$i days")));
-                array_push($y, $no);
-            }
+            $no = $no + count($orders);
+            array_push($x,date("M j", strtotime("-$i days")));
+            array_push($y, $no);
+        }
+        
+        return response()->json([
+            'x' => $x,
+            'y' => $y, 
+        ]);
+    }
+    public function orderDataYear(Request $request)
+    {
+        $x= [];
+        $y = [];
+        $data = array();
+        for($i = 12; $i >= 0; --$i)
+        {
+
+            $date = date("Y-m-d", strtotime("-$i years"));
+            $orders = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'delivered')->get();
+            $no = 0;
+            $no = $no + count($orders);
+            array_push($x,date("Y", strtotime("-$i years")));
+            array_push($y, $no);
         }
         
         return response()->json([

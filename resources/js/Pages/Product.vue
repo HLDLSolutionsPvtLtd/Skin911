@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="flex justify-center relative">
+        <div class="sm:flex justify-center relative">
             <div v-show="success" class="modal z-50 transition transform ease-in-out duration-700" id="modal">
                 <div class='modal__container bg-pink-300'>
                    <div class="modal__content pt-12 relative">
@@ -87,7 +87,6 @@
                         <div>
                             <ul class="flex text-gray-500 font-light text-sm">
                                 <li class="p-2 hover:text-gray-300 tracking-wider cursor-pointer">{{product.description}}</li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -219,7 +218,7 @@ import axios from 'axios';
         {
             this.form.variant = this.product.variant[0].id;
         }
-        axios.get('/products/related', {params: {'brand_id': this.product.brand_id, 'category_id': this.product.category_id}})
+        axios.get('/products/related', {params: {'id': this.product.id,'brand_id': this.product.brand_id, 'category_id': this.product.category_id}})
         .then(res => this.products = res.data);
     },
 }

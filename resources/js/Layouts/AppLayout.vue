@@ -118,24 +118,7 @@
                                     PRODUCTS
                                 </jet-nav-link>
                             </div>
-                            <div @mouseover="routine = true" @mouseleave="routine = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('dashboard')">
-                                    ROUTINES
-                                     <div :class="{'modal-open': routine, 'modal-close': !routine}" class="absolute top-24 bg-white">
-                                         <ul class="m-2 ">
-                                            <li class="hover:text-gray-700 text-pink-dark pt-2">
-                                                <span>Collections</span>
-                                            </li>
-                                            <li class="hover:text-gray-700 text-pink-dark pt-2">
-                                                <span>Gifts & Sets</span>
-                                            </li>
-                                            <li class="hover:text-gray-700 text-pink-dark pt-2">
-                                                <span>Travels Kits & Minis</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </jet-nav-link>
-                            </div>
+                            
                             <div @mouseover="brands = true" @mouseleave="brands = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link class="font-bold color-icon text-pink-dark hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('brands')">
                                     BRANDS

@@ -83,7 +83,8 @@ export default{
                                 },
                                 x:{
                                     grid:{
-                                        display:false
+                                        display:false,
+                                        drawBorder:false,
                                     },
                                     ticks: {
                                             display:false
