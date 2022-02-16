@@ -1,19 +1,20 @@
 <template>
     <app-layout>
         <div class="sm:flex justify-center relative">
-            <div v-show="success" class="modal z-50 transition transform ease-in-out duration-700" id="modal">
-                <div class='modal__container bg-pink-300'>
+            <div v-show="success" class="modal z-50 w-5/6 md:w-1/4" id="modal">
+                <div class='modal__container shadow-md border bg-white'>
+                                        
                    <div class="modal__content pt-12 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 hidden sm:block right-1/3 fill-current transition transform translate-Y-60 duration-700 text-pink-400 rounded-full">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 right-1/4 fill-current transition transform translate-Y-60 duration-700 text-blue-400 rounded-full p-0 bg-white">
                             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
-                        </svg>
-                        <h1 ><span class="text-white text-xl font-semibold sm:text-4xl">ADDED TO CART</span></h1>
+                        </svg> -->
+                        <h1 class="text-2xl"><span class="text-gray-800 italic tracking-wider font-semibold">ADDED TO CART</span></h1>
                         <a href="/cart">
-                            <button class="modal__button mt-4 tracking-widest text-sm font-bold bg-blue-400 w-full">VIEW CART</button>
+                            <button class="modal__button mt-4 tracking-widest font-bold text-pink-500 text-xs bg-blue-400 w-full">VIEW CART</button>
                         </a>
                     </div>
-                    <i @click="success=!success" class="absolute right-4 top-4 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="24" height="24" viewBox="0 0 24 24">
+                    <i @click="success=!success" class="absolute  right-4 top-4 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="20" height="20" viewBox="0 0 24 24">
                             <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
                         </svg>
                     </i>
@@ -38,8 +39,8 @@
                         <div class="py-2 mr-2" v-if="product.variant[0]">
                             <span style="font-size: 10px" class="font-semibold text-gray-500 tracking-wider">SELECT VARIANT</span>
                             <div class="flex gap-2 pt-2">
-                                <div v-for="variantq in product.variant" :key="variantq.id">
-                                    <span @click="this.form.variant = variantq.id" :class="{'bg-transparent border-green-200 text-green-300':variantq.id == form.variant}" class="p-2 font-bold cursor-pointer rounded-md tracking-widest uppercase text-gray-400 border" style="font-size:10px">{{variantq.name}}</span>
+                                <div v-for="(variantq, index) in product.variant" :key="variantq.id">
+                                    <span @click="this.form.variant = variantq.id, sIndex = index" :class="{'bg-transparent border-green-200 text-green-300':variantq.id == form.variant}" class="p-2 font-bold cursor-pointer rounded-md tracking-widest uppercase text-gray-400 border" style="font-size:10px">{{variantq.name}}</span>
                                 </div>
                             </div>
                         </div>
@@ -54,15 +55,33 @@
                     </div>
                     <div class="p-2">
                         <template v-if="product.discounts[0]">
-                            <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
-                            <template v-if="product.discounts[0].type == 'percentage'">
-                                <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.discounts[0].amount / 100)}}</span>
+                            <template v-if="product.variant[0]">
+                                <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.variant[sIndex].price}}</span>
+                                <template v-if="product.discounts[0].type == 'percentage'">
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[sIndex].price - (product.variant[sIndex].price * product.discounts[0].amount / 100)}}</span>
+                                </template>
+                                <template v-else>
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[sIndex].price - product.discounts[0].amount}}</span>
+                                </template>
                             </template>
                             <template v-else>
-                                <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.discounts[0].amount}}</span>
+                                <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                                <template v-if="product.discounts[0].type == 'percentage'">
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.discounts[0].amount / 100)}}</span>
+                                </template>
+                                <template v-else>
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.discounts[0].amount}}</span>
+                                </template>
                             </template>
                         </template>
-                        <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{product.price}}</span>
+                        <template v-else>
+                            <template v-if="product.variant[0]">
+                                <span class="text-xs text-gray-900 pr-2">&#8377;{{product.variant[sIndex].price}}</span>
+                            </template>
+                            <template v-else>
+                                <span class="text-xs text-gray-900 pr-2">&#8377;{{product.price}}</span>
+                            </template>
+                        </template>
                     </div>
                     <div class="m-2 flex gap-1">
                         <div @click="setQuantity('in')" class="bg-white border flex items-center py-0 px-2 shadow-sm rounded-full">
@@ -81,7 +100,7 @@
                     </div>
                     <div class="mt-2 flex justify-start">
                         <button @click="addtocart()" class="p-2 w-1/2 rounded-sm font-semibold bg-pink text-pink-dark text-sm m-2">ADD TO CART</button>
-                        <button class="p-2 w-1/2 border border-gray-700 rounded-sm font-semibold text-pink-dark text-sm m-2">BUY IT NOW</button>
+                        <button @click="buyNow()" class="p-2 w-1/2 border border-gray-700 rounded-sm font-semibold text-pink-dark text-sm m-2">BUY IT NOW</button>
                     </div>
                     <div class="mt-8 mb-8 border-t">
                         <div>
@@ -161,6 +180,7 @@ import axios from 'axios';
     data() {
         return {
             quantityPop: false,
+            sIndex: 0,
             form : this.$inertia.form({
                 variant: '',
                 quantity : 1,
@@ -185,6 +205,10 @@ import axios from 'axios';
                     this.success = true;
                 }
             })
+        },
+        buyNow()
+        {
+            this.form.get("/"+this.product.id+"/buynow");
         },
         setQuantity(q)
         {

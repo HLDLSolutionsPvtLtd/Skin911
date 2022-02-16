@@ -530,7 +530,6 @@
         addToDiscount()
         {
             this.$inertia.post('/admin/discounts/'+this.selectedDiscount.id+'/add/items', {
-                preserveState: true,
                 'items' : this.selectedItems,
                 'type' : this.selectToadd,
                 onSuccess:() =>

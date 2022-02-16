@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Razorpay\Api\Api;
@@ -26,7 +27,16 @@ class OrderController extends Controller
         $products = $cart->products;
         foreach($products as $product)
         {
-            $total = $total + ($product->pivot->quantity * $product->price);
+            
+            if($product->pivot->variant)
+            {
+               $variant = $product->variant->where('name', $product->pivot->variant)->first();
+               $total = $total + ($product->pivot->quantity * $variant->price);
+            }
+            else
+            {
+                $total = $total + ($product->pivot->quantity * $product->price);
+            }
         }
         if($request->cod)
         {
@@ -41,9 +51,9 @@ class OrderController extends Controller
         foreach($products as $product)
         {
             $price = 0;
-            if($product->pivot->variant != '')
+            if($product->pivot->variant)
             {
-                $svariant = $product->variant->find($request->variant);
+                $svariant = $product->variant->where('name', $product->pivot->variant)->first();
                 $price = $svariant->price;
             }
             else
@@ -114,5 +124,82 @@ class OrderController extends Controller
         $transaction->status = 'paid';
         $transaction->save();
         return response("success", 200);
+    }
+
+    public function buynow(Product $product, Request $request)
+    {
+        $variant = '';
+        if($request->variant)
+        {
+            $variant = $product->variant->where('id', $request->variant)->first();
+        }
+        return Inertia::render('Buynow', ['product' => $product, 'quantity' => $request->quantity, 'variant' => $variant]);
+    }
+
+    public function buynowCreate(Product $product, Request $request)
+    {
+        $api = new Api(env('RZP_KEY'), env('RZP_SECRET'));
+        $total = 0;
+        $payment_type = 'rzp';
+        $cart = $request->user()->cart;
+       
+            
+        if($request->variant)
+        {
+            $total = $total + ($request->quantity * $request->variant->price);
+        }
+        else
+        {
+            $total = $total + ($request->quantity * $product->price);
+        }
+        
+        if($request->cod)
+        {
+            $payment_type = 'cod';
+        }
+        $order = Order::create([
+            'user_id' => $request->user()->id,
+            'total' => $total,
+            'address_id' => $request->selectedAddress,
+            'payment_type' => $payment_type,
+        ]);
+        
+        $price = 0;
+        if($request->variant)
+        {
+            $price = $request->variant->price;
+        }
+        else
+        {
+            $price = $product->price;
+        }
+            $order->products()->attach($product, ['quantity' => $request->quantity, 'variant' =>  $request->variant ? $request->variant->id : '', 'subtotal' => $request->quantity * $price]);
+            $product->quantity = $product->quantity--;
+            $product->save();
+
+        if(!$request->cod)
+        {
+            $rzp_order = $api->order->create(
+                array(
+                    'receipt' => (string)$order->id . 'ORD',
+                    'currency' => 'INR',
+                    'amount' => $total * 100,
+                )
+            );
+            Transaction::create([
+                'user_id' => $request->user()->id,
+                'order_id' => $order->id,
+                'amount' => $total,
+                'razorpay_order_id' => $rzp_order->id
+            ]);
+            return  [
+                'razorpayId' => $rzp_order->id,
+                'amount' => $rzp_order->amount,
+                'currency' => $rzp_order->currency
+            ];
+
+        }
+
+        return $order;
     }
 }

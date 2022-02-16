@@ -98,12 +98,11 @@ export default {
     {
         AppLayout,
     },
-
+    props: ['product', 'variant', 'quantity'],
     data(){
         return{
             RZPScript: '',
             order: '',
-            products:[],
             subtotal: 0,
             n_items: 0,
             addresses: [],
@@ -111,6 +110,8 @@ export default {
             form: this.$inertia.form({
                 cod: false,
                 selectedAddress: '',
+                quantity: this.quantity,
+                variant: this.variant,
             }),
         }
     },
@@ -137,14 +138,24 @@ export default {
         },
         checkout()
         {
-            axios.post('/order/create', this.form)
+            axios.post('/order/product/'+this.product.id+'/create', this.form)
             .then(res => this.order = res.data);
         },
         
     },
     mounted(){
-        axios.get('cart/all')
-        .then(res => this.products = res.data);
+            this.subtotal = 0;
+            if(this.variant)
+            {
+                this.subtotal = this.subtotal + thisvariant.price * this.quantity;
+            }
+            else
+            {
+                this.subtotal = this.subtotal + this.product.price * this.quantity;
+            }
+            this.n_items = this.quantity;
+            this.total = this.subtotal + 150;
+
         axios.get('/address/all')
         .then(res => this.addresses = res.data);
 
@@ -153,36 +164,7 @@ export default {
         document.head.appendChild(this.RZPScript);
     },
     watch: {
-        products()
-        {
-            if(!this.products[0])
-            {
-                window.location = "/cart";
-
-            }
-            this.subtotal = 0;
-            this.n_items = 0;
-            this.products.forEach(element => {
-                if(element.pivot.variant)
-                {
-                    var index =  element.variant.findIndex(el =>{
-                        if(el.name == element.pivot.variant)
-                        {
-                            return true;
-                        }
-                    })
-
-                    this.subtotal = this.subtotal + element.variant[index].price * element.pivot.quantity;
-                    this.n_items = this.n_items + parseInt(element.pivot.quantity);
-                }
-                else
-                {
-                    this.subtotal = this.subtotal + element.price * element.pivot.quantity;
-                    this.n_items = this.n_items + parseInt(element.pivot.quantity);
-                }
-            });
-            this.total = this.subtotal + 150;
-        },
+        
         order()
         {
             if(this.order.razorpayId)

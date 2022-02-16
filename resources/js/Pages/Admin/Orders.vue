@@ -61,11 +61,13 @@
                             <span @click="searchFilter('delivered')" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">DELIVERED</span>
                         </div>
                     </div>
-                    <div class="relative">
-                        <input type="search" v-model="key" @keyup.enter="search()" class="h-8 border border-gray-300 rounded-md pl-8 text-blue-400 placeholder-gray-300 text-sm tracking-wider" placeholder="Search products">
-                        <svg @click="search()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="fill-current text-blue-500 absolute top-2 left-2" viewBox="0 0 24 24">
-                            <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>\
-                        </svg>
+                    <div class="">
+                        <input type="search" v-model="key" @keyup.enter="search()" class="h-8 border border-gray-300 rounded-md pl-8 text-blue-400 placeholder-gray-300 text-sm tracking-wider" placeholder="Search Order">
+                        <div class="relative">
+                            <svg @click="search()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="fill-current text-blue-500 absolute -top-6 left-2" viewBox="0 0 24 24">
+                                <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>\
+                            </svg>
+                        </div>
                     </div>
                 </div>
                <div class="flex m-4 border-t-2 py-4">
@@ -122,9 +124,12 @@
                                     <option value="delivered">Delivered</option>
                                 </select>
                             </td>
-                            <td class="text-left p-1"><span class="text-red-400 uppercase font-bold text-xs">{{order.transaction.status}}</span>
+                            <td v-if="order.payment_type == 'rzp'" class="text-left p-1">
+                                <span class="text-red-400 uppercase font-bold text-xs">{{order.transaction.status}}</span>
                             </td>
-                            <td>
+                            <td v-else class="text-left p-1"><span class="text-red-400 uppercase font-bold text-xs">CASH ON DELIVERY</span>
+                            </td>
+                            <td v-if="order.payment_type == 'rzp'">
                                 <button @click="refund(order)" v-if="order.transaction.status == 'paid'" class="p-2 ml-2 text-xs rounded-md tracking-wider font-bold shadow-sm bg-pink  -400 text-white">REFUND</button>
                             </td>
                         </tr>

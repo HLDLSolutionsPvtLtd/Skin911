@@ -53,7 +53,7 @@ class CartController extends Controller
         }
         if($user->cart)
         {
-            $user->cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1']);
+            $user->cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1',  'variant' => $variant]);
         }
         else
         {
@@ -61,7 +61,7 @@ class CartController extends Controller
                 'user_id' => $user->id
             ]);
 
-            $cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1', 'variant' => $variant]);
+           return $cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1', 'variant' => $variant]);
         }
 
         return  Redirect::back()->with('success');

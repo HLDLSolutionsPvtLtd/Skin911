@@ -90,6 +90,9 @@ Route::middleware(['auth:sanctum'])->post('order/create',[OrderController::class
 Route::middleware(['auth:sanctum'])->post('order/transaction',[OrderController::class, 'transaction'])->name('transaction.create');
 Route::middleware(['auth:sanctum'])->post('order/{order:id}/cancel',[OrderController::class, 'cancel'])->name('order.cancel');
 
+Route::middleware(['auth:sanctum'])->get('/{product:id}/buynow', [OrderController::class, 'buynow'])->name('buynow');
+Route::middleware(['auth:sanctum'])->post('order/product/{product:id}/create', [OrderController::class, 'buynowCreate'])->name('buynowcreate');
+
 Route::middleware(['auth:sanctum'])->get('discounts/all',[DiscountController::class, 'all'])->name('discount.all');
 
 Route::middleware(['auth:sanctum'])->get('checkpop',[ControllersDiscountController::class, 'checkPop'])->name('checkPop');

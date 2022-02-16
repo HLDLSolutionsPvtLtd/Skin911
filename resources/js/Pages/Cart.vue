@@ -24,7 +24,8 @@
                                             <div class="p-1">
                                                 <span class="font-bold tracking-wider text-md">{{product.name}}</span>
                                             </div>
-                                            <span class="p-1 font-semibold">&#8377; {{product.price}}</span>
+                                            <span v-if="product.pivot.variant" class="p-1 font-semibold">&#8377; {{getPrice(product)}}</span>
+                                            <span v-else class="p-1 font-semibold">&#8377; {{product.price}}</span>
                                             <div class="my-2 flex gap-1">
                                                 <div @click="setQuantity('in', product)" class="bg-white cursor-pointer flex items-center border py-0 px-2 shadow-sm rounded-full">
                                                     <span class="flex">&#43;</span>
@@ -117,6 +118,18 @@ export default {
         }
     },
     methods:{
+        getPrice(product)
+        {
+           var index =  product.variant.findIndex(el =>{
+                if(el.name == product.pivot.variant)
+                {
+                    return true;
+                }
+            })
+
+            return product.variant[index].price;
+        },
+
         setQuantity(q, product)
         {
             if(q == 'in')
@@ -175,8 +188,23 @@ export default {
             this.subtotal = 0;
             this.n_items = 0;
             this.products.forEach(element => {
-                this.subtotal = this.subtotal + element.price * element.pivot.quantity;
-                this.n_items = this.n_items + parseInt(element.pivot.quantity);
+                if(element.pivot.variant)
+                {
+                    var index =  element.variant.findIndex(el =>{
+                        if(el.name == element.pivot.variant)
+                        {
+                            return true;
+                        }
+                    })
+
+                    this.subtotal = this.subtotal + element.variant[index].price * element.pivot.quantity;
+                    this.n_items = this.n_items + parseInt(element.pivot.quantity);
+                }
+                else
+                {
+                    this.subtotal = this.subtotal + element.price * element.pivot.quantity;
+                    this.n_items = this.n_items + parseInt(element.pivot.quantity);
+                }
             });
             this.total = this.subtotal + 150;
         },
