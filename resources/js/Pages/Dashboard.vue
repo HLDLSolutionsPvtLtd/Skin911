@@ -2,6 +2,7 @@
     <app-layout title="Dashboard">
         <div class="flex justify-center relative">
             <div v-show="success" class="modal z-50 w-5/6 md:w-1/4" id="modal">
+            <div class="js-container container" style="top:0px !important;"></div>
                 <div class='modal__container shadow-md border bg-white'>
                                         
                    <div class="modal__content pt-12 relative">
@@ -36,8 +37,8 @@
                             <button class="modal__button bg-transparent bg-pink-600 border border-pink-500 text-white text-xs font-semibold tracking-wider mt-4 uppercase">view products</button>
                         </a>
                     </div>
-                    <i @click="discount_popup=!discount_popup" class="absolute right-2 rounded-full border p-1 border-gray-400 top-2 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-400 hover:text-red-500" width="20" height="20" viewBox="0 0 24 24">
+                    <i @click="discount_popup=!discount_popup" class="absolute -right-5 rounded-full border p-1 border-gray-100 -top-5 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-100 hover:text-red-500" width="15" height="15" viewBox="0 0 24 24">
                             <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
                         </svg>
                     </i>
@@ -460,7 +461,6 @@
                 console.log( )
                 this.currentImg =  this.banners[Math.abs(this.currentIndex)% this.banners.length];
             },
-
         },
         mounted: function() {
             this.startSlide();
@@ -484,7 +484,6 @@
             axios.get('/products/shopall')
             .then(res => this.products = res.data);
 
-           
         },
     })
 </script>

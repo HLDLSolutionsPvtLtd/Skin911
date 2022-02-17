@@ -31,6 +31,7 @@ export default{
         {
             this.yValues = this.response.y;
             this.xValues = this.response.x;
+            this.$emit('orders', this.yValues[this.yValues.length-1]);
             var ctx = document.getElementById('order'); // node
             var myChart = new Chart(ctx, {
                             id:   "sales",
@@ -76,7 +77,6 @@ export default{
                                             },
 
                                             ticks: {
-                                                display:false,
                                             
                                             },
                                     },
@@ -87,7 +87,6 @@ export default{
 
                                         },
                                         ticks: {
-                                                display:false
                                             },
                                     }
                                 },

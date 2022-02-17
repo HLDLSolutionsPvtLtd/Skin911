@@ -153,14 +153,13 @@
         },
         markAs(itag)
         {
+            var items = this.selectedItems;
+            this.selectedItems = [];
             this.$inertia.post('/admin/product/markas', {
-                ids: this.selectedItems,
+                ids: items,
                 tag: itag,
                 preserveState: false,
-                onSucess: () =>
-                {
-                    this.selectedItems = [];
-                }
+                
             })
         },
         search()

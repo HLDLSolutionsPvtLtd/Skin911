@@ -34,28 +34,20 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Dashboard');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
+Route::get('/products', function () {
     return Inertia::render('Products');
 })->name('products');
-Route::middleware(['auth:sanctum'])->get('view/categories', function () {
+Route::get('view/categories', function () {
     return Inertia::render('Categories');
 })->name('categories');
-Route::middleware(['auth:sanctum'])->get('view/brands', function () {
+Route::get('view/brands', function () {
     return Inertia::render('Brands');
 })->name('brands');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/product/{product:id}/details',[ProductController::class, 'detailView'])->name('product.view');
+Route::get('/product/{product:id}/details',[ProductController::class, 'detailView'])->name('product.view');
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', [CartController::class, 'view'])->name('cart');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/checkout', function () {
@@ -67,15 +59,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/address/new', function ()
 Route::middleware(['auth:sanctum'])->get('address/{address:id}/edit',[AddressController::class, 'edit'])->name('products.edit');
 Route::middleware(['auth:sanctum'])->post('address/{address:id}/edit',[AddressController::class, 'update'])->name('products.update');
 
-Route::middleware(['auth:sanctum'])->get('discount/get/random',[ControllersDiscountController::class, 'getRand'])->name('discount.random');
+Route::get('discount/get/random',[ControllersDiscountController::class, 'getRand'])->name('discount.random');
 
-Route::middleware(['auth:sanctum'])->get('products/search',[ProductController::class, 'search'])->name('products.search');
-Route::middleware(['auth:sanctum'])->get('products/all',[ProductController::class, 'all'])->name('products.all');
-Route::middleware(['auth:sanctum'])->get('products/related',[ProductController::class, 'related'])->name('products.related');
-Route::middleware(['auth:sanctum'])->get('products/shopall',[ProductController::class, 'shopAll'])->name('products.shopall');
-
-Route::middleware(['auth:sanctum'])->get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
-Route::middleware(['auth:sanctum'])->get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
 Route::middleware(['auth:sanctum'])->post('cart/product/{product:id}/add',[CartController::class, 'addToCart'])->name('addToCart');
 Route::middleware(['auth:sanctum'])->get('cart/all',[CartController::class, 'all'])->name('cart.all');
 Route::middleware(['auth:sanctum'])->post('cart/product/quantity/update',[CartController::class, 'updateQty'])->name('updateQty');
@@ -98,10 +83,16 @@ Route::middleware(['auth:sanctum'])->get('discounts/all',[DiscountController::cl
 Route::middleware(['auth:sanctum'])->get('checkpop',[ControllersDiscountController::class, 'checkPop'])->name('checkPop');
 Route::middleware(['auth:sanctum'])->post('updatepop',[ControllersDiscountController::class, 'updatePop'])->name('updatePop');
 
-Route::middleware(['auth:sanctum'])->get('banner/all',[BannerController::class, 'all'])->name('banner.all');
+Route::get('products/search',[ProductController::class, 'search'])->name('products.search');
+Route::get('products/all',[ProductController::class, 'all'])->name('products.all');
+Route::get('products/related',[ProductController::class, 'related'])->name('products.related');
+Route::get('products/shopall',[ProductController::class, 'shopAll'])->name('products.shopall');
 
-Route::middleware(['auth:sanctum'])->get('topselling',[ProductController::class, 'topselling'])->name('topselling');
-Route::middleware(['auth:sanctum'])->get('newarrivals',[ProductController::class, 'newArrivals'])->name('newarrivals');
+Route::get('banner/all',[BannerController::class, 'all'])->name('banner.all');
+Route::get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
+Route::get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
+Route::get('topselling',[ProductController::class, 'topselling'])->name('topselling');
+Route::get('newarrivals',[ProductController::class, 'newArrivals'])->name('newarrivals');
 
 /*
 |--------------------------------------------------------------------------

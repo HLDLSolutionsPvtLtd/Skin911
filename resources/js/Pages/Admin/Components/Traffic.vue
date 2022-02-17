@@ -77,7 +77,6 @@ export default{
                                         },
 
                                         ticks: {
-                                            display:false,
                                         
                                         },
                                 },

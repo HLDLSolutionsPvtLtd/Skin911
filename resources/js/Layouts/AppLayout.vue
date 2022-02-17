@@ -24,94 +24,36 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex justify-center text-center text-gray-700 items-center self-center">
-                                <Link class="flex" :href="route('dashboard')">
+                                <Link class="flex" href="/">
                                     <jet-logo></jet-logo>                                        
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div @mouseover="shop = true" @mouseleave="shop = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('categories')"  class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white ">
-                                    CATEGORIES
-                                    <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute z-10 w-full left-0 right-0 top-24 bg-white">
+                                <div  class="font-bold color-icon  hover:text-gray-700 text-sm flex items-center hover:border-b-4 hover:border-white ">
+                                    <a :href="route('categories')" > CATEGORIES</a>
+                                    <div :class="{'modal-open': shop, 'modal-close': !shop}" class="absolute shadow-md z-10 w-full left-0 right-0 top-20 bg-white">
                                         <div class="grid grid-cols-12 bg- m-4">
-                                            <div class="col-span-1">
+                                            <div class="col-span-2">
 
                                             </div>
-                                            <div class="col-span-2 border-r text-gray-700 border-gray-200">
-                                                <span class="">FEATURED BRANDS</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>All Products</span>
+                                            <div class="col-span-10 text-gray-700 border-gray-200">
+                                                <span class="">FEATURED CATEGORIES</span>
+                                                <ul class="grid grid-cols-4">
+                                                    <li v-for="category in categories" class="hover:text-gray-300 pt-2">
+                                                        <a :href="'/products?key='+category.name"> <span>{{category.name}}</span></a>
                                                     </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>New Arrivals</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Best Sellers</span>
-                                                    </li>
+                                                    
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 ml-2 text-gray-700 justify-center">
-                                                <span class="">SKIN CARE</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Double-Cleanse</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Exfoliator</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Toner</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-span-2 text-gray-700 justify-center">
-                                                <span class="">SKIN CONCERN</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Acne</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Anti-Aging</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Dyness</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Oil Control</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Redness</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Sensitive</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Pigmentation</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-span-2 text-gray-700 justify-center">
-                                                <span class="">SKIN TYPE</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Dry</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Oily</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Combination</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Normal</span>
-                                                    </li>
-                                                </ul>
+                                            <div class="col-span-2">
+
                                             </div>
                                         </div>
                                     </div>
-                                </jet-nav-link>
+                                </div>
+                                
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <jet-nav-link class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('products')" >
@@ -120,90 +62,30 @@
                             </div>
                             
                             <div @mouseover="brands = true" @mouseleave="brands = false" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold color-icon text-pink-dark hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('brands')">
-                                    BRANDS
-                                    <div :class="{'modal-open': brands, 'modal-close': !brands}" class="absolute w-full left-0 right-0 top-24 bg-white transition transform translate duration-700 ease-in-out">
-                                        <div class="grid grid-cols-12 bg- m-4">
-                                            <div class="col-span-1">
+                                <div class="font-bold color-icon text-pink-dark flex items-center text-sm hover:text-gray-700 hover:border-b-4 hover:border-white">
+                                    <a :href="route('brands')"> BRANDS</a>
+                                    <div :class="{'modal-open': brands, 'modal-close': !brands}" class="absolute shadow-md w-full left-0 right-0 top-20 bg-white ">
+                                        <div class="grid grid-cols-12 m-4">
+                                            <div class="col-span-2">
 
                                             </div>
-                                            <div class="col-span-2 border-r text-gray-700 border-gray-200">
+                                            <div class="col-span-10 px-12 text-gray-700 border-gray-200">
                                                 <span class="">FEATURED BRANDS</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>All Products</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>New Arrivals</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Best Sellers</span>
+                                                <ul class="grid grid-cols-4">
+                                                    <li v-for="brand in lbrands" :key="brand.id"  class="hover:text-gray-300 pt-2">
+                                                       <a :href="'/products?key='+brand.name"><span>{{brand.name}}</span></a>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-span-2 ml-2 text-gray-700 justify-center">
-                                                <span class="">SKIN CARE</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Double-Cleanse</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Exfoliator</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Toner</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-span-2 text-gray-700 justify-center">
-                                                <span class="">SKIN CONCERN</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Acne</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Anti-Aging</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Dyness</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Oil Control</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Redness</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Sensitive</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Pigmentation</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-span-2 text-gray-700 justify-center">
-                                                <span class="">SKIN TYPE</span>
-                                                <ul>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Dry</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Oily</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Combination</span>
-                                                    </li>
-                                                    <li class="hover:text-gray-300 pt-2">
-                                                        <span>Normal</span>
-                                                    </li>
-                                                </ul>
+                                            <div class="col-span-2">
+
                                             </div>
                                         </div>
                                     </div>
-                                </jet-nav-link>
+                                </div>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white" :href="route('dashboard')">
+                                <jet-nav-link class="font-bold color-icon  hover:text-gray-700 hover:border-b-4 hover:border-white" href="/">
                                     SALE
                                 </jet-nav-link>
                             </div>
@@ -286,7 +168,7 @@
                             </div>
 
                             <!-- Settings Dropdown -->
-                            <div class="ml-3 relative">
+                            <div v-if="$page.props.user" class="ml-3 relative">
                                 <jet-dropdown align="right" width="48">
                                     <template #trigger>
                                         <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -330,6 +212,14 @@
                                         </form>
                                     </template>
                                 </jet-dropdown>
+                            </div>
+                            <div v-else class="flex gap-2 ml-4">
+                                <div>
+                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('login')"><span>Log In</span></a>
+                                </div>
+                                <div>
+                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('register')"><span>Register</span></a>
+                                </div>
                             </div>
                         </div>
                         <div class="flex gap-3 items-center">
@@ -519,6 +409,8 @@
 
         data() {
             return {
+                categories: [],
+                lbrands: [],
                 search_mobile : false,
                 showingNavigationDropdown: false,
                 shop:false,
@@ -564,6 +456,12 @@
             }
         },
         mounted() {
+            axios.get('/brands/all')
+            .then(res => this.lbrands = res.data);
+
+            axios.get('/categories/all')
+            .then(res => this.categories = res.data);
+
             if(this.title == 'Dashboard')
             {
                 this.bgSet = true;

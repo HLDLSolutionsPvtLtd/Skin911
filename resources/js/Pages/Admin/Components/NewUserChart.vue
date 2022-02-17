@@ -63,7 +63,6 @@ export default{
                                         },
 
                                         ticks: {
-                                            display:false,
                                         
                                         },
                                     },
@@ -74,7 +73,6 @@ export default{
                                         },
 
                                          ticks: {
-                                            display:false,
                                         
                                         },
                                     }

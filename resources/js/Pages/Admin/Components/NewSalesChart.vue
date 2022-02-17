@@ -94,6 +94,8 @@ export default{
         response(){
             this.yValues = this.response.y;
             this.xValues = this.response.x;
+            this.$emit('sales', this.yValues[this.yValues.length-1]);
+
             this.loadchart();
         },
         filter()

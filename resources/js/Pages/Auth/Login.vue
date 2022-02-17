@@ -3,7 +3,7 @@
 
     <jet-authentication-card>
         <template #logo>
-            <jet-authentication-card-logo />
+            <logo />
         </template>
 
         <jet-validation-errors class="mb-4" />
@@ -34,6 +34,12 @@
                 <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                     Forgot your password?
                 </Link>
+                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                   <Link :href="route('register')" class="text-xs text-white hover:text-gray-900">
+                        Register
+                    </Link>
+                </jet-button>
+                
 
                 <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
@@ -46,7 +52,7 @@
 <script>
     import { defineComponent } from 'vue'
     import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue'
-    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
+    import logo from '@/Jetstream/logo.vue'
     import JetButton from '@/Jetstream/Button.vue'
     import JetInput from '@/Jetstream/Input.vue'
     import JetCheckbox from '@/Jetstream/Checkbox.vue'
@@ -58,7 +64,7 @@
         components: {
             Head,
             JetAuthenticationCard,
-            JetAuthenticationCardLogo,
+            logo,
             JetButton,
             JetInput,
             JetCheckbox,
