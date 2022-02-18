@@ -26,6 +26,8 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
-        "chart.js": "^3.5.1"
+        "canvas-confetti": "^1.5.1",
+        "chart.js": "^3.5.1",
+        "gsap": "^3.9.1"
     }
 }

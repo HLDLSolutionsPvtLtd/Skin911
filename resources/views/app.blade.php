@@ -23,7 +23,7 @@
 
         gtag('config', 'UA-215398636-2');
         </script>
-
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>        
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">

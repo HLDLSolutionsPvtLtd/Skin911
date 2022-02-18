@@ -20,7 +20,7 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
-        $api = new Api(env('RZP_KEY'), env('RZP_SECRET'));
+        $api = new Api(env('RZP_KEY'),env('RZP_SECRET'));
         $total = 0;
         $payment_type = 'rzp';
         $cart = $request->user()->cart;

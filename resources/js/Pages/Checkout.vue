@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="w-full mt-4">
-                            <button @click="checkout" class="p-2 bg-pink rounded-sm w-full text-pink-dark">PLACE ORDER</button>
+                            <button :disabled="form.processing" :class="{'animate-pulse': form.processing}" @click="checkout" class="p-2 bg-pink rounded-sm w-full text-pink-dark">PLACE ORDER</button>
                         </div>
                     </div>
                 </div>

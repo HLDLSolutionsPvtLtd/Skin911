@@ -22,7 +22,8 @@
                 </div>
             </div>
             <div v-show="discount_popup" class="modal mx-2 bg-pink-900 sm:m-0 w-5/6 md:w-1/4 z-50" id="modal">
-                <div class='bg-yellow-100 border shadow-lg  p-4'>
+                <div class='bg-yellow-100 border shadow-lg p-4'>
+                    
                     <div class="flex flex-col items-center justify-center">
                         <div class="flex ">
                             
@@ -304,7 +305,8 @@
 <script>
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
-
+    import { gsap } from "gsap"
+    
     export default defineComponent({
         components: {
             AppLayout,
@@ -333,6 +335,12 @@
                 success: false,
                 products:[],
                 check: false,
+                duration : 15 * 1000,
+                animationEnd : Date.now() + this.duration,
+                defaults : { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 },
+                end : Date.now() + (15 * 1000),
+                colors : ['#bb0000', '#ffffff']
+
             }
         },
          methods: {
@@ -422,8 +430,29 @@
                     this.$inertia.get('/products?key='+this.currentImg.key);
                 }
             },
+            randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            },
+            pops()
+            {
+                confetti({
+                    particleCount: 200,
+                    angle: 55,
+                    spread: 62,
+                    origin: { y: 0.6 },
+                    colors: this.colors
+                });
+                confetti({
+                    particleCount: 120,
+                    angle: 125,
+                    spread: 62,
+                    origin: { y: 0.6 },
+                    colors: this.colors
+                });
+            },
             showPopup()
             {
+                
                 console.log("zdxsad");
                  if(!this.check)
                  {
@@ -431,11 +460,17 @@
                     .then(res => this.Discount = res.data[0]);
                     setTimeout(() =>{
                         this.discount_popup = true;
+                        this.pops();
+                        // setTimeout(() =>{
+                        //     this.discount_popup = true;
+                        //     this.pops();
+                        //     this.pops();
+                        // }, 1000) ;
                     }, 1000) ;
 
                     axios.post('/updatepop', {val : 'true'});
                  }
-            }
+            },
             // mouseEnter: function(e)
             // {
             //     this.touchstartX = e.screenX;
@@ -453,7 +488,6 @@
             //     clearInterval(this.timer);
             //     this.startSlide();
             // }
-                
         },
 
         watch: {
