@@ -11,7 +11,9 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&family=Lato&family=Open+Sans:wght@500&family=Ruluko&display=swap" rel="stylesheet"> 
         <!-- Scripts -->
         @routes
         <!-- Global site tag (gtag.js) - Google Analytics -->

@@ -14,6 +14,7 @@
                             <button class="modal__button mt-4 tracking-widest font-bold text-pink-500 text-xs bg-blue-400 w-full">VIEW CART</button>
                         </a>
                     </div>
+                    
                     <i @click="success=!success" class="absolute  right-4 top-4 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="20" height="20" viewBox="0 0 24 24">
                             <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
@@ -27,16 +28,18 @@
                     <div class="flex flex-col items-center justify-center">
                         <div class="flex ">
                             
-                            <div class="flex text-pink-600 italic flex-col items-center justify-center flex-1 ">
-                                <h1 class="text-xl 2xl:text-4xl font-semibold uppercase tracking-wider"><span>{{Discount.name}}</span></h1>
+                            <div class="flex text-pink-600 openSans flex-col items-center justify-center flex-1 ">
                                 <p v-if="Discount.type == 'percentage'" class="text-xl tracking-wider font-semibold mt-2">UPTO</p>
-                                <span class="text-4xl my-2">{{Discount.amount}}<span class="pr-2 text-4xl" v-if="Discount.type == 'percentage'">%</span><span class="text-4xl"> off</span> </span>
-                                <span class="text-LG font-semibold tracking-wider mt-2">ON SELECTED PRODUCTS</span>
+                                <span class="text-4xl my-2 font-bold">{{Discount.amount}}<span class="pr-2 text-4xl" v-if="Discount.type == 'percentage'">%</span><span class="text-4xl"> OFF</span> </span>
+                                <span class="text-lg font-semibold tracking-wider mt-2">ON SELECTED PRODUCTS</span>
                             </div>
                         </div>
                         <a :href="'/products?key='+Discount.name">
                             <button class="modal__button bg-transparent bg-pink-600 border border-pink-500 text-white text-xs font-semibold tracking-wider mt-4 uppercase">view products</button>
                         </a>
+                    </div>
+                    <div class="ribbon2 ribbon2-top-left">
+                        <span>{{Discount.name}}</span>
                     </div>
                     <i @click="discount_popup=!discount_popup" class="absolute -right-5 rounded-full border p-1 border-gray-100 -top-5 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-100 hover:text-red-500" width="15" height="15" viewBox="0 0 24 24">
@@ -439,6 +442,7 @@
                     particleCount: 200,
                     angle: 55,
                     spread: 62,
+                    scalar: 0.5,
                     origin: { y: 0.6 },
                     colors: this.colors
                 });
@@ -446,6 +450,7 @@
                     particleCount: 120,
                     angle: 125,
                     spread: 62,
+                    scalar: 0.5,
                     origin: { y: 0.6 },
                     colors: this.colors
                 });

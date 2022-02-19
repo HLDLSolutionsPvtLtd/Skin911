@@ -82,7 +82,7 @@ class OrderController extends Controller
                 'amount' => $total,
                 'razorpay_order_id' => $rzp_order->id
             ]);
-            return  [
+            return[
                 'razorpayId' => $rzp_order->id,
                 'amount' => $rzp_order->amount,
                 'currency' => $rzp_order->currency

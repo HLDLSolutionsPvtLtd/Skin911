@@ -53,14 +53,17 @@
                                 </div>
                             </div>
                             <div class="ml-2 p-2 pb-4 flex justify-between">
-                                <div class="" v-if="order.payment_type == 'rzp'">
-                                    <span class="text-xs bg-pink-400 text-white p-2 rounded-sm font-semibold tracking-wider">Payment status : {{order.transaction.status}}</span>
+                                <div class="" v-if="order.payment_type == 'rzp' && order.transaction">
+                                    <span class="text-xs bg-pink-400 text-white p-2 rounded-sm font-semibold tracking-wider uppercase">{{order.transaction.status}}</span>
                                     <div v-if="order.transaction.status === 'pending'" class="pt-2">
                                         <button @click="selectedOrder = order.transaction" class="p-2 bg-green-400 rounded-sm font-bold text-xs tracking-wider">Pay Now</button>
                                     </div>
                                 </div>
-                                <div v-else>
+                                <div v-else-if="order.payment_type == 'cod'">
                                     <span class="uppercase text-xs bg-pink-400 text-white p-2 rounded-md font-bold tracking-wider">Cash On Delivery</span>
+                                </div>
+                                <div v-else class="">
+                                    <span class="uppercase text-xs bg-pink-400 text-white p-2 rounded-md font-bold tracking-wider">Payment Error</span>
                                 </div>
                                 <div>
                                     <span class="text-xs sm:text-sm tracking-widest text-gray-600 uppercase font-bold mr-8">Total : &#8377;{{order.total}}</span>
@@ -120,7 +123,7 @@ export default {
         selectedOrder()
         {
                 this.options = {
-                    "key": 'rzp_test_znof4x4ZLxITZX', // Enter the Key ID generated from the Dashboard
+                    "key": 'rzp_test_yRUXwmjCqNPY0r', // Enter the Key ID generated from the Dashboard
                     "amount": this.selectedOrder['amount']*100, // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
                     "currency": this.selectedOrder['currency'],
                     "name": "Modern Shoe Store",

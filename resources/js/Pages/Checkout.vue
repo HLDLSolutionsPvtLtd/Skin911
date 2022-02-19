@@ -207,7 +207,7 @@ export default {
             if(this.order.razorpayId)
             {
                 this.options = {
-                    "key": 'rzp_test_znof4x4ZLxITZX', // Enter the Key ID generated from the Dashboard
+                    "key": "rzp_test_yRUXwmjCqNPY0r", // Enter the Key ID generated from the Dashboard
                     "amount": this.order['amount'], // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
                     "currency": this.order['currency'],
                     "name": "Modern Shoe Store",
