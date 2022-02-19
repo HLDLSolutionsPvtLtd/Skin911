@@ -149,7 +149,7 @@
                </div>
            </div> 
 
-           <div class="md:p-12 md:my-12 bg-yellow-100">
+           <!-- <div class="md:p-12 md:my-12 bg-yellow-100">
                <div class="flex justify-center m-4">
                    <span class="col-span-3 text-lg tracking-wider sm:text-4xl text-center p-2 font-bold text-gray-700">TO SKIN CARE GOALS AND BEYOND</span>
                </div>
@@ -158,7 +158,7 @@
                        Begin your skincare journey confidently and shop from the best curated K-Beauty innovations With Skin 911. Every good decision counts.
                    </span>
                </div>
-           </div>
+           </div> -->
 
            
            <div class=" p-1 sm:my-12 sm:mx-4">
@@ -308,7 +308,6 @@
 <script>
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
-    import { gsap } from "gsap"
     
     export default defineComponent({
         components: {
@@ -337,7 +336,6 @@
                 brands: [],
                 success: false,
                 products:[],
-                check: false,
                 duration : 15 * 1000,
                 animationEnd : Date.now() + this.duration,
                 defaults : { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 },
@@ -455,25 +453,31 @@
                     colors: this.colors
                 });
             },
-            showPopup()
+            showPopup(check)
             {
                 
-                console.log("zdxsad");
-                 if(!this.check)
+                console.log(check);
+                 if(!check)
                  {
                      axios.get('/discount/get/random')
-                    .then(res => this.Discount = res.data[0]);
-                    setTimeout(() =>{
-                        this.discount_popup = true;
-                        this.pops();
-                        // setTimeout(() =>{
-                        //     this.discount_popup = true;
-                        //     this.pops();
-                        //     this.pops();
-                        // }, 1000) ;
-                    }, 1000) ;
+                    .then(res => this.Discount = res.data[0])
+                    .then( ()=>{
+                        if(this.Discount)
+                        {
+                             setTimeout(() =>{
+                                this.discount_popup = true;
+                                this.pops();
+                                // setTimeout(() =>{
+                                //     this.discount_popup = true;
+                                //     this.pops();
+                                //     this.pops();
+                                // }, 1000) ;
+                            }, 1000) ;
 
-                    axios.post('/updatepop', {val : 'true'});
+                            axios.post('/updatepop', {val : 'true'});
+                        }
+                    })
+                
                  }
             },
             // mouseEnter: function(e)
@@ -509,8 +513,7 @@
                 this.currentImg = this.banners[0]
             });
             axios.get('/checkpop')
-            .then(res => this.check = res.data)
-            .then(this.showPopup());
+            .then(res => this.showPopup(res.data));
             axios.get('/topselling')
             .then(res => this.topselling = res.data);
 

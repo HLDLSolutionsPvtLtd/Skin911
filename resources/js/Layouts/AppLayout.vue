@@ -14,7 +14,7 @@
                                 <path fill="#814252" d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>\
                             </svg>
                         </div>
-                        <span class="text-xs tracking-wider font-thin">Free shipping across India on all orders over</span>
+                        <span class="text-xs tracking-wider font-thin">Free shipping inside AMC area on all orders over</span>
                         <span class="pl-2 text-xs tracking-wider text-pink-dark font-semibold">&#8377;2800</span>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                                             <div class="col-span-10 text-gray-700 border-gray-200">
                                                 <span class="">FEATURED CATEGORIES</span>
                                                 <ul class="grid grid-cols-4">
-                                                    <li v-for="category in categories" class="hover:text-gray-300 pt-2">
+                                                    <li v-for="category in categories" :key="category.id" class="hover:text-gray-300 pt-2">
                                                         <a :href="'/products?key='+category.name"> <span>{{category.name}}</span></a>
                                                     </li>
                                                     
@@ -224,13 +224,13 @@
                         </div>
                         <div class="flex gap-3 items-center">
                             <div @click="search_mobile = !search_mobile" class="cursor-pointer sm:hidden"> 
-                                <svg width="18" height="18" class="fill-current text-gray-500" viewBox="0,0,24,24">
+                                <svg width="22" height="22" class="fill-current text-gray-500" viewBox="0,0,24,24">
                                     <path d="M23.822 20.88l-6.353-6.354c.93-1.465 1.467-3.2 1.467-5.059.001-5.219-4.247-9.467-9.468-9.467s-9.468 4.248-9.468 9.468c0 5.221 4.247 9.469 9.468 9.469 1.768 0 3.421-.487 4.839-1.333l6.396 6.396 3.119-3.12zm-20.294-11.412c0-3.273 2.665-5.938 5.939-5.938 3.275 0 5.94 2.664 5.94 5.938 0 3.275-2.665 5.939-5.94 5.939-3.274 0-5.939-2.664-5.939-5.939z"/>
                                 </svg>
                             </div>
                             <div class="flex items-center sm:hidden">
                                 <a href="/cart" class="font-bold flex justify-center self-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-500" width="22" height="22" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-500" width="26" height="26" viewBox="0 0 24 24">
                                         <path d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
                                     </svg>
                                     <div class="relative">
@@ -240,8 +240,8 @@
                             </div>
                             <!-- Hamburger -->
                             <div class="-mr-2 flex items-center sm:hidden">
-                                <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
-                                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-1 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
+                                    <svg class="h-8 w-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                         <path :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                                         <path :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
@@ -277,6 +277,14 @@
                         </div> -->
 
                         <div class="mt-3 font-bold space-y-1">
+                            <div v-if="!$page.props.user" class="flex ml-4 gap-2">
+                                <div>
+                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('login')"><span>Log In</span></a>
+                                </div>
+                                <div>
+                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('register')"><span>Register</span></a>
+                                </div>
+                            </div>
                             <jet-responsive-nav-link :href="route('products')" :active="route().current('products')">
                                 Products
                             </jet-responsive-nav-link>
@@ -287,14 +295,14 @@
                             <jet-responsive-nav-link :href="route('brands')" :active="route().current('brands')">
                                 Brands
                             </jet-responsive-nav-link>
-                            <jet-responsive-nav-link :href="route('myorder.view')" :active="route().current('myorder.view')">
+                            <jet-responsive-nav-link v-if="$page.props.user" :href="route('myorder.view')" :active="route().current('myorder.view')">
                                 My Orders
                             </jet-responsive-nav-link>
-                            <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
+                            <jet-responsive-nav-link v-if="$page.props.user" :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
                             </jet-responsive-nav-link>
                             <!-- Authentication -->
-                            <form method="POST" @submit.prevent="logout">
+                            <form v-if="$page.props.user" method="POST" @submit.prevent="logout">
                                 <jet-responsive-nav-link as="button">
                                     Log Out
                                 </jet-responsive-nav-link>

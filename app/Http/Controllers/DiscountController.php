@@ -19,10 +19,10 @@ class DiscountController extends Controller
     {
         if($request->session()->has('poped') && $request->session()->get('poped'))
         {
-            return response()->json(true);
+            return true;
         }
         else{
-            return response()->json(false);
+            return false;
         }
     }
 
