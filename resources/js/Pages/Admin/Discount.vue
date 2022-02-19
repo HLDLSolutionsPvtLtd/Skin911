@@ -6,7 +6,7 @@
        <div class="">
            <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1">
                <div class="m-2 relative">
-                   <div class="flex justify-between mb-2 border-b-2 pb-2">
+                   <div class="flex justify-between items-center bg-gray-300 mb-2 rounded-md p-2">
                        <div class="">
                            <button @click="newdiscount = !newdiscount" class="p-2 bg-green-500 text-white rounded-md text-xs tracking-wider font-bold">NEW</button>
                        </div>
@@ -159,28 +159,28 @@
                        </div>
                    </div>
                    
-                   <table class="border border-gray-300 w-full text-ct">
-                        <tr class="border-b border-gray-300 text-gray-400 tracking-wider text-sm">
-                            <th class="text-left border-r border-gray-300 p-2">
-                                <span class="flex pr-1">Name</span>
+                   <table class="w-full text-ct">
+                        <tr class="text-gray-500 font-bold tracking-wider text-xs font-bold uppercase">
+                            <th class="text-left  p-2">
+                                <span class="pr-1">Name</span>
                             </th>
-                            <th class="text-left border-r border-gray-300 p-2">
+                            <th class="text-left  p-2">
                                 <span class="flex pr-1">Type</span>
                             </th>
-                            <th class="text-left border-r border-gray-300 p-2">
+                            <th class="text-left  p-2">
                                 <span class="flex pr-1">Amount</span>
                             </th>
-                            <th class="text-left border-r border-gray-300 p-2">
+                            <th class="text-left  p-2">
                                 <span class="flex pr-1">Image</span>
                             </th>
                             <th class="text-center p-2">Actions</th>
                         </tr>
                         
-                        <tr v-for="discount in discounts" :key="discount.id" class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
-                            <td class="text-center border-r border-gray-300 p-2">{{discount.name}}</td>
-                            <td class="p-2 border-r border-gray-300">{{discount.type}}</td>
-                            <td class="p-2 border-r border-gray-300">{{discount.amount}}</td>
-                            <td class="text-center border-r border-gray-300 p-2">
+                        <tr v-for="discount in discounts" :key="discount.id" class="border-t-2 shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
+                            <td class="text-left  p-2">{{discount.name}}</td>
+                            <td class="p-2 ">{{discount.type}}</td>
+                            <td class="p-2 ">{{discount.amount}}</td>
+                            <td class="text-center  p-2">
                                 <img v-if="discount.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+discount.img" alt="">
                             </td>
                             <td class="p-2">

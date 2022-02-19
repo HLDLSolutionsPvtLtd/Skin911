@@ -5,8 +5,8 @@
        </template>
        <div class="">
            <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1 relative">
-                <div class="m-4">
-                    <div class="flex justify-between mb-2 border-b-2 pb-2">
+                <div class="m-2">
+                    <div class="flex justify-between items-center bg-gray-300 mb-2 rounded-md p-2">
                         <div class="">
                             <button @click="newbanner = !newbanner" class="p-2 bg-green-500 text-white rounded-md text-xs tracking-wider font-bold">NEW</button>
                         </div>

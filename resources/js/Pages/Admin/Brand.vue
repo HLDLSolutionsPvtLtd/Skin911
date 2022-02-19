@@ -6,7 +6,7 @@
        <div class="">
            <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1">
                <div class="m-2 relative">
-                   <div class="flex justify-between mb-2 border-b-2 pb-2">
+                   <div class="flex justify-between items-center bg-gray-300 mb-2 rounded-md p-2">
                        <div class="">
                            <button @click="newbrand = !newbrand" class="p-2 bg-green-500 text-white rounded-md text-xs tracking-wider font-bold">NEW</button>
                        </div>
@@ -101,64 +101,29 @@
                        </div>
                    </div>
                    <div style="height:calc(100vh - 180px)" class="overflow-y-scroll">
-                        <table class="border border-gray-300 w-full text-ct">
-                            <tr class="border-b border-gray-300 text-gray-400 tracking-wider text-sm">
-                                <th class="text-left border-r border-gray-300 p-2">
+                        <table class="w-full text-ct">
+                            <tr class="border-b-2 shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
+                                <th class="text-left border-gray-300 p-2">
                                     <span class="flex pr-1">Name</span>
                                 </th>
-                                <th class="text-left border-r border-gray-300 p-2">
+                                <th class="text-left border-gray-300 p-2">
                                     <span class="flex pr-1">Image</span>
                                 </th>
                                 <th class="text-center p-2">Actions</th>
                             </tr>
                             
-                            <tr v-for="brand in brands" :key="brand.id" class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
-                                <td class="text-center border-r border-gray-300 p-2">{{brand.name}}</td>
-                                <td class="p-2 flex border-r border-gray-300"><img v-if="brand.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+brand.img" alt=""></td>
+                            <tr v-for="brand in brands" :key="brand.id" class="border-t-2 shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
+                                <td class="text-start border-gray-300 p-2">{{brand.name}}</td>
+                                <td class="p-2 flex border-gray-300"><img v-if="brand.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+brand.img" alt=""></td>
                                 <td class="p-2">
                                     <div class="flex gap-2 justify-center items-center">
                                         <button @click="updatebrand = !updatebrand, newform.name = brand.name, newform.id = brand.id" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-white" viewBox="0 0 24 24">
                                                 <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
                                             </svg>
                                         </button>
                                         <button @click="deleteBrand(brand)" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
-                                                <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr v-for="brand in brands" :key="brand.id" class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
-                                <td class="text-center border-r border-gray-300 p-2">{{brand.name}}</td>
-                                <td class="p-2 flex border-r border-gray-300"><img v-if="brand.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+brand.img" alt=""></td>
-                                <td class="p-2">
-                                    <div class="flex gap-2 justify-center items-center">
-                                        <button @click="updatebrand = !updatebrand, newform.name = brand.name, newform.id = brand.id" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
-                                                <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
-                                            </svg>
-                                        </button>
-                                        <button @click="deleteBrand(brand)" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
-                                                <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr><tr v-for="brand in brands" :key="brand.id" class="border-b text-sm text-gray-500 tracking-wider border-gray-300">   
-                                <td class="text-center border-r border-gray-300 p-2">{{brand.name}}</td>
-                                <td class="p-2 flex border-r border-gray-300"><img v-if="brand.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+brand.img" alt=""></td>
-                                <td class="p-2">
-                                    <div class="flex gap-2 justify-center items-center">
-                                        <button @click="updatebrand = !updatebrand, newform.name = brand.name, newform.id = brand.id" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
-                                                <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
-                                            </svg>
-                                        </button>
-                                        <button @click="deleteBrand(brand)" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-red-800" viewBox="0 0 24 24">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-white" viewBox="0 0 24 24">
                                                 <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
                                             </svg>
                                         </button>
