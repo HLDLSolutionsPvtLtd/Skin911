@@ -76,7 +76,7 @@
                 </div>   -->
                 <div class="">
                        
-                    <transition-group style="" class="carousel h-[calc(100vh-300px)] sm:h-screen" name="fade" tag="div">
+                    <transition-group style="" class="carousel h-[calc(100vh-350px)] sm:h-screen" name="fade" tag="div">
                         <div class="w-full h-full" @touchstart="touchstart($event)" @touchend="touchend($event)" v-for="i in [currentIndex]" :key="i">
                             <img @click="redirectTo()" :class="{'slide-in':slidein,'slide-out':slideout}" :src="'/storage/'+currentImg.image" class="w-full h-full transition-transform ease-in-out duration-700" />
                         </div>
@@ -94,9 +94,9 @@
                 </div>
            </div>
 
-           <div class="md:mx-4 md:my-12 mt-2">
+           <div class="md:mx-4 md:my-12">
                <div class="flex justify-center">
-                   <span class="text-gray-700 p-2 mt-4 font-bold sm:text-3xl">TOP SELLING PRODUCTS</span>
+                   <span class="text-gray-700 p-2 font-bold sm:text-3xl">TOP SELLING PRODUCTS</span>
                </div>
                <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
                     <div class="border w-7/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="tproduct in topselling" :key="tproduct">

@@ -21982,7 +21982,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteDiscount: function deleteDiscount(discount) {
       if (confirm('this brand will be permanently deleted')) {
-        axios["delete"]('/admin/brand/' + discount.id + '/delete').then(alert('Success reload now!!'));
+        axios["delete"]('/admin/discount/' + discount.id + '/delete').then(alert('Success reload now!!'));
       }
     },
     create: function create() {
@@ -25828,7 +25828,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "grid grid-cols-12 min-h-screen"
+  "class": "hidden sm:grid sm:grid-cols-12 min-h-screen"
 };
 var _hoisted_2 = {
   "class": "col-span-2 bg-white shadow-lg border-r h-screen"
@@ -31468,7 +31468,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS */
         , _hoisted_72), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: function onClick($event) {
-            return _ctx.deletediscount(discount);
+            return $options.deleteDiscount(discount);
           },
           "class": "flex items-center justify-center font-bold text-sm text-red-700 p-2 bg-red-400 rounded-md shadow-lg"
         }, _hoisted_77, 8
@@ -35698,13 +35698,13 @@ var _hoisted_33 = {
 };
 var _hoisted_34 = ["onClick"];
 var _hoisted_35 = {
-  "class": "md:mx-4 md:my-12 mt-2"
+  "class": "md:mx-4 md:my-12"
 };
 
 var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "text-gray-700 p-2 mt-4 font-bold sm:text-3xl"
+  "class": "text-gray-700 p-2 font-bold sm:text-3xl"
 }, "TOP SELLING PRODUCTS")], -1
 /* HOISTED */
 );
@@ -36002,7 +36002,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"absolute z-30 top-1/2 left-1/4\">\n                    <span class=\"text-lg uppercase \">{{this.currentImg.description}}</span>\n                </div>   "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
         style: {},
-        "class": "carousel h-[calc(100vh-300px)] sm:h-screen",
+        "class": "carousel h-[calc(100vh-350px)] sm:h-screen",
         name: "fade",
         tag: "div"
       }, {

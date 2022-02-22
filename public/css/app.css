@@ -1438,8 +1438,8 @@ select {
 .h-24 {
 	height: 6rem;
 }
-.h-\[calc\(100vh-300px\)\] {
-	height: calc(100vh - 300px);
+.h-\[calc\(100vh-350px\)\] {
+	height: calc(100vh - 350px);
 }
 .h-40 {
 	height: 10rem;
@@ -3460,6 +3460,10 @@ select {
 		--tw-scale-x: 1;
 		--tw-scale-y: 1;
 		transform: var(--tw-transform);
+	}
+
+	.sm\:grid-cols-12 {
+		grid-template-columns: repeat(12, minmax(0, 1fr));
 	}
 
 	.sm\:grid-cols-4 {

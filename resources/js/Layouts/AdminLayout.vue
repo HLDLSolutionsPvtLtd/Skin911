@@ -1,5 +1,5 @@
 <template>
-<div class="grid grid-cols-12 min-h-screen ">
+<div class="hidden sm:grid sm:grid-cols-12 min-h-screen ">
     <!-- side navbar -->
     <div class="col-span-2 bg-white shadow-lg border-r h-screen">
             <div class="border-b my-1">

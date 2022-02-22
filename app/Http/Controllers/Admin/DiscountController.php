@@ -109,4 +109,13 @@ class DiscountController extends Controller
         return redirect()->back();
     }
 
+    public function delete(Discount $discount, Request $request)
+    {
+            $discount->products()->detach($request->data['data']['id']);
+            $discount->categories()->detach($request->data['data']['id']);
+            $discount->brands()->detach($request->data['data']['id']);
+            $discount->delete();
+            return redirect()->back();
+    }
+
 }
