@@ -1,5 +1,5 @@
 <template>
-<div class="hidden sm:grid sm:grid-cols-12 min-h-screen ">
+<div class="sm:grid sm:grid-cols-12 min-h-screen ">
     <!-- side navbar -->
     <div class="col-span-2 bg-white shadow-lg border-r h-screen">
             <div class="border-b my-1">
@@ -135,7 +135,7 @@
                             </Link>
                         </li>
                         <li class="w-full m-1">
-                            <div class="p-3 flex justify-between" >
+                            <div @click="logout()" class="p-3 flex cursor-pointer justify-between" >
                                 <div class="flex items-center">
                                     <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                         <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
@@ -258,7 +258,7 @@
         methods: {
 
             logout() {
-                this.$inertia.post(route('logout'));
+                this.$inertia.post(route('admin.logout'));
             },
             close()
             {

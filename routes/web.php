@@ -116,6 +116,7 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.banners')->middleware('is_admin');
 
     Route::post('admin.login',[UserAdminController::class,'authenticate'])->name('admin.login');
+    Route::post('admin.logout',[UserAdminController::class,'logout'])->name('admin.logout');
 
     Route::middleware(['auth:sanctum'])->get('products', function () {
         return Inertia::render('Admin/Products', ['products' => Product::all()]);

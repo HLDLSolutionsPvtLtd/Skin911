@@ -31,5 +31,10 @@ class DatabaseSeeder extends Seeder
             'pincode' => '',
             'fee' => '100',
         ]);
+        Shipping::insert([
+            'name' => 'free',
+            'pincode' => '',
+            'fee' => '2800',
+        ]);
     }
 }

@@ -44,10 +44,13 @@ class OrderController extends Controller
             $payment_type = 'cod';
         }
         $shipping_fee = 0;
-            $free = Shipping::where('name', 'free')->first();
-            if($free->fee < $total)
+            return $free = Shipping::where('name', 'free')->first();
+            if($free)
             {
-                $shipping_fee = 0;
+                if($free->fee < $total)
+                {
+                    $shipping_fee = 0;
+                }
             }
             else
             {
@@ -55,13 +58,13 @@ class OrderController extends Controller
                 if($fee)
                 {
                     $shipping_fee = $fee->fee;
-                    $total = $total + $fee->fee;
+                    $total = $total + $shipping_fee;
                 }
                 else
                 {
                     $fee = Shipping::where('name', 'Default')->first();
                     $shipping_fee = $fee->fee;
-                    $total = $total + $fee->fee;
+                    $total = $total + $shipping_fee;
                 }
             }
         $order = Order::create([
@@ -165,8 +168,7 @@ class OrderController extends Controller
         $total = 0;
         $payment_type = 'rzp';
         $cart = $request->user()->cart;
-       
-            
+        
         if($request->variant)
         {
             $total = $total + ($request->quantity * $request->variant->price);
@@ -180,6 +182,29 @@ class OrderController extends Controller
         {
             $payment_type = 'cod';
         }
+
+        $shipping_fee = 0;
+        $free = Shipping::where('name', 'free')->first();
+        if($free->fee < $total)
+        {
+            $shipping_fee = 0;
+        }
+        else
+        {
+            $fee = Shipping::where('pincode', $request->pincode)->first();
+            if($fee)
+            {
+                $shipping_fee = $fee->fee;
+                $total = $total + $shipping_fee;
+            }
+            else
+            {
+                $fee = Shipping::where('name', 'Default')->first();
+                $shipping_fee = $fee->fee;
+                $total = $total + $shipping_fee;
+            }
+        }
+            
         $order = Order::create([
             'user_id' => $request->user()->id,
             'total' => $total,
