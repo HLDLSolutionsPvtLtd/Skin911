@@ -25890,7 +25890,7 @@ var _hoisted_14 = {
   "class": "overflow-hidden ml-8 list-inside transition-all duration-800 ease-in-out"
 };
 var _hoisted_15 = {
-  "class": "hover:bg-gray-100 p-4"
+  "class": "hover:bg-gray-100"
 };
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -25900,7 +25900,7 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_17 = {
-  "class": "hover:bg-gray-100 p-4"
+  "class": "hover:bg-gray-100"
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -26154,7 +26154,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "p-3 flex justify-between"
   }, _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    "class": "text-gray-500 tracking-wider",
+    "class": "text-gray-500 tracking-wider p-4",
     active: _ctx.route().current('allproducts'),
     href: _ctx.route('allproducts')
   }, {
@@ -26167,7 +26167,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["active", "href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    "class": "text-gray-500 tracking-wider",
+    "class": "text-gray-500 tracking-wider p-4",
     href: _ctx.route('addproduct')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
