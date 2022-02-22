@@ -38,14 +38,14 @@
                                     </div>
                             </div>
                             <ul  class="overflow-hidden ml-8 list-inside transition-all duration-800 ease-in-out ">
-                                <li class="hover:bg-gray-100 p-4">
-                                    <Link class="text-gray-500 tracking-wider" :active="route().current('allproducts')" :href="route('allproducts')">
+                                <li class="hover:bg-gray-100 ">
+                                    <Link class="text-gray-500 tracking-wider p-4" :active="route().current('allproducts')" :href="route('allproducts')">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
                                         <span class="text-xs uppercase font-bold tracking-wider">All</span>
                                     </Link>
                                 </li>
-                                <li class="hover:bg-gray-100 p-4">
-                                    <Link class="text-gray-500 tracking-wider" :href="route('addproduct')">
+                                <li class="hover:bg-gray-100 ">
+                                    <Link class="text-gray-500 tracking-wider p-4" :href="route('addproduct')">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
                                         <span class="text-xs uppercase font-bold tracking-wider">Add</span>
                                     </Link>
