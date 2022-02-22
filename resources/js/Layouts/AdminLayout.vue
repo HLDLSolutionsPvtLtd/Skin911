@@ -37,20 +37,20 @@
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Products</span>
                                     </div>
                             </div>
-                            <ul  class="overflow-hidden ml-8 list-inside transition-all duration-800 ease-in-out ">
-                                <li class="hover:bg-gray-100 ">
-                                    <Link class="text-gray-500 tracking-wider p-4" :active="route().current('allproducts')" :href="route('allproducts')">
+                            <div  class="overflow-hidden ml-8 list-inside transition-all duration-800 ease-in-out ">
+                                <Link class="text-gray-500 tracking-wider" :active="route().current('allproducts')" :href="route('allproducts')">
+                                    <div class="hover:bg-gray-100 p-4">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
                                         <span class="text-xs uppercase font-bold tracking-wider">All</span>
-                                    </Link>
-                                </li>
-                                <li class="hover:bg-gray-100 ">
-                                    <Link class="text-gray-500 tracking-wider p-4" :href="route('addproduct')">
+                                    </div>
+                                </Link>
+                                <Link class="text-gray-500 tracking-wider " :href="route('addproduct')">
+                                    <div class="hover:bg-gray-100 p-4">
                                         <!-- <jet-application-mark class="block h-9 w-auto" /> -->
                                         <span class="text-xs uppercase font-bold tracking-wider">Add</span>
-                                    </Link>
-                                </li>
-                            </ul>
+                                    </div>
+                                </Link>
+                            </div>
                         </li>
                         <li class="w-full m-1">
                             <Link :href="route('admin.brands')" class="p-3 flex justify-between" >

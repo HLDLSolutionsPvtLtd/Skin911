@@ -314,6 +314,7 @@
             this.form.post('/admin/product/new', {
                 onSuccess:() =>
                 {
+                    this.resetForm();
                     alert("scuccess");
                 }
             });
@@ -344,16 +345,13 @@
         },
         resetForm()
         {
-            this.form = {
-                    name: '',
-                    description: '',
-                    label: '',
-                    category: '',
-                    price : '',
-                    images: [],
-                    variants : [],
-
-                };
+            this.form.name = '';
+            this.form.description = '';
+            this.form.label = '';
+            this.form.category = '';
+            this.form.price  = '';
+            this.form.images = [];
+            this.form.variants  = [];
         }
 
     },
