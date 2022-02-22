@@ -124,10 +124,18 @@
                                     <option value="delivered">Delivered</option>
                                 </select>
                             </td>
-                            <td v-if="order.payment_type == 'rzp'"  class="text-left p-1">
+                            <td v-if="order.payment_type == 'rzp' && order.transaction"  class="text-left p-1">
                                 <span class="text-red-400 uppercase font-bold text-xs">{{order.transaction.status}}</span>
                             </td>
-                            <td v-else class="text-left p-1"><span class="text-red-400 uppercase font-bold text-xs">CASH ON DELIVERY</span>
+                            <td v-else-if="order.payment_type == 'cod'" class="text-left p-1">
+                                <span class="text-red-400 uppercase font-bold text-xs">
+                                    CASH ON DELIVERY
+                                </span>
+                            </td>
+                            <td v-else class="text-left p-1">
+                                <span class="text-red-400 uppercase font-bold text-xs">
+                                    PAYMENT ERROR
+                                </span>
                             </td>
                             <td v-if="order.payment_type == 'rzp'  && order.transaction">
                                 <button @click="refund(order)" v-if="order.transaction.status == 'paid'" class="p-2 ml-2 text-xs rounded-md tracking-wider font-bold shadow-sm bg-pink  -400 text-white">REFUND</button>

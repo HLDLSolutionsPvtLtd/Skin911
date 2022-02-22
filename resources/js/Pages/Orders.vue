@@ -51,6 +51,7 @@
                                     </div>
                                    
                                 </div>
+                                
                             </div>
                             <div class="ml-2 p-2 pb-4 flex justify-between">
                                 <div class="" v-if="order.payment_type == 'rzp' && order.transaction">
@@ -66,7 +67,10 @@
                                     <span class="uppercase text-xs bg-pink-400 text-white p-2 rounded-md font-bold tracking-wider">Payment Error</span>
                                 </div>
                                 <div>
-                                    <span class="text-xs sm:text-sm tracking-widest text-gray-600 uppercase font-bold mr-8">Total : &#8377;{{order.total}}</span>
+                                    <div>
+                                        <span class="text-xs tracking-widest font-semibold text-gray-600 uppercase mr-8">Shipping fee : &#8377;{{order.shipping_fee}}</span>
+                                    </div>
+                                    <span class="text-xs sm:text-sm tracking-widest text-gray-600 uppercase font-semibold mr-8">Total : &#8377;{{order.total}}</span>
                                 </div>
                             </div>
                         </div>

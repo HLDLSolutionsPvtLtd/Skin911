@@ -14,10 +14,12 @@ use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\DiscountController as ControllersDiscountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShippingfeeController;
 use App\Http\Controllers\UserAdminController;
 use App\Models\Banner;
 use App\Models\Discount;
 use App\Models\Product;
+use App\Models\Shipping;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -141,6 +143,10 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.orders')->middleware('is_admin');
     
 
+    Route::middleware(['auth:sanctum'])->get('shipping', function () {
+        return Inertia::render('Admin/Shipping', ['fees' => Shipping::all()]);
+    })->name('admin.shipping')->middleware('is_admin');
+
     Route::middleware(['auth:sanctum'])->get('categories', function () {
         return Inertia::render('Admin/Categories');
     })->name('admin.categories')->middleware('is_admin');
@@ -201,5 +207,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('chart/order/month',[ChartController::class, 'orderDataMonth'])->name('order.month');
     Route::middleware(['auth:sanctum'])->get('chart/order/year',[ChartController::class, 'orderDataYear'])->name('order.year');
     Route::middleware(['auth:sanctum'])->get('chart/order/status',[ChartController::class, 'orderStatus'])->name('order.status');
+
+    Route::middleware(['auth:sanctum'])->post('shippingfee/add',[ShippingfeeController::class, 'create'])->name('shippingfee.add');
+    Route::middleware(['auth:sanctum'])->post('shippingfee/{shipping:id}/update',[ShippingfeeController::class, 'update'])->name('shippingfee.update');
+    Route::middleware(['auth:sanctum'])->delete('shippingfee/{shipping:id}/delete',[ShippingfeeController::class, 'delete'])->name('shippingfee.delete');
+    Route::middleware(['auth:sanctum'])->get('shippingfee/calculate',[ShippingfeeController::class, 'calculate'])->name('shippingfee.calculate');
 
 });

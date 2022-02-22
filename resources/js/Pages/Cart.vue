@@ -70,9 +70,15 @@
                                     <span>ITEMS</span>
                                     <span>{{this.n_items}}</span>
                                 </div>
-                                <div class="flex font-semibold tracking-widest text-xs uppercase border-b p-4 justify-between">
-                                    <span>Shipping fee</span>
-                                    <span>&#8377; 150</span>
+                                <div class="flex font-semibold tracking-widest text-xs  border-b p-4 justify-between">
+                                    <span class="">
+                                        <span class="uppercase">Shipping fee</span>
+                                        <div class="pt-2">
+                                            <!-- <span>&#8377; 10</span> -->
+                                            <span class="text-blue-400">Shipping fee will be calculated during checkout</span>
+                                        </div>
+                                    </span>
+                                    
                                 </div>
                                 <div class="flex font-bold tracking-widest text-sm uppercase p-4 justify-between">
                                     <span>Total </span>
@@ -206,7 +212,7 @@ export default {
                     this.n_items = this.n_items + parseInt(element.pivot.quantity);
                 }
             });
-            this.total = this.subtotal + 150;
+            this.total = this.subtotal;
         },
         checkout()
         {

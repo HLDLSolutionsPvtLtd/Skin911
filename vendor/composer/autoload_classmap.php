@@ -116,6 +116,7 @@ return array(
     'App\\Models\\Image' => $baseDir . '/app/Models/Image.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
+    'App\\Models\\Shipping' => $baseDir . '/app/Models/Shipping.php',
     'App\\Models\\Transaction' => $baseDir . '/app/Models/Transaction.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Variant' => $baseDir . '/app/Models/Variant.php',

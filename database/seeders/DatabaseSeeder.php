@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Shipping;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'phone_no' => Str::random(10),
             'is_admin' => '1',
+        ]);  
+
+        Shipping::insert([
+            'name' => 'default',
+            'pincode' => '',
+            'fee' => '100',
         ]);
     }
 }

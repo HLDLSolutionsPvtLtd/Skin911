@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Shipping;
 use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Razorpay\Api\Api;
@@ -42,9 +43,31 @@ class OrderController extends Controller
         {
             $payment_type = 'cod';
         }
+        $shipping_fee = 0;
+            $free = Shipping::where('name', 'free')->first();
+            if($free->fee < $total)
+            {
+                $shipping_fee = 0;
+            }
+            else
+            {
+                $fee = Shipping::where('pincode', $request->pincode)->first();
+                if($fee)
+                {
+                    $shipping_fee = $fee->fee;
+                    $total = $total + $fee->fee;
+                }
+                else
+                {
+                    $fee = Shipping::where('name', 'Default')->first();
+                    $shipping_fee = $fee->fee;
+                    $total = $total + $fee->fee;
+                }
+            }
         $order = Order::create([
             'user_id' => $request->user()->id,
             'total' => $total,
+            'shipping_fee' => $shipping_fee,
             'address_id' => $request->selectedAddress,
             'payment_type' => $payment_type,
         ]);

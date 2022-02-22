@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="flex font-semibold tracking-widest text-xs uppercase border-b p-4 justify-between">
                                     <span>Shipping fee</span>
-                                    <span>&#8377; 150</span>
+                                    <span>&#8377; {{fee}}</span>
                                 </div>
                                 <div class="flex font-bold tracking-widest text-sm uppercase p-4 justify-between">
                                     <span>Total </span>
@@ -122,6 +122,7 @@ export default {
 
     data(){
         return{
+            fee : '',
             success : false,
             RZPScript: '',
             order: '',
@@ -162,14 +163,28 @@ export default {
             axios.post('/order/create', this.form)
             .then(res => this.order = res.data);
         },
+        calculate(){
+            var index =  this.addresses.findIndex(el =>{
+                if(el.id == this.form.selectedAddress)
+                {
+                    return true;
+                }
+            })
+            axios.get('/admin/shippingfee/calculate', {params: {'pincode': this.addresses[index].pincode}})
+            .then(res => this.fee = res.data)
+            .then( ()=>{
+                axios.get('cart/all')
+               .then(res => this.products = res.data);
+            })
+            
+        }
         
     },
     mounted(){
-        axios.get('cart/all')
-        .then(res => this.products = res.data);
+        
         axios.get('/address/all')
         .then(res => this.addresses = res.data);
-
+        
         this.RZPScript = document.createElement('script');
         this.RZPScript.setAttribute('src', 'https://checkout.razorpay.com/v1/checkout.js');
         document.head.appendChild(this.RZPScript);
@@ -203,7 +218,7 @@ export default {
                     this.n_items = this.n_items + parseInt(element.pivot.quantity);
                 }
             });
-            this.total = this.subtotal + 150;
+            this.total = this.subtotal + this.fee;
         },
         order()
         {
@@ -252,6 +267,12 @@ export default {
         addresses()
         {
             this.form.selectedAddress = this.addresses[0].id;
+           
+            
+        },
+
+        'form.selectedAddress'(){
+             this.calculate();
         }
    },
 
