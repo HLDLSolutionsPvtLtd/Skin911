@@ -32971,7 +32971,10 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_17 = [_hoisted_15, _hoisted_16];
 var _hoisted_18 = {
-  "class": "flex m-2"
+  style: {
+    "height": "calc(100vh - 180px)"
+  },
+  "class": "overflow-y-scroll flex m-2"
 };
 var _hoisted_19 = {
   "class": "m-2 w-full text-ct border-collapse table-auto"

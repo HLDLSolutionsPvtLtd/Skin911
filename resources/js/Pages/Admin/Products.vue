@@ -34,7 +34,7 @@
                         </svg>
                     </button>
                 </div>
-               <div class="flex  m-2">
+               <div style="height:calc(100vh - 180px)" class="overflow-y-scroll flex  m-2">
                    <table class="m-2 w-full text-ct border-collapse table-auto">
                         <tr class="border-t-2 shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
                             <td>
