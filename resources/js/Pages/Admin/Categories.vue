@@ -100,7 +100,7 @@
                            </div>
                        </div>
                    </div>
-                    <div class="flex">
+                    <div style="height:calc(100vh - 180px)" class="overflow-y-scroll">
                         <table class="w-full text-ct border-collapse table-auto">
                             <tr class="border-b-2 shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
                                 <th class="text-left border-gray-300 p-2">
