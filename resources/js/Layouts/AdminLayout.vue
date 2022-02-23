@@ -19,7 +19,7 @@
                                 <div class="flex justify-center self-center items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M13 23h-10l-.002-10.016 8.974-7.989 9.011 7.989.017 10.016h-3v-7h-5v7zm-6-7h-2v3h2v-3zm4 0h-2v3h2v-3zm1-15l11.981 10.632-1.328 1.493-10.672-9.481-10.672 9.481-1.328-1.493 12.019-10.632z"/>
+                                                <path d="M22 11.414v12.586h-20v-12.586l-1.293 1.293-.707-.707 12-12 12 12-.707.707-1.293-1.293zm-6 11.586h5v-12.586l-9-9-9 9v12.586h5v-9h8v9zm-1-7.889h-6v7.778h6v-7.778z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Dashboard</span>
@@ -31,7 +31,7 @@
                                     <div class="flex justify-center self-center items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M11.499 12.03v11.971l-10.5-5.603v-11.835l10.5 5.467zm11.501 6.368l-10.501 5.602v-11.968l10.501-5.404v11.77zm-16.889-15.186l10.609 5.524-4.719 2.428-10.473-5.453 4.583-2.499zm16.362 2.563l-4.664 2.4-10.641-5.54 4.831-2.635 10.474 5.775z"/>
+                                                <path d="M23 6.066v12.065l-11.001 5.869-11-5.869v-12.131l11-6 11.001 6.066zm-21.001 11.465l9.5 5.069v-10.57l-9.5-4.946v10.447zm20.001-10.388l-9.501 4.889v10.568l9.501-5.069v-10.388zm-5.52 1.716l-9.534-4.964-4.349 2.373 9.404 4.896 4.479-2.305zm-8.476-5.541l9.565 4.98 3.832-1.972-9.405-5.185-3.992 2.177z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Products</span>
@@ -53,11 +53,11 @@
                             </div>
                         </li>
                         <li class="w-full m-1">
-                            <Link :href="route('admin.brands')" class="p-3 flex justify-between" >
+                            <Link :href="route('admin.brands')" class="p-3 hover:bg-gray-100 flex justify-between" >
                                     <div class="flex items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M10.605 0h-10.605v10.609l13.392 13.392 10.608-10.605-13.395-13.396zm4.477 10.687l3.535 3.533-.547.547-3.533-3.534.545-.546zm-11.496-4.273c-.781-.782-.781-2.048 0-2.829s2.049-.78 2.828-.001c.781.783.782 2.048 0 2.83-.781.782-2.046.78-2.828 0zm9.651 13.189l-3.536-3.535.547-.546 3.534 3.536-.545.545zm1.115-1.117l-3.534-3.534.728-.729 3.535 3.536-.729.727zm1.31-1.311l-3.534-3.533.546-.546 3.535 3.536-.547.543zm1.135-1.135l-3.533-3.534.729-.729 3.534 3.536-.73.727zm2.404-2.4l-3.537-3.535.4-.4 3.537 3.535-.4.4z"/>
+                                                <path d="M12.434 22.586l7.859-7.858.707.707-8.565 8.565-.001-.001v.001l-12.434-12.434.707-.707 11.727 11.727zm-.033-1.7l-12.401-12.405v-8.481h8.441l12.445 12.401-8.485 8.485zm-4.373-19.886h-7.028v7.067l11.401 11.405 7.07-7.07s-7.534-7.506-11.443-11.402zm-1.598 2.594c.78.78.78 2.048 0 2.828-.781.781-2.048.781-2.829 0-.78-.78-.78-2.048 0-2.828.781-.781 2.048-.781 2.829 0zm-.707.707c.39.39.39 1.024 0 1.414-.391.39-1.024.39-1.414 0-.391-.39-.391-1.024 0-1.414.39-.39 1.023-.39 1.414 0z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Brands</span>
@@ -66,11 +66,11 @@
                         </li>
                         <li class="w-full m-1">
                             <Link href="/admin/order">
-                                 <div class="p-3 flex justify-between" >
+                                 <div class="p-3 flex hover:bg-gray-100 justify-between" >
                                     <div class="flex items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M21.698 10.658l2.302 1.342-12.002 7-11.998-7 2.301-1.342 9.697 5.658 9.7-5.658zm-9.7 10.657l-9.697-5.658-2.301 1.343 11.998 7 12.002-7-2.302-1.342-9.7 5.657zm12.002-14.315l-12.002-7-11.998 7 11.998 7 12.002-7z"/>
+                                                <path d="M10 20.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.305-15l-3.432 12h-10.428l-3.777-9h-2.168l4.615 11h13.239l3.474-12h1.929l.743-2h-4.195zm-5.805 0h-2v-2h-2v2h-2v2h2v2h2v-2h2v-2zm0 5h-6v2h6v-2zm0 3h-6v2h6v-2z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Orders</span>
@@ -80,11 +80,11 @@
                         </li>
                         <li class="w-full m-1">
                             <Link :href="route('admin.categories')">
-                                <div class="p-3 flex justify-between" >
+                                <div class="p-3 hover:bg-gray-100 flex justify-between" >
                                     <div class="flex items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M22 13v-13h-20v24h8.409c4.857 0 3.335-8 3.335-8 3.009.745 8.256.419 8.256-3zm-4-7h-12v-1h12v1zm0 3h-12v-1h12v1zm0 3h-12v-1h12v1zm-2.091 6.223c2.047.478 4.805-.279 6.091-1.179-1.494 1.998-5.23 5.708-7.432 6.881 1.156-1.168 1.563-4.234 1.341-5.702z"/>
+                                                <path d="M9.484 15.696l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm10.516 11.304h-8v1h8v-1zm0-5h-8v1h8v-1zm0-5h-8v1h8v-1zm4-5h-24v20h24v-20zm-1 19h-22v-18h22v18z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Categories</span>
@@ -94,11 +94,11 @@
                         </li>
                         <li class="w-full m-1">
                             <Link :href="route('admin.banners')">
-                                <div class="p-3 flex justify-between" >
+                                <div class="p-3 hover:bg-gray-100 flex justify-between" >
                                     <div class="flex items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M24 23h-24v-13.275l2-1.455v-7.27h20v7.272l2 1.453v13.275zm-2-2v-7.416l-10 6.953-10-6.953v7.416h20zm-18-8.472v-9.528h16v9.527l-8 5.473-8-5.472zm8.181-7.948c-.094-.286.12-.58.418-.58.184 0 .356.117.417.302l2.587 6.493c.077.232-.048.481-.278.558-.231.077-.48-.048-.557-.279 0 0-1.633-.547-3.57.096l1.273 1.979c.133.194.04.46-.18.533l-.865.288-.182.03c-.163 0-.321-.069-.433-.195l-1.75-1.93c-.952.3-2.031-.047-2.391-.944-.082-.206-.125-.426-.125-.646 0-.64.358-1.292 1.133-1.673 3.882-1.906 4.503-4.032 4.503-4.032zm2.758.415c.69.291 1.268.848 1.572 1.598.304.751.276 1.555-.015 2.246l.67.284c.189-.448.289-.933.289-1.428 0-1.439-.852-2.787-2.233-3.372l-.283.672zm-.484 1.147c.398.167.731.488.906.92.175.432.159.894-.008 1.292l.653.277c.238-.566.262-1.223.013-1.837-.249-.614-.722-1.069-1.287-1.308l-.277.656z"/>
+                                                <path d="M24 22h-24v-20h24v20zm-1-19h-22v18h22v-18zm-1 16h-19l4-7.492 3 3.048 5.013-7.556 6.987 12zm-11.848-2.865l-2.91-2.956-2.574 4.821h15.593l-5.303-9.108-4.806 7.243zm-4.652-11.135c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5zm0 1c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Banners</span>
@@ -108,11 +108,11 @@
                         </li>
                         <li class="w-full m-1">
                             <Link :href="route('admin.shipping')">
-                                <div class="p-3 flex justify-between" >
+                                <div class="p-3 hover:bg-gray-100 flex justify-between" >
                                     <div class="flex items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M24 23h-24v-13.275l2-1.455v-7.27h20v7.272l2 1.453v13.275zm-2-2v-7.416l-10 6.953-10-6.953v7.416h20zm-18-8.472v-9.528h16v9.527l-8 5.473-8-5.472zm8.181-7.948c-.094-.286.12-.58.418-.58.184 0 .356.117.417.302l2.587 6.493c.077.232-.048.481-.278.558-.231.077-.48-.048-.557-.279 0 0-1.633-.547-3.57.096l1.273 1.979c.133.194.04.46-.18.533l-.865.288-.182.03c-.163 0-.321-.069-.433-.195l-1.75-1.93c-.952.3-2.031-.047-2.391-.944-.082-.206-.125-.426-.125-.646 0-.64.358-1.292 1.133-1.673 3.882-1.906 4.503-4.032 4.503-4.032zm2.758.415c.69.291 1.268.848 1.572 1.598.304.751.276 1.555-.015 2.246l.67.284c.189-.448.289-.933.289-1.428 0-1.439-.852-2.787-2.233-3.372l-.283.672zm-.484 1.147c.398.167.731.488.906.92.175.432.159.894-.008 1.292l.653.277c.238-.566.262-1.223.013-1.837-.249-.614-.722-1.069-1.287-1.308l-.277.656z"/>
+                                                <path d="M5 11v1h8v-7h-10v-1c0-.552.448-1 1-1h10c.552 0 1 .448 1 1v2h4.667c1.117 0 1.6.576 1.936 1.107.594.94 1.536 2.432 2.109 3.378.188.312.288.67.288 1.035v4.48c0 1.089-.743 2-2 2h-1c0 1.656-1.344 3-3 3s-3-1.344-3-3h-4c0 1.656-1.344 3-3 3s-3-1.344-3-3h-1c-.552 0-1-.448-1-1v-6h-2v-2h7v2h-3zm3 5.8c.662 0 1.2.538 1.2 1.2 0 .662-.538 1.2-1.2 1.2-.662 0-1.2-.538-1.2-1.2 0-.662.538-1.2 1.2-1.2zm10 0c.662 0 1.2.538 1.2 1.2 0 .662-.538 1.2-1.2 1.2-.662 0-1.2-.538-1.2-1.2 0-.662.538-1.2 1.2-1.2zm-3-2.8h-10v2h.765c.549-.614 1.347-1 2.235-1 .888 0 1.686.386 2.235 1h5.53c.549-.614 1.347-1 2.235-1 .888 0 1.686.386 2.235 1h1.765v-4.575l-1.711-2.929c-.179-.307-.508-.496-.863-.496h-4.426v6zm1-5v3h5l-1.427-2.496c-.178-.312-.509-.504-.868-.504h-2.705zm-16-3h8v2h-8v-2z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Shipping</span>
@@ -122,7 +122,7 @@
                         </li>
                         <li class="w-full m-1">
                             <Link :href="route('admin.discounts')">
-                                <div class="p-3 flex justify-between" >
+                                <div class="p-3 hover:bg-gray-100 flex justify-between" >
                                     <div class="flex items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
@@ -135,7 +135,7 @@
                             </Link>
                         </li>
                         <li class="w-full m-1">
-                            <div @click="logout()" class="p-3 flex cursor-pointer justify-between" >
+                            <div @click="logout()" class="p-3 hover:bg-gray-100 flex cursor-pointer justify-between" >
                                 <div class="flex items-center">
                                     <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                         <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">

@@ -7,6 +7,7 @@ use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class DiscountController extends Controller
 {
@@ -111,11 +112,29 @@ class DiscountController extends Controller
 
     public function delete(Discount $discount, Request $request)
     {
-            $discount->products()->detach($request->data['data']['id']);
-            $discount->categories()->detach($request->data['data']['id']);
-            $discount->brands()->detach($request->data['data']['id']);
-            $discount->delete();
-            return redirect()->back();
+        foreach($discount->products as $item)
+        {
+            $discount->products()->detach($item);
+        }
+    
+        foreach($discount->categories as $item)
+        {
+            $discount->categories()->detach($item);
+        }
+    
+        foreach($discount->brands as $item)
+        {
+            $discount->brands()->detach($item);
+        }
+
+        $discount->delete();
+        return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        $discounts = Discount::where('name', 'like', "%$request->key%")->get();
+        return Inertia::render('Admin/Discount', ['discounts' => $discounts]);
     }
 
 }

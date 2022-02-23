@@ -87,8 +87,8 @@
                                     <div class="flex text-sm font-bold border-b">
                                         <span class="pb-2  tracking-wide">Image :</span>
                                     </div>
-                                    <div class="p-12 border border-dashed border-gray-400">
-                                        <div class="text-sm  p-12 tracking-wider text-center items-center ">
+                                    <div class="p-12 border border-dashed border-gray-300">
+                                        <div class="text-sm text-blue-300 p-12 tracking-widest text-center items-center ">
                                             <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
                                             <span>Drag and Drop / Click to Add images</span>
                                         </div>

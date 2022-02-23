@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shipping;
 use Google\Service\CloudSourceRepositories\Repo;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ShippingfeeController extends Controller
 {
@@ -66,5 +67,12 @@ class ShippingfeeController extends Controller
                 return $fee->fee;
             }
         }
+    }
+
+    public function search(Request $request)
+    {
+        $fees = Shipping::where('name', 'like', "%$request->key%")->orWhere('pincode', 'like',  "%$request->key%")->get();
+
+        return Inertia::render('Admin/Shipping', ['fees' => $fees]);
     }
 }

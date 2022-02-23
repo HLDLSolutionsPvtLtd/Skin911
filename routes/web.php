@@ -67,6 +67,7 @@ Route::middleware(['auth:sanctum'])->post('cart/product/{product:id}/add',[CartC
 Route::middleware(['auth:sanctum'])->get('cart/all',[CartController::class, 'all'])->name('cart.all');
 Route::middleware(['auth:sanctum'])->post('cart/product/quantity/update',[CartController::class, 'updateQty'])->name('updateQty');
 Route::middleware(['auth:sanctum'])->post('cart/{cart:id}/product/{product:id}/delete',[CartController::class, 'removeProduct'])->name('cart.remove.product');
+Route::middleware(['auth:sanctum'])->get('cart/check',[CartController::class, 'check'])->name('cart.check');
 
 Route::middleware(['auth:sanctum'])->post('address/new',[AddressController::class, 'store'])->name('address.create');
 Route::middleware(['auth:sanctum'])->get('address/all',[AddressController::class, 'all'])->name('address.all');
@@ -139,9 +140,9 @@ Route::group(['prefix' => 'admin'], function () {
         return Inertia::render('Admin/Brand');
     })->name('admin.brands')->middleware('is_admin');
 
-    Route::middleware(['auth:sanctum'])->get('Orders', function () {
-        return Inertia::render('Admin/Orders');
-    })->name('admin.orders')->middleware('is_admin');
+    // Route::middleware(['auth:sanctum'])->get('Orders', function () {
+    //     return Inertia::render('Admin/Orders');
+    // })->name('admin.orders')->middleware('is_admin');
     
 
     Route::middleware(['auth:sanctum'])->get('shipping', function () {
@@ -195,6 +196,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/update',[DiscountController::class, 'update'])->name('discount.update');
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/add/items',[DiscountController::class, 'attachProduct'])->name('discount.attach');
     Route::middleware(['auth:sanctum'])->post('discounts/{discount:id}/remove/items',[DiscountController::class, 'detachProduct'])->name('discount.detach');
+    Route::middleware(['auth:sanctum'])->delete('discounts/{discount:id}/delete',[DiscountController::class, 'delete'])->name('discount.delete');
+    Route::middleware(['auth:sanctum'])->get('discounts/search',[DiscountController::class, 'search'])->name('discount.search');
 
     Route::middleware(['auth:sanctum'])->post('banner/add',[BannerController::class, 'store'])->name('banner.add');
     Route::middleware(['auth:sanctum'])->get('banner/all',[BannerController::class, 'all'])->name('admin.banner.all');
@@ -213,5 +216,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->post('shippingfee/{shipping:id}/update',[ShippingfeeController::class, 'update'])->name('shippingfee.update');
     Route::middleware(['auth:sanctum'])->delete('shippingfee/{shipping:id}/delete',[ShippingfeeController::class, 'delete'])->name('shippingfee.delete');
     Route::middleware(['auth:sanctum'])->get('shippingfee/calculate',[ShippingfeeController::class, 'calculate'])->name('shippingfee.calculate');
+    Route::middleware(['auth:sanctum'])->get('shippingfee/search',[ShippingfeeController::class, 'search'])->name('shippingfee.search');
 
 });

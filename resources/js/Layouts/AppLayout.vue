@@ -14,7 +14,7 @@
                                 <path fill="#814252" d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>\
                             </svg>
                         </div>
-                        <span class="text-xs tracking-wider font-thin">Free shipping inside AMC area on all orders over</span>
+                        <span class="text-xs tracking-wider font-thin">Free shipping on all orders over</span>
                         <span class="pl-2 text-xs tracking-wider text-pink-dark font-semibold">&#8377;2800</span>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
                                         <path fill="#000" d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
                                     </svg>
-                                    <div class="relative">
+                                    <div v-show="newItemCart" class="relative">
                                         <span class="rounded-full left-0 top-0 absolute h-2 w-2 bg-pink-900"></span>
                                     </div>
                                 </a>
@@ -397,6 +397,9 @@
     import JetNavLink from '@/Jetstream/NavLink.vue'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
     import { Head, Link } from '@inertiajs/inertia-vue3';
+    import { computed } from 'vue'
+    import { usePage } from '@inertiajs/inertia-vue3'
+    import axios from 'axios'
 
     export default defineComponent({
         props: {
@@ -414,9 +417,10 @@
             JetResponsiveNavLink,
             Link,
         },
-
+           
         data() {
             return {
+                newItemCart:  computed(() => usePage().props.value.cart.new),
                 categories: [],
                 lbrands: [],
                 search_mobile : false,
@@ -424,8 +428,6 @@
                 shop:false,
                 bgSet: false,
                 stick: false,
-                bestSeller:false,
-                routine:false,
                 brands:false,
                 sales:false,
                 key: '',
@@ -461,9 +463,10 @@
                 } else if (window.scrollY < 100) {
                    this.bgSet = true;
                 }
-            }
+            },
         },
         mounted() {
+
             axios.get('/brands/all')
             .then(res => this.lbrands = res.data);
 
@@ -482,5 +485,7 @@
                 this.stick = true;
             }
         },
+        watch:{
+        }
     })
 </script>

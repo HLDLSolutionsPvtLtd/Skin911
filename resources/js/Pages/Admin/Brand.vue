@@ -10,13 +10,13 @@
                        <div class="">
                            <button @click="newbrand = !newbrand" class="p-2 bg-green-500 text-white rounded-md text-xs tracking-wider font-bold">NEW</button>
                        </div>
-                       <div class="">
+                       <!-- <div class="">
                            <select class="text-xs font-bold rounded-md " name="" id="">
                                <option value="">SORT BY</option>
                                <option value="">Latest</option>
                                <option value="">Popular</option>
                            </select>
-                       </div>
+                       </div> -->
                    </div>
                    <div v-show="newbrand" class="absolute bg-white w-full p-4 border shadow-lg">
                        <div class="flex border-b-2 justify-between">

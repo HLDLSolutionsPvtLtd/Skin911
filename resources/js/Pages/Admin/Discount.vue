@@ -10,12 +10,16 @@
                        <div class="">
                            <button @click="newdiscount = !newdiscount" class="p-2 bg-green-500 text-white rounded-md text-xs tracking-wider font-bold">NEW</button>
                        </div>
-                       <div class="">
-                           <select class="text-xs font-bold rounded-md " name="" id="">
+                       <div class="relative">
+                            <input type="search" v-model="key" @keydown.enter="search()" class="h-8 border focus:ring-0 border-gray-300 rounded-md pl-8 text-blue-400 placeholder-gray-300 text-sm tracking-wider" placeholder="Search discount by name">
+                            <svg @click="search()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="fill-current cursor-pointer text-blue-500 absolute top-2 left-2" viewBox="0 0 24 24">
+                                <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>\
+                            </svg>
+                           <!-- <select class="text-xs font-bold rounded-md " name="" id="">
                                <option value="">SORT BY</option>
                                <option value="">Latest</option>
                                <option value="">Popular</option>
-                           </select>
+                           </select> -->
                        </div>
                    </div>
                    <div v-show="newdiscount" class="absolute bg-white w-full p-4 border shadow-lg">
@@ -196,7 +200,7 @@
                                             </svg>
                                         </button>
                                         <button @click="selectedDiscount = discount" class="flex items-center justify-center font-bold text-xs text-white p-2 bg-green-400 rounded-md shadow-lg tracking-widest">
-                                            APPLY
+                                            ITEMS
                                         </button>
                                     </div>
                                 </td>
@@ -394,6 +398,7 @@
     props: ['discounts'],
     data(){
         return{
+           key: '',
            selectedDiscount: '',
            selectToadd: 'products',
            active: 'items',
@@ -511,12 +516,14 @@
             })
         },
         deleteDiscount(discount){
-            if(confirm('this brand will be permanently deleted'))
+            if(confirm('This Discount will be permanently deleted'))
             {
-                axios.delete('/admin/discount/'+discount.id+'/delete')
-                .then(
-                    alert('Success reload now!!'),
-                )
+                this.$inertia.delete('/admin/discounts/'+discount.id+'/delete',{
+                    onSuccess:() =>{
+                        alert("Success");
+                    }
+                });
+                
             }
         },
         create()
@@ -538,10 +545,15 @@
                 onSuccess:() =>
                 {
                     this.selectedItems = []
-
                 }
             });
             
+        },
+        search()
+        {
+            this.$inertia.get('/admin/discounts/search', {
+                'key' : this.key,
+            });
         }
     },
     mounted()

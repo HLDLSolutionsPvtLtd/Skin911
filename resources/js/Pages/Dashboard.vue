@@ -5,18 +5,18 @@
             <div class="js-container container" style="top:0px !important;"></div>
                 <div class='modal__container shadow-md border bg-white'>
                                         
-                   <div class="modal__content pt-12 relative">
+                   <div class="modal__content flex flex-col items-center justify-center pt-6 relative">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 right-1/4 fill-current transition transform translate-Y-60 duration-700 text-blue-400 rounded-full p-0 bg-white">
                             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
                         </svg> -->
-                        <h1 class="text-2xl"><span class="text-gray-800 italic tracking-wider font-semibold">ADDED TO CART</span></h1>
+                        <p class="text-black text-sm tracking-wider font-bold text-center w-full">PRODUCT WAS SUCCESSFULLY ADDED TO YOUR CART</p>
                         <a href="/cart">
-                            <button class="modal__button mt-4 tracking-widest font-bold text-pink-500 text-xs bg-blue-400 w-full">VIEW CART</button>
+                            <button class="border border-black rounded-sm p-2 px-8 mt-4 tracking-widest font-bold text-black text-xs">VIEW CART</button>
                         </a>
                     </div>
                     
                     <i @click="success=!success" class="absolute  right-4 top-4 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="20" height="20" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="15" height="15" viewBox="0 0 24 24">
                             <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
                         </svg>
                     </i>
@@ -29,6 +29,7 @@
                         <div class="flex ">
                             
                             <div class="flex text-pink-600 openSans flex-col items-center justify-center flex-1 ">
+                                <span class="text-lg font-semibold tracking-wider mt-2">{{Discount.name}}</span>
                                 <p v-if="Discount.type == 'percentage'" class="text-xl tracking-wider font-semibold mt-2">UPTO</p>
                                 <span class="text-4xl my-2 font-bold">{{Discount.amount}}<span class="pr-2 text-4xl" v-if="Discount.type == 'percentage'">%</span><span class="text-4xl"> OFF</span> </span>
                                 <span class="text-lg font-semibold tracking-wider mt-2">ON SELECTED PRODUCTS</span>
@@ -39,7 +40,7 @@
                         </a>
                     </div>
                     <div class="ribbon2 ribbon2-top-left">
-                        <span>{{Discount.name}}</span>
+                        <span>DISCOUNT</span>
                     </div>
                     <i @click="discount_popup=!discount_popup" class="absolute -right-5 rounded-full border p-1 border-gray-100 -top-5 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-100 hover:text-red-500" width="15" height="15" viewBox="0 0 24 24">
@@ -103,7 +104,7 @@
                         <div class="">
                             <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
+                                    <img  style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
                                 </div>
                                 <div class="absolute top-5 left-0">
                                     <span v-if="tproduct.discounts[0]" class="flag-discount transform rotate-90">
@@ -170,7 +171,7 @@
                         <div class="">
                             <a :href="'/product/'+nproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
+                                    <img  style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
                                 </div>
                                 <div class="absolute top-5 left-0">
                                     <span v-if="nproduct.discounts[0]" class="flag-discount transform rotate-90">
@@ -217,7 +218,7 @@
                 </div> 
                 <div class="m-4 flex justify-center">
                     <a href="/products">
-                        <button class="sm:p-2 p-2 text-sm font-bold border-2 tracking-widest rounded-md text-gray-600 border-gray-400">VIEW ALL PRODUCTS</button>
+                        <button class="sm:p-2 p-2 text-xs font-bold border tracking-widest rounded-sm text-gray-600 border-gray-300">VIEW ALL PRODUCTS</button>
                     </a>
                 </div>
            </div>
@@ -230,7 +231,7 @@
                         <div class="">
                             <a :href="'/products?key='+brand.name" >
                                 <div>
-                                    <img class="w-full" :src="'/storage/'+brand.img" alt="">
+                                    <img style="height:250px" class="w-full" :src="'/storage/'+brand.img" alt="">
                                 </div>
                                 <div class="flex justify-center">
                                     <span class="p-2 font-semibold text-gray-900 tracking-wider">{{brand.name}}</span>
@@ -243,7 +244,7 @@
                     </div>
                 </div> 
                 <div class="m-4 flex justify-center sm:my-12 sm:mx-24">
-                    <a href="/view/brands" class="sm:p-2 p-2 text-sm font-bold border-2 tracking-widest rounded-md text-gray-600 border-gray-400">VIEW ALL FEATURED BRANDS</a>
+                    <a href="/view/brands" class="sm:p-2 p-2 text-xs font-bold border tracking-widest rounded-sm text-gray-600 border-gray-300">VIEW ALL FEATURED BRANDS</a>
                 </div>
            </div>
 
@@ -351,7 +352,6 @@
                     preserveScroll: true,
                     onFinish: () =>  {
                         this.success = true;
-                        
                     }
                        
                 })

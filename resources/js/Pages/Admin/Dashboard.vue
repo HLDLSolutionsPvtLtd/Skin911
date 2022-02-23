@@ -1,5 +1,5 @@
 <template>
-   <AdminLayout>
+   <AdminLayout >
        <template #header>
             Dashboard
        </template>

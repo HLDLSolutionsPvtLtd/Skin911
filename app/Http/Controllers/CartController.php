@@ -11,10 +11,26 @@ use Inertia\Inertia;
 class CartController extends Controller
 {
 
+    public function check(Request $request)
+    {
+        if($request->user()->cart)
+        {
+            return $request->user()->cart->new;
+        }
+        else
+        {
+            $cart = Cart::create([
+                'user_id' => $request->user()->id
+            ]);
+           return $cart->new;
+        }
+    }
     public function view(Request $request)
     {
         if($request->user()->cart)
         {
+            $request->user()->cart->new = false;
+            $request->user()->cart->save();
             return Inertia::render('Cart', ['products' => $request->user()->cart->products]);
         }
         else
@@ -22,6 +38,8 @@ class CartController extends Controller
             $cart = Cart::create([
                 'user_id' => $request->user()->id
             ]);
+            $cart->new = false;
+            $cart->save();
             return Inertia::render('Cart', ['products' => $cart->products]);
         }
     }
@@ -54,14 +72,17 @@ class CartController extends Controller
         if($user->cart)
         {
             $user->cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1',  'variant' => $variant]);
+            $user->cart->new = true;
+            $user->cart->save();
         }
         else
         {
             $cart = Cart::create([
                 'user_id' => $user->id
             ]);
-
-           return $cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1', 'variant' => $variant]);
+            return $cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1', 'variant' => $variant]);
+            $cart->new = true;
+            $user->cart->save();
         }
 
         return  Redirect::back()->with('success');

@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function view()
     {
-        return Inertia::render('Admin/Orders', ['orders' => Order::all()]);
+        return Inertia::render('Admin/Orders', ['orders' => Order::orderBy('created_at', 'desc')->get()]);
     }
 
     public function updateStatus(Order $order, Request $request)
@@ -48,16 +48,16 @@ class OrderController extends Controller
     {
         if($request->status == 'all')
         {
-            return Inertia::render('Admin/Orders', ['orders' => Order::all()]);
+            return Inertia::render('Admin/Orders', ['orders' => Order::orderBy('created_at', 'desc')->get()]);
         }
         else
         {
-            return Inertia::render('Admin/Orders', ['orders' => Order::where('status', $request->status)->get()]);
+            return Inertia::render('Admin/Orders', ['orders' => Order::where('status', $request->status)->orderBy('created_at', 'desc')->get()]);
         }
     }
 
     public function search(Request $request)
     {
-        return Inertia::render('Admin/Orders', ['orders' => Order::where('status', $request->status)->get()]);
+        return Inertia::render('Admin/Orders', ['orders' => Order::where('status', $request->status)->orderBy('created_at', 'desc')->get()]);
     }
 }

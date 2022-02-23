@@ -38,6 +38,9 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             //
+            'cart' => fn () => $request->user()
+                ? $request->user()->cart->only('new')
+                : null,
         ]);
     }
 }

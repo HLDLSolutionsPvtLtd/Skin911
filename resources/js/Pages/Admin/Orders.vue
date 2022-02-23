@@ -43,22 +43,25 @@
                <div class="flex justify-between m-4">
                     <div class="flex gap-2">
                         <div>
-                            <span @click="searchFilter('all')" class="text-xs cursor-pointer tracking-wider text-gray-500 p-2 bg-gray-200 font-bold rounded-md">ALL</span>
+                            <span @click="searchFilter('all')" class="text-xs cursor-pointer tracking-wider text-gray-500 p-2 border border-gray-200 shadow-sm font-bold rounded-md">ALL</span>
                         </div>
                         <div class="">
-                            <span @click="searchFilter('accepted')" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">ACCEPTED</span>
+                            <span @click="searchFilter('accepted')" class="p-2 border border-gray-200 shadow-sm cursor-pointer rounded-md font-bold text-xs text-gray-500">ACCEPTED</span>
                         </div>
                         <div class="">
-                            <span @click="searchFilter('denied')" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">DENIED</span>
+                            <span @click="searchFilter('denied')" class="p-2 border border-gray-200 shadow-sm cursor-pointer rounded-md font-bold text-xs text-gray-500">DENIED</span>
                         </div>
                         <div class="">
-                            <span @click="searchFilter('cancelled')" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">CANCELLED</span>
+                            <span @click="searchFilter('cancelled')" class="p-2 border border-gray-200 shadow-sm cursor-pointer rounded-md font-bold text-xs text-gray-500">CANCELLED</span>
                         </div>
                         <div class="">
-                            <span @click="searchFilter('out_for_delivery')" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">OUT FOR DELIVERY</span>
+                            <span @click="searchFilter('out_for_delivery')" class="p-2 border border-gray-200 shadow-sm cursor-pointer rounded-md font-bold text-xs text-gray-500">OUT FOR DELIVERY</span>
                         </div>
                         <div class="">
-                            <span @click="searchFilter('delivered')" class="p-2 bg-gray-200 cursor-pointer rounded-md font-bold text-xs text-gray-500">DELIVERED</span>
+                            <span @click="searchFilter('delivered')" class="p-2 border border-gray-200 shadow-sm cursor-pointer rounded-md font-bold text-xs text-gray-500">DELIVERED</span>
+                        </div>
+                        <div class="">
+                            <span @click="searchFilter('placed')" class="p-2 border border-gray-200 shadow-sm cursor-pointer rounded-md font-bold text-xs text-gray-500">PLACED</span>
                         </div>
                     </div>
                     <div class="">
@@ -70,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-               <div style="height:calc(100vh - 180px)" class="flex overflow-y-scroll m-4 border-t-2 py-4">
+               <div style="height:calc(100vh - 180px)" class="overflow-y-scroll m-4 border-t-2 py-4">
                    
                    <table class="w-full text-ct">
                         <tr class="border-b border-gray-300 text-blue-500 font-bold tracking-wider text-xs font-bold uppercase">
