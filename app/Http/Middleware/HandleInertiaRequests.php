@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
             //
             'cart' => fn () => $request->user()
                 ? $request->user()->cart->only('new')
-                : null,
+                : false,
         ]);
     }
 }
