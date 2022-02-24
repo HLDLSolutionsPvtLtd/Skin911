@@ -21,7 +21,7 @@
                     </i>
                 </div>
             </div>
-            <div class=" sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6">
+            <div v-if="product" class=" sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6">
                 <div class="flex flex-col sm:flex-1 bg-white p-2 border-b sm:border-0 shadow-lg sm:shadow-none">
                     <div class="flex border" style="height:calc(100vh - 400px)" >
                         <img :src="'/storage/'+currentImg" alt="" class="w-full h-full">
@@ -45,12 +45,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2">
-                            <span class="text-green-500 text-sm flex items-center tracking-wider">
+                        <div v-if="!product.variant[0]" class="mt-2">
+                            <span v-if="product.quantity <= 0" class="text-red-500 text-sm flex items-center tracking-wider">
+                                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current mr-2 text-green-500" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M16.142 2l5.858 5.858v8.284l-5.858 5.858h-8.284l-5.858-5.858v-8.284l5.858-5.858h8.284zm.829-2h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-5.971 6h2v8h-2v-8zm1 12.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
+                                </svg>
+                                Out Of Stock
+                            </span>
+                            <span v-else class="text-green-500 text-sm flex items-center tracking-wider">
                                 <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current mr-2 text-green-500" fill-rule="evenodd" clip-rule="evenodd">
                                     <path d="M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"/>
                                 </svg>
                                 In Stock
+                            </span>
+                        </div>
+                        <div v-else class="mt-2">
+                            <span v-if="!check" class="text-green-500 text-sm flex items-center tracking-wider">
+                                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current mr-2 text-green-500" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"/>
+                                </svg>
+                                In Stock
+                            </span>
+                            <span v-else class="text-red-500 text-sm flex items-center tracking-wider">
+                                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current mr-2 text-red-500" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M16.142 2l5.858 5.858v8.284l-5.858 5.858h-8.284l-5.858-5.858v-8.284l5.858-5.858h8.284zm.829-2h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-5.971 6h2v8h-2v-8zm1 12.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
+                                </svg>
+                                Out Of Stock
                             </span>
                         </div>
                     </div>
@@ -99,9 +119,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" class="fill-current text-red-600 mr-1" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c.564-1.789 1.632-3.932 1.821-4.474.273-.787-.211-1.136-1.74.209l-.34-.64c1.744-1.897 5.335-2.326 4.113.613-.763 1.835-1.309 3.074-1.621 4.03-.455 1.393.694.828 1.819-.211.153.25.203.331.356.619-2.498 2.378-5.271 2.588-4.408-.146zm4.742-8.169c-.532.453-1.32.443-1.761-.022-.441-.465-.367-1.208.164-1.661.532-.453 1.32-.442 1.761.022.439.466.367 1.209-.164 1.661z"/></svg>
                         <span>{{qerror}}</span>
                     </div>
-                    <div class="mt-2 flex justify-start">
-                        <button @click="addtocart()" class="p-2 w-1/2 rounded-sm font-semibold bg-pink text-pink-dark text-sm m-2">ADD TO CART</button>
-                        <button @click="buyNow()" class="p-2 w-1/2 border border-gray-700 rounded-sm font-semibold text-pink-dark text-sm m-2">BUY IT NOW</button>
+                    <div v-show="!check" class="mt-2 flex justify-start">
+                        <button :disabled="!check" @click="addtocart()" class="p-2 w-1/2 rounded-sm font-semibold bg-pink text-pink-dark text-sm m-2">ADD TO CART</button>
+                        <button :disabled="!check" @click="buyNow()" class="p-2 w-1/2 border border-gray-700 rounded-sm font-semibold text-pink-dark text-sm m-2">BUY IT NOW</button>
                     </div>
                     <div class="mt-8 mb-8 border-t">
                         <div>
@@ -169,11 +189,11 @@
     </app-layout>
 </template>
 <script>
- import AppLayout from '@/Layouts/AppLayout.vue'
+import AppLayout from '@/Layouts/AppLayout.vue'
 import { Inertia } from '@inertiajs/inertia';
 import axios from 'axios';
  export default{
-     props: ['product'],
+    props: ['product'],
     components:
     {
         AppLayout
@@ -194,6 +214,7 @@ import axios from 'axios';
     },
     methods:
     {
+        
         currentimg(img)
         {
             this.currentImg = img;
@@ -236,6 +257,29 @@ import axios from 'axios';
                 }
             }
         }
+    },
+    computed:{
+        check(){
+            if(this.form.variant)
+            {
+                var index = this.product.variant.findIndex(el =>{
+                    if(el.id == this.form.variant)
+                    {
+                        return true;
+                    }
+                })
+                if(this.product.variant[index].quantity <= 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+           
+        },
     },
     mounted() {
         this.currentImg = this.product.image[0].link;

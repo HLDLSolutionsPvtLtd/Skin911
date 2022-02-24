@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController as ControllersBrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingfeeController;
 use App\Http\Controllers\UserAdminController;
 use App\Models\Banner;
+use App\Models\Blog;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Shipping;
@@ -55,9 +57,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/cart', [CartController::c
 Route::middleware(['auth:sanctum', 'verified'])->get('/checkout', function () {
     return Inertia::render('Checkout');
 })->name('checkout');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/blog', function () {
+    return Inertia::render('Blog', ['posts' => Blog::all()]);
+})->name('blog');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/sale', function () {
+    return Inertia::render('Sale');
+})->name('sale');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/address/new', function () {
     return Inertia::render('AddAddress');
 })->name('address.new');
+
 Route::middleware(['auth:sanctum'])->get('address/{address:id}/edit',[AddressController::class, 'edit'])->name('products.edit');
 Route::middleware(['auth:sanctum'])->post('address/{address:id}/edit',[AddressController::class, 'update'])->name('products.update');
 
@@ -90,6 +102,7 @@ Route::get('products/search',[ProductController::class, 'search'])->name('produc
 Route::get('products/all',[ProductController::class, 'all'])->name('products.all');
 Route::get('products/related',[ProductController::class, 'related'])->name('products.related');
 Route::get('products/shopall',[ProductController::class, 'shopAll'])->name('products.shopall');
+Route::get('products/sale',[ProductController::class, 'sale'])->name('products.sale');
 
 Route::get('banner/all',[BannerController::class, 'all'])->name('banner.all');
 Route::get('categories/all',[ControllersCategoryController::class, 'all'])->name('categories.all');
@@ -131,6 +144,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('addproduct', function () {
         return Inertia::render('Admin/AddProduct');
     })->name('addproduct')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->get('blog', function () {
+        return Inertia::render('Admin/Blog', ['posts' => Blog::all()]);
+    })->name('admin.blog')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('admin.addbrand', function () {
         return Inertia::render('Admin/AddBrand');
@@ -218,4 +235,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('shippingfee/calculate',[ShippingfeeController::class, 'calculate'])->name('shippingfee.calculate');
     Route::middleware(['auth:sanctum'])->get('shippingfee/search',[ShippingfeeController::class, 'search'])->name('shippingfee.search');
 
+    Route::middleware(['auth:sanctum'])->post('blog/post/create',[BlogController::class, 'create'])->name('blog.post');
+    Route::middleware(['auth:sanctum'])->post('blog/post/{blog:id}/update',[BlogController::class, 'update'])->name('blog.update');
+    Route::middleware(['auth:sanctum'])->delete('blog/post/{blog:id}/delete',[BlogController::class, 'delete'])->name('blog.delete');
 });

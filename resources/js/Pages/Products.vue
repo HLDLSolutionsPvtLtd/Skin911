@@ -80,6 +80,9 @@
                                         <a :href="'/product/'+product.id+'/details'" class="overflow-hidden relative">
                                             <div class="relative pb-48 overflow-hidden">
                                                 <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+product.image[0].link" alt="">
+                                                 <div v-if="product.quantity <= 0 && !product.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
+                                                    <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
+                                                </div>
                                             </div>
                                             <div class="absolute ribbon top-4 left-0">
                                                 <span v-if="product.discounts[0]" class="flag-discount transform rotate-90">
@@ -115,7 +118,7 @@
                                     </div>  
                                     <div class="mt-2">
                                          <div v-if="!product.variant[0]" class="mt-2">
-                                            <button @click="addToCart(product.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                                            <button :disabled="product.quantity <= 0" @click="addToCart(product.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                                         </div> 
                                         <div v-else class="mt-2">
                                             <a :href="'/product/'+product.id+'/details'">

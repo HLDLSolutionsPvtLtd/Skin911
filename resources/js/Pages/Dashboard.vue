@@ -2,10 +2,10 @@
     <app-layout title="Dashboard">
         <div class="flex justify-center relative">
             <div v-show="success" class="modal z-50 w-5/6 md:w-1/4" id="modal">
-            <div class="js-container container" style="top:0px !important;"></div>
+               <div class="js-container container" style="top:0px !important;"></div>
                 <div class='modal__container shadow-md border bg-white'>
                                         
-                   <div class="modal__content flex flex-col items-center justify-center pt-6 relative">
+                    <div class="modal__content flex flex-col items-center justify-center pt-6 relative">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 right-1/4 fill-current transition transform translate-Y-60 duration-700 text-blue-400 rounded-full p-0 bg-white">
                             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
                         </svg> -->
@@ -29,7 +29,7 @@
                         <div class="flex ">
                             
                             <div class="flex text-pink-600 openSans flex-col items-center justify-center flex-1 ">
-                                <span class="text-lg font-semibold tracking-wider mt-2">{{Discount.name}}</span>
+                                <span class="text-lg font-semibold tracking-wider mt-2 uppercase">{{Discount.name}}</span>
                                 <p v-if="Discount.type == 'percentage'" class="text-xl tracking-wider font-semibold mt-2">UPTO</p>
                                 <span class="text-4xl my-2 font-bold">{{Discount.amount}}<span class="pr-2 text-4xl" v-if="Discount.type == 'percentage'">%</span><span class="text-4xl"> OFF</span> </span>
                                 <span class="text-lg font-semibold tracking-wider mt-2">ON SELECTED PRODUCTS</span>
@@ -105,6 +105,9 @@
                             <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
                                     <img  style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
+                                     <div v-if="tproduct.quantity <= 0 && !nproduct.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
+                                        <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
+                                    </div>
                                 </div>
                                 <div class="absolute top-5 left-0">
                                     <span v-if="tproduct.discounts[0]" class="flag-discount transform rotate-90">
@@ -116,6 +119,7 @@
                                         </template>
                                     </span>
                                 </div>
+                               
                             </a>
                             <div class="px-2 pt-4">
                                 <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{tproduct.name}}</p>
@@ -139,7 +143,7 @@
                             
                         </div>  
                         <div v-if="!tproduct.variant[0]" class="mt-2">
-                            <button @click="addToCart(tproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                            <button :disabled="tproduct.quantity <= 0" @click="addToCart(tproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                         </div> 
                         <div v-else class="mt-2">
                             <a :href="'/product/'+tproduct.id+'/details'">
@@ -172,6 +176,9 @@
                             <a :href="'/product/'+nproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
                                     <img  style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
+                                    <div v-if="nproduct.quantity <= 0 && !nproduct.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
+                                        <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
+                                    </div>
                                 </div>
                                 <div class="absolute top-5 left-0">
                                     <span v-if="nproduct.discounts[0]" class="flag-discount transform rotate-90">
@@ -205,7 +212,7 @@
                             </div>
                             
                             <div v-if="!nproduct.variant[0]" class="mt-2">
-                                <button @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                                <button :disabled="nproduct.quantity <= 0" @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                             </div> 
                             <div v-else class="mt-2">
                                 <a :href="'/product/'+nproduct.id+'/details'">

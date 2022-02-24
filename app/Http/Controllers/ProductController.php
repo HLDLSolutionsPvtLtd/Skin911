@@ -71,4 +71,9 @@ class ProductController extends Controller
 
         return $products;
     }
+
+    public function sale()
+    {
+        return Product::whereHas('discounts')->with('discounts')->paginate(2);
+    }
 }
