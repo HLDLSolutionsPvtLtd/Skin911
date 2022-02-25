@@ -95,6 +95,46 @@
                                 </template>
                             </template>
                         </template>
+                        <template v-else-if="product.brand.discounts[0]">
+                            <template v-if="product.variant[0]">
+                                <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.variant[sIndex].price}}</span>
+                                <template v-if="product.brand.discounts[0].type == 'percentage'">
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[sIndex].price - (product.variant[sIndex].price * product.brand.discounts[0].amount / 100)}}</span>
+                                </template>
+                                <template v-else>
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[sIndex].price - product.brand.discounts[0].amount}}</span>
+                                </template>
+                            </template>
+                            <template v-else>
+                                <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                                <template v-if="product.brand.discounts[0].type == 'percentage'">
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.brand.discounts[0].amount / 100)}}</span>
+                                </template>
+                                <template v-else>
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.brand.discounts[0].amount}}</span>
+                                </template>
+                            </template>
+                        </template>
+                        <template v-else-if="product.category.discounts[0]">
+                            <template v-if="product.variant[0]">
+                                <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.variant[sIndex].price}}</span>
+                                <template v-if="product.category.discounts[0].type == 'percentage'">
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[sIndex].price - (product.variant[sIndex].price * product.category.discounts[0].amount / 100)}}</span>
+                                </template>
+                                <template v-else>
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[sIndex].price - product.category.discounts[0].amount}}</span>
+                                </template>
+                            </template>
+                            <template v-else>
+                                <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                                <template v-if="product.category.discounts[0].type == 'percentage'">
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.category.discounts[0].amount / 100)}}</span>
+                                </template>
+                                <template v-else>
+                                    <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.category.discounts[0].amount}}</span>
+                                </template>
+                            </template>
+                        </template>
                         <template v-else>
                             <template v-if="product.variant[0]">
                                 <span class="text-xs text-gray-900 pr-2">&#8377;{{product.variant[sIndex].price}}</span>
@@ -157,6 +197,22 @@
                                             -{{sproduct.discounts[0].amount}}
                                         </template>
                                     </span>
+                                    <span v-else-if="sproduct.brand.discounts[0]" class="flag-discount transform rotate-90">
+                                        <template v-if="sproduct.brand.discounts[0].type == 'percentage'">
+                                            {{sproduct.brand.discounts[0].amount}}%
+                                        </template>
+                                        <template v-else>
+                                            -{{sproduct.brand.discounts[0].amount}}
+                                        </template>
+                                    </span>
+                                    <span v-else-if="sproduct.category.discounts[0]" class="flag-discount transform rotate-90">
+                                        <template v-if="sproduct.category.discounts[0].type == 'percentage'">
+                                            {{sproduct.category.discounts[0].amount}}%
+                                        </template>
+                                        <template v-else>
+                                            -{{sproduct.category.discounts[0].amount}}
+                                        </template>
+                                    </span>
                                 </div>
                             </a>
                             <div class="px-2 pt-4">
@@ -166,14 +222,31 @@
                                 <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{sproduct.description}}</span>
                             </div> -->
                             <div class="px-2 h-6">
-                                
-                                <template v-if="sproduct.discounts[0]">
+                                 <template v-if="sproduct.discounts[0]">
                                     <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{sproduct.price}}</span>
                                     <template v-if="sproduct.discounts[0].type == 'percentage'">
                                         <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - (sproduct.price * sproduct.discounts[0].amount / 100)}}</span>
                                     </template>
                                     <template v-else>
                                         <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - sproduct.discounts[0].amount}}</span>
+                                    </template>
+                                </template>
+                                <template v-else-if="sproduct.brand.discounts[0]">
+                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{sproduct.price}}</span>
+                                    <template v-if="sproduct.brand.discounts[0].type == 'percentage'">
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - (sproduct.price * sproduct.brand.discounts[0].amount / 100)}}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - sproduct.brand.discounts[0].amount}}</span>
+                                    </template>
+                                </template>
+                                <template v-else-if="sproduct.category.discounts[0]">
+                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{sproduct.price}}</span>
+                                    <template v-if="sproduct.category.discounts[0].type == 'percentage'">
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - (sproduct.price * sproduct.category.discounts[0].amount / 100)}}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{sproduct.price - sproduct.category.discounts[0].amount}}</span>
                                     </template>
                                 </template>
                                 <span v-else class="text-xs text-gray-900 pr-2">&#8377;{{sproduct.price}}</span>

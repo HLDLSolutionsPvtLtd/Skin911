@@ -13,7 +13,7 @@ class DiscountController extends Controller
 {
     public function all()
     {
-        return Discount::all();
+        return Discount::all()->load(['brand', 'category', 'products']);
     }
 
     public function attachProduct(Discount $discount, Request $request)

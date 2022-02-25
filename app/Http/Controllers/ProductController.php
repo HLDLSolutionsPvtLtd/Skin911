@@ -74,6 +74,10 @@ class ProductController extends Controller
 
     public function sale()
     {
-        return Product::whereHas('discounts')->with('discounts')->paginate(2);
+        return Product::whereHas('discounts')->orWhereHas('category', function($q){
+            $q->whereHas('discounts');
+        })->orWhereHas('brand', function($q){
+            $q->whereHas('discounts');
+        })->with('discounts')->paginate(2);
     }
 }

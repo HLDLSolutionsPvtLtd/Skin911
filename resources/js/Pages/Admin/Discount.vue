@@ -267,8 +267,8 @@
                                             <img v-if="product.image[0]" class="h-14 w-14 flex mr-1" :src="'/storage/'+product.image[0].link" alt="">
                                             <span class="flex self-center justify-center text-md text-center font-bold">{{product.name}}</span>
                                         </td>
-                                        <td class="text-center border-r border-gray-300 p-2">{{product.brand_id}}</td>
-                                        <td class="text-center border-r border-gray-300 p-2">{{product.category_id}}</td>
+                                        <td class="text-center border-r border-gray-300 p-2">{{product.brand.name}}</td>
+                                        <td class="text-center border-r border-gray-300 p-2">{{product.category.name}}</td>
                                         <td class="text-center border-r border-gray-300 p-2">{{product.price}}</td>
                                         <td class="text-center border-r border-gray-300 p-2">{{product.quantity}}</td>
                                         <td class="text-center border-r border-gray-300 p-2">{{product.variant.length}}</td>

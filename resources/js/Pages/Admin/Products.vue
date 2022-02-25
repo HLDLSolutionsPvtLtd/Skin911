@@ -73,8 +73,8 @@
                             </td>   
                             <td class="text-left p-4">{{product.id}}</td>
                             <td class="p-2 flex "><img v-if="product.image[0]" class="h-12 w-12 flex mr-3" :src="'/storage/'+product.image[0].link" alt=""><span class="flex self-center justify-center text-md text-center font-bold">{{product.name}}</span></td>
-                            <td class="text-left  p-1">{{product.brand_id}}</td>
-                            <td class="text-left  p-1">{{product.category_id}}</td>
+                            <td class="text-left  p-1">{{product.brand.name}}</td>
+                            <td class="text-left  p-1">{{product.category.name}}</td>
                             <td class="text-left  p-1">{{product.price}}</td>
                             <td class="text-left  p-1">{{product.tag}}</td>
                             <td class="text-left  p-1">{{product.quantity}}</td>

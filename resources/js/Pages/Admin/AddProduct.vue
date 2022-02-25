@@ -42,7 +42,7 @@
                                                     <jet-input-error :message="form.errors.brand_id" class="mt-2" />
                                                     <select v-model="form.brand_id" class="w-full placeholder-gray-100 my-1  tracking-wider text-sm rounded-md border border-gray-200" id="Label" required>
                                                         <option selected value="">Select Brand</option>
-                                                        <option v-for="brand in brands" :key="brand.id" :value="brand.name">{{brand.name}}</option>
+                                                        <option v-for="brand in brands" :key="brand.id" :value="brand.id">{{brand.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -55,7 +55,7 @@
                                                     <jet-input-error :message="form.errors.category_id" class="mt-2" />
                                                     <select v-model="form.category_id" class="w-full placeholder-gray-100  tracking-wider text-sm my-1 rounded-md border border-gray-200" id="category" required>
                                                         <option selected value="">Select category</option>
-                                                        <option v-for="category in categories" :key="category.id" :value="category.name">{{category.name}}</option>
+                                                        <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>

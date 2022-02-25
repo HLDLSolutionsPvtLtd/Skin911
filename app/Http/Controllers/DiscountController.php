@@ -12,7 +12,7 @@ class DiscountController extends Controller
     //
     public function getRand()
     {
-        return Discount::where('valid_from', '<', Carbon::now())->where('valid_upto', '>', Carbon::now())->get()->random(1);
+        return Discount::where('valid_from', '<=', Carbon::now())->where('valid_upto', '>=', Carbon::now())->get()->random(1)->load(['brand', 'category', 'products']);
     }
 
     public function checkPop(Request $request)

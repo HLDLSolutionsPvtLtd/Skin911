@@ -9,7 +9,6 @@ class Discount extends Model
 {
     use HasFactory;
     protected $guarded = [''];
-    protected $with =['brands', 'categories', 'products'];
 
     public function brands()
     {

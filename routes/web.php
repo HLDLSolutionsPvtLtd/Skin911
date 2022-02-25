@@ -138,7 +138,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::middleware(['auth:sanctum'])->get('discounts', function () {
         $discounts = Discount::all();
-        return Inertia::render('Admin/Discount', ['discounts' => $discounts]);
+        return Inertia::render('Admin/Discount', ['discounts' => $discounts->load(['brands', 'categories', 'products'])]);
     })->name('admin.discounts')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('addproduct', function () {

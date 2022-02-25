@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
+    protected $with = ['discounts'];
     public function discounts()
     {
         return $this->morphToMany(Discount::class, 'discountable');
