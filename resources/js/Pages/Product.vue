@@ -104,7 +104,7 @@
                             </template>
                         </template>
                     </div>
-                    <div class="m-2 flex gap-1">
+                    <div v-show="!check" class="m-2 flex gap-1">
                         <div @click="setQuantity('in')" class="bg-white border flex items-center py-0 px-2 shadow-sm rounded-full">
                             <span class="flex">&#43;</span>
                         </div>
@@ -269,6 +269,17 @@ import axios from 'axios';
                     }
                 })
                 if(this.product.variant[index].quantity <= 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if(this.product.quantity <= 0)
                 {
                     return true;
                 }
