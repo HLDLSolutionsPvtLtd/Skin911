@@ -18,6 +18,15 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($user){
+            Cart::create([
+                'user_id' => $user->id
+            ]);
+        });
+    }
     /**
      * The attributes that are mass assignable.
      *

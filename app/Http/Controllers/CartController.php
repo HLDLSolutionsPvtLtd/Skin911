@@ -27,21 +27,10 @@ class CartController extends Controller
     }
     public function view(Request $request)
     {
-        if($request->user()->cart)
-        {
-            $request->user()->cart->new = false;
-            $request->user()->cart->save();
-            return Inertia::render('Cart', ['products' => $request->user()->cart->products]);
-        }
-        else
-        {
-            $cart = Cart::create([
-                'user_id' => $request->user()->id
-            ]);
-            $cart->new = false;
-            $cart->save();
-            return Inertia::render('Cart', ['products' => $cart->products]);
-        }
+        $request->user()->cart->new = false;
+        $request->user()->cart->save();
+        return Inertia::render('Cart', ['products' => $request->user()->cart->products]);
+       
     }
 
     public function all(Request $request)
