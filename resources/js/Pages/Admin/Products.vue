@@ -4,7 +4,33 @@
            Products
        </template>
        <div class="">
-           <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1">
+           <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1 relative">
+               <div v-show="variants.length" class="absolute w-full overflow-y-scroll z-30 bg-white shadow-lg">
+                    <div class="flex justify-between border-b p-4">
+                        <div>
+                            <span class="text-sm font-bold tracking-wider">VARIANTS</span>
+                        </div>
+                        <div @click="variants = ''" class="p-2 bg-red-400 border  rounded-full border-red-400 hover:bg-gray-400 hover:border-green-400">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-white hover:text-red-600" viewBox="0 0 24 24">
+                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
+                            </svg>
+                        </div>                            
+                    </div>
+                    <div v-for="product in variants" :key="product" class="m-4">
+                        <div class="flex justify-between bg-white border text-gray-700 mb-2">
+                            <div class="flex p-1">
+                                <span class="font-bold tracking-wider text-md">{{product.name}}</span>
+                            </div>
+                            <div class="flex items-center text-sm font-bold tracking-wider ">
+                                <span>QUANTITY : {{product.quantity}}</span>
+                            </div>
+                            <div class="flex items-center p-2 m-1">
+                                <span class="p-1 font-semibold">&#8377; {{product.price}}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+               </div>
                <div class="flex justify-between m-4">
                     <div class="flex gap-2">
                         <div>
@@ -61,8 +87,8 @@
                             <th class="text-left  py-4">
                                 <span class="flex pr-1">Quantity</span>
                             </th>
-                            <th class="text-left  py-4">
-                                <span class="flex pr-1">Variant</span>
+                            <th class="text-center  py-4">
+                                <span class="">Variant</span>
                             </th>
                             <th class="text-center py-4">Actions</th>
                         </tr>
@@ -78,7 +104,9 @@
                             <td class="text-left  p-1">{{product.price}}</td>
                             <td class="text-left  p-1">{{product.tag}}</td>
                             <td class="text-left  p-1">{{product.quantity}}</td>
-                            <td class="text-left  p-1">{{product.variant.length}}</td>
+                            <td class="text-center flex flex-col p-1">{{product.variant.length}}
+                                <button class="text-blue-500" v-show="product.variant.length" @click="variants = product.variant">view</button>
+                            </td>
                             <td class="p-1">
                                 <div class="flex gap-2 justify-center items-center">
                                     <a :href="'/admin/product/'+product.id+'/edit'" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
@@ -111,6 +139,7 @@
     props: ['products'],
     data(){
         return{
+            variants: '',
             key: '',
             selectedItems: []
         }

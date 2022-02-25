@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['products', 'transaction', 'customer'];
+    protected $with = ['products', 'transaction', 'customer', 'address'];
 
     public function products()
     {
@@ -23,5 +23,10 @@ class Order extends Model
     public function customer()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id');
     }
 }

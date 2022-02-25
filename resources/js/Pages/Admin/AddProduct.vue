@@ -83,7 +83,7 @@
                         </div>
                         
                         <div class="col-span-1 bg-white ml-1 p-4">
-                            <div class="m-6">
+                            <div class="mx-6">
                                     <div class="flex text-sm font-bold border-b">
                                         <span class="pb-2  tracking-wide">Image :</span>
                                     </div>

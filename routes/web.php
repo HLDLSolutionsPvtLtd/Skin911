@@ -22,6 +22,7 @@ use App\Models\Blog;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Shipping;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -171,6 +172,7 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.categories')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('addproduct',[ProductController::class, 'AddProduct'])->name('add.product')->middleware('is_admin');
+   
     Route::middleware(['auth:sanctum'])->post('addbrand',[BrandController::class, 'AddBrand'])->name('addbrand')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('/product/new',[ProductsController::class, 'addProduct'])->name('/product/new')->middleware('is_admin');
@@ -178,6 +180,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('allproducts', function () {
         return Inertia::render('Admin/Products', ['products' => Product::all()]);
     })->name('allproducts')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->get('users', function () {
+        return Inertia::render('Admin/Users', ['users' => User::all()]);
+    })->name('admin.users')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('/product/{product:id}/edit',[ProductsController::class, 'editProduct'])->name('editProduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->delete('/image/{image:id}/delete',[ProductsController::class, 'deleteProductImage'])->name('deleteProductImage')->middleware('is_admin');

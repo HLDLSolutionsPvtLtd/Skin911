@@ -49,7 +49,7 @@
                     </i>
                 </div>
             </div>
-            <div v-show="" class="fixed w-5/6 z-50 transform shadow-lg sm:w-1/4 top-1/4">
+            <!-- <div v-show="success" class="fixed w-5/6 z-50 transform shadow-lg sm:w-1/4 top-1/4">
                 <div class=" bg-white rounded-sm">
                     <div class="bg-pink-300 p-2 flex justify-center">
                         <div class="p-4 flex flex-col justify-center">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 
-            </div>
+            </div> -->
         </div>
        <div class="bg-white">
            <div class="relative h-full">
@@ -104,7 +104,7 @@
                         <div class="">
                             <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img  style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
+                                     <img v-if="tproduct.image[0]" style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
                                      <div v-if="tproduct.quantity <= 0 && !tproduct.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
                                         <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
                                     </div>
@@ -248,7 +248,7 @@
                         <div class="">
                             <a :href="'/product/'+nproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img  style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
+                                    <img v-if="nproduct.image[0]" style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+nproduct.image[0].link" alt="">
                                     <div v-if="nproduct.quantity <= 0 && !nproduct.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
                                         <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
                                     </div>

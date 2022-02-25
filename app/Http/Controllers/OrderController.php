@@ -89,7 +89,14 @@ class OrderController extends Controller
 
             $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $product->pivot->variant, 'subtotal' => $product->pivot->quantity * $price]);
             $cart->products()->wherePivot('id', $product->pivot->id)->detach();
-            $product->quantity = $product->quantity--;
+            if($request->variant)
+            {
+                $product->variant->where('name', $request->variant)->quantity = $product->variant->where('name', $request->variant)->quantity--;
+            }
+            else
+            {
+                $product->quantity = $product->quantity--;
+            }
             $product->save();
         }
 
@@ -127,7 +134,14 @@ class OrderController extends Controller
                 $order->status ='cancelled';
                 foreach($order->products as $product)
                 {
-                    $product->quantity = $product->quantity++;
+                    if($product->pivot->variant)
+                    {
+                        $product->variant->where('id', $product->pivot->variant)->quantity = $product->variant->where('id', $product->pivot->variant)->quantity++;
+                    }
+                    else
+                    {
+                        $product->quantity = $product->quantity--;
+                    }
                 }
                 $order->save();
                 return redirect()->back();
@@ -222,7 +236,14 @@ class OrderController extends Controller
             $price = $product->price;
         }
             $order->products()->attach($product, ['quantity' => $request->quantity, 'variant' =>  $request->variant ? $request->variant->id : '', 'subtotal' => $request->quantity * $price]);
-            $product->quantity = $product->quantity--;
+            if($request->variant)
+            {
+                $product->variant->where('name', $request->variant)->quantity = $product->variant->where('name', $request->variant)->quantity--;
+            }
+            else
+            {
+                $product->quantity = $product->quantity--;
+            }
             $product->save();
 
         if(!$request->cod)

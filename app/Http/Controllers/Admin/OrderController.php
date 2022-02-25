@@ -23,7 +23,28 @@ class OrderController extends Controller
         {
             foreach($order->products as $product)
             {
-                $product->quantity = $product->quantity++;
+                if($product->variant)
+                {
+                   $product->variant->where('name', $product->variant)->quantity = ++$product->variant->where('name', $product->variant)->quantity;
+                }
+                else
+                {
+                    $product->quantity = ++$product->quantity;
+                }
+            }
+        }
+        else if($request->status == 'accepted')
+        {
+            foreach($order->products as $product)
+            {
+                if($product->variant)
+                {
+                    $product->variant->where('name', $product->pivot->variant)->quantity = --$product->variant->where('name', $product->pivot->variant)->quantity;
+                }
+                else
+                {
+                    $product->quantity = --$product->quantity;
+                }
             }
         }
         $order->save();
