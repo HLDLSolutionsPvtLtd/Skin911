@@ -113,34 +113,31 @@
                        </div>
                    </div>
                    <div style="height:calc(100vh - 180px)" class="overflow-y-scroll">
-                        <table class="text-ct" style="width:100%">
-                            <tr class="border-b-2 shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
-                                <th class="text-left border-gray-300 p-2">
+                        <div class="text-ct" >
+                            <div style="width:100%" class="border-b-2 flex flex-row shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
+                                <div class="w-1/6 text-left border-gray-300 p-2">
                                     <span class="flex pr-1">Title</span>
-                                </th>
-                                <th class="text-left border-gray-300 p-2">
+                                </div>
+                                <div class="w-3/6 text-left border-gray-300 p-2">
                                     <p class=" pr-1">Body</p>
-                                </th>
-                                <th class="text-left border-gray-300 p-2">
-                                </th>
-                                <th class="text-left border-gray-300 p-2">
-                                </th>
-                                <th class="text-left border-gray-300 p-2">
+                                </div>
+                                
+                                <div class="w-1/6 text-left border-gray-300 p-2">
                                     <span class="flex pr-1">Image</span>
-                                </th>
-                                <th class="text-center p-2">Actions</th>
-                            </tr>
+                                </div>
+                                <div class="w-1/6 text-center p-2">Actions</div>
+                            </div>
                             
                             <tbody>
-                                <tr v-for="post in posts" :key="post.id" class="border-t-2 shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
-                                    <td class="text-start border-gray-300 p-2">{{post.title}}</td>
-                                    <td colspan="3" class="text-start border-gray-300 p-2">
+                                <div style="width:100%" v-for="post in posts" :key="post.id" class="border-t-2 flex flex-row shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
+                                    <div class="w-1/6 text-start border-gray-300 p-2">{{post.title}}</div>
+                                    <div colspan="3" class="w-3/6 text-start border-gray-300 p-2">
                                         <div>
                                             <p>{{post.body}}</p>
                                         </div>
-                                    </td>
-                                    <td class="p-2 border-gray-300"><img v-if="post.image" class="h-14 w-14 flex mr-1" :src="'/storage/'+post.image" alt=""></td>
-                                    <td class="p-2">
+                                    </div>
+                                    <div class="p-2 w-1/6 border-gray-300"><img v-if="post.image" class="h-14 w-14 flex mr-1" :src="'/storage/'+post.image" alt=""></div>
+                                    <div class="p-2 w-1/6">
                                         <div class="flex gap-2 justify-center items-center">
                                             <button @click="updatepost = !updatepost, newform.title = post.title, newform.body = post.body, newform.id = post.id" class="flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="fill-current text-white" viewBox="0 0 24 24">
@@ -153,10 +150,10 @@
                                                 </svg>
                                             </button>
                                         </div>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
                             </tbody>
-                        </table>
+                        </div>
                    </div>
                </div>
            </div>

@@ -68,15 +68,14 @@ class ChartController extends Controller
     {
         $x= [];
         $y = [];
-        for($i = 20; $i >= 0; $i--)
+        for($i = 0; $i <= 20; $i++)
         {
 
-            $date = date("Y-m-d", strtotime("+$i days"));   
-            $orders = Order::whereMonth('created_at', date("m", strtotime($date)))->whereYear('created_at', date("Y", strtotime($date)))->get();
-            $no = 0;
+            $date = date("Y-m-d", strtotime("-$i days"));   
+            $orders = Order::whereMonth('created_at', date("m", strtotime($date)))->whereYear('created_at', date("Y", strtotime($date)))->whereDay('created_at', date("d", strtotime($date)))->get();
+            $no = count($orders);
            
-            $no = $no + count($orders);
-            array_push($x,date("M j", strtotime("+$i days")));
+            array_push($x,date("M j", strtotime("-$i days")));
             array_push($y, $no);
         }
         

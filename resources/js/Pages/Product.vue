@@ -120,8 +120,8 @@
                         <span>{{qerror}}</span>
                     </div>
                     <div v-show="!check" class="mt-2 flex justify-start">
-                        <button :disabled="!check" @click="addtocart()" class="p-2 w-1/2 rounded-sm font-semibold bg-pink text-pink-dark text-sm m-2">ADD TO CART</button>
-                        <button :disabled="!check" @click="buyNow()" class="p-2 w-1/2 border border-gray-700 rounded-sm font-semibold text-pink-dark text-sm m-2">BUY IT NOW</button>
+                        <button  @click="addtocart()" class="p-2 w-1/2 rounded-sm font-semibold bg-pink text-pink-dark text-sm m-2">ADD TO CART</button>
+                        <button  @click="buyNow()" class="p-2 w-1/2 border border-gray-700 rounded-sm font-semibold text-pink-dark text-sm m-2">BUY IT NOW</button>
                     </div>
                     <div class="mt-8 mb-8 border-t">
                         <div>

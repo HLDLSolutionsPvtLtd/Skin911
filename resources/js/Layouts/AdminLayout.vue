@@ -1,5 +1,5 @@
 <template>
-<div class="sm:grid sm:grid-cols-12 min-h-screen ">
+<div class="sm:grid sm:grid-cols-12 min-h-screen overflow-hidden">
     <!-- side navbar -->
     <div class="col-span-2 bg-white shadow-lg border-r h-screen">
             <div class="border-b my-1">
@@ -12,7 +12,7 @@
                     <div class="p-3 pl-6">
                         <span class="text-sm text-gray-700 font-bold tracking-wider">MENU</span>
                     </div>
-                    <ul class="h-full p-2">
+                    <ul style="height:calc(100vh - 250px)" class="p-2 overflow-y-scroll 2xl:overflow-hidden">
                         <li class="flex m-1 hover:bg-gray-100 p-3 w-full">
                             <Link class="flex text-sm text-pink-700" :href="route('admin.dashboard')" :active="route().current('admin.products')">
                                 <!-- <jet-application-mark class="block h-9 w-auto" /> -->
@@ -140,7 +140,7 @@
                                     <div class="flex items-center">
                                         <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
                                             <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
-                                                <path d="M12.628 21.412l5.969-5.97 1.458 3.71-12.34 4.848-4.808-12.238 9.721 9.65zm-1.276-21.412h-9.352v9.453l10.625 10.547 9.375-9.375-10.648-10.625zm4.025 9.476c-.415-.415-.865-.617-1.378-.617-.578 0-1.227.241-2.171.804-.682.41-1.118.584-1.456.584-.361 0-1.083-.408-.961-1.218.052-.345.25-.697.572-1.02.652-.651 1.544-.848 2.276-.106l.744-.744c-.476-.476-1.096-.792-1.761-.792-.566 0-1.125.227-1.663.677l-.626-.627-.698.699.653.652c-.569.826-.842 2.021.076 2.938 1.011 1.011 2.188.541 3.413-.232.6-.379 1.083-.563 1.475-.563.589 0 1.18.498 1.078 1.258-.052.386-.26.763-.621 1.122-.451.451-.904.679-1.347.679-.418 0-.747-.192-1.049-.462l-.739.739c.463.458 1.082.753 1.735.753.544 0 1.087-.201 1.612-.597l.54.538.697-.697-.52-.521c.743-.896 1.157-2.209.119-3.247zm-9.678-7.476c.938 0 1.699.761 1.699 1.699 0 .938-.761 1.699-1.699 1.699-.938 0-1.699-.761-1.699-1.699 0-.938.761-1.699 1.699-1.699z"/>
+                                                <path d="M13 16h-2v-6h2v6zm-1-10.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25zm0-2.75c5.514 0 10 3.592 10 8.007 0 4.917-5.145 7.961-9.91 7.961-1.937 0-3.383-.397-4.394-.644-1 .613-1.595 1.037-4.272 1.82.535-1.373.723-2.748.602-4.265-.838-1-2.025-2.4-2.025-4.872-.001-4.415 4.485-8.007 9.999-8.007zm0-2c-6.338 0-12 4.226-12 10.007 0 2.05.738 4.063 2.047 5.625.055 1.83-1.023 4.456-1.993 6.368 2.602-.47 6.301-1.508 7.978-2.536 1.418.345 2.775.503 4.059.503 7.084 0 11.91-4.837 11.91-9.961-.001-5.811-5.702-10.006-12.001-10.006z"/>
                                             </svg>
                                         </div>
                                         <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Blog</span>
@@ -164,7 +164,7 @@
                 </div>
         </div>
     </div>
-    <main class="col-span-10 bg-gray-100 w-full overflow-hidden h-screen">
+    <main class="col-span-10 bg-gray-100 w-full overflow-y-scroll 2xl:overflow-hidden h-screen">
         <header class="" >
             <div class="">
                <nav class="rounded-sm bg-white mt-1 ml-4 mr-4 shadow-lg">

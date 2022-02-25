@@ -260,7 +260,7 @@ export default {
             else
             {
                 this.payloading = false;
-                alert('Order Placed');
+                this.success = true
                 window.location.replace('/myorder');
             }
         },

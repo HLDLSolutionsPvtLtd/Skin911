@@ -83,7 +83,7 @@
                         </div>
                         
                         <div class="col-span-1 bg-white ml-1 p-4">
-                            <div class="mx-6">
+                            <div class="m-6">
                                     <div class="flex text-sm font-bold border-b">
                                         <span class="pb-2  tracking-wide">Image :</span>
                                     </div>
@@ -94,7 +94,7 @@
                                         </div>
                                     </div>
                             </div>
-                            <div class="m-6">
+                            <div class="mx-6">
                                 <div class="flex container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                                     <div class="relative p-1" v-for="preview in previews" :key="preview">
                                         <img class="w-full h-full transition transform ease-in-out duration-500" :src="preview" alt="PREVIEW">

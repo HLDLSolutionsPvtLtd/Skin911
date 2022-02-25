@@ -39,7 +39,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Dashboard');
-});
+})->name('/');
 
 Route::get('/products', function () {
     return Inertia::render('Products');
@@ -58,11 +58,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/checkout', function () {
     return Inertia::render('Checkout');
 })->name('checkout');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/blog', function () {
+Route::get('/blog', function () {
     return Inertia::render('Blog', ['posts' => Blog::all()]);
 })->name('blog');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/sale', function () {
+Route::get('/sale', function () {
     return Inertia::render('Sale');
 })->name('sale');
 

@@ -83,15 +83,16 @@
                             <div class="flex text-sm font-bold border-b">
                                 <span class="p-2 ml-4 text-blue-400 tracking-wide">Product Images</span>
                             </div>
-                            <div class="m-6">
-                                    <div class="p-12 border border-dashed border-gray-400">
-                                        <div class="text-sm  p-12 tracking-wider text-center items-center text-blue-400">
+                            <div class="p-6">
+                                    
+                                    <div class="p-12 border border-dashed border-gray-300">
+                                        <div class="text-sm text-blue-300 p-12 tracking-widest text-center items-center ">
                                             <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
                                             <span>Drag and Drop / Click to Add images</span>
                                         </div>
                                     </div>
                             </div>
-                            <div class="m-6">
+                            <div class="mx-6">
                                 <div class="flex container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                                     <div class="relative p-1" v-for="preview in product.image" :key="preview">
                                         <img class="w-full h-full transition transform ease-in-out duration-500" :src="'/storage/'+preview.link" alt="PREVIEW">

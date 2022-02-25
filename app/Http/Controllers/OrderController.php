@@ -43,8 +43,8 @@ class OrderController extends Controller
         {
             $payment_type = 'cod';
         }
-        $shipping_fee = 0;
-            return $free = Shipping::where('name', 'free')->first();
+            $shipping_fee = 0;
+            $free = Shipping::where('name', 'free')->first();
             if($free)
             {
                 if($free->fee < $total)

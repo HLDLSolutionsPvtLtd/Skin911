@@ -4,7 +4,7 @@
             Dashboard
        </template>
        <div class="h-screen">
-           <div class="h-1/2">
+           <div class="">
                     <div class="m-4 grid grid-cols-4">
                         <div class="p-6 col-span-3 rounded-sm w-full bg-white shadow-sm">
                             <div class="p-1 flex justify-between">

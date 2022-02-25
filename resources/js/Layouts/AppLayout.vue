@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
+                <div class=" mx-auto px-4 sm:px-6 lg:px-8 z-50">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
@@ -238,7 +238,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-500" width="26" height="26" viewBox="0 0 24 24">
                                         <path d="M6 23.73l-3-2.122v-14.2l3 1.359v14.963zm2-14.855v15.125l13-1.954v-15.046l-13 1.875zm5.963-7.875c-2.097 0-3.958 2.005-3.962 4.266l-.001 1.683c0 .305.273.54.575.494.244-.037.425-.247.425-.494v-1.681c.003-1.71 1.416-3.268 2.963-3.268.537 0 1.016.195 1.384.564.422.423.654 1.035.653 1.727v1.747c0 .305.273.54.575.494.243-.037.423-.246.423-.492l.002-1.749c.002-1.904-1.32-3.291-3.037-3.291zm-6.39 5.995c.245-.037.427-.247.427-.495v-2.232c.002-1.71 1.416-3.268 2.963-3.268l.162.015c.366-.283.765-.513 1.188-.683-.405-.207-.858-.332-1.35-.332-2.096 0-3.958 2.005-3.962 4.266v2.235c0 .306.272.538.572.494z"/>
                                     </svg>
-                                    <div class="relative">
+                                    <div v-show="newItemCart" class="relative">
                                         <span class="rounded-full left-0 top-0 absolute h-2 w-2 bg-pink-500"></span>
                                     </div>
                                 </a>
@@ -290,6 +290,10 @@
                                     <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('register')"><span>Register</span></a>
                                 </div>
                             </div>
+                            <jet-responsive-nav-link :href="route('/')" :active="route().current('/')">
+                                Home
+                            </jet-responsive-nav-link>
+
                             <jet-responsive-nav-link :href="route('products')" :active="route().current('products')">
                                 Products
                             </jet-responsive-nav-link>
@@ -300,6 +304,15 @@
                             <jet-responsive-nav-link :href="route('brands')" :active="route().current('brands')">
                                 Brands
                             </jet-responsive-nav-link>
+
+                            <jet-responsive-nav-link :href="route('sale')" :active="route().current('sale')">
+                                Sale
+                            </jet-responsive-nav-link>
+
+                            <jet-responsive-nav-link :href="route('blog')" :active="route().current('blog')">
+                                Blog
+                            </jet-responsive-nav-link>
+
                             <jet-responsive-nav-link v-if="$page.props.user" :href="route('myorder.view')" :active="route().current('myorder.view')">
                                 My Orders
                             </jet-responsive-nav-link>
@@ -324,14 +337,16 @@
             <footer class="sm:flex w-full sm:justify-center p-2 bg-gray-400 ">
                 <div class="sm:grid sm:grid-cols-4 m-4">  
                     <div class="m-2">
-                        <span class="text-pink-dark font-bold text-xs">CUSTOMER CARE</span>
+                        <span class="text-pink-dark font-bold text-xs">INFO</span>
                         <ul class="text-gray-600 text-sm font-semibold">
-                            <li>My Account</li>
-                            <li>Exchange and Refund Policy</li>
-                            <li>Rewards</li>
-                            <li>Shipping</li>
-                            <li>Terms And Condition</li>
-                            <li></li>
+                            <li class="hover:text-blue-500 cursor-pointer">My Account</li>
+                            <li class="hover:text-blue-500 cursor-pointer">Exchange and Refund Policy</li>
+                            <li class="hover:text-blue-500 cursor-pointer">Shipping</li>
+                            <li class="hover:text-blue-500 cursor-pointer">Terms And Condition</li>
+                            <li class="hover:text-blue-500 cursor-pointer">
+                                <a href="https://shaiwave.com/">Developer Info</a>
+                            </li>
+                            <li class="hover:text-blue-500 cursor-pointer"></li>
                         </ul>
                     </div>
                     <div class="m-2">

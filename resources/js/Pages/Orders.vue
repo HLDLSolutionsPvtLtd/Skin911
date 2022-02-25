@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="border w-full">
-                    <div class="w-full ">
+                    <div v-if="orders.length" class="w-full ">
                         <div v-for="order in orders.slice().reverse()" :key="order.id" class="bg-white shadow-lg mt-2 rounded-sm">
                             <div class="p-2 bg-pink-300 flex justify-between rounded-t-sm text-white">
                                 <div class="">
@@ -74,6 +74,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div v-else class="w-full flex justify-center">
+                        <span class="text-sm text-blue-400 font-bold my-4">Empty</span>
                     </div>
                 </div>
             </div>

@@ -58,6 +58,6 @@ class OrderController extends Controller
 
     public function search(Request $request)
     {
-        return Inertia::render('Admin/Orders', ['orders' => Order::where('status', $request->status)->orderBy('created_at', 'desc')->get()]);
+        return Inertia::render('Admin/Orders', ['orders' => Order::where('id', 'like',  "%$request->key%")->orderBy('created_at', 'desc')->get()]);
     }
 }

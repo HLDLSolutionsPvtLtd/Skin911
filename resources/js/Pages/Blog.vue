@@ -2,24 +2,30 @@
     <app-layout>
         <div class="flex flex-col sm:p-6 items-center w-full min-h-screen bg-white">
             <div class="mt-2 sm:mt-6">
-                <span class="text-xl tracking-wider font-bold">BLOGS</span>
+                <span class="text-xl tracking-wider font-bold">BLOG</span>
             </div>
-            <div class="sm:grid sm:grid-cols-3 gap-4">
+            <div class="m-4 flex flex-col justify-center gap-4">
                 
-                <div v-for="post in posts" :key="post.id" class="w-full border">
-                     <div class="w-full">
+                <div v-for="post in posts" :key="post.id" class="w-full flex justify-center my-2 ">
+                     <div class="sm:w-2/3 flex rounded-md border p-8">
                         <div>
-                            <img class="w-full" :src="'/storage/'+post.image" alt="">
+                            <div>
+                                <p class="text-lg p-2 py-4 font-serif font-bold uppercase tracking-wider">{{post.title}}</p>
+                            </div>
+                            <div class="flex flex-col whitespace-normal h-auto overflow-hidden">
+                                <p class="p-2 text-left font-semibold italic font-serif text-gray-600 tracking-widest">
+                                    <div class="w-full">
+                                        <img class="w-full h-48 sm:h-96" :src="'/storage/'+post.image" alt="">
+                                    </div>
+                                    <p class="mt-4">{{post.body}}</p>
+                                </p>
+                            </div>
+                            <div class="mt-4 p-2">
+                                <span class="text-xs tracking-wider uppercase text-gray-400">{{formatDate(post.created_at)}}</span>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-sm p-2 py-4 font-serif font-bold uppercase tracking-wider">{{post.title}}</p>
-                        </div>
-                        <div class="flex flex-col whitespace-normal h-auto overflow-hidden">
-                            <p class="p-2 text-left font-semibold italic font-serif text-gray-600 tracking-widest">{{post.body}}</p>
-                        </div>
-                        <div class="mt-4 p-2">
-                            <span class="text-xs tracking-wider uppercase text-gray-400">{{formatDate(post.created_at)}}</span>
-                        </div>
+                       
+                        
                     </div>
                 </div>
             </div>
