@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Razorpay\Api\Api;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class OrderController extends Controller
 {
@@ -25,18 +26,92 @@ class OrderController extends Controller
         $total = 0;
         $payment_type = 'rzp';
         $cart = $request->user()->cart;
-        $products = $cart->products;
+        $products = $cart->products->load('discounts');
         foreach($products as $product)
         {
-            
             if($product->pivot->variant)
             {
-               $variant = $product->variant->where('name', $product->pivot->variant)->first();
-               $total = $total + ($product->pivot->quantity * $variant->price);
+                $variant = $product->variant->where('name', $product->pivot->variant)->first();
+                if($product->discounts)
+                {
+                        if($product->discounts[0]->type == 'percentage')
+                        {
+                            $total = $total  + ($product->pivot->quantity * $variant->price - ((($product->discounts[0]->amount * $product->pivot->quantity)  * ($variant->price * $product->pivot->quantity))/100));
+                        }
+                        else
+                        {
+                            $total = $total + (($product->pivot->quantity * $variant->price) - ($product->discounts[0]->amount * $product->pivot->quantity));
+                        }
+                }
+                else if($product->brand->discounts)
+                {
+                        if($product->brand->discounts[0]->type == 'percentage')
+                        {
+                            $total = $total  + ($product->pivot->quantity * $variant->price - ((($product->brand->discounts[0]->amount * $product->pivot->quantity)  * ($variant->price * $product->pivot->quantity))/100));
+                        }
+                        else
+                        {
+                            $total = $total + (($product->pivot->quantity * $variant->price) - ($product->brand->discounts[0]->amount * $product->pivot->quantity));
+                        }
+                }
+                else if($product->category->discounts)
+                {
+
+                        if($product->category->discounts[0]->type == 'percentage')
+                        {
+                            $total = $total  + ($product->pivot->quantity * $variant->price - ((($product->category->discounts[0]->amount * $product->pivot->quantity)  * ($variant->price * $product->pivot->quantity))/100));
+                        }
+                        else
+                        {
+                            $total = $total + (($product->pivot->quantity * $variant->price) - ($product->category->discounts[0]->amount * $product->pivot->quantity));
+                        }
+                }
+                else
+                {
+                        $total = $total + ($product->pivot->quantity * $variant->price);
+                }
             }
             else
             {
-                $total = $total + ($product->pivot->quantity * $product->price);
+                if($product->discounts->isNotEmpty())
+                {
+                        if($product->discounts[0]->type == 'percentage')
+                        {
+                            $total = $total  + ($product->pivot->quantity * $product->price - ((($product->discounts[0]->amount * $product->pivot->quantity)  * ($product->price * $product->pivot->quantity))/100));
+                        }
+                        else
+                        {
+                            $total = $total + (($product->pivot->quantity * $product->price) - ($product->discounts[0]->amount * $product->pivot->quantity));
+                        }
+                }
+                else if($product->brand->discounts->isNotEmpty())
+                {
+                        if($product->brand->discounts[0]->type == 'percentage')
+                        {
+                            $total = $total  + ($product->pivot->quantity * $product->price - ((($product->brand->discounts[0]->amount * $product->pivot->quantity)  * ($product->price * $product->pivot->quantity))/100));
+                        }
+                        else
+                        {
+                            $total = $total + (($product->pivot->quantity * $product->price) - ($product->brand->discounts[0]->amount * $product->pivot->quantity));
+                        }
+                }
+                else if($product->category->discounts->isNotEmpty())
+                {
+
+                        if($product->category->discounts[0]->type == 'percentage')
+                        {
+                            $total = $total  + ($product->pivot->quantity * $product->price - ((($product->category->discounts[0]->amount * $product->pivot->quantity)  * ($product->price * $product->pivot->quantity))/100));
+                        }
+                        else
+                        {
+                            $total = $total + (($product->pivot->quantity * $product->price) -  ($product->category->discounts[0]->amount * $product->pivot->quantity));
+                        }
+                }
+                else
+                {
+                        $total = $total + ($product->pivot->quantity * $product->price);
+                }
+    
             }
         }
         if($request->cod)
@@ -50,6 +125,21 @@ class OrderController extends Controller
                 if($free->fee < $total)
                 {
                     $shipping_fee = 0;
+                }
+                else
+                {
+                    $fee = Shipping::where('pincode', $request->pincode)->first();
+                    if($fee)
+                    {
+                        $shipping_fee = $fee->fee;
+                        $total = $total + $shipping_fee;
+                    }
+                    else
+                    {
+                        $fee = Shipping::where('name', 'Default')->first();
+                        $shipping_fee = $fee->fee;
+                        $total = $total + $shipping_fee;
+                    }
                 }
             }
             else
@@ -79,7 +169,7 @@ class OrderController extends Controller
             $price = 0;
             if($product->pivot->variant)
             {
-                $svariant = $product->variant->where('name', $product->pivot->variant)->first();
+               $svariant = $product->variant->where('name', $product->pivot->variant)->first();
                 $price = $svariant->price;
             }
             else
@@ -89,15 +179,15 @@ class OrderController extends Controller
 
             $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $product->pivot->variant, 'subtotal' => $product->pivot->quantity * $price]);
             $cart->products()->wherePivot('id', $product->pivot->id)->detach();
-            if($request->variant)
-            {
-                $product->variant->where('name', $request->variant)->quantity = $product->variant->where('name', $request->variant)->quantity--;
-            }
-            else
-            {
-                $product->quantity = $product->quantity--;
-            }
-            $product->save();
+            // if($request->variant)
+            // {
+            //     $product->variant->where('name', $request->variant)->quantity = $product->variant->where('name', $request->variant)->quantity--;
+            // }
+            // else
+            // {
+            //     $product->quantity = $product->quantity--;
+            // }
+            // $product->save();
         }
 
         if(!$request->cod)
@@ -173,7 +263,7 @@ class OrderController extends Controller
         {
             $variant = $product->variant->where('id', $request->variant)->first();
         }
-        return Inertia::render('Buynow', ['product' => $product, 'quantity' => $request->quantity, 'variant' => $variant]);
+        return Inertia::render('Buynow', ['product' => $product->load('discounts'), 'quantity' => $request->quantity, 'variant' => $variant]);
     }
 
     public function buynowCreate(Product $product, Request $request)
@@ -181,27 +271,115 @@ class OrderController extends Controller
         $api = new Api(env('RZP_KEY'), env('RZP_SECRET'));
         $total = 0;
         $payment_type = 'rzp';
-        $cart = $request->user()->cart;
-        
         if($request->variant)
         {
-            $total = $total + ($request->quantity * $request->variant->price);
+           if($product->discounts->isNotEmpty())
+           {
+                if($product->discounts[0]->type == 'percentage')
+                {
+                    $total = $total  + (($request->quantity * $request->variant['price']) - ((($product->discounts[0]->amount * $request->quantity)  * ($request->variant['price'] * $request->quantity))/100));
+                }
+                else
+                {
+                    $total = $total + (($request->quantity * $request->variant['price']) - ($product->discounts[0]->amount * $request->quantity));
+                }
+           }
+           else if($product->brand->discounts->isNotEmpty())
+           {
+                if($product->brand->discounts->type == 'percentage')
+                {
+                    $total = $total  + (($request->quantity * $request->variant['price']) - ((($product->brand->discounts->amount * $request->quantity)  * ($request->variant['price'] * $request->quantity))/100));
+                }
+                else
+                {
+                    $total = $total + (($request->quantity * $request->variant['price']) - ($product->brand->discounts->amount * $request->quantity));
+                }
+           }
+           else if($product->category->discounts->isNotEmpty())
+           {
+
+                if($product->category->discounts->type == 'percentage')
+                {
+                    $total = $total  + (($request->quantity * $request->variant['price']) - ((($product->category->discounts->amount * $request->quantity)  * ($request->variant['price'] * $request->quantity))/100));
+                }
+                else
+                {
+                    $total = $total + (($request->quantity * $request->variant['price']) - ($product->category->discounts->amount * $request->quantity));
+                }
+           }
+           else
+           {
+                $total = $total + ($request->quantity * $request->variant['price']);
+           }
         }
         else
         {
-            $total = $total + ($request->quantity * $product->price);
+            if($product->discounts->isNotEmpty())
+           {
+                if($product->discounts[0]->type == 'percentage')
+                {
+                    $total = $total  + ($request->quantity * $product->price - ((($product->discounts[0]->amount * $request->quantity)  * ($product->price * $request->quantity))/100));
+                }
+                else
+                {
+                    $total = $total + (($request->quantity * $product->price) - ($product->discounts[0]->amount * $request->quantity));
+                }
+           }
+           else if($product->brand->discounts->isNotEmpty())
+           {
+                if($product->brand->discounts->type == 'percentage')
+                {
+                    $total = $total  + ($request->quantity * $product->price - ((($product->brand->discounts->amount * $request->quantity)  * ($product->price * $request->quantity))/100));
+                }
+                else
+                {
+                    $total = $total + (($request->quantity * $product->price) - ($product->brand->discounts->amount * $request->quantity));
+                }
+           }
+           else if($product->category->discounts->isNotEmpty())
+           {
+
+                if($product->category->discounts->type == 'percentage')
+                {
+                    $total = $total  + ($request->quantity * $product->price - ((($product->category->discounts->amount * $request->quantity)  * ($product->price * $request->quantity))/100));
+                }
+                else
+                {
+                    $total = $total + (($request->quantity * $product->price) -  ($product->category->discounts->amount * $request->quantity));
+                }
+           }
+           else
+           {
+                $total = $total + ($request->quantity * $product->price);
+           }
         }
-        
         if($request->cod)
         {
             $payment_type = 'cod';
         }
-
         $shipping_fee = 0;
         $free = Shipping::where('name', 'free')->first();
-        if($free->fee < $total)
+        if($free)
         {
-            $shipping_fee = 0;
+            if($free->fee < $total)
+            {
+                $shipping_fee = 0;
+            }
+            else
+            {
+                $fee = Shipping::where('pincode', $request->pincode)->first();
+                if($fee)
+                {
+                    $shipping_fee = $fee->fee;
+                    $total = $total + $shipping_fee;
+                }
+                else
+                {
+                    $fee = Shipping::where('name', 'Default')->first();
+                    $shipping_fee = $fee->fee;
+                    $total = $total + $shipping_fee;
+                }
+            }
         }
         else
         {
@@ -218,7 +396,7 @@ class OrderController extends Controller
                 $total = $total + $shipping_fee;
             }
         }
-            
+        
         $order = Order::create([
             'user_id' => $request->user()->id,
             'total' => $total,
@@ -227,24 +405,17 @@ class OrderController extends Controller
         ]);
         
         $price = 0;
-        if($request->variant)
-        {
-            $price = $request->variant->price;
-        }
-        else
-        {
-            $price = $product->price;
-        }
-            $order->products()->attach($product, ['quantity' => $request->quantity, 'variant' =>  $request->variant ? $request->variant->id : '', 'subtotal' => $request->quantity * $price]);
-            if($request->variant)
-            {
-                $product->variant->where('name', $request->variant)->quantity = $product->variant->where('name', $request->variant)->quantity--;
-            }
-            else
-            {
-                $product->quantity = $product->quantity--;
-            }
-            $product->save();
+        
+        $order->products()->attach($product, ['quantity' => $request->quantity, 'variant' =>  $request->variant ? $request->variant['id'] : '', 'subtotal' => $total]);
+        // if($request->variant)
+        // {
+        //     $product->variant->where('name', $request->variant)->quantity = $product->variant->where('name', $request->variant)->quantity--;
+        // }
+        // else
+        // {
+        //     $product->quantity = $product->quantity--;
+        // }
+        // $product->save();
 
         if(!$request->cod)
         {

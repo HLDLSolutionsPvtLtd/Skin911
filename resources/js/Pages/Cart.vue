@@ -24,8 +24,75 @@
                                             <div class="p-1">
                                                 <span class="font-bold tracking-wider text-md">{{product.name}}</span>
                                             </div>
-                                            <span v-if="product.pivot.variant" class="p-1 font-semibold">&#8377; {{getPrice(product)}}</span>
-                                            <span v-else class="p-1 font-semibold">&#8377; {{product.price}}</span>
+                                            <template v-if="product.discounts[0]">
+                                                <template v-if="product.variant[0]">
+                                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.variant[0].price}}</span>
+                                                    <template v-if="product.discounts[0].type == 'percentage'">
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[0].price - (product.variant[0].price * product.discounts[0].amount / 100)}}</span>
+                                                    </template>
+                                                    <template v-else>
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[0].price - product.discounts[0].amount}}</span>
+                                                    </template>
+                                                </template>
+                                                <template v-else>
+                                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                                                    <template v-if="product.discounts[0].type == 'percentage'">
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.discounts[0].amount / 100)}}</span>
+                                                    </template>
+                                                    <template v-else>
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.discounts[0].amount}}</span>
+                                                    </template>
+                                                </template>
+                                            </template>
+                                            <template v-else-if="product.brand.discounts[0]">
+                                                <template v-if="product.variant[0]">
+                                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.variant[0].price}}</span>
+                                                    <template v-if="product.brand.discounts[0].type == 'percentage'">
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[0].price - (product.variant[0].price * product.brand.discounts[0].amount / 100)}}</span>
+                                                    </template>
+                                                    <template v-else>
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[0].price - product.brand.discounts[0].amount}}</span>
+                                                    </template>
+                                                </template>
+                                                <template v-else>
+                                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                                                    <template v-if="product.brand.discounts[0].type == 'percentage'">
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.brand.discounts[0].amount / 100)}}</span>
+                                                    </template>
+                                                    <template v-else>
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.brand.discounts[0].amount}}</span>
+                                                    </template>
+                                                </template>
+                                            </template>
+                                            <template v-else-if="product.category.discounts[0]">
+                                                <template v-if="product.variant[0]">
+                                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.variant[0].price}}</span>
+                                                    <template v-if="product.category.discounts[0].type == 'percentage'">
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[0].price - (product.variant[0].price * product.category.discounts[0].amount / 100)}}</span>
+                                                    </template>
+                                                    <template v-else>
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.variant[0].price - product.category.discounts[0].amount}}</span>
+                                                    </template>
+                                                </template>
+                                                <template v-else>
+                                                    <span class="line-through text-xs text-gray-300 pr-2">&#8377;{{product.price}}</span>
+                                                    <template v-if="product.category.discounts[0].type == 'percentage'">
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - (product.price * product.category.discounts[0].amount / 100)}}</span>
+                                                    </template>
+                                                    <template v-else>
+                                                        <span class="text-sm text-gray-700 font-bold">&#8377;{{product.price - product.category.discounts[0].amount}}</span>
+                                                    </template>
+                                                </template>
+                                            </template>
+                                            <template v-else>
+                                                <template v-if="product.variant[0]">
+                                                    <span class="text-xs text-gray-900 pr-2">&#8377;{{product.variant[0].price}}</span>
+                                                </template>
+                                                <template v-else>
+                                                    <span class="text-xs text-gray-900 pr-2">&#8377;{{product.price}}</span>
+                                                </template>
+                                            </template>
+                                            
                                             <div class="my-2 flex gap-1">
                                                  <div @click="setQuantity('de', product)" class="bg-white cursor-pointer py-0 px-2 border flex items-center shadow-sm rounded-full">
                                                     <span class="">&#8722;</span>
@@ -204,13 +271,84 @@ export default {
                             return true;
                         }
                     })
-
-                    this.subtotal = this.subtotal + element.variant[index].price * element.pivot.quantity;
+                    if(element.discounts[0])
+                    {
+                        if(element.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.variant[index].price - (((element.discounts[0].amount * element.pivot.quantity)  * (element.variant[index].price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.variant[index].price) -(element.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.brand.discounts[0])
+                    {
+                        if(element.brand.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.variant[index].price - (((element.brand.discounts[0].amount * element.pivot.quantity)  * (element.variant[index].price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.variant[index].price) -(element.brand.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.category.discounts[0]){
+                        if(element.category.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.variant[index].price - (((element.category.discounts[0].amount * element.pivot.quantity)  * (element.variant[index].price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.variant[index].price) -(element.category.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else
+                    {
+                        this.subtotal = this.subtotal + element.variant[index].price * element.pivot.quantity;
+                    }
+                    
                     this.n_items = this.n_items + parseInt(element.pivot.quantity);
                 }
                 else
                 {
-                    this.subtotal = this.subtotal + element.price * element.pivot.quantity;
+                    if(element.discounts[0])
+                    {
+                        if(element.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.price - (((element.discounts[0].amount * element.pivot.quantity)  * (element.price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.price) - (element.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.brand.discounts[0])
+                    {
+                        if(element.brand.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.price - (((element.brand.discounts[0].amount * element.pivot.quantity)  * (element.price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.price) - (element.brand.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.category.discounts[0]){
+                        if(element.category.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.price - (((element.category.discounts[0].amount * element.pivot.quantity)  * (element.price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.price) - (element.category.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else
+                    {
+                        this.subtotal = this.subtotal + element.price * element.pivot.quantity;
+                    }
+                   
                     this.n_items = this.n_items + parseInt(element.pivot.quantity);
                 }
             });

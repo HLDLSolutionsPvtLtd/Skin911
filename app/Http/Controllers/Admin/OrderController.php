@@ -23,13 +23,15 @@ class OrderController extends Controller
         {
             foreach($order->products as $product)
             {
-                if($product->variant)
+                if($product->pivot->variant)
                 {
-                   $product->variant->where('name', $product->variant)->quantity = ++$product->variant->where('name', $product->variant)->quantity;
+                    ++$product->variant->where('name', $product->pivot->variant)->first()->quantity;
+                   $product->variant->where('name', $product->pivot->variant)->first()->save();
                 }
                 else
                 {
-                    $product->quantity = ++$product->quantity;
+                    ++$product->quantity;
+                    $product->save();
                 }
             }
         }
@@ -37,18 +39,20 @@ class OrderController extends Controller
         {
             foreach($order->products as $product)
             {
-                if($product->variant)
+                if($product->pivot->variant)
                 {
-                    $product->variant->where('name', $product->pivot->variant)->quantity = --$product->variant->where('name', $product->pivot->variant)->quantity;
+                    --$product->variant->where('name', $product->pivot->variant)->first()->quantity;
+                   $product->variant->where('name', $product->pivot->variant)->first()->save();
                 }
                 else
                 {
-                    $product->quantity = --$product->quantity;
+                    --$product->quantity;
+                    $product->save();
                 }
+                
             }
         }
         $order->save();
-
         return redirect()->back();
     }
 

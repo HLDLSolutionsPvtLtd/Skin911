@@ -145,13 +145,13 @@
                         </template>
                     </div>
                     <div v-show="!check" class="m-2 flex gap-1">
-                        <div @click="setQuantity('in')" class="bg-white border flex items-center py-0 px-2 shadow-sm rounded-full">
+                        <div @click="setQuantity('in')" class="bg-white border cursor-pointer flex items-center py-0 px-2 shadow-sm rounded-full">
                             <span class="flex">&#43;</span>
                         </div>
                         <div class="bg-white py-0 px-4 flex items-center border shadow-sm rounded-sm">
                             <span class="">{{form.quantity}}</span>
                         </div>
-                        <div @click="setQuantity('de')" class="bg-white border py-0 px-2 flex items-center shadow-sm rounded-full">
+                        <div @click="setQuantity('de')" class="bg-white border cursor-pointer py-0 px-2 flex items-center shadow-sm rounded-full">
                              <span class="">&#8722;</span>
                         </div>
                     </div>

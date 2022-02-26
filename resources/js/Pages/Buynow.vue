@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="flex font-semibold tracking-widest text-xs uppercase border-b p-4 justify-between">
                                     <span>Shipping fee</span>
-                                    <span>&#8377; 150</span>
+                                    <span>&#8377; {{fee}}</span>
                                 </div>
                                 <div class="flex font-bold tracking-widest text-sm uppercase p-4 justify-between">
                                     <span>Total </span>
@@ -124,6 +124,7 @@ export default {
             success: false,
             subtotal: 0,
             n_items: 0,
+            fee: 0,
             addresses: [],
             total : 0,
             form: this.$inertia.form({
@@ -131,6 +132,7 @@ export default {
                 selectedAddress: '',
                 quantity: this.quantity,
                 variant: this.variant,
+                pincode: '',
             }),
         }
     },
@@ -157,6 +159,13 @@ export default {
         },
         checkout()
         {
+            var index =  this.addresses.findIndex(el =>{
+                if(el.id == this.form.selectedAddress)
+                {
+                    return true;
+                }
+            })
+            this.form.pincode = this.addresses[index].pincode;
             axios.post('/order/product/'+this.product.id+'/create', this.form)
             .then(res => this.order = res.data);
         },
@@ -164,16 +173,88 @@ export default {
     },
     mounted(){
             this.subtotal = 0;
+            
             if(this.variant)
             {
-                this.subtotal = this.subtotal + thisvariant.price * this.quantity;
+                if(this.product.discounts[0])
+                {
+                    if(this.product.discounts[0].type == 'percentage')
+                    {
+                        this.subtotal = ((this.variant.price * this.quantity) - ((this.product.discounts[0].amount * this.variant.price/100)));
+                    }
+                    else
+                    {
+                        this.subtotal = this.variant.price * this.quantity - this.product.discounts[0].amount;
+                    }
+                }
+                else if(this.product.brand.discounts[0])
+                {
+                   if(this.product.brand.discounts[0].type == 'percentage')
+                    {
+                        this.subtotal = ((this.variant.price * this.quantity) - ((this.product.brand.discounts[0].amount * this.variant.price/100)));
+                    }
+                    else
+                    {
+                        this.subtotal = this.variant.price * this.quantity - this.product.brand.discounts[0].amount;
+                    }
+                }
+                else if(this.product.category.discounts[0])
+                {
+                    if(this.product.category.discounts[0].type == 'percentage')
+                    {
+                        this.subtotal = ((this.variant.price * this.quantity) - ((this.product.category.discounts[0].amount * this.variant.price/100)));
+                    }
+                    else
+                    {
+                        this.subtotal = this.variant.price * this.quantity - this.product.category.discounts[0].amount;
+                    }
+                }
+                else
+                {
+                    this.subtotal = this.variant.price * this.quantity;
+                }
             }
             else
             {
-                this.subtotal = this.subtotal + this.product.price * this.quantity;
+                if(this.product.discounts[0])
+                {
+                    if(this.product.discounts[0].type == 'percentage')
+                    {
+                        this.subtotal = ((this.product.price * this.quantity) - ((this.product.discounts[0].amount * this.product.price/100)));
+                    }
+                    else
+                    {
+                        this.subtotal = this.product.price * this.quantity - this.product.discounts[0].amount;
+                    }
+                }
+                else if(this.product.brand.discounts[0])
+                {
+                   if(this.product.brand.discounts[0].type == 'percentage')
+                    {
+                        this.subtotal = ((this.product.price * this.quantity) - ((this.product.brand.discounts[0].amount * this.product.price/100)));
+                    }
+                    else
+                    {
+                        this.subtotal = this.product.price * this.quantity - this.product.brand.discounts[0].amount;
+                    }
+                }
+                else if(this.product.category.discounts[0])
+                {
+                    if(this.product.category.discounts[0].type == 'percentage')
+                    {
+                        this.subtotal = ((this.product.price * this.quantity) - ((this.product.category.discounts[0].amount * this.product.price/100)));
+                    }
+                    else
+                    {
+                        this.subtotal = this.product.price * this.quantity - this.product.category.discounts[0].amount;
+                    }
+                }
+                else
+                {
+                    this.subtotal = this.product.price * this.quantity;
+                }
             }
             this.n_items = this.quantity;
-            this.total = this.subtotal + 150;
 
         axios.get('/address/all')
         .then(res => this.addresses = res.data);
@@ -225,12 +306,31 @@ export default {
             {
                 this.payloading = false;
                 this.success = true;
-                window.location.replace('/myorder');
+                // window.location.replace('/myorder');
             }
         },
         addresses()
         {
             this.form.selectedAddress = this.addresses[0].id;
+            var index =  this.addresses.findIndex(el =>{
+                if(el.id == this.form.selectedAddress)
+                {
+                    return true;
+                }
+            })
+            axios.get('/admin/shippingfee/calculate', {params: {'pincode': this.addresses[index].pincode , 'amount' : this.subtotal}})
+            .then(res => this.fee = res.data)
+            .then( ()=> {
+                if(this.fee != 'free')
+                {
+                    this.total = this.subtotal + this.fee;
+
+                }
+                else
+                {
+                    this.total = this.subtotal;
+                }
+            })
         }
    },
 

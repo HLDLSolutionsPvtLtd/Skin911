@@ -29,14 +29,14 @@ class CartController extends Controller
     {
         $request->user()->cart->new = false;
         $request->user()->cart->save();
-        return Inertia::render('Cart', ['products' => $request->user()->cart->products]);
+        return Inertia::render('Cart', ['products' => $request->user()->cart->products->load('discounts')]);
        
     }
 
     public function all(Request $request)
     {
         $user = $request->user();
-        return $user->cart->products;
+        return $user->cart->products->load('discounts');
     }
 
     public function updateQty(Request $request)

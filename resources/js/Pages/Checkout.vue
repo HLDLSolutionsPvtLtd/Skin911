@@ -134,6 +134,7 @@ export default {
             form: this.$inertia.form({
                 cod: false,
                 selectedAddress: '',
+                pincode: '',
             }),
         }
     },
@@ -160,22 +161,21 @@ export default {
         },
         checkout()
         {
-            axios.post('/order/create', this.form)
-            .then(res => this.order = res.data);
-        },
-        calculate(){
             var index =  this.addresses.findIndex(el =>{
                 if(el.id == this.form.selectedAddress)
                 {
                     return true;
                 }
-            })
-            axios.get('/admin/shippingfee/calculate', {params: {'pincode': this.addresses[index].pincode}})
-            .then(res => this.fee = res.data)
-            .then( ()=>{
-                axios.get('cart/all')
-               .then(res => this.products = res.data);
-            })
+            });
+            this.form.pincode = this.addresses[index].pincode;
+            axios.post('/order/create', this.form)
+            .then(res => this.order = res.data);
+        },
+        calculate(){
+            
+            axios.get('cart/all')
+            .then(res => this.products = res.data);
+            
             
         }
         
@@ -208,17 +208,106 @@ export default {
                             return true;
                         }
                     })
-
-                    this.subtotal = this.subtotal + element.variant[index].price * element.pivot.quantity;
+                    if(element.discounts[0])
+                    {
+                        if(element.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.variant[index].price - (((element.discounts[0].amount * element.pivot.quantity)  * (element.variant[index].price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.variant[index].price) -(element.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.brand.discounts[0])
+                    {
+                        if(element.brand.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.variant[index].price - (((element.brand.discounts[0].amount * element.pivot.quantity)  * (element.variant[index].price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.variant[index].price) -(element.brand.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.category.discounts[0]){
+                        if(element.category.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.variant[index].price - (((element.category.discounts[0].amount * element.pivot.quantity)  * (element.variant[index].price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.variant[index].price) -(element.category.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else
+                    {
+                        this.subtotal = this.subtotal + element.variant[index].price * element.pivot.quantity;
+                    }
+                    
                     this.n_items = this.n_items + parseInt(element.pivot.quantity);
                 }
                 else
                 {
-                    this.subtotal = this.subtotal + element.price * element.pivot.quantity;
+                    if(element.discounts[0])
+                    {
+                        if(element.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.price - (((element.discounts[0].amount * element.pivot.quantity)  * (element.price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.price) - (element.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.brand.discounts[0])
+                    {
+                        if(element.brand.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.price - (((element.brand.discounts[0].amount * element.pivot.quantity)  * (element.price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.price) - (element.brand.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else if(element.category.discounts[0]){
+                        if(element.category.discounts[0].type == 'percentage')
+                        {
+                            this.subtotal = this.subtotal  + (element.pivot.quantity * element.price - (((element.category.discounts[0].amount * element.pivot.quantity)  * (element.price * element.pivot.quantity))/100));
+                        }
+                        else
+                        {
+                            this.subtotal = this.subtotal + ((element.pivot.quantity * element.price) - (element.category.discounts[0].amount * element.pivot.quantity));
+                        }
+                    }
+                    else
+                    {
+                        this.subtotal = this.subtotal + element.price * element.pivot.quantity;
+                    }
+                   
                     this.n_items = this.n_items + parseInt(element.pivot.quantity);
                 }
             });
-            this.total = this.subtotal + this.fee;
+            var index =  this.addresses.findIndex(el =>{
+                if(el.id == this.form.selectedAddress)
+                {
+                    return true;
+                }
+            })
+            axios.get('/admin/shippingfee/calculate', {params: {'pincode': this.addresses[index].pincode , 'amount' : this.subtotal}})
+            .then(res => this.fee = res.data)
+            .then( ()=> {
+                if(this.fee != 'free')
+                {
+                    this.total = this.subtotal + this.fee;
+
+                }
+                else
+                {
+                    this.total = this.subtotal;
+                }
+            })
         },
         order()
         {
@@ -261,7 +350,7 @@ export default {
             {
                 this.payloading = false;
                 this.success = true
-                window.location.replace('/myorder');
+                // window.location.replace('/myorder');
             }
         },
         addresses()

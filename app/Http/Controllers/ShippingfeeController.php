@@ -50,9 +50,25 @@ class ShippingfeeController extends Controller
     {
         $free = Shipping::where('name', 'free')->first();
 
-        if($free < $request->amount)
+        if($free)
         {
-            return 0;
+            if($free->fee < $request->amount)
+            {
+                return 'free';
+            }
+            else
+            {
+                $fee = Shipping::where('pincode', $request->pincode)->first();
+                if($fee)
+                {
+                    return $fee->fee;
+                }
+                else
+                {
+                    $fee = Shipping::where('name', 'Default')->first();
+                    return $fee->fee;
+                }
+            }
         }
         else
         {
@@ -67,6 +83,7 @@ class ShippingfeeController extends Controller
                 return $fee->fee;
             }
         }
+        
     }
 
     public function search(Request $request)

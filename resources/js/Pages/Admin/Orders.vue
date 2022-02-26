@@ -120,11 +120,11 @@
                             <td class="text-left p-1 text-xs uppercase py-6">
                                 <select name="" id="" @change="markAs(order, index)" v-model="status" class="bg-green-200 border-0 text-green-800 focus:ring-0 text-xs uppercase rounded-md">
                                     <option value="" selected>Mark As</option>
-                                    <option value="accepted">Accepted</option>
-                                    <option value="denied">Denied</option>
-                                    <option value="cancelled">Cancelled</option>
-                                    <option value="out_for_delivery">Out For Delivery</option>
-                                    <option value="delivered">Delivered</option>
+                                    <option v-if="order.status != 'accepted'&& order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="accepted">Accepted</option>
+                                    <option v-if="order.status != 'accepted' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="denied">Denied</option>
+                                    <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="cancelled">Cancelled</option>
+                                    <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="out_for_delivery">Out For Delivery</option>
+                                    <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="delivered">Delivered</option>
                                 </select>
                             </td>
                             <td v-if="order.payment_type == 'rzp' && order.transaction"  class="text-left p-1">
@@ -140,7 +140,7 @@
                                     PAYMENT ERROR
                                 </span>
                             </td>
-                            <td v-if="order.payment_type == 'rzp'  && order.transaction">
+                            <td v-if="order.payment_type == 'rzp'  && order.transaction && order.status != 'accepted' && order.status != 'out_for_delivery' && order.status != 'delivered' && order.status != 'placed'">
                                 <button @click="refund(order)" v-if="order.transaction.status == 'paid'" class="p-2 ml-2 text-xs rounded-md tracking-wider font-bold shadow-sm bg-pink  -400 text-white">REFUND</button>
                             </td>
                         </tr>
