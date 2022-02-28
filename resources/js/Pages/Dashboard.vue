@@ -99,15 +99,16 @@
                <div class="flex justify-center">
                    <span class="text-gray-700 p-2 font-bold sm:text-3xl">TOP SELLING PRODUCTS</span>
                </div>
-               <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
+               <div style="height:calc(100vh - 650px)" class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
                     <div class="border w-7/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="tproduct in topselling" :key="tproduct">
                         <div class="">
                             <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
-                                <div class="relative pb-48 overflow-hidden">
-                                     <img v-if="tproduct.image[0]" style="height:200px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
+                                <div class="relative overflow-hidden">
+                                     <img  @mouseover="isHovering = 'ts'+tproduct.id"  @mouseleave="isHovering = false" v-if="tproduct.image[0]"  :class="isHovering == 'ts'+tproduct.id ? 'h-36' : 'h-52'" class="w-full object-cover transition-all duration-500" :src="'/storage/'+tproduct.image[0].link" alt="">
                                      <div v-if="tproduct.quantity <= 0 && !tproduct.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
                                         <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
-                                    </div>
+                                     </div>
+                                     
                                 </div>
                                 <div class="absolute top-5 left-0">
                                     <span v-if="tproduct.discounts[0]" class="flag-discount transform rotate-90">
@@ -138,11 +139,17 @@
                                
                             </a>
                             <div class="px-2 pt-4">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="117.614" height="297.001" viewBox="0 0 117.614 297.001">
+  <g id="lipstick-svgrepo-com" transform="translate(-89.693 0)">
+    <path id="Path_152" data-name="Path 152" d="M191,116.626V9.884a9.883,9.883,0,0,0-15.814-7.907L109.954,50.9A9.884,9.884,0,0,0,106,58.807v57.819h85Z" fill="#F22F2F"/>
+    <path id="Path_153" data-name="Path 153" d="M197.424,130.463H174.692V219.3a9.883,9.883,0,0,1-19.767,0V130.463H99.576a9.883,9.883,0,0,0-9.883,9.883V287.117A9.884,9.884,0,0,0,99.576,297h97.848a9.884,9.884,0,0,0,9.883-9.884V140.346a9.883,9.883,0,0,0-9.883-9.883ZM171.792,261.489a9.878,9.878,0,1,1,2.9-6.987A9.958,9.958,0,0,1,171.792,261.489Z"/>
+  </g>
+</svg> -->
                                 <p class="text-sm w-full truncate overflow-hidden text-gray-600 font-bold tracking-wide">{{tproduct.name}}</p>
                             </div>
-                            <!-- <div class="px-2">
-                                <span class="italic text-sm text-gray-600 tracking-wide font-thin">{{tproduct.description}}</span>
-                            </div> -->
+                            <div class="w-full px-2 py-1 h-full transition-all duration-700 h-12 truncate bg-white whitespace-normal" :class="isHovering == 'ts'+tproduct.id ? 'block' : 'hidden'">
+                                <p class="italic break-words text-sm text-gray-600 tracking-wide font-thin">{{tproduct.description}}</p>
+                            </div>
                             <div class="px-2 h-6">
                                 <template v-if="tproduct.discounts[0]">
                                     <template v-if="tproduct.variant[0]">
@@ -471,6 +478,7 @@
         data()
         {
             return{
+                isHovering: false,
                 banners: [],
                 Discount: '',
                 discount_popup: false,

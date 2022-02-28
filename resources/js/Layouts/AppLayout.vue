@@ -339,10 +339,21 @@
                     <div class="m-2">
                         <span class="text-pink-dark font-bold text-xs">INFO</span>
                         <ul class="text-gray-600 text-sm font-semibold">
-                            <li class="hover:text-blue-500 cursor-pointer">My Account</li>
-                            <li class="hover:text-blue-500 cursor-pointer">Exchange and Refund Policy</li>
-                            <li class="hover:text-blue-500 cursor-pointer">Shipping</li>
-                            <li class="hover:text-blue-500 cursor-pointer">Terms And Condition</li>
+                            <li class="hover:text-blue-500 cursor-pointer">
+                                <a href="/user/profile">
+                                    My Account
+                                </a>
+                            </li>
+                            <li class="hover:text-blue-500 cursor-pointer">
+                                 <a href="/privacy-policy">
+                                    Shipping and Refund Policy
+                                 </a>
+                            </li>
+                            <li class="hover:text-blue-500 cursor-pointer">
+                                 <a href="/terms-of-service">
+                                    Terms And Condition
+                                 </a>
+                            </li>
                             <li class="hover:text-blue-500 cursor-pointer">
                                 <a href="https://shaiwave.com/">Developer Info</a>
                             </li>
@@ -484,7 +495,6 @@
             },
         },
         mounted() {
-
             axios.get('/brands/all')
             .then(res => this.lbrands = res.data);
 

@@ -32,7 +32,7 @@ class OrderController extends Controller
             if($product->pivot->variant)
             {
                 $variant = $product->variant->where('name', $product->pivot->variant)->first();
-                if($product->discounts)
+                if($product->discounts->isNotEmpty())
                 {
                         if($product->discounts[0]->type == 'percentage')
                         {
@@ -43,7 +43,7 @@ class OrderController extends Controller
                             $total = $total + (($product->pivot->quantity * $variant->price) - ($product->discounts[0]->amount * $product->pivot->quantity));
                         }
                 }
-                else if($product->brand->discounts)
+                else if($product->brand->discounts->isNotEmpty())
                 {
                         if($product->brand->discounts[0]->type == 'percentage')
                         {
@@ -54,7 +54,7 @@ class OrderController extends Controller
                             $total = $total + (($product->pivot->quantity * $variant->price) - ($product->brand->discounts[0]->amount * $product->pivot->quantity));
                         }
                 }
-                else if($product->category->discounts)
+                else if($product->category->discounts->isNotEmpty())
                 {
 
                         if($product->category->discounts[0]->type == 'percentage')

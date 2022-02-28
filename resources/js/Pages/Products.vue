@@ -312,6 +312,7 @@ export default{
                 products: [],
                 brands: [],
                 categories: [],
+                discounts: [],
                 res: [],
                 form: this.$inertia.form({
                     variant : '',

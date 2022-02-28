@@ -1,7 +1,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
+body{
+  cursor: url("/storage/cursor.svg") 12 5, auto;
+}
 .bg-g{
   background-color: #9F8F8F;
 }

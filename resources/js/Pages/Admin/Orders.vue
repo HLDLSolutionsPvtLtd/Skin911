@@ -124,7 +124,7 @@
                                     <option v-if="order.status != 'accepted' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="denied">Denied</option>
                                     <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="cancelled">Cancelled</option>
                                     <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="out_for_delivery">Out For Delivery</option>
-                                    <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="delivered">Delivered</option>
+                                    <option v-if="order.status != 'placed' && order.status != 'accepted' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="delivered">Delivered</option>
                                 </select>
                             </td>
                             <td v-if="order.payment_type == 'rzp' && order.transaction"  class="text-left p-1">

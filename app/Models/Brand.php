@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,6 @@ class Brand extends Model
     
     public function discounts()
     {
-        return $this->morphToMany(Discount::class, 'discountable');
+        return $this->morphToMany(Discount::class, 'discountable')->where('valid_from', '<=', Carbon::now())->where('valid_upto', '>=', Carbon::now());
     }
 }

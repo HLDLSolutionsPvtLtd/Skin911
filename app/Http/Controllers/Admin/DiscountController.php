@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -13,7 +14,7 @@ class DiscountController extends Controller
 {
     public function all()
     {
-        return Discount::all()->load(['brand', 'category', 'products']);
+        return Discount::all()->load(['brands', 'categories', 'products'])->where('valid_from', '<=', Carbon::now())->where('valid_upto', '>=', Carbon::now());
     }
 
     public function attachProduct(Discount $discount, Request $request)
@@ -96,6 +97,9 @@ class DiscountController extends Controller
         $discount->name = $request->name;
         $discount->type = $request->type;
         $discount->amount = $request->amount;
+        $discount->valid_from = $request->valid_from;
+        $discount->valid_upto = $request->valid_upto;
+
         if($request->image)
         {
             if($discount->image)

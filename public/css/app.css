@@ -1454,6 +1454,12 @@ select {
 .h-\[calc\(100vh-350px\)\] {
 	height: calc(100vh - 350px);
 }
+.h-36 {
+	height: 9rem;
+}
+.h-52 {
+	height: 13rem;
+}
 .h-40 {
 	height: 10rem;
 }
@@ -1781,6 +1787,9 @@ select {
 }
 .whitespace-nowrap {
 	white-space: nowrap;
+}
+.break-words {
+	overflow-wrap: break-word;
 }
 .break-all {
 	word-break: break-all;
@@ -2636,6 +2645,9 @@ select {
 }
 .ease-in {
 	transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+body{
+  cursor: url("/storage/cursor.svg") 12 5, auto;
 }
 .bg-g{
   background-color: #9F8F8F;
