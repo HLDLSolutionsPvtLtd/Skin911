@@ -1251,6 +1251,14 @@ select {
 	margin-top: 0.25rem;
 	margin-bottom: 0.25rem;
 }
+.mx-2 {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+.my-4 {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
 .my-2 {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
@@ -1259,10 +1267,6 @@ select {
 	margin-top: 3rem;
 	margin-bottom: 3rem;
 }
-.mx-2 {
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-}
 .my-3 {
 	margin-top: 0.75rem;
 	margin-bottom: 0.75rem;
@@ -1270,10 +1274,6 @@ select {
 .mx-6 {
 	margin-left: 1.5rem;
 	margin-right: 1.5rem;
-}
-.my-4 {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
 }
 .mx-8 {
 	margin-left: 2rem;
@@ -3357,6 +3357,11 @@ body{
 	.sm\:-my-px {
 		margin-top: -1px;
 		margin-bottom: -1px;
+	}
+
+	.sm\:mx-12 {
+		margin-left: 3rem;
+		margin-right: 3rem;
 	}
 
 	.sm\:my-12 {

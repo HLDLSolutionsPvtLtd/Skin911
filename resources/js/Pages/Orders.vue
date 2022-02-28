@@ -45,7 +45,7 @@
                                         </div>
                                         <div class="flex items-center p-1">
                                             <div class="flex">
-                                                <span class="p-1 text-sm sm:text-md font-semibold text-gray-600">&#8377; {{product.price}}</span>
+                                                <span class="p-1 text-sm sm:text-md font-semibold text-gray-600">&#8377; {{product.pivot.subtotal}}</span>
                                             </div>
                                         </div>
                                     </div>

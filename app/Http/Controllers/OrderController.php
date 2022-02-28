@@ -132,13 +132,11 @@ class OrderController extends Controller
                     if($fee)
                     {
                         $shipping_fee = $fee->fee;
-                        $total = $total + $shipping_fee;
                     }
                     else
                     {
                         $fee = Shipping::where('name', 'Default')->first();
                         $shipping_fee = $fee->fee;
-                        $total = $total + $shipping_fee;
                     }
                 }
             }
@@ -148,18 +146,16 @@ class OrderController extends Controller
                 if($fee)
                 {
                     $shipping_fee = $fee->fee;
-                    $total = $total + $shipping_fee;
                 }
                 else
                 {
                     $fee = Shipping::where('name', 'Default')->first();
                     $shipping_fee = $fee->fee;
-                    $total = $total + $shipping_fee;
                 }
             }
         $order = Order::create([
             'user_id' => $request->user()->id,
-            'total' => $total,
+            'total' => $total + $shipping_fee,
             'shipping_fee' => $shipping_fee,
             'address_id' => $request->selectedAddress,
             'payment_type' => $payment_type,
@@ -177,7 +173,7 @@ class OrderController extends Controller
                 $price = $product->price;
             }
 
-            $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $product->pivot->variant, 'subtotal' => $product->pivot->quantity * $price]);
+            $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $product->pivot->variant, 'subtotal' => $total]);
             $cart->products()->wherePivot('id', $product->pivot->id)->detach();
             // if($request->variant)
             // {
@@ -196,7 +192,7 @@ class OrderController extends Controller
                 array(
                     'receipt' => (string)$order->id . 'ORD',
                     'currency' => 'INR',
-                    'amount' => $total * 100,
+                    'amount' => ($total + $shipping_fee) * 100,
                 )
             );
             Transaction::create([
@@ -371,13 +367,11 @@ class OrderController extends Controller
                 if($fee)
                 {
                     $shipping_fee = $fee->fee;
-                    $total = $total + $shipping_fee;
                 }
                 else
                 {
                     $fee = Shipping::where('name', 'Default')->first();
                     $shipping_fee = $fee->fee;
-                    $total = $total + $shipping_fee;
                 }
             }
         }
@@ -387,19 +381,19 @@ class OrderController extends Controller
             if($fee)
             {
                 $shipping_fee = $fee->fee;
-                $total = $total + $shipping_fee;
+
             }
             else
             {
                 $fee = Shipping::where('name', 'Default')->first();
                 $shipping_fee = $fee->fee;
-                $total = $total + $shipping_fee;
             }
         }
         
         $order = Order::create([
             'user_id' => $request->user()->id,
-            'total' => $total,
+            'shipping_fee' => $shipping_fee,
+            'total' => $total + $shipping_fee,
             'address_id' => $request->selectedAddress,
             'payment_type' => $payment_type,
         ]);
@@ -423,7 +417,7 @@ class OrderController extends Controller
                 array(
                     'receipt' => (string)$order->id . 'ORD',
                     'currency' => 'INR',
-                    'amount' => $total * 100,
+                    'amount' => ($total + $shipping_fee) * 100,
                 )
             );
             Transaction::create([

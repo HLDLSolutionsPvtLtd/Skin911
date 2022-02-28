@@ -362,8 +362,16 @@
                     <div class="m-2">
                         <span class="text-pink-dark font-bold text-xs">ABOUT</span>
                         <ul class="text-gray-600 text-sm font-semibold">
-                            <li class="hover:text-blue-500 cursor-pointer">About Us</li>
-                            <li class="hover:text-blue-500 cursor-pointer">Store Locator</li>
+                            <li class="hover:text-blue-500 cursor-pointer">
+                                <a href="/about">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="hover:text-blue-500 cursor-pointer">
+                                <a href="/locator">
+                                    Store Locator
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="m-2">
@@ -388,9 +396,9 @@
                     </div>
                     <div class="m-2">
                         <span class="text-pink-dark font-bold text-xs">HELP</span>
-                        <ul class="text-sm text-gray-600 font-semibold">
+                        <ul style="" class="text-sm text-gray-600 font-semibold">
                             <li class="flex hover:text-blue-500 cursor-pointer">
-                                <a href="mailto:info@skin911.in" class="text-sm font-semibold">info@skin911.in</a>
+                                <a href="mailto:info@skin911.in" class="text-sm font-semibold italic">info@skin911.in</a>
                             </li>
                             <li class="hover:text-blue-500 cursor-pointer">
                                 <div class="flex">

@@ -111,6 +111,7 @@
 </template>
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue'
+import { usePage } from '@inertiajs/inertia-vue3';
 export default {
     components:
     {
@@ -125,6 +126,7 @@ export default {
             subtotal: 0,
             n_items: 0,
             fee: 0,
+            user: usePage().props.value.user,
             addresses: [],
             total : 0,
             form: this.$inertia.form({
@@ -267,28 +269,34 @@ export default {
         
         order()
         {
+            var index =  this.addresses.findIndex(el =>{
+                if(el.id == this.form.selectedAddress)
+                {
+                    return true;
+                }
+            })
             if(this.order.razorpayId)
             {
                 this.options = {
-                    "key": 'rzp_test_yRUXwmjCqNPY0r', // Enter the Key ID generated from the Dashboard
+                    "key": "rzp_test_yRUXwmjCqNPY0r", // Enter the Key ID generated from the Dashboard
                     "amount": this.order['amount'], // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
                     "currency": this.order['currency'],
-                    "name": "Modern Shoe Store",
+                    "name": "SKIN911",
                     "description": "Test Transaction",
-                    "image": "https://www.nicesnippets.com/image/imgpsh_fullsize.png",
+                    "image": "http://143.110.244.125/storage/skin911.png",
                     "order_id": this.order['razorpayId'], 
-                    "handler": function (response){
+                    "handler":  (response) => {
                         axios.post('/order/transaction',response)
                         .then(res => console.log(res.data))
                         .then( this.success = true);
                     },
                     "prefill": {
-                        "name": "Terinao",
-                        "email": "terinao86@gmail.com",
-                        "contact": "8974393643"
+                        "name": this.user.name,
+                        "email": this.user.email,
+                        "contact": this.addresses[index].phone_number
                     },
                     "notes": {
-                        "address": "test test"
+                        "address": this.addresses[index].state + ',' +this.addresses[index].city +',' + this.addresses[index].street +',' + this.addresses[index].pincode +',' + this.addresses[index].house_no
                     },
                     "theme": {
                         "color": "#F37254"

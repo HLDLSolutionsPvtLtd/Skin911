@@ -63,6 +63,14 @@ Route::get('/blog', function () {
     return Inertia::render('Blog', ['posts' => Blog::all()]);
 })->name('blog');
 
+Route::get('/about', function () {
+    return Inertia::render('AboutUs');
+})->name('aboutus');
+
+Route::get('/locator', function () {
+    return Inertia::render('StoreLocator');
+})->name('locator');
+
 Route::get('/sale', function () {
     return Inertia::render('Sale');
 })->name('sale');
