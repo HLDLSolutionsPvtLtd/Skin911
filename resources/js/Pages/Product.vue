@@ -177,7 +177,7 @@
                <div class="flex justify-between pt-4 px-2 sm:px-16 items-center">
                    <span class="text-gray-700 text-md font-bold sm:text-lg">RELATED PRODUCTS</span>
                    <div class="flex items-center">
-                       <a :href="'/products?key='+product.category_id">
+                       <a :href="'/products?related='+product.brand.name+'&key='+product.category.name">
                            <span class="text-xs sm:text-sm text-blue-500 font-bold underline tracking-wider">See All</span>
                        </a>
                    </div>
@@ -309,14 +309,49 @@ import axios from 'axios';
         {
             if(q == 'in')
             {
-                if(this.form.quantity >= 6)
-                {
-                    this.qerror = "max quantity exceeded!!";
-                }
-                else
-                {
-                    this.form.quantity++;
-                }
+               if(this.form.variant)
+               {
+                    var index = this.product.variant.findIndex( el=> {
+                        if(el.id == this.form.variant)
+                        {
+                            return true;
+                        }
+                    })
+                    console.log(this.product.variant[index].quantity)
+                    if(this.form.quantity == this.product.variant[index].quantity)
+                    {
+                        this.qerror = "max quantity exceeded!!";
+                    }
+                    else
+                    {
+                        if(this.form.quantity >= 6)
+                        {
+                            this.qerror = "max quantity exceeded!!";
+                        }
+                        else
+                        {
+                            this.form.quantity++;
+                        }
+                    }
+               }
+               else
+               {
+                   if(this.form.quantity == this.product.quantity)
+                    {
+                            if(this.form.quantity >= 6)
+                            {
+                                this.qerror = "max quantity exceeded!!";
+                            }
+                            else
+                            {
+                                this.form.quantity++;
+                            }
+                    }
+                    else
+                    {
+                        this.qerror = "max quantity exceeded!!";
+                    }
+               }
             }
             else
             {

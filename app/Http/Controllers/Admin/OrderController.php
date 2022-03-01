@@ -25,8 +25,8 @@ class OrderController extends Controller
             {
                 if($product->pivot->variant)
                 {
-                    ++$product->variant->where('name', $product->pivot->variant)->first()->quantity;
-                   $product->variant->where('name', $product->pivot->variant)->first()->save();
+                   ++$product->variant->where('id', $product->pivot->variant)->first()->quantity;
+                   $product->variant->where('id', $product->pivot->variant)->first()->save();
                 }
                 else
                 {
@@ -41,13 +41,28 @@ class OrderController extends Controller
             {
                 if($product->pivot->variant)
                 {
-                    --$product->variant->where('name', $product->pivot->variant)->first()->quantity;
-                   $product->variant->where('name', $product->pivot->variant)->first()->save();
+                    if($product->variant->where('id', $product->pivot->variant)->first()->quantity > 0)
+                    {
+                        --$product->variant->where('id', $product->pivot->variant)->first()->quantity;
+                        $product->variant->where('id', $product->pivot->variant)->first()->save();
+                    }
+                    else
+                    {
+                        return redirect()->back()->withErrors(['msg' => 'This Product is out of stock']);;
+                    }
                 }
                 else
                 {
-                    --$product->quantity;
-                    $product->save();
+                    if($product->quantity > 0)
+                    {
+                        --$product->quantity;
+                        $product->save();
+                    }
+                    else
+                    {
+                        return redirect()->back()->withErrors(['msg' => 'This Product is out of stock']);;
+                    }
+                    
                 }
                 
             }

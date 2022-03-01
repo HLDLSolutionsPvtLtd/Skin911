@@ -59,7 +59,6 @@ class ChartController extends Controller
         $y[0] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'delivered')->count();
         $y[1] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'denied')->count();
         $y[2] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'cancelled')->count();
-        $y[3] = Order::whereYear('created_at', date("Y", strtotime($date)))->where('status', 'returned')->count();
         
         return $y;
     }

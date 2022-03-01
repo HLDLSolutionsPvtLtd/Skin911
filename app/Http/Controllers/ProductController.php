@@ -21,7 +21,17 @@ class ProductController extends Controller
 
     public function all(Request $request)
     {
-        if($request->has('filter'))
+        if($request->has('filter2'))
+        {
+            return Product::whereHas('brand', function($q) use($request){
+                $q->where('name', $request->filter2);
+            })->orWhereHas('category', function($q) use($request){
+                $q->where('name', $request->filter);
+            })->orWhereHas('discounts', function($q) use($request){
+                $q->where('name', $request->filter);
+            })->with('discounts')->orderBy($request->var, $request->val)->paginate(1);
+        }
+        else if($request->has('filter'))
         {
             return Product::whereHas('brand', function($q) use($request){
                 $q->where('name', $request->filter);

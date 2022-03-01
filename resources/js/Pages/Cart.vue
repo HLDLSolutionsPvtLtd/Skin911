@@ -266,7 +266,7 @@ export default {
                 if(element.pivot.variant)
                 {
                     var index =  element.variant.findIndex(el =>{
-                        if(el.name == element.pivot.variant)
+                        if(el.id == element.pivot.variant)
                         {
                             return true;
                         }

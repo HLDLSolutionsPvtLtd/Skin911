@@ -6,7 +6,9 @@
        <div class="">
           
            <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1 relative">
-                
+                <!-- <div :class="{'modal-open': errors.msg, 'modal-close': !errors}" class="absolute shadow-md w-full left-0 right-0 top-20 bg-white ">
+                    <span>{{errors.msg}}</span>
+                </div> -->
                <div v-show="visible" class="absolute h-4/5 w-full overflow-y-scroll bg-white shadow-lg">
                     <div class="flex justify-between border-b p-4">
                         <div>
@@ -124,7 +126,7 @@
                                     <option v-if="order.status != 'accepted' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="denied">Denied</option>
                                     <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="cancelled">Cancelled</option>
                                     <option v-if="order.status != 'placed' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="out_for_delivery">Out For Delivery</option>
-                                    <option v-if="order.status != 'placed' && order.status != 'accepted' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="delivered">Delivered</option>
+                                    <option v-if="order.status != 'placed' && order.status != 'accepted' && order.status != 'denied'&& order.status != 'cancelled' && order.status != 'returned' && order.status != 'delivered'" value="delivered">Delivered</option>
                                 </select>
                             </td>
                             <td v-if="order.payment_type == 'rzp' && order.transaction"  class="text-left p-1">
@@ -155,6 +157,7 @@
 <script>
  
  import AdminLayout from '@/Layouts/AdminLayout'
+import { usePage } from '@inertiajs/inertia-vue3';
 
 
  export default{

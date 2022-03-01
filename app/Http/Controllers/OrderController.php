@@ -31,7 +31,7 @@ class OrderController extends Controller
         {
             if($product->pivot->variant)
             {
-                $variant = $product->variant->where('name', $product->pivot->variant)->first();
+                $variant = $product->variant->where('id', $product->pivot->variant)->first();
                 if($product->discounts->isNotEmpty())
                 {
                         if($product->discounts[0]->type == 'percentage')
@@ -162,18 +162,17 @@ class OrderController extends Controller
         ]);
         foreach($products as $product)
         {
-            $price = 0;
             if($product->pivot->variant)
             {
-               $svariant = $product->variant->where('name', $product->pivot->variant)->first();
-                $price = $svariant->price;
+               $svariant = $product->variant->where('id', $product->pivot->variant)->first();
+               $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $svariant->id, 'subtotal' => $total]);
+
             }
             else
             {
-                $price = $product->price;
+                $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => '', 'subtotal' => $total]);
             }
 
-            $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $product->pivot->variant, 'subtotal' => $total]);
             $cart->products()->wherePivot('id', $product->pivot->id)->detach();
             // if($request->variant)
             // {

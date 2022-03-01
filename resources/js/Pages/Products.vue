@@ -306,6 +306,7 @@ export default{
                 sortVal:'asc',
                 sortVar: 'name',
                 key: '',
+                related: '',
                 sort: false,
                 filter: false,
                 filters: 'brands',
@@ -324,6 +325,7 @@ export default{
         },
     mounted() {
         this.key = new URL(location.href).searchParams.get("key");
+        this.related = new URL(location.href).searchParams.get("related");
         this.productAll();
         axios.get('/brands/all')
         .then(res => this.brands = res.data);
@@ -346,6 +348,16 @@ export default{
         productAll()
         {
             this.products = [];
+            if(this.related)
+            {
+                axios.get('/products/all', {params: {'filter' : this.key, 'filter2' : this.related, 'var' : this.sortVar, 'val': this.sortVal}})
+                .then(res => {
+                    res.data.data.forEach(element => {
+                        this.products.push(element);
+                    });
+                    this.next = res.data.next_page_url;
+                });
+            }
             if(this.key)
             {
                 console.log(this.key)

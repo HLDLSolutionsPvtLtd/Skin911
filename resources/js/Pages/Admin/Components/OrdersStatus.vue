@@ -7,7 +7,7 @@ export default{
     data()
     {
         return{
-            xValues : ['delivered', 'denied', 'cancelled', 'returned'],
+            xValues : ['Delivered', 'Denied', 'Cancelled'],
             yValues : [],
 
         }

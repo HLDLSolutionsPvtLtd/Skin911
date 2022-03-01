@@ -51,13 +51,11 @@ class CartController extends Controller
         $variant = '';
         if($request->variant != null)
         {
+            
             $svariant = $product->variant->find($request->variant);
-            $variant = $svariant->name;
+            $variant = $svariant->id;
         }
-        else
-        {
-            $price = $product->price;
-        }
+        
         if($user->cart)
         {
             $user->cart->products()->attach($product, ['quantity'=> $request->quantity ? $request->quantity : '1',  'variant' => $variant]);
