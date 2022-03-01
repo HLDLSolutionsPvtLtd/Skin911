@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function updateStatus(Order $order, Request $request)
     {
         $order->status = $request->status;
-        if($request->status == 'cancelled' || $request->status == 'denied' || $request->status == 'returned')
+        if($request->status == 'cancelled' || $request->status == 'returned')
         {
             foreach($order->products as $product)
             {
@@ -34,6 +34,7 @@ class OrderController extends Controller
                     $product->save();
                 }
             }
+            $order->status = $request->status;
         }
         else if($request->status == 'accepted')
         {
@@ -66,6 +67,12 @@ class OrderController extends Controller
                 }
                 
             }
+            $order->status = $request->status;
+           
+        }
+        else if($request->status == 'denied')
+        {
+            $order->status = $request->status;
         }
         $order->save();
         return redirect()->back();

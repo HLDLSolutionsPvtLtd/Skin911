@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -41,6 +42,8 @@ class HandleInertiaRequests extends Middleware
             'cart' => fn () => $request->user()
                 ? $request->user()->cart->only('new')
                 : false,
+
+            'free' => fn () => Shipping::where('name', 'free')->first()->only('fee'),
         ]);
     }
 }

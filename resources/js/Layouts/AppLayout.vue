@@ -15,7 +15,7 @@
                             </svg>
                         </div>
                         <span class="text-xs tracking-wider font-thin">Free shipping on all orders over</span>
-                        <span class="pl-2 text-xs tracking-wider text-pink-dark font-semibold">&#8377;2800</span>
+                        <span class="pl-2 text-xs tracking-wider text-pink-dark font-semibold">&#8377;{{free}}</span>
                     </div>
                 </div>
                 <!-- Primary Navigation Menu -->
@@ -281,13 +281,13 @@
                             </div>
                         </div> -->
 
-                        <div class="mt-3 font-bold space-y-1">
+                        <div style="font-family: futura-pt,arial,sans-serif;" class="mt-3 space-y-1">
                             <div v-if="!$page.props.user" class="flex ml-4 gap-2">
                                 <div>
-                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('login')"><span>Log In</span></a>
+                                    <a class="px-2 p-1 text-blue-400 text-sm border-blue-400 border rounded-md" :href="route('login')"><span>Log In</span></a>
                                 </div>
                                 <div>
-                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('register')"><span>Register</span></a>
+                                    <a class="px-2 p-1 text-blue-400 text-sm border-blue-400 border rounded-md" :href="route('register')"><span>Register</span></a>
                                 </div>
                             </div>
                             <jet-responsive-nav-link :href="route('/')" :active="route().current('/')">
@@ -337,8 +337,8 @@
             <footer class="sm:flex w-full sm:justify-center p-2 bg-gray-400 ">
                 <div class="sm:grid sm:grid-cols-4 m-4">  
                     <div class="m-2">
-                        <span class="text-pink-dark font-bold text-xs">INFO</span>
-                        <ul class="text-gray-600 text-sm font-semibold">
+                        <span class="text-pink-dark font-bold text-sm">INFO</span>
+                        <ul style="font-family: 'futura-pt', arial, sans-serif;" class="text-gray-600 text-sm tracking-wide">
                             <li class="hover:text-blue-500 cursor-pointer">
                                 <a href="/user/profile">
                                     My Account
@@ -360,8 +360,8 @@
                         </ul>
                     </div>
                     <div class="m-2">
-                        <span class="text-pink-dark font-bold text-xs">ABOUT</span>
-                        <ul class="text-gray-600 text-sm font-semibold">
+                        <span class="text-pink-dark font-bold text-sm">ABOUT</span>
+                        <ul style="font-family: 'futura-pt', arial, sans-serif;" class="text-gray-600 text-sm tracking-wide">
                             <li class="hover:text-blue-500 cursor-pointer">
                                 <a href="/about">
                                     About Us
@@ -396,24 +396,24 @@
                     </div>
                     <div class="m-2">
                         <span class="text-pink-dark font-bold text-xs">HELP</span>
-                        <ul style="" class="text-sm text-gray-600 font-semibold">
+                        <ul style="font-family: 'futura-pt', arial, sans-serif;" class="text-gray-600 text-sm tracking-wide">
                             <li class="flex hover:text-blue-500 cursor-pointer">
-                                <a href="mailto:info@skin911.in" class="text-sm font-semibold italic">info@skin911.in</a>
+                                <a href="mailto:info@skin911.in" class="text-sm italic">info@skin911.in</a>
                             </li>
                             <li class="hover:text-blue-500 cursor-pointer">
                                 <div class="flex">
                                     <span class="pr-2">Customer Care: + 918974336234</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 32">
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 32">
                                         <path fill="#814252" d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/>
-                                    </svg>
+                                    </svg> -->
                                 </div>
                             </li>
                             <li class="hover:text-blue-500 cursor-pointer">
                                 <div class="flex">
                                     <span class="pr-2">Business hours: 09:30 AM - 5:30 PM</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 32">
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 32">
                                         <path fill="#814252" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 14h-7v-8h2v6h5v2z"/>
-                                    </svg>
+                                    </svg> -->
                                 </div>
                             </li>
                         </ul>
@@ -463,6 +463,7 @@
                 search_mobile : false,
                 showingNavigationDropdown: false,
                 shop:false,
+                free: computed(() => usePage().props.value.free.fee),
                 bgSet: false,
                 stick: false,
                 brands:false,

@@ -97,7 +97,7 @@
 
            <div class="md:mx-4 md:my-12">
                <div class="flex justify-center">
-                   <span class="text-gray-700 p-2 font-bold sm:text-3xl">TOP SELLING PRODUCTS</span>
+                   <span style="font-family: futura-pt,arial,sans-serif;" class="text-gray-700 p-2 sm:text-3xl">TOP SELLING PRODUCTS</span>
                </div>
                <div style="height:calc(100vh - 650px)" class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
                     <div class="border w-7/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="tproduct in topselling" :key="tproduct">
@@ -248,7 +248,7 @@
            
            <div class=" p-1 sm:my-12 sm:mx-4">
                <div class="m-4 flex justify-center">
-                   <span class="col-span-3 sm:text-4xl font-bold text-gray-700">SHOP ALL</span>
+                   <span style="font-family: futura-pt,arial,sans-serif;" class="col-span-3 sm:text-4xl text-gray-700">SHOP ALL</span>
                </div>
                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                     <div class="m-2 border border-gray-100" v-for="nproduct in products" :key="nproduct">
@@ -379,13 +379,13 @@
                 </div> 
                 <div class="m-4 flex justify-center">
                     <a href="/products">
-                        <button class="sm:p-2 p-2 text-xs font-bold border tracking-widest rounded-sm text-gray-600 border-gray-300">VIEW ALL PRODUCTS</button>
+                        <button style="font-family: futura-pt,arial,sans-serif;" class="sm:p-2 p-2 text-xs font-bold border tracking-widest rounded-sm text-gray-600 border-gray-300">VIEW ALL PRODUCTS</button>
                     </a>
                 </div>
            </div>
            <div class=" p-1 mt-2 sm:my-12 sm:mx-4">
                <div class="flex justify-center">
-                   <span class="col-span-3 text-center sm:text-4xl font-bold text-gray-700">FEATURED BRANDS</span>
+                   <span style="font-family: futura-pt,arial,sans-serif;" class="col-span-3 text-center sm:text-4xl text-gray-700">FEATURED BRANDS</span>
                </div>
                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-6 4xl:grid-cols-8">
                     <div class="m-2 border" v-for="brand in brands" :key="brand">
@@ -411,7 +411,7 @@
 
            <div class="md:mx-4 md:my-12 mt-2">
                <div class="flex justify-center">
-                   <span class="text-gray-700 p-2 mt-4 font-bold sm:text-3xl">NEW ARRIVALS</span>
+                   <span style="font-family: futura-pt,arial,sans-serif;" class="text-gray-700 p-2 mt-4 sm:text-3xl">NEW ARRIVALS</span>
                </div>
                <div class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
                     <div class="border w-5/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="nproduct in newarrivals" :key="nproduct">

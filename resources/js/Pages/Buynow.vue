@@ -1,23 +1,21 @@
 <template>
     <app-layout>
         <div class="w-full flex justify-center">
-            <div v-show="success" class="modal z-50 w-5/6 md:w-1/4" id="modal">
-                <div class='modal__container shadow-md border bg-white'>
-                   <div class="modal__content pt-12 relative">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 right-1/4 fill-current transition transform translate-Y-60 duration-700 text-blue-400 rounded-full p-0 bg-white">
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
-                        </svg> -->
-                        <h1 class="text-2xl"><span class="text-gray-800 italic tracking-wider font-semibold">ORDER SUCCESSFULLY PLACED</span></h1>
-                        <a href="/myorder">
-                            <button class="modal__button mt-4 tracking-widest font-bold text-pink-500 text-xs bg-blue-400 w-full">VIEW ORDERS</button>
-                        </a>
-                    </div>
-                    <i @click="success=!success" class="absolute  right-4 top-4 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="20" height="20" viewBox="0 0 24 24">
-                            <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
-                        </svg>
-                    </i>
+            <div v-show="success" class='modal__container shadow-md border bg-white'>
+                <div class="modal__content pt-12 relative">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 right-1/4 fill-current transition transform translate-Y-60 duration-700 text-blue-400 rounded-full p-0 bg-white">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
+                    </svg> -->
+                    <h1 class="sm:text-2xl"><span style="font-family: 'Whitney' !important;" class="text-blue-800 italic tracking-wider font-semibold">ORDER PLACED</span></h1>
+                    <a href="/myorder">
+                        <button class="modal__button mt-8 tracking-widest  font-bold text-pink-500 text-xs border border-blue-400 w-full">VIEW ORDERS</button>
+                    </a>
                 </div>
+                <i @click="success=!success" class="absolute  right-4 top-4 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-800 hover:text-red-500" width="20" height="20" viewBox="0 0 24 24">
+                        <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/>
+                    </svg>
+                </i>
             </div>
             <div class="sm:w-10/12 m-2">
                 <div class="w-full border">

@@ -109,15 +109,30 @@
                                {{order.id}}
                             </td>
                             
-                            <td class="text-left font-bold p-1">{{order.customer.name}}</td>
+                            <td class="text-left font-bold p-1">
+                                <div class="flex flex-col">
+                                    <span>{{order.customer.name}}</span>
+                                    <div class="flex gap-2">
+                                        <span>{{order.address.name}},</span>
+                                        <span>{{order.address.state}},</span>
+                                        <span>{{order.address.district}},</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <span>Near {{order.address.landmark}},</span>
+                                        <span>{{order.address.house_no}},</span>
+                                        <span>{{order.address.pincode}}.</span>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="text-left font-bold p-1">&#8377; {{order.total}}</td>
                             <td class="text-center p-1  mr-2">
                                     <span @click="this.products = order.products, visible = !visible" class="text-xs tracking-wider py-1 cursor-pointer text-blue-500">{{order.products.length}}ITEMS</span>
                             </td>
                             <td class="text-left p-1 text-xs uppercase">{{formatDate(order.created_at)}}</td>
                             <td class="text-left p-1 text-xs uppercase">
-                                <span class="mr-4 font-bold text-yellow-500">{{order.status}} </span>
-                                
+                                <span v-if="order.status === 'denied' || order.status === 'cancelled'" class="mr-4 font-bold text-red-400">{{order.status}} </span>
+                                <span v-else-if="order.status == 'placed'" class="mr-4 font-bold border-b-2 border-green-400 px-2 text-green-500">{{order.status}} </span>
+                                <span v-else class="mr-4 font-bold bg-green-200 px-2 text-green-500">{{order.status}} </span>
                             </td>
                             <td class="text-left p-1 text-xs uppercase py-6">
                                 <select name="" id="" @change="markAs(order, index)" v-model="status" class="bg-green-200 border-0 text-green-800 focus:ring-0 text-xs uppercase rounded-md">
@@ -130,10 +145,11 @@
                                 </select>
                             </td>
                             <td v-if="order.payment_type == 'rzp' && order.transaction"  class="text-left p-1">
-                                <span class="text-red-400 uppercase font-bold text-xs">{{order.transaction.status}}</span>
+                                <span v-if="order.transaction.status == 'paid'" class="text-green-500 bg-green-200 px-2 uppercase font-bold text-xs">{{order.transaction.status}}</span>
+                                <span v-else class="text-red-400 uppercase font-bold text-xs">{{order.transaction.status}}</span>
                             </td>
                             <td v-else-if="order.payment_type == 'cod'" class="text-left p-1">
-                                <span class="text-red-400 uppercase font-bold text-xs">
+                                <span class="text-green-500 uppercase bg-green-200 font-bold text-xs">
                                     CASH ON DELIVERY
                                 </span>
                             </td>

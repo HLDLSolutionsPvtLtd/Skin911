@@ -67,7 +67,7 @@ class ChartController extends Controller
     {
         $x= [];
         $y = [];
-        for($i = 0; $i <= 20; $i++)
+        for($i = 20; $i > 0; $i--)
         {
 
             $date = date("Y-m-d", strtotime("-$i days"));   
