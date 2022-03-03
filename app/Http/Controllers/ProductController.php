@@ -21,29 +21,61 @@ class ProductController extends Controller
 
     public function all(Request $request)
     {
-        if($request->has('filter2'))
+        if($request->var == 'price')
         {
-            return Product::whereHas('brand', function($q) use($request){
-                $q->where('name', $request->filter2);
-            })->orWhereHas('category', function($q) use($request){
-                $q->where('name', $request->filter);
-            })->orWhereHas('discounts', function($q) use($request){
-                $q->where('name', $request->filter);
-            })->with('discounts')->orderBy($request->var, $request->val)->paginate(1);
-        }
-        else if($request->has('filter'))
-        {
-            return Product::whereHas('brand', function($q) use($request){
-                $q->where('name', $request->filter);
-            })->orWhereHas('category', function($q) use($request){
-                $q->where('name', $request->filter);
-            })->orWhereHas('discounts', function($q) use($request){
-                $q->where('name', $request->filter);
-            })->with('discounts')->orderBy($request->var, $request->val)->paginate(1);
+            $query = "CAST(price as int)";
+            if($request->has('filter2'))
+            {
+                
+                return Product::whereHas('brand', function($q) use($request){
+                    $q->where('name', $request->filter2);
+                })->orWhereHas('category', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('discounts', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(1);
+            }
+            else if($request->has('filter'))
+            {
+                return Product::whereHas('brand', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('category', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('discounts', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(1);
+            }
+            else
+            {
+                return Product::orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->with('discounts')->paginate(1);
+            }
         }
         else
         {
-            return Product::orderBy($request->var, $request->val)->with('discounts')->paginate(1);
+            if($request->has('filter2'))
+            {
+                return Product::whereHas('brand', function($q) use($request){
+                    $q->where('name', $request->filter2);
+                })->orWhereHas('category', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('discounts', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->with('discounts')->orderBy($request->var, $request->val)->paginate(1);
+            }
+            else if($request->has('filter'))
+            {
+                return Product::whereHas('brand', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('category', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('discounts', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->with('discounts')->orderBy($request->var, $request->val)->paginate(1);
+            }
+            else
+            {
+                return Product::orderBy($request->var, $request->val)->with('discounts')->paginate(1);
+            }
         }
     }
 

@@ -101,10 +101,10 @@
                </div>
                <div style="height:calc(100vh - 650px)" class="overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6  md:px-4">
                     <div class="border w-7/12 sm:w-auto mr-1 inline-block border-gray-100" v-for="tproduct in topselling" :key="tproduct">
-                        <div class="">
+                        <div  @mouseover="isHovering = 'ts'+tproduct.id"  @mouseleave="isHovering = false" class="">
                             <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative overflow-hidden">
-                                     <img  @mouseover="isHovering = 'ts'+tproduct.id"  @mouseleave="isHovering = false" v-if="tproduct.image[0]"  :class="isHovering == 'ts'+tproduct.id ? 'h-36' : 'h-52'" class="w-full object-cover transition-all duration-500" :src="'/storage/'+tproduct.image[0].link" alt="">
+                                     <img  v-if="tproduct.image[0]"  :class="isHovering == 'ts'+tproduct.id ? 'h-36' : 'h-52'" class="w-full object-cover transition-all duration-500" :src="'/storage/'+tproduct.image[0].link" alt="">
                                      <div v-if="tproduct.quantity <= 0 && !tproduct.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
                                         <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
                                      </div>

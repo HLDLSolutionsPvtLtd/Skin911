@@ -37588,14 +37588,12 @@ var _hoisted_34 = {
   },
   "class": "overflow-y-hidden whitespace-nowrap no-scrollbar p-2 overflow-x-scroll sm:overflow-x-hidden sm:grid sm:grid-cols-6 md:px-4"
 };
-var _hoisted_35 = {
-  "class": ""
-};
+var _hoisted_35 = ["onMouseover"];
 var _hoisted_36 = ["href"];
 var _hoisted_37 = {
   "class": "relative overflow-hidden"
 };
-var _hoisted_38 = ["onMouseover", "src"];
+var _hoisted_38 = ["src"];
 var _hoisted_39 = {
   key: 1,
   "class": "absolute top-10 flex items-center justify-center w-full"
@@ -38098,22 +38096,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "border w-7/12 sm:w-auto mr-1 inline-block border-gray-100",
           key: tproduct
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-          href: '/product/' + tproduct.id + '/details',
-          "class": "overflow-hidden relative"
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [tproduct.image[0] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
-          key: 0,
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
           onMouseover: function onMouseover($event) {
             return _ctx.isHovering = 'ts' + tproduct.id;
           },
           onMouseleave: _cache[5] || (_cache[5] = function ($event) {
             return _ctx.isHovering = false;
           }),
+          "class": ""
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+          href: '/product/' + tproduct.id + '/details',
+          "class": "overflow-hidden relative"
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [tproduct.image[0] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+          key: 0,
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([_ctx.isHovering == 'ts' + tproduct.id ? 'h-36' : 'h-52', "w-full object-cover transition-all duration-500"]),
           src: '/storage/' + tproduct.image[0].link,
           alt: ""
-        }, null, 42
-        /* CLASS, PROPS, HYDRATE_EVENTS */
+        }, null, 10
+        /* CLASS, PROPS */
         , _hoisted_38)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), tproduct.quantity <= 0 && !tproduct.variant[0] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, _hoisted_41)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [tproduct.discounts[0] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_43, [tproduct.discounts[0].type == 'percentage' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
           key: 0
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(tproduct.discounts[0].amount) + "% ", 1
@@ -38240,7 +38240,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ))], 2112
         /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-        ))])]), !tproduct.variant[0] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        ))])], 40
+        /* PROPS, HYDRATE_EVENTS */
+        , _hoisted_35), !tproduct.variant[0] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           disabled: tproduct.quantity <= 0,
           onClick: function onClick($event) {
             return _ctx.addToCart(tproduct.id);

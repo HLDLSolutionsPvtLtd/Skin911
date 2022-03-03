@@ -12,6 +12,7 @@ class Product extends Model
     use HasFactory;
     use Searchable;
     
+   
     protected $guarded = [];
     protected $with = ['brand', 'category', 'variant', 'image'];
 
