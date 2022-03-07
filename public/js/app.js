@@ -22491,7 +22491,8 @@ __webpack_require__.r(__webpack_exports__);
       visible: false,
       products: [],
       status: '',
-      key: ''
+      key: '',
+      remarks: ''
     };
   },
   components: {
@@ -22509,9 +22510,17 @@ __webpack_require__.r(__webpack_exports__);
       return d.toLocaleDateString("en-US", options);
     },
     markAs: function markAs(order, index) {
-      this.$inertia.put('/admin/order/' + order.id + '/markas', {
-        'status': this.status
-      });
+      if (this.status == 'cancelled') {
+        this.$inertia.put('/admin/order/' + order.id + '/markas', {
+          'status': this.status,
+          'remarks': this.remarks
+        });
+      } else {
+        this.$inertia.put('/admin/order/' + order.id + '/markas', {
+          'status': this.status
+        });
+      }
+
       this.status = '';
     },
     refund: function refund(order) {
@@ -34061,77 +34070,81 @@ var _hoisted_47 = {
   "class": "mr-4 font-bold bg-green-200 px-2 text-green-500"
 };
 var _hoisted_48 = {
-  "class": "text-left p-1 text-xs uppercase py-6"
+  "class": "flex flex-col p-1 text-xs uppercase py-6"
 };
-var _hoisted_49 = ["onChange"];
+var _hoisted_49 = {
+  key: 0,
+  "class": "mb-2"
+};
+var _hoisted_50 = ["onChange"];
 
-var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "",
   selected: ""
 }, "Mark As", -1
 /* HOISTED */
 );
 
-var _hoisted_51 = {
+var _hoisted_52 = {
   key: 0,
   value: "accepted"
 };
-var _hoisted_52 = {
+var _hoisted_53 = {
   key: 1,
   value: "denied"
 };
-var _hoisted_53 = {
+var _hoisted_54 = {
   key: 2,
   value: "cancelled"
 };
-var _hoisted_54 = {
+var _hoisted_55 = {
   key: 3,
   value: "out_for_delivery"
 };
-var _hoisted_55 = {
+var _hoisted_56 = {
   key: 4,
   value: "delivered"
 };
-var _hoisted_56 = {
+var _hoisted_57 = {
   key: 0,
   "class": "text-left p-1"
 };
-var _hoisted_57 = {
+var _hoisted_58 = {
   key: 0,
   "class": "text-green-500 bg-green-200 px-2 uppercase font-bold text-xs"
 };
-var _hoisted_58 = {
+var _hoisted_59 = {
   key: 1,
   "class": "text-red-400 uppercase font-bold text-xs"
 };
-var _hoisted_59 = {
+var _hoisted_60 = {
   key: 1,
   "class": "text-left p-1"
 };
 
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-green-500 uppercase bg-green-200 font-bold text-xs"
 }, " CASH ON DELIVERY ", -1
 /* HOISTED */
 );
 
-var _hoisted_61 = [_hoisted_60];
-var _hoisted_62 = {
+var _hoisted_62 = [_hoisted_61];
+var _hoisted_63 = {
   key: 2,
   "class": "text-left p-1"
 };
 
-var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-red-400 uppercase font-bold text-xs"
 }, " PAYMENT ERROR ", -1
 /* HOISTED */
 );
 
-var _hoisted_64 = [_hoisted_63];
-var _hoisted_65 = {
+var _hoisted_65 = [_hoisted_64];
+var _hoisted_66 = {
   key: 3
 };
-var _hoisted_66 = ["onClick"];
+var _hoisted_67 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
 
@@ -34261,23 +34274,34 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.status), 1
         /* TEXT */
-        ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+        ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_48, [order.status == 'placed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+          "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+            return $data.remarks = $event;
+          }),
+          type: "text",
+          "class": "border-gray-400 w-full h-8 rounded-md mr-2 focus:ring-0 focus:border-gray-400",
+          placeholder: "Remarks",
+          name: "",
+          id: ""
+        }, null, 512
+        /* NEED_PATCH */
+        ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.remarks]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
           name: "",
           id: "",
           onChange: function onChange($event) {
             return $options.markAs(order, index);
           },
-          "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+          "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
             return $data.status = $event;
           }),
           "class": "bg-green-200 border-0 text-green-800 focus:ring-0 text-xs uppercase rounded-md"
-        }, [_hoisted_50, order.status != 'accepted' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_51, "Accepted")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'accepted' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_52, "Denied")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'placed' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_53, "Cancelled")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'placed' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_54, "Out For Delivery")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'placed' && order.status != 'accepted' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_55, "Delivered")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 40
+        }, [_hoisted_51, order.status != 'accepted' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_52, "Accepted")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'accepted' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_53, "Denied")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'placed' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_54, "Cancelled")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'placed' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_55, "Out For Delivery")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status != 'placed' && order.status != 'accepted' && order.status != 'denied' && order.status != 'cancelled' && order.status != 'returned' && order.status != 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_56, "Delivered")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 40
         /* PROPS, HYDRATE_EVENTS */
-        , _hoisted_49), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.status]])]), order.payment_type == 'rzp' && order.transaction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_56, [order.transaction.status == 'paid' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.transaction.status), 1
+        , _hoisted_50), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.status]])]), order.payment_type == 'rzp' && order.transaction ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_57, [order.transaction.status == 'paid' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.transaction.status), 1
         /* TEXT */
-        )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.transaction.status), 1
+        )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.transaction.status), 1
         /* TEXT */
-        ))])) : order.payment_type == 'cod' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_59, _hoisted_61)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_62, _hoisted_64)), order.payment_type == 'rzp' && order.transaction && order.status != 'accepted' && order.status != 'out_for_delivery' && order.status != 'delivered' && order.status != 'placed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_65, [order.transaction.status == 'paid' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+        ))])) : order.payment_type == 'cod' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_60, _hoisted_62)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_63, _hoisted_65)), order.payment_type == 'rzp' && order.transaction && order.status != 'accepted' && order.status != 'out_for_delivery' && order.status != 'delivered' && order.status != 'placed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_66, [order.transaction.status == 'paid' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
           key: 0,
           onClick: function onClick($event) {
             return $options.refund(order);
@@ -34285,7 +34309,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "p-2 ml-2 text-xs rounded-md tracking-wider font-bold shadow-sm bg-pink -400 text-white"
         }, "REFUND", 8
         /* PROPS */
-        , _hoisted_66)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+        , _hoisted_67)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])])];

@@ -20,6 +20,7 @@ class CreateOrders extends Migration
             $table->string('total')->default('0');
             $table->string('address_id');
             $table->string('shipping_fee')->nullable();
+            $table->string('remarks')->nullable();
             $table->enum('payment_type', ['cod', 'rzp']);
             $table->timestamps();
         });

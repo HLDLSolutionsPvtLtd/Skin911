@@ -73,6 +73,7 @@ class OrderController extends Controller
         else if($request->status == 'denied')
         {
             $order->status = $request->status;
+            $order->remarks = $request->remarks;
         }
         $order->save();
         return redirect()->back();

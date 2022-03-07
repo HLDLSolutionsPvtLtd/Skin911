@@ -134,7 +134,10 @@
                                 <span v-else-if="order.status == 'placed'" class="mr-4 font-bold border-b-2 border-green-400 px-2 text-green-500">{{order.status}} </span>
                                 <span v-else class="mr-4 font-bold bg-green-200 px-2 text-green-500">{{order.status}} </span>
                             </td>
-                            <td class="text-left p-1 text-xs uppercase py-6">
+                            <td class="flex flex-col p-1 text-xs uppercase py-6">
+                                <div v-if="order.status == 'placed'" class="mb-2">
+                                    <input v-model="remarks" type="text" class="border-gray-400 w-full h-8 rounded-md mr-2 focus:ring-0 focus:border-gray-400" placeholder="Remarks" name="" id="">
+                                </div>
                                 <select name="" id="" @change="markAs(order, index)" v-model="status" class="bg-green-200 border-0 text-green-800 focus:ring-0 text-xs uppercase rounded-md">
                                     <option value="" selected>Mark As</option>
                                     <option v-if="order.status != 'accepted'&& order.status != 'denied'&& order.status != 'cancelled' && order.status != 'out_for_delivery' && order.status != 'returned' && order.status != 'delivered'" value="accepted">Accepted</option>
@@ -184,6 +187,7 @@ import { usePage } from '@inertiajs/inertia-vue3';
             products: [],
             status: '',
             key: '',
+            remarks: '',
         }
     },
      components:
@@ -198,14 +202,24 @@ import { usePage } from '@inertiajs/inertia-vue3';
             var d = new Date(val)
             return d.toLocaleDateString("en-US", options); 
         },
-
+        
         markAs(order, index)
         {
-            this.$inertia.put('/admin/order/'+order.id+'/markas',{
-                'status': this.status,
-                
-            });
-            this.status = '';
+            if(this.status == 'cancelled')
+            {
+               this.$inertia.put('/admin/order/'+order.id+'/markas',{
+                    'status': this.status,
+                    'remarks': this.remarks,
+                    
+                });
+            }
+            else
+            {
+                this.$inertia.put('/admin/order/'+order.id+'/markas',{
+                    'status': this.status,
+                });
+            }
+            this.status = ''
         },
         refund(order)
         {
