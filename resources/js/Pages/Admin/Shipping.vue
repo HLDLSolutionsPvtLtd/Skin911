@@ -94,7 +94,7 @@
                            </div>
                        </div>
                    </div>
-                   <div style="height:calc(100vh - 180px)" class="overflow-y-scroll">
+                   <div style="height:calc(100vh - 180px);scrollbar-width:thin" class="overflow-y-scroll">
                         <table class="w-full text-ct">
                             <tr class="border-b-2 shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
                                 <th class="text-left border-gray-300 p-2">

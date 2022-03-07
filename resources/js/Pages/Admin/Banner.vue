@@ -158,7 +158,7 @@
                            </div>
                        </div>
                    </div>
-                    <div style="height:calc(100vh - 180px)" class="overflow-y-scroll">
+                    <div style="height:calc(100vh - 180px);scrollbar-width:thin" class="overflow-y-scroll">
                         <table class="w-full text-ct">
                             <tr class="border-b border-gray-300 text-blue-500 font-bold tracking-wider text-xs font-bold uppercase">
                                 <th class="text-left p-1 py-4">

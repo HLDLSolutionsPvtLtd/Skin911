@@ -33,7 +33,7 @@ class ProductController extends Controller
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
                     $q->where('name', $request->filter);
-                })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(1);
+                })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(12);
             }
             else if($request->has('filter'))
             {
@@ -43,11 +43,11 @@ class ProductController extends Controller
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
                     $q->where('name', $request->filter);
-                })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(1);
+                })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(12);
             }
             else
             {
-                return Product::orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->with('discounts')->paginate(1);
+                return Product::orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->with('discounts')->paginate(12);
             }
         }
         else
@@ -60,7 +60,7 @@ class ProductController extends Controller
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
                     $q->where('name', $request->filter);
-                })->with('discounts')->orderBy($request->var, $request->val)->paginate(1);
+                })->with('discounts')->orderBy($request->var, $request->val)->paginate(12);
             }
             else if($request->has('filter'))
             {
@@ -70,11 +70,11 @@ class ProductController extends Controller
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
                     $q->where('name', $request->filter);
-                })->with('discounts')->orderBy($request->var, $request->val)->paginate(1);
+                })->with('discounts')->orderBy($request->var, $request->val)->paginate(12);
             }
             else
             {
-                return Product::orderBy($request->var, $request->val)->with('discounts')->paginate(1);
+                return Product::orderBy($request->var, $request->val)->with('discounts')->paginate(12);
             }
         }
     }

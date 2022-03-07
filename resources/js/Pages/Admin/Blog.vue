@@ -112,7 +112,7 @@
                            </div>
                        </div>
                    </div>
-                   <div style="height:calc(100vh - 180px)" class="overflow-y-scroll">
+                   <div style="height:calc(100vh - 180px);scrollbar-width:thin" class="overflow-y-scroll">
                         <div class="text-ct" >
                             <div style="width:100%" class="border-b-2 flex flex-row shadow-sm border-gray-100 text-gray-500 uppercase tracking-wider text-xs p-2">
                                 <div class="w-1/6 text-left border-gray-300 p-2">

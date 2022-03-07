@@ -162,7 +162,7 @@
                            </div>
                        </div>
                    </div>
-                    <div style="height:calc(100vh - 180px)" class="overflow-y-scroll">
+                    <div style="height:calc(100vh - 180px);scrollbar-width:thin" class="overflow-y-scroll">
                         <table class="w-full text-ct">
                             <tr class="text-gray-500 font-bold tracking-wider text-xs font-bold uppercase">
                                 <th class="text-left  p-2">
@@ -209,7 +209,7 @@
                         </table>
                     </div>
                    
-                    <div v-if="selectedDiscount" style="height:calc(100vh - 100px);" class="w-full no-scrollbar overflow-y-scroll border bg-white absolute top-0 shadow-lg rounded-lg">
+                    <div v-if="selectedDiscount" style="height:calc(100vh - 100px);scrollbar-width:thin" class="w-full no-scrollbar overflow-y-scroll border bg-white absolute top-0 shadow-lg rounded-lg">
                         <div class="flex justify-between p-4 border-b">
                             <div class="flex items-center gap-2">
                                 <span :class="{'bg-gray-300': active == 'items'}" @click="active = 'items'" class="uppercase p-2 bg-gray-100 rounded-md text-xs font-bold tracking-wider text-gray-500">Discount Items</span>
@@ -539,14 +539,8 @@
         },
         addToDiscount()
         {
-            this.$inertia.post('/admin/discounts/'+this.selectedDiscount.id+'/add/items', {
-                'items' : this.selectedItems,
-                'type' : this.selectToadd,
-                onSuccess:() =>
-                {
-                    this.selectedItems = []
-                }
-            });
+            axios.post('/admin/discounts/'+this.selectedDiscount.id+'/add/items', {'items' : this.selectedItems,'type' : this.selectToadd,})
+            .then(this.selectedItems = []);
             
         },
         search()

@@ -12,7 +12,7 @@
                     <div class="p-3 pl-6">
                         <span class="text-sm text-gray-700 font-bold tracking-wider">MENU</span>
                     </div>
-                    <ul style="height:calc(100vh - 250px)" class="p-2 overflow-y-scroll 2xl:overflow-hidden">
+                    <ul style="height:calc(100vh - 250px);scrollbar-width:thin;" class="p-2 overflow-y-scroll 2xl:overflow-hidden">
                         <li class="flex m-1 hover:bg-gray-100 p-3 w-full">
                             <Link class="flex text-sm text-pink-700" :href="route('admin.dashboard')" :active="route().current('admin.products')">
                                 <!-- <jet-application-mark class="block h-9 w-auto" /> -->

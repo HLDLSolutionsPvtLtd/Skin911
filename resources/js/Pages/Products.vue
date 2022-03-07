@@ -69,7 +69,7 @@
                                         <option class="py-1" @click="sortVal = 'desc', sortVar = 'name', productAll()">Name Z-A</option>
                                         <option class="py-1" @click="sortVal = 'asc', sortVar = 'price', productAll()">Price Low-High</option>
                                         <option class="py-1" @click="sortVal = 'desc', sortVar = 'price', productAll()">Price High-Low</option>
-                                        <option class="py-1" @click="sortVal = 'asc', sortVar = 'created_at', productAll">Latest</option>
+                                        <option class="py-1" @click="sortVal = 'asc', sortVar = 'created_at', productAll()">Latest</option>
                                     </select>
                                 </div>
                             </div>

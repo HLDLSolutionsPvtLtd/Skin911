@@ -134,23 +134,23 @@
                                                     </div>
                                                     <div class="flex pt-2 gap-2" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm font-mono" for="size" value="Name"/>
+                                                            <jet-label class="text-sm" for="size" value="Name"/>
                                                             <div >
-                                                                <input v-model="variant" class="w-full text-sm h-8 rounded-sm" type="text"/>
+                                                                <input v-model="variant" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" type="text"/>
                                                             </div>
                                                         </div>
                                                         <div class="w-1/2">
                                                             <jet-label class="text-sm" for="units" value="Price"/>
                                                             <div >
-                                                                <input v-model="variant_price" class="w-full text-sm h-8 rounded-sm" type="text"/>
+                                                                <input v-model="variant_price" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" type="text"/>
                                                             </div>
                                                         </div> 
                                                     </div>
                                                     <div class="flex pt-2 gap-2" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm font-mono" for="quantity" value="Quantity"/>
+                                                            <jet-label class="text-sm" for="quantity" value="Quantity"/>
                                                             <div >
-                                                                <input v-model="quantity" class="w-full text-sm h-8 rounded-sm" type="number"/>
+                                                                <input v-model="quantity" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" type="number"/>
                                                             </div>
                                                         </div>
                                                     </div>

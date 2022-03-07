@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-               <div style="height:calc(100vh - 180px)" class="overflow-y-scroll m-4 border-t-2 py-4">
+               <div style="height:calc(100vh - 180px);scrollbar-width:thin" class="overflow-y-scroll m-4 border-t-2 py-4">
                    
                    <table class="w-full text-ct">
                         <tr class="border-b border-gray-300 text-blue-500 font-bold tracking-wider text-xs font-bold uppercase">
