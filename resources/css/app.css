@@ -418,6 +418,9 @@ body{
   text-align: center;
 }
 
+.topselling-height{
+  height:calc(100vh - 650px);
+}
 /* top left*/
 .ribbon2-top-left {
   top: -4px;

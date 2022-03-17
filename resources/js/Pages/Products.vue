@@ -74,12 +74,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full  grid grid-cols-2 sm:grid-cols-4">
+                        <div v-if="products[0]" class="w-full  grid grid-cols-2 sm:grid-cols-4">
                             <div class="p-1 border border-gray-100 mt-2" v-for="product in products" :key="product">
                                     <div class="">
                                         <a :href="'/product/'+product.id+'/details'" class="overflow-hidden relative">
                                             <div class="relative pb-48 overflow-hidden">
-                                                <img class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+product.image[0].link" alt="">
+                                                <img v-if="product.image[0]" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+product.image[0].link" alt="">
                                                  <div v-if="product.quantity <= 0 && !product.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
                                                     <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
                                                 </div>
@@ -201,6 +201,9 @@
                                         </div>
                                     </div>
                                 </div>
+                        </div>
+                        <div v-else class="min-h-screen flex items-center justify-center">
+                            <span class="text-red-400 font-semibold">No result found</span>
                         </div>
                         <div v-show="next" class="w-full flex self-center mt-6 justify-center">
                             <button @click="nextProd" class="flex items-center px-4 p-2 border-2 text-pink-700 hover:bg-pink-700 hover:text-white rounded-full font-bold tracking-wider">Show More

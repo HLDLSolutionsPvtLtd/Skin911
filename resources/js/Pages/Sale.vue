@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-center w-full min-h-screen bg-white">
+        <div v-if="products[0]" class="flex justify-center w-full min-h-screen bg-white">
             <div class="w-full sm:m-0 sm:w-11/12 md:11/12 xl:w-10/12">
                 <div class="sm:grid sm:grid-cols-6 m-2 sm:mt-12 mb-12">
                     <div class="sm:col-span-5">
@@ -162,6 +162,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="min-h-screen flex items-center justify-center">
+            <span class="text-red-400 font-semibold">No result found</span>
         </div>
     </app-layout>
 </template>

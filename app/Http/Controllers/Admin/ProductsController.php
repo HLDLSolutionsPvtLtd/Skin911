@@ -148,8 +148,16 @@ class ProductsController extends Controller
         return response('success', 200);
     }
 
-    public function search(Request $request)
+    public function removeTag(Product $product)
     {
+        $product->tag = '';
+        $product->save();
+
+        return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {   
         return Inertia::render('Admin/Products', ['products' => Product::search($request->key)->get()]);
     }
 

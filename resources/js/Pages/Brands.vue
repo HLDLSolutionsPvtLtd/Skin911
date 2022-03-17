@@ -4,7 +4,7 @@
             <div class="mt-2 sm:mt-6">
                 <span class="text-xl tracking-wider font-bold">BRANDS</span>
             </div>
-            <div class="w-full sm:grid sm:grid-cols-6 m-2">
+            <div v-if="brands[0]" class="w-full sm:grid sm:grid-cols-6 m-2">
                 
                 <div v-for="brand in brands" :key="brand.id" class="m-2 p-2 border">
                      <a :href="'/products?key='+brand.name" >
@@ -16,6 +16,9 @@
                         </div>
                     </a>
                 </div>
+            </div>
+            <div v-else class="min-h-screen flex items-center justify-center">
+                <span class="text-red-400 font-semibold">No result found</span>
             </div>
         </div>
     </app-layout>

@@ -199,6 +199,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->delete('/variant/{variant:id}/delete',[ProductsController::class, 'deleteVariant'])->name('deleteVariant')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('/product/{product:id}/update',[ProductsController::class, 'updateProduct'])->name('updateProduct')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->put('/product/{product:id}/tag/remove',[ProductsController::class, 'removeTag'])->name('removetag')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->delete('/product/{product:id}/delete',[ProductsController::class, 'deleteProduct'])->name('deleteProduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('/product/search',[ProductsController::class, 'search'])->name('search.admin')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('/product/outofstock',[ProductsController::class, 'outOfStock'])->name('outofstock.admin')->middleware('is_admin');

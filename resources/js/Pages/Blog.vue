@@ -4,8 +4,7 @@
             <div class="mt-2 sm:mt-6">
                 <span class="text-xl tracking-wider font-bold">BLOG</span>
             </div>
-            <div class="m-4 flex flex-col justify-center gap-4">
-                
+            <div v-if="posts[0]" class="m-4 flex flex-col justify-center gap-4">
                 <div v-for="post in posts" :key="post.id" class="w-full flex justify-center my-2 ">
                      <div class="sm:w-2/3 flex rounded-md border p-8">
                         <div>
@@ -28,6 +27,9 @@
                         
                     </div>
                 </div>
+            </div>
+            <div v-else class="min-h-screen flex items-center justify-center">
+                <span class="text-red-400 font-semibold">No result found</span>
             </div>
         </div>
     </app-layout>

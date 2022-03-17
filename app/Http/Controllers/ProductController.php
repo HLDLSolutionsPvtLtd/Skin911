@@ -19,6 +19,14 @@ class ProductController extends Controller
         return Product::limit(8)->with('discounts')->get();
     }
 
+    public function removeTag(Product $product)
+    {
+        $product->tag = '';
+        $product->save();
+
+        return redirect()->back();
+    }
+
     public function all(Request $request)
     {
         if($request->var == 'price')
