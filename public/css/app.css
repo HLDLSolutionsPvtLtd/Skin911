@@ -1454,12 +1454,6 @@ select {
 .h-\[calc\(100vh-350px\)\] {
 	height: calc(100vh - 350px);
 }
-.h-36 {
-	height: 9rem;
-}
-.h-52 {
-	height: 13rem;
-}
 .h-40 {
 	height: 10rem;
 }
@@ -1787,9 +1781,6 @@ select {
 }
 .whitespace-nowrap {
 	white-space: nowrap;
-}
-.break-words {
-	overflow-wrap: break-word;
 }
 .break-all {
 	word-break: break-all;
@@ -2422,6 +2413,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(96, 165, 250, var(--tw-text-opacity));
 }
+.text-red-400 {
+	--tw-text-opacity: 1;
+	color: rgba(248, 113, 113, var(--tw-text-opacity));
+}
 .text-blue-800 {
 	--tw-text-opacity: 1;
 	color: rgba(30, 64, 175, var(--tw-text-opacity));
@@ -2461,10 +2456,6 @@ select {
 .text-purple-400 {
 	--tw-text-opacity: 1;
 	color: rgba(167, 139, 250, var(--tw-text-opacity));
-}
-.text-red-400 {
-	--tw-text-opacity: 1;
-	color: rgba(248, 113, 113, var(--tw-text-opacity));
 }
 .text-pink-800 {
 	--tw-text-opacity: 1;
@@ -3057,6 +3048,9 @@ body{
   text-transform: uppercase;
   text-align: center;
 }
+.topselling-height{
+  height:calc(100vh - 650px);
+}
 /* top left*/
 .ribbon2-top-left {
   top: -4px;
@@ -3190,6 +3184,10 @@ body{
 .hover\:text-red-600:hover {
 	--tw-text-opacity: 1;
 	color: rgba(220, 38, 38, var(--tw-text-opacity));
+}
+.hover\:text-red-700:hover {
+	--tw-text-opacity: 1;
+	color: rgba(185, 28, 28, var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
 	z-index: 10;
