@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\Brandcontroller;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SkintypesController;
 use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -19,9 +20,12 @@ use App\Http\Controllers\ShippingfeeController;
 use App\Http\Controllers\UserAdminController;
 use App\Models\Banner;
 use App\Models\Blog;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Shipping;
+use App\Models\Skintype;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +52,11 @@ Route::get('/products', function () {
 Route::get('view/categories', function () {
     return Inertia::render('Categories');
 })->name('categories');
+
+Route::get('view/skintype', function () {
+    return Inertia::render('Skintype');
+})->name('skintype');
+
 Route::get('view/brands', function () {
     return Inertia::render('Brands');
 })->name('brands');
@@ -151,7 +160,7 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.discounts')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('addproduct', function () {
-        return Inertia::render('Admin/AddProduct');
+        return Inertia::render('Admin/AddProduct',['skintypes' => Skintype::all(), 'categories' => Category::all(), 'brands' => Brand::all()]);
     })->name('addproduct')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('blog', function () {
@@ -178,6 +187,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('categories', function () {
         return Inertia::render('Admin/Categories');
     })->name('admin.categories')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->get('skintype', function () {
+        return Inertia::render('Admin/Skintype', ['skintypes' => Skintype::all()]);
+    })->name('admin.skintype')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('addproduct',[ProductController::class, 'AddProduct'])->name('add.product')->middleware('is_admin');
    
@@ -214,6 +227,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('/category/all',[CategoryController::class, 'all'])->name('/admin.getcategorys')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->post('/category/{category:id}/update',[CategoryController::class, 'update'])->name('/admin.updatecategory')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->delete('/category/{category:id}/delete',[CategoryController::class, 'delete'])->name('/admin.deletecategory')->middleware('is_admin');
+
+    Route::middleware(['auth:sanctum'])->post('/skintype/create',[SkintypesController::class, 'create'])->name('skintype.create')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('/skintype/all',[SkintypesController::class, 'all'])->name('/admin.getskintypes')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->post('/skintype/{skintype:id}/update',[SkintypesController::class, 'update'])->name('/admin.updateskintype')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->delete('/skintype/{skintype:id}/delete',[SkintypesController::class, 'delete'])->name('/admin.deleteskintype')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('admin.getproducts',[ProductsController::class, 'getAll'])->name('admin.getproducts')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('getOrderAll',[OrderController::class, 'fetchAll'])->name('getOrderAll')->middleware('is_admin');

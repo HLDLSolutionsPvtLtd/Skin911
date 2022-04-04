@@ -62,6 +62,18 @@
                                     </div>
                                     <div class="flex mt-2 justify-center">
                                         <div class="w-full">
+                                                <jet-label class="text-sm  tracking-wider my-1" for="category" value="Skintype"/>
+                                                <div>
+                                                    <jet-input-error :message="form.errors.skintype_id" class="mt-2" />
+                                                    <select v-model="form.skintype_id" class="w-full placeholder-gray-100  tracking-wider text-sm my-1 rounded-md border border-gray-200" id="skintype" required>
+                                                        <option selected value="">Select skintype</option>
+                                                        <option v-for="skintype in skintypes" :key="skintype.id" :value="skintype.id">{{skintype.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="flex mt-2 justify-center">
+                                        <div class="w-full">
                                             <jet-label class="text-sm  tracking-wider my-1" for="price" value="Price"/>
                                             <div>
                                                 <jet-input-error :message="form.errors.price" class="mt-2" />
@@ -222,11 +234,10 @@
     import AdminLayout from '@/Layouts/AdminLayout'
 
  export default{
+     props : ['skintypes', 'categories', 'brands'],
      data()
      {
          return{
-             brands: [],
-             categories: [],
              form:this.$inertia.form({
                     name: '',
                     description: '',
@@ -355,12 +366,7 @@
         }
 
     },
-    mounted() {
-        axios.get('/admin/category/all')
-        .then(res => this.categories = res.data);
-        axios.get('/admin/brand/all')
-        .then(res => this.brands = res.data);
-    },
+    
     watch:
     {
         'form.images':

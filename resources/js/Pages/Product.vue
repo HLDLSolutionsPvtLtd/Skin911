@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="sm:flex justify-center relative">
+        <div class="sm:flex justify-center relative overflow-x-hidden">
             <div v-show="success" class="modal z-50 w-5/6 md:w-1/4" id="modal">
                 <div class='modal__container shadow-md border bg-white'>
                                         
@@ -24,7 +24,18 @@
             <div v-if="product" class=" sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6">
                 <div class="flex flex-col sm:flex-1 bg-white p-2 border-b sm:border-0 shadow-lg sm:shadow-none">
                     <div class="flex border" style="height:calc(100vh - 400px)" >
-                        <img :src="'/storage/'+currentImg" alt="" class="w-full h-full">
+                        <div :class="{'fixed z-40 top-0 left-0 h-screen w-screen overflow-y-hidden': zoom}">
+                            <img  :src="'/storage/'+currentImg" alt="" class="w-full h-full">
+                            <svg v-if="zoom" xmlns="http://www.w3.org/2000/svg" @click="zoom = !zoom" class="fill-current cursor-pointer z-50 text-red-400 absolute right-6 top-6" width="24" height="24" viewBox="0 0 24 24">
+                               <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
+                            </svg>
+                        </div>
+                       
+                        <div class="relative">
+                            <svg v-if="!zoom" xmlns="http://www.w3.org/2000/svg" @click="zoom = !zoom" class="fill-current cursor-pointer z-50 text-gray-400 absolute right-4 top-4" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M24 22h-24v-20h24v20zm-1-19h-22v18h22v-18zm-4 7h-1v-3.241l-11.241 11.241h3.241v1h-5v-5h1v3.241l11.241-11.241h-3.241v-1h5v5z"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="flex mt-2">
                         <ul class="flex flex-col mr-1 border" v-for="image in product.image" :key="image">
@@ -166,7 +177,7 @@
                     <div class="mt-8 mb-8 border-t">
                         <div>
                             <ul class="flex text-gray-500 font-light text-sm">
-                                <li class="p-2 hover:text-gray-300 tracking-wider cursor-pointer">{{product.description}}</li>
+                                <li class="p-2 tracking-wider cursor-pointer">{{product.description}}</li>
                             </ul>
                         </div>
                     </div>
@@ -283,6 +294,7 @@ import axios from 'axios';
             qerror: '',
             currentImg:'',
             success : false,
+            zoom:false,
         }
     },
     methods:

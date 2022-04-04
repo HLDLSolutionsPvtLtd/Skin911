@@ -120,6 +120,7 @@ return array(
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\Shipping' => $baseDir . '/app/Models/Shipping.php',
+    'App\\Models\\Skintype' => $baseDir . '/app/Models/Skintype.php',
     'App\\Models\\Transaction' => $baseDir . '/app/Models/Transaction.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Variant' => $baseDir . '/app/Models/Variant.php',

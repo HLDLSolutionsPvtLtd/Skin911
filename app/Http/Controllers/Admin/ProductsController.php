@@ -19,6 +19,7 @@ class ProductsController extends Controller
             'name' => 'required',
             'description' => 'required',
             'brand_id' => 'required',
+            'skintype_id' => 'required',
             'quantity' => 'required',
             'category_id' => 'required',
             'price' => 'nullable'
@@ -87,6 +88,7 @@ class ProductsController extends Controller
             'name' => 'required',
             'description' => 'required',
             'brand_id' => 'required',
+            'skintype_id' => 'required',
             'quantity' => 'required',
             'category_id' => 'required',
             'price' => 'nullable'

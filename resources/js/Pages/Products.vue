@@ -192,7 +192,7 @@
                                     </div>  
                                     <div class="mt-2">
                                          <div v-if="!product.variant[0]" class="mt-2">
-                                            <button :disabled="product.quantity <= 0" @click="addToCart(product.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                                            <button v-show="!(product.quantity <= 0)" @click="addToCart(product.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                                         </div> 
                                         <div v-else class="mt-2">
                                             <a :href="'/product/'+product.id+'/details'">

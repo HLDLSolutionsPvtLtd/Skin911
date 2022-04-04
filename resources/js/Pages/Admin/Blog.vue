@@ -4,7 +4,7 @@
            Blog
        </template>
        <div class="">
-           <div style="height:calc(100vh - 80px);" class="m-2 mx-4 container-fluid bg-white rounded p-1">
+           <div style="height:calc(100vh - 80px);" class="m-2 overflow-y-scroll mx-4 container-fluid bg-white rounded p-1">
                <div class="m-2 relative">
                    <div class="flex justify-between items-center bg-gray-300 mb-2 rounded-md p-2">
                        <div class="">
@@ -34,8 +34,12 @@
                            <div class="mt-2">
                                <jet-label class="text-sm tracking-wider" for="size" value="Body"/>
                                 <div class="mt-2">
+<<<<<<< Updated upstream
                                     <input id="x" type="hidden" name="content">
                                     <trix-editor input="x"></trix-editor>
+=======
+                                    <QuillEditor  theme="snow" :modules="modules" toolbar="full"/>
+>>>>>>> Stashed changes
                                 </div>
                            </div>
                            <div class="mt-4">
@@ -170,7 +174,9 @@
     import JetInputError from '@/Jetstream/InputError'
     import JetLabel from '@/Jetstream/Label'
     import JetValidationErrors from '@/Jetstream/ValidationErrors'
-
+    import { QuillEditor } from '@vueup/vue-quill'
+    import BlotFormatter from 'quill-blot-formatter'
+    import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
  export default{
     props: ['posts'],
@@ -181,7 +187,7 @@
            newform:this.$inertia.form({
                     id: '',
                     title: '',
-                    body: '',
+                    body: 'adasdas',
                     image: '',
                 }),
            form:this.$inertia.form({
@@ -200,8 +206,19 @@
         JetInput,
         JetButton,
         JetLabel,
-        JetValidationErrors
+        JetValidationErrors,
+        QuillEditor
     },
+
+    setup: () => {
+        const modules = {
+        name: 'blotFormatter',  
+        module: BlotFormatter, 
+        options: {/* options */}
+        }
+        return { modules }
+    },
+
     methods:
     {
         formatdate(date)

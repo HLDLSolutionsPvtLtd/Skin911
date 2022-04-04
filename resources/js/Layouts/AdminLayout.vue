@@ -93,6 +93,20 @@
                             </Link>
                         </li>
                         <li class="w-full m-1">
+                            <Link :href="route('admin.skintype')">
+                                <div class="p-3 hover:bg-gray-100 flex justify-between" >
+                                    <div class="flex items-center">
+                                        <div class="bg-gray-200 shadow-lg p-1 flex items-center justify-center rounded-md mr-2">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current text-pink-400" fill-rule="evenodd" clip-rule="evenodd">
+                                                <path d="M9.484 15.696l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm10.516 11.304h-8v1h8v-1zm0-5h-8v1h8v-1zm0-5h-8v1h8v-1zm4-5h-24v20h24v-20zm-1 19h-22v-18h22v18z"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Skintypes</span>
+                                    </div>
+                                </div>
+                            </Link>
+                        </li>
+                        <li class="w-full m-1">
                             <Link :href="route('admin.banners')">
                                 <div class="p-3 hover:bg-gray-100 flex justify-between" >
                                     <div class="flex items-center">

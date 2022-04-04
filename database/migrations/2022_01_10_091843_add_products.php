@@ -18,6 +18,7 @@ class AddProducts extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('category_id');
+            $table->string('skintype_id')->nullable();
             $table->string('brand_id');
             $table->string('tag')->nullable();
             $table->integer('quantity')->nullable();

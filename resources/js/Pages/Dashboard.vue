@@ -216,7 +216,7 @@
                             
                         </div>  
                         <div v-if="!tproduct.variant[0]" class="mt-2">
-                            <button :disabled="tproduct.quantity <= 0" @click="addToCart(tproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                            <button v-show="!(tproduct.quantity <= 0)" @click="addToCart(tproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                         </div> 
                         <div v-else class="mt-2">
                             <a :href="'/product/'+tproduct.id+'/details'">
@@ -359,7 +359,7 @@
                             </div>
                             
                             <div v-if="!nproduct.variant[0]" class="mt-2">
-                                <button :disabled="nproduct.quantity <= 0" @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                                <button v-show="!(tproduct.quantity <= 0)" @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                             </div> 
                             <div v-else class="mt-2">
                                 <a :href="'/product/'+nproduct.id+'/details'">
@@ -446,7 +446,7 @@
                             
                         </div>  
                         <div v-if="!nproduct.variant[0]" class="mt-2">
-                            <button @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                            <button v-show="!(tproduct.quantity <= 0)" @click="addToCart(nproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
                         </div> 
                         <div v-else class="mt-2">
                             <a :href="'/product/'+nproduct.id+'/details'">
