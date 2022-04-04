@@ -34,7 +34,8 @@
                            <div class="mt-2">
                                <jet-label class="text-sm tracking-wider" for="size" value="Body"/>
                                 <div class="mt-2">
-                                    <textarea v-model="form.body" class="text-sm border-gray-300 rounded-md"/>
+                                    <input id="x" type="hidden" name="content">
+                                    <trix-editor input="x"></trix-editor>
                                 </div>
                            </div>
                            <div class="mt-4">

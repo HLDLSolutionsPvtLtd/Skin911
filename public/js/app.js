@@ -27460,7 +27460,7 @@ var _hoisted_111 = {
   "class": "w-full h-full"
 };
 
-var _hoisted_112 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<footer class=\"sm:flex w-full sm:justify-center p-2 bg-gray-400\"><div class=\"sm:grid sm:grid-cols-4 m-4\"><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-sm\">INFO</span><ul style=\"font-family:&#39;futura-pt&#39;, arial, sans-serif;\" class=\"text-gray-600 text-sm tracking-wide\"><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/user/profile\"> My Account </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/privacy-policy\"> Shipping and Refund Policy </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/terms-of-service\"> Terms And Condition </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"https://shaiwave.com/\">Developer Info</a></li></ul></div><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-sm\">ABOUT</span><ul style=\"font-family:&#39;futura-pt&#39;, arial, sans-serif;\" class=\"text-gray-600 text-sm tracking-wide\"><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/about\"> About Us </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/locator\"> Store Locator </a></li></ul></div><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-xs\">CONTACT US</span><ul class=\"flex text-gray-600 text-sm mt-2\"><li class=\"pr-2 cursor-pointer\"><svg class=\"fill-current hover:text-blue-500\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 30 30\"><path d=\"M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z\"></path></svg></li><li class=\"pr-2 cursor-pointer\"><svg class=\"fill-current hover:text-blue-500\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 30 30\"><path d=\"M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z\"></path></svg></li><li class=\"pr-2 cursor-pointer\"><svg class=\"fill-current hover:text-blue-500\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 30 30\"><path d=\"M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z\"></path></svg></li></ul></div><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-xs\">HELP</span><ul style=\"font-family:&#39;futura-pt&#39;, arial, sans-serif;\" class=\"text-gray-600 text-sm tracking-wide\"><li class=\"flex hover:text-blue-500 cursor-pointer\"><a href=\"mailto:info@skin911.in\" class=\"text-sm italic\">info@skin911.in</a></li><li class=\"hover:text-blue-500 cursor-pointer\"><div class=\"flex\"><span class=\"pr-2\">Customer Care: + 918974336234</span><!-- &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 32&quot;&gt;\n                                        &lt;path fill=&quot;#814252&quot; d=&quot;M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z&quot;/&gt;\n                                    &lt;/svg&gt; --></div></li><li class=\"hover:text-blue-500 cursor-pointer\"><div class=\"flex\"><span class=\"pr-2\">Business hours: 09:30 AM - 5:30 PM</span><!-- &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 32&quot;&gt;\n                                        &lt;path fill=&quot;#814252&quot; d=&quot;M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 14h-7v-8h2v6h5v2z&quot;/&gt;\n                                    &lt;/svg&gt; --></div></li></ul></div></div></footer>", 1);
+var _hoisted_112 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<footer class=\"sm:flex w-full sm:justify-center p-2 bg-gray-400\"><div class=\"sm:grid sm:grid-cols-4 m-4\"><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-sm\">INFO</span><ul style=\"font-family:&#39;futura-pt&#39;, arial, sans-serif;\" class=\"text-gray-600 text-sm tracking-wide\"><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/user/profile\"> My Account </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/privacy-policy\"> Shipping and Refund Policy </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/terms-of-service\"> Terms And Condition </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"https://shaiwave.com/\">Developer Info</a></li></ul></div><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-sm\">ABOUT</span><ul style=\"font-family:&#39;futura-pt&#39;, arial, sans-serif;\" class=\"text-gray-600 text-sm tracking-wide\"><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/about\"> About Us </a></li><li class=\"hover:text-blue-500 cursor-pointer\"><a href=\"/locator\"> Store Locator </a></li></ul></div><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-xs\">CONTACT US</span><ul class=\"flex text-gray-600 text-sm mt-2\"><li class=\"pr-2 cursor-pointer\"><a href=\"https://instagram.com/skin911.official?utm_medium=copy_link\"><svg class=\"fill-current hover:text-blue-500\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 30 30\"><path d=\"M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z\"></path></svg></a></li><!-- &lt;li class=&quot;pr-2  cursor-pointer&quot;&gt;\n                                &lt;svg class=&quot;fill-current hover:text-blue-500&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 30 30&quot;&gt;\n                                    &lt;path d=&quot;M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z&quot;/&gt;\n                                &lt;/svg&gt;\n                            &lt;/li&gt;\n                            &lt;li  class=&quot;pr-2  cursor-pointer&quot;&gt;\n                                &lt;svg class=&quot;fill-current hover:text-blue-500&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 30 30&quot;&gt;\n                                    &lt;path d=&quot;M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z&quot;/&gt;\n                                &lt;/svg&gt;\n                            &lt;/li&gt; --></ul></div><div class=\"m-2\"><span class=\"text-pink-dark font-bold text-xs\">HELP</span><ul style=\"font-family:&#39;futura-pt&#39;, arial, sans-serif;\" class=\"text-gray-600 text-sm tracking-wide\"><li class=\"flex hover:text-blue-500 cursor-pointer\"><a href=\"mailto:info@skin911.in\" class=\"text-sm italic\">info@skin911.in</a></li><li class=\"hover:text-blue-500 cursor-pointer\"><div class=\"flex\"><a href=\"tel:7085203615\" class=\"pr-2\">Customer Care: + 7085203615</a><!-- &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 32&quot;&gt;\n                                        &lt;path fill=&quot;#814252&quot; d=&quot;M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z&quot;/&gt;\n                                    &lt;/svg&gt; --></div></li><li class=\"hover:text-blue-500 cursor-pointer\"><div class=\"flex\"><span class=\"pr-2\">Business hours: 10:00 AM - 11:00 PM</span><!-- &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 32&quot;&gt;\n                                        &lt;path fill=&quot;#814252&quot; d=&quot;M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 14h-7v-8h2v6h5v2z&quot;/&gt;\n                                    &lt;/svg&gt; --></div></li></ul></div></div></footer>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
@@ -30370,44 +30370,53 @@ var _hoisted_12 = {
 var _hoisted_13 = {
   "class": "mt-2"
 };
-var _hoisted_14 = {
-  "class": "mt-4"
-};
-var _hoisted_15 = {
-  key: 0,
-  "class": "mt-2 border border-dashed border-gray-400"
-};
-var _hoisted_16 = {
-  "class": "text-sm p-12 tracking-wider text-center items-center text-blue-400"
-};
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Drag and Drop / Click to Add image", -1
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  id: "x",
+  type: "hidden",
+  name: "content"
+}, null, -1
 /* HOISTED */
 );
 
-var _hoisted_18 = {
+var _hoisted_15 = {
+  "class": "mt-4"
+};
+var _hoisted_16 = {
+  key: 0,
+  "class": "mt-2 border border-dashed border-gray-400"
+};
+var _hoisted_17 = {
+  "class": "text-sm p-12 tracking-wider text-center items-center text-blue-400"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Drag and Drop / Click to Add image", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
   key: 1
 };
-var _hoisted_19 = {
+var _hoisted_20 = {
   "class": "relative"
 };
-var _hoisted_20 = ["src"];
+var _hoisted_21 = ["src"];
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.151 17.943l-4.143-4.102-4.117 4.159-1.833-1.833 4.104-4.157-4.162-4.119 1.833-1.833 4.155 4.102 4.106-4.16 1.849 1.849-4.1 4.141 4.157 4.104-1.849 1.849z"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_22 = [_hoisted_21];
-var _hoisted_23 = {
+var _hoisted_23 = [_hoisted_22];
+var _hoisted_24 = {
   "class": "mt-4 flex gap-4"
 };
-var _hoisted_24 = {
+var _hoisted_25 = {
   "class": "absolute bg-white w-full p-4 border shadow-lg"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex border-b-2 justify-between"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-blue-400 text-sm font-bold tracking-wide"
@@ -30415,14 +30424,11 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_26 = {
+var _hoisted_27 = {
   "class": "flex mt-4 flex-col"
 };
-var _hoisted_27 = {
-  "class": ""
-};
 var _hoisted_28 = {
-  "class": "mt-2"
+  "class": ""
 };
 var _hoisted_29 = {
   "class": "mt-2"
@@ -30431,50 +30437,53 @@ var _hoisted_30 = {
   "class": "mt-2"
 };
 var _hoisted_31 = {
-  "class": "mt-4"
+  "class": "mt-2"
 };
 var _hoisted_32 = {
+  "class": "mt-4"
+};
+var _hoisted_33 = {
   key: 0,
   "class": "mt-2 border border-dashed border-gray-400"
 };
-var _hoisted_33 = {
+var _hoisted_34 = {
   "class": "text-sm p-12 tracking-wider text-center items-center text-blue-400"
 };
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Drag and Drop / Click to Add image", -1
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Drag and Drop / Click to Add image", -1
 /* HOISTED */
 );
 
-var _hoisted_35 = {
+var _hoisted_36 = {
   key: 1
 };
-var _hoisted_36 = {
+var _hoisted_37 = {
   "class": "relative"
 };
-var _hoisted_37 = ["src"];
+var _hoisted_38 = ["src"];
 
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.151 17.943l-4.143-4.102-4.117 4.159-1.833-1.833 4.104-4.157-4.162-4.119 1.833-1.833 4.155 4.102 4.106-4.16 1.849 1.849-4.1 4.141 4.157 4.104-1.849 1.849z"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_39 = [_hoisted_38];
-var _hoisted_40 = {
+var _hoisted_40 = [_hoisted_39];
+var _hoisted_41 = {
   "class": "mt-4 flex gap-4"
 };
-var _hoisted_41 = {
+var _hoisted_42 = {
   style: {
     "height": "calc(100vh - 180px)",
     "scrollbar-width": "thin"
   },
   "class": "overflow-y-scroll"
 };
-var _hoisted_42 = {
+var _hoisted_43 = {
   "class": "text-ct"
 };
 
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   style: {
     "width": "100%"
   },
@@ -30497,26 +30506,26 @@ var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_44 = {
+var _hoisted_45 = {
   "class": "w-1/6 text-start border-gray-300 p-2"
 };
-var _hoisted_45 = {
+var _hoisted_46 = {
   colspan: "3",
   "class": "w-3/6 text-start border-gray-300 p-2"
 };
-var _hoisted_46 = {
+var _hoisted_47 = {
   "class": "p-2 w-1/6 border-gray-300"
 };
-var _hoisted_47 = ["src"];
-var _hoisted_48 = {
+var _hoisted_48 = ["src"];
+var _hoisted_49 = {
   "class": "p-2 w-1/6"
 };
-var _hoisted_49 = {
+var _hoisted_50 = {
   "class": "flex gap-2 justify-center items-center"
 };
-var _hoisted_50 = ["onClick"];
+var _hoisted_51 = ["onClick"];
 
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   width: "18",
   height: "18",
@@ -30528,10 +30537,10 @@ var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_52 = [_hoisted_51];
-var _hoisted_53 = ["onClick"];
+var _hoisted_53 = [_hoisted_52];
+var _hoisted_54 = ["onClick"];
 
-var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   width: "18",
   height: "18",
@@ -30543,9 +30552,11 @@ var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_55 = [_hoisted_54];
+var _hoisted_56 = [_hoisted_55];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-label");
+
+  var _component_trix_editor = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("trix-editor");
 
   var _component_AdminLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AdminLayout");
 
@@ -30575,37 +30586,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "text-sm tracking-wider",
         "for": "size",
         value: "Body"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-          return $data.form.body = $event;
-        }),
-        "class": "text-sm border-gray-300 rounded-md"
-      }, null, 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.body]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_trix_editor, {
+        input: "x"
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "class": "text-sm tracking-wider",
         "for": "size",
         value: "Image"
-      }), !$data.preview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      }), !$data.preview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: "image",
         "class": "opacity-0 absolute -z-1",
         accept: ".jpg, .png",
         type: "file",
         ref: "file",
         name: "image",
-        onChange: _cache[3] || (_cache[3] = function () {
+        onChange: _cache[2] || (_cache[2] = function () {
           return $options.newfile && $options.newfile.apply($options, arguments);
         })
       }, null, 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), _hoisted_17])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      ), _hoisted_18])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         src: $data.preview,
         "class": "w-1/3 h-40 border",
         alt: ""
       }, null, 8
       /* PROPS */
-      , _hoisted_20), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
-        onClick: _cache[4] || (_cache[4] = function ($event) {
+      , _hoisted_21), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
+        onClick: _cache[3] || (_cache[3] = function ($event) {
           return $options.remove();
         }),
         xmlns: "http://www.w3.org/2000/svg",
@@ -30613,65 +30619,65 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         width: "24",
         height: "24",
         viewBox: "0 0 24 24"
-      }, _hoisted_22))])]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[5] || (_cache[5] = function () {
+      }, _hoisted_23))])]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        onClick: _cache[4] || (_cache[4] = function () {
           return $options.create && $options.create.apply($options, arguments);
         }),
         "class": "bg-green-500 font-bold text-white text-xs tracking-wider p-2 rounded-md"
       }, "SUBMIT")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[6] || (_cache[6] = function ($event) {
+        onClick: _cache[5] || (_cache[5] = function ($event) {
           return $data.newpost = !$data.newpost;
         }),
         "class": "bg-red-500 font-bold text-white text-xs tracking-wider p-2 rounded-md"
       }, "CLOSE")])])], 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.newpost]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.newpost]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "class": "text-sm tracking-wider",
         "for": "size",
         value: "Title"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $data.newform.title = $event;
         }),
         "class": "text-sm border-gray-300 rounded-md",
         type: "text"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newform.title]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newform.title]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "class": "text-sm tracking-wider",
         "for": "size",
         value: "Body"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
           return $data.newform.body = $event;
         }),
         "class": "text-sm border-gray-300 rounded-md"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newform.body]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newform.body]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
         "class": "text-sm tracking-wider",
         "for": "size",
         value: "Image"
-      }), !$data.editpreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      }), !$data.editpreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: "image",
         "class": "opacity-0 absolute -z-1",
         accept: ".jpg, .png",
         type: "file",
         ref: "file",
         name: "image",
-        onChange: _cache[9] || (_cache[9] = function () {
+        onChange: _cache[8] || (_cache[8] = function () {
           return $options.newbrandimage && $options.newbrandimage.apply($options, arguments);
         })
       }, null, 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), _hoisted_34])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      ), _hoisted_35])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         src: $data.editpreview,
         "class": "w-1/3 h-40 border",
         alt: ""
       }, null, 8
       /* PROPS */
-      , _hoisted_37), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
-        onClick: _cache[10] || (_cache[10] = function ($event) {
+      , _hoisted_38), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
+        onClick: _cache[9] || (_cache[9] = function ($event) {
           return $options.removeeditpreview();
         }),
         xmlns: "http://www.w3.org/2000/svg",
@@ -30679,51 +30685,51 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         width: "24",
         height: "24",
         viewBox: "0 0 24 24"
-      }, _hoisted_39))])]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[11] || (_cache[11] = function () {
+      }, _hoisted_40))])]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        onClick: _cache[10] || (_cache[10] = function () {
           return $options.update && $options.update.apply($options, arguments);
         }),
         "class": "bg-green-500 font-bold text-white text-xs tracking-wider p-2 rounded-md"
       }, "SUBMIT")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[12] || (_cache[12] = function ($event) {
+        onClick: _cache[11] || (_cache[11] = function ($event) {
           return $data.updatepost = !$data.updatepost;
         }),
         "class": "bg-red-500 font-bold text-white text-xs tracking-wider p-2 rounded-md"
       }, "CLOSE")])])], 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.updatepost]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.posts, function (post) {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.updatepost]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.posts, function (post) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           style: {
             "width": "100%"
           },
           key: post.id,
           "class": "border-t-2 flex flex-row shadow-sm text-sm text-gray-500 tracking-wider border-gray-100"
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.title), 1
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.title), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.body), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.body), 1
         /* TEXT */
-        )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [post.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+        )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [post.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
           key: 0,
           "class": "h-14 w-14 flex mr-1",
           src: '/storage/' + post.image,
           alt: ""
         }, null, 8
         /* PROPS */
-        , _hoisted_47)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        , _hoisted_48)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: function onClick($event) {
             return $data.updatepost = !$data.updatepost, $data.newform.title = post.title, $data.newform.body = post.body, $data.newform.id = post.id;
           },
           "class": "flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg"
-        }, _hoisted_52, 8
+        }, _hoisted_53, 8
         /* PROPS */
-        , _hoisted_50), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        , _hoisted_51), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: function onClick($event) {
             return $options.deletePost(post);
           },
           "class": "flex items-center justify-center font-bold text-sm text-red-600 p-2 bg-green-400 rounded-md shadow-lg"
-        }, _hoisted_55, 8
+        }, _hoisted_56, 8
         /* PROPS */
-        , _hoisted_53)])])]);
+        , _hoisted_54)])])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])])])])];
