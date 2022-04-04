@@ -12,12 +12,9 @@
                                 <p class="text-lg p-2 py-4 font-serif font-bold uppercase tracking-wider">{{post.title}}</p>
                             </div>
                             <div class="flex flex-col whitespace-normal h-auto overflow-hidden">
-                                <p class="p-2 text-left font-semibold italic font-serif text-gray-600 tracking-widest">
-                                    <div class="w-full">
-                                        <img class="w-full h-48 sm:h-96" :src="'/storage/'+post.image" alt="">
-                                    </div>
-                                    <p class="mt-4">{{post.body}}</p>
-                                </p>
+                                <div class="p-2 text-left tracking-widest">
+                                    <div class="mt-4" v-html="post.body"></div>
+                                </div>
                             </div>
                             <div class="mt-4 p-2">
                                 <span class="text-xs tracking-wider uppercase text-gray-400">{{formatDate(post.created_at)}}</span>

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -15,15 +13,12 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|string',
             'body'  => 'required',
-            'image' => 'image'
         ]);
 
-        $path = $request->image->storeAs('media', Str::uuid() . '.' . $request->image->getClientOriginalExtension(), [ 'disk'=> 'public']);
         
         Blog::create([
             'title' => $request->title,
             'body'  => $request->body,
-            'image' => $path,
         ]);
 
 
@@ -37,25 +32,10 @@ class BlogController extends Controller
             'body'  => 'required',
         ]);
 
-        if($request->image)
-        {
-            if($blog->image)
-            {
-                Storage::disk('public')->delete($blog->img);
-            }
-           
-            $path = $request->image->storeAs('media', Str::uuid() . '.' . $request->image->getClientOriginalExtension(), [ 'disk'=> 'public']);
-            $blog->title = $request->title;
-            $blog->body  = $request->body;
-            $blog->image = $path;
-            $blog->save();
-        }
-        else
-        {
-            $blog->title = $request->title;
-            $blog->body  = $request->body;
-            $blog->save();
-        }
+       
+        $blog->title = $request->title;
+        $blog->body  = $request->body;
+        $blog->save();
         
 
 

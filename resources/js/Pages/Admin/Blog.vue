@@ -19,103 +19,68 @@
                        </div> -->
                    </div>
                    <div v-show="newpost" class="absolute bg-white w-full p-4 border shadow-lg">
-                       <div class="flex border-b-2 justify-between">
-                           <div>
-                               <span class="text-blue-400 text-sm font-bold tracking-wide">NEW POST</span>
-                           </div>
-                       </div>
-                       <div class="flex mt-4 flex-col">
-                           <div class="">
-                               <jet-label class="text-sm tracking-wider" for="size" value="Title"/>
+                       <form @submit.prevent="create">
+                            <div class="flex border-b-2 justify-between">
+                                <div>
+                                    <span class="text-blue-400 text-sm font-bold tracking-wide">NEW POST</span>
+                                </div>
+                            </div>
+                            <div class="flex mt-4 flex-col">
+                                <div class="">
+                                    <jet-label class="text-sm tracking-wider" for="size" value="Title"/>
+                                        <div class="mt-2">
+                                            <input v-model="form.title" required class="text-sm border-gray-300 rounded-md" type="text"/>
+                                        </div>
+                                </div>
                                 <div class="mt-2">
-                                    <input v-model="form.title" class="text-sm border-gray-300 rounded-md" type="text"/>
+                                    <jet-label class="text-sm tracking-wider" for="size" value="Body"/>
+                                        <div class="mt-2">
+                                            <QuillEditor required v-model:content="form.body" contentType="html" type="html"  theme="snow" :modules="modules" toolbar="full"/>
+                                        </div>
                                 </div>
-                           </div>
-                           <div class="mt-2">
-                               <jet-label class="text-sm tracking-wider" for="size" value="Body"/>
-                                <div class="mt-2">
-<<<<<<< Updated upstream
-                                    <input id="x" type="hidden" name="content">
-                                    <trix-editor input="x"></trix-editor>
-=======
-                                    <QuillEditor  theme="snow" :modules="modules" toolbar="full"/>
->>>>>>> Stashed changes
+                            </div>
+                            
+                            <div class="mt-4 flex gap-4">
+                                <div>
+                                    <button type="submit" class="bg-green-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">SUBMIT</button>
                                 </div>
-                           </div>
-                           <div class="mt-4">
-                                <jet-label class="text-sm tracking-wider" for="size" value="Image"/>
-                                <div v-if="!preview" class="mt-2 border border-dashed border-gray-400">
-                                    <div class="text-sm  p-12 tracking-wider text-center items-center text-blue-400">
-                                        <input id="image" class="opacity-0 absolute -z-1" accept=".jpg, .png" type="file" ref="file" name="image" @change="newfile">
-                                        <span>Drag and Drop / Click to Add image</span>
-                                    </div>
+                                <div>
+                                    <button type="button" @click="newpost = !newpost" class="bg-red-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">CLOSE</button>
                                 </div>
-                                <div v-else>
-                                    <div class="relative">
-                                        <img :src="preview" class="w-1/3 h-40 border" alt="">
-                                        <svg @click="remove()" xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600 absolute top-2 left-2" width="24" height="24" viewBox="0 0 24 24">
-                                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.151 17.943l-4.143-4.102-4.117 4.159-1.833-1.833 4.104-4.157-4.162-4.119 1.833-1.833 4.155 4.102 4.106-4.16 1.849 1.849-4.1 4.141 4.157 4.104-1.849 1.849z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                           </div>
-                       </div>
-                       
-                       <div class="mt-4 flex gap-4">
-                           <div>
-                               <button @click="create" class="bg-green-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">SUBMIT</button>
-                           </div>
-                           <div>
-                               <button @click="newpost = !newpost" class="bg-red-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">CLOSE</button>
-                           </div>
-                       </div>
+                            </div>
+                       </form>
                    </div>
                    <div v-show="updatepost" class="absolute bg-white w-full p-4 border shadow-lg">
-                       <div class="flex border-b-2 justify-between">
-                           <div>
-                               <span class="text-blue-400 text-sm font-bold tracking-wide">EDIT BRAND</span>
-                           </div>
-                       </div>
-                       <div class="flex mt-4 flex-col">
-                           <div class="">
-                               <jet-label class="text-sm tracking-wider" for="size" value="Title"/>
+                      <form @submit.prevent="update">
+                            <div class="flex border-b-2 justify-between">
+                                <div>
+                                    <span class="text-blue-400 text-sm font-bold tracking-wide">EDIT BLOG</span>
+                                </div>
+                            </div>
+                            <div class="flex mt-4 flex-col">
+                                <div class="">
+                                    <jet-label class="text-sm tracking-wider" for="size" value="Title"/>
+                                        <div class="mt-2">
+                                            <input required v-model="newform.title" class="text-sm border-gray-300 rounded-md" type="text"/>
+                                        </div>
+                                </div>
                                 <div class="mt-2">
-                                    <input v-model="newform.title" class="text-sm border-gray-300 rounded-md" type="text"/>
+                                    <jet-label class="text-sm tracking-wider" for="size" value="Body"/>
+                                        <div class="mt-2">
+                                            <QuillEditor required v-model:content="newform.body" contentType="html" type="html"  theme="snow" :modules="modules" toolbar="full"/>
+                                        </div>
                                 </div>
-                           </div>
-                           <div class="mt-2">
-                               <jet-label class="text-sm tracking-wider" for="size" value="Body"/>
-                                <div class="mt-2">
-                                    <textarea v-model="newform.body" class="text-sm border-gray-300 rounded-md"/>
+                            </div>
+                            
+                            <div class="mt-4 flex gap-4">
+                                <div>
+                                    <button type="submit" class="bg-green-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">SUBMIT</button>
                                 </div>
-                           </div>
-                           <div class="mt-4">
-                                <jet-label class="text-sm tracking-wider" for="size" value="Image"/>
-                                <div v-if="!editpreview" class="mt-2 border border-dashed border-gray-400">
-                                    <div class="text-sm  p-12 tracking-wider text-center items-center text-blue-400">
-                                        <input id="image" class="opacity-0 absolute -z-1" accept=".jpg, .png" type="file" ref="file" name="image" @change="newbrandimage">
-                                        <span>Drag and Drop / Click to Add image</span>
-                                    </div>
+                                <div>
+                                    <button type="button" @click="updatepost = !updatepost" class="bg-red-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">CLOSE</button>
                                 </div>
-                                <div v-else>
-                                    <div class="relative">
-                                        <img :src="editpreview" class="w-1/3 h-40 border" alt="">
-                                        <svg @click="removeeditpreview()" xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600 absolute top-2 left-2" width="24" height="24" viewBox="0 0 24 24">
-                                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.151 17.943l-4.143-4.102-4.117 4.159-1.833-1.833 4.104-4.157-4.162-4.119 1.833-1.833 4.155 4.102 4.106-4.16 1.849 1.849-4.1 4.141 4.157 4.104-1.849 1.849z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                           </div>
-                       </div>
-                       
-                       <div class="mt-4 flex gap-4">
-                           <div>
-                               <button @click="update" class="bg-green-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">SUBMIT</button>
-                           </div>
-                           <div>
-                               <button @click="updatepost = !updatepost" class="bg-red-500 font-bold text-white text-xs tracking-wider p-2 rounded-md">CLOSE</button>
-                           </div>
-                       </div>
+                            </div>
+                      </form>
                    </div>
                    <div style="height:calc(100vh - 180px);scrollbar-width:thin" class="overflow-y-scroll">
                         <div class="text-ct" >
@@ -126,10 +91,6 @@
                                 <div class="w-3/6 text-left border-gray-300 p-2">
                                     <p class=" pr-1">Body</p>
                                 </div>
-                                
-                                <div class="w-1/6 text-left border-gray-300 p-2">
-                                    <span class="flex pr-1">Image</span>
-                                </div>
                                 <div class="w-1/6 text-center p-2">Actions</div>
                             </div>
                             
@@ -137,8 +98,7 @@
                                 <div style="width:100%" v-for="post in posts" :key="post.id" class="border-t-2 flex flex-row shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
                                     <div class="w-1/6 text-start border-gray-300 p-2">{{post.title}}</div>
                                     <div colspan="3" class="w-3/6 text-start border-gray-300 p-2">
-                                        <div>
-                                            <p>{{post.body}}</p>
+                                        <div v-html="post.body">
                                         </div>
                                     </div>
                                     <div class="p-2 w-1/6 border-gray-300"><img v-if="post.image" class="h-14 w-14 flex mr-1" :src="'/storage/'+post.image" alt=""></div>
@@ -188,15 +148,11 @@
                     id: '',
                     title: '',
                     body: 'adasdas',
-                    image: '',
                 }),
            form:this.$inertia.form({
                     title: '',
                     body: '',
-                    image: '',
                 }),
-            preview: '',
-            editpreview : ''
         }
     },
      components:
@@ -230,40 +186,12 @@
         {
             window.history.back();
         },
-        removeeditpreview()
-        {
-            this.editpreview = '';
-            this.newform.image = '';
-        },
-        remove()
-        {
-            this.preview = '';
-            this.form.image = '';
-        },
-        newbrandimage(e)
-        {
-            let selectedFile = e.target.files[0];
-            console.log(selectedFile);
-            if(!selectedFile.length) {
-                console.log('err');
-            }
-            this.newform.image = selectedFile;
-        },
-        newfile(e)
-        {
-            let selectedFile = e.target.files[0];
-            console.log(selectedFile);
-            if(!selectedFile.length) {
-                console.log('err');
-            }
-            this.form.image = selectedFile;
-        },
+        
         update(){
             this.newform.post('/admin/blog/post/'+this.newform.id+'/update', {
                 onSuccess:() =>
                 {
                     alert("Success");
-                    this.removeeditpreview();
                    
                  }
             })
@@ -271,10 +199,13 @@
         deletePost(post){
             if(confirm('this Post will be permanently deleted'))
             {
-                axios.delete('/admin/blog/post/'+post.id+'/delete')
-                .then(
-                    alert('Success reload now!!'),
-                )
+                this.$inertia.delete('/admin/blog/post/'+post.id+'/delete',{
+                    onSuccess:()=>
+                    {
+                        alert('Success reload now!!')
+                    }
+                })
+                
             }
         },
         create()
@@ -283,7 +214,6 @@
                 onSuccess:() =>
                 {
                     alert("Success");
-                    this.remove();
                     this.newpost = false;
                 }
             })
@@ -293,24 +223,6 @@
     {
        
     },
-    watch:
-    {
-        'form.image'()
-        {
-            if(this.form.image)
-            {
-                this.preview = URL.createObjectURL(this.form.image);
-            }
-        },
-
-        'newform.image'()
-        {
-            if(this.newform.image)
-            {
-                this.editpreview = URL.createObjectURL(this.newform.image);
-            }
-        },
-    }
  }
 </script>
 
