@@ -9,39 +9,7 @@
                 <!-- <div :class="{'modal-open': errors.msg, 'modal-close': !errors}" class="absolute shadow-md w-full left-0 right-0 top-20 bg-white ">
                     <span>{{errors.msg}}</span>
                 </div> -->
-               <div v-show="visible" class="absolute h-4/5 w-full overflow-y-scroll bg-white shadow-lg">
-                    <div class="flex justify-between border-b p-4">
-                        <div>
-                            <span class="text-sm font-bold tracking-wider">ITEMS</span>
-                        </div>
-                        <div @click="visible = !visible" class="p-2 bg-red-400 border  rounded-full border-red-400 hover:bg-gray-400 hover:border-green-400">
-                            <svg  xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-white hover:text-red-600" viewBox="0 0 24 24">
-                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
-                            </svg>
-                        </div>                            
-                    </div>
-                    <div v-for="product in products" :key="product" class="m-4">
-                        <div class="flex justify-between bg-white border text-gray-700 mb-2">
-                            <div class="flex p-1">
-                                <img :src="'/storage/'+product.image[0].link" alt="" class="w-24 p-2 h-24 self-center ">
-                                <div class="flex m-4 text-gray-700 text-sm font-sans text-thin self-center">
-                                    <div class="p-2">
-                                        <div class="p-1">
-                                            <span class="font-bold tracking-wider text-md">{{product.name}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-center text-sm font-bold tracking-wider ">
-                                <span>QUANTITY : {{product.pivot.quantity}}</span>
-                            </div>
-                            <div class="flex items-center p-2 m-1">
-                                <span class="p-1 font-semibold">&#8377; {{product.price}}</span>
-                            </div>
-                        </div>
-                        
-                    </div>
-               </div>
+              
                <div class="flex justify-between m-4">
                     <div class="flex gap-2">
                         <div>
@@ -75,6 +43,41 @@
                         </div>
                     </div>
                 </div>
+                <div v-show="visible" class="absolute h-4/5 w-full overflow-y-scroll bg-white shadow-lg">
+                    <div class="flex justify-between border-b p-4">
+                        <div>
+                            <span class="text-sm font-bold tracking-wider">ITEMS</span>
+                        </div>
+                        <div @click="visible = !visible" class="p-2 bg-red-400 border  rounded-full border-red-400 hover:bg-gray-400 hover:border-green-400">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-white hover:text-red-600" viewBox="0 0 24 24">
+                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
+                            </svg>
+                        </div>                            
+                    </div>
+                    <div v-for="product in products" :key="product" class="m-4">
+                        <div class="flex justify-between bg-white border text-gray-700 mb-2">
+                            <div class="flex p-1">
+                                <img :src="'/storage/'+product.image[0].link" alt="" class="w-24 p-2 h-24 self-center ">
+                                <div class="flex m-4 text-gray-700 text-sm font-sans text-thin self-center">
+                                    <div class="p-2">
+                                        <div class="p-1 flex flex-col gap-2">
+                                            <span class="font-bold tracking-wider text-md">{{product.name}}</span>
+                                            <span v-if="product.pivot.variant">{{variantName(product.pivot.variant, product.variant)}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-sm font-bold tracking-wider ">
+                                <span>QUANTITY : {{product.pivot.quantity}}</span>
+                            </div>
+                            <div class="flex items-center p-2 m-1">
+                                <span class="p-1 font-semibold" v-if="product.pivot.variant != ''">&#8377; {{variantPrice(product.pivot.variant, product.variant, product.pivot.quantity)}}</span>
+                                <span v-else class="p-1 font-semibold">&#8377; {{product.price}}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+               </div>
                <div style="height:calc(100vh - 180px);scrollbar-width:thin" class="overflow-y-scroll m-4 border-t-2 py-4">
                    
                    <table class="w-full text-ct">
@@ -168,6 +171,7 @@
                         
                     </table>
                </div>
+                
            </div>
        </div>
    </AdminLayout>    
@@ -188,6 +192,7 @@ import { usePage } from '@inertiajs/inertia-vue3';
             status: '',
             key: '',
             remarks: '',
+            index: '',
         }
     },
      components:
@@ -241,6 +246,32 @@ import { usePage } from '@inertiajs/inertia-vue3';
             this.$inertia.get("/admin/order/getby/status", {
                 status: filter,
             })
+        },
+
+        variantPrice(id, variant, quantity)
+        {
+            this.index = variant.findIndex(element => {
+                if(element.id == id)
+                {
+                    return true;
+                }
+            });
+
+            return variant[this.index].price * quantity;
+            
+        },
+
+        variantName(id, variant)
+        {
+            this.index = variant.findIndex(element => {
+                if(element.id == id)
+                {
+                    return true;
+                }
+            });
+
+            return variant[this.index].name;
+            
         }
     },
     mounted()
