@@ -15,8 +15,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&family=Lato&family=Open+Sans:wght@500&family=Ruluko&display=swap" rel="stylesheet"> 
         <!-- Scripts -->
-        <link rel="stylesheet" type="text/css" href="trix.css">
-        <script type="text/javascript" src="trix.js"></script>
         @routes
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215398636-2"></script>
