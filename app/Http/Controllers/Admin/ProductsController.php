@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\Skintype;
 use App\Models\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -61,7 +62,7 @@ class ProductsController extends Controller
 
     public function editProduct(Product $product)
     {
-        return Inertia::render('Admin/EditProduct', ['product' => $product]);
+        return Inertia::render('Admin/EditProduct', ['product' => $product ,'skintypes' => Skintype::all()]);
     }
 
     public function deleteProductImage(Image $image)

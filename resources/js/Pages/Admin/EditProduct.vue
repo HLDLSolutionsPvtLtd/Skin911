@@ -59,6 +59,18 @@
                                     </div>
                                     <div class="flex mt-2 justify-center">
                                         <div class="w-full">
+                                                <jet-label class="text-sm  tracking-wider my-1" for="category" value="Skintype"/>
+                                                <div>
+                                                    <jet-input-error :message="form.errors.skintype_id" class="mt-2" />
+                                                    <select v-model="form.skintype_id" class="w-full placeholder-gray-100  tracking-wider text-sm my-1 rounded-md border border-gray-200" id="skintype" required>
+                                                        <option selected value="">Select skintype</option>
+                                                        <option v-for="skintype in skintypes" :key="skintype.id" :value="skintype.id">{{skintype.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="flex mt-2 justify-center">
+                                        <div class="w-full">
                                             <jet-label class="text-sm font-bold my-1" for="price" value="Price"/>
                                             <div>
                                                 <jet-input-error :message="form.errors.price" class="mt-2" />
@@ -301,7 +313,7 @@
     import axios from 'axios'
 
  export default{
-     props:['product'],
+     props:['product', 'skintypes'],
      data()
      {
          return{
@@ -311,6 +323,7 @@
                     name: this.product.name,
                     description: this.product.description,
                     brand_id: this.product.brand_id,
+                    skintype_id: this.product.skintype_id,
                     category_id: this.product.category_id,
                     price : this.product.price,
                     images: [],

@@ -177,6 +177,7 @@
                     <div class="mt-8 mb-8 border-t">
                         <div>
                             <ul class="flex text-gray-500 font-light text-sm">
+                                <li class="p-2 tracking-wider cursor-pointer"></li>
                                 <li class="p-2 tracking-wider cursor-pointer">{{product.description}}</li>
                             </ul>
                         </div>
