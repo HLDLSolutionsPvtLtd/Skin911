@@ -165,12 +165,12 @@ class OrderController extends Controller
             if($product->pivot->variant)
             {
                $svariant = $product->variant->where('id', $product->pivot->variant)->first();
-               $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $svariant->id, 'subtotal' => $total]);
+               $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => $svariant->id, 'subtotal' => $svariant->price * $product->pivot->quantity]);
 
             }
             else
             {
-                $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => '', 'subtotal' => $total]);
+                $order->products()->attach($product, ['quantity' => $product->pivot->quantity, 'variant' => '', 'subtotal' => $product->price * $product->pivot->quantity]);
             }
 
             $cart->products()->wherePivot('id', $product->pivot->id)->detach();
