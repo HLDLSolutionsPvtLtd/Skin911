@@ -9,9 +9,9 @@
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 24 24"  class="absolute -top-20 right-1/4 fill-current transition transform translate-Y-60 duration-700 text-blue-400 rounded-full p-0 bg-white">
                             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"/>
                         </svg> -->
-                        <p class="text-black text-sm tracking-wider font-bold text-center w-full">PRODUCT WAS SUCCESSFULLY ADDED TO YOUR CART</p>
+                        <p class="text-gray-700 text-sm tracking-wider font-bold text-center w-full">PRODUCT WAS SUCCESSFULLY ADDED TO YOUR CART</p>
                         <a href="/cart">
-                            <button class="border border-black rounded-sm p-2 px-8 mt-4 tracking-widest font-bold text-black text-xs">VIEW CART</button>
+                            <button class="border border-blue-200 rounded-sm p-2 px-8 mt-4 tracking-widest font-bold text-gray-700 text-xs">VIEW CART</button>
                         </a>
                     </div>
                     

@@ -27,7 +27,6 @@ use App\Models\Product;
 use App\Models\Shipping;
 use App\Models\Skintype;
 use App\Models\User;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -47,8 +46,9 @@ Route::get('/', function () {
 })->name('/');
 
 Route::get('/products', function () {
-    return Inertia::render('Products');
+    return Inertia::render('Products', ['skintypes' => Skintype::all(), 'brands' => Brand::all()]);
 })->name('products');
+
 Route::get('view/categories', function () {
     return Inertia::render('Categories');
 })->name('categories');
@@ -62,6 +62,7 @@ Route::get('view/brands', function () {
 })->name('brands');
 
 Route::get('/product/{product:id}/details',[ProductController::class, 'detailView'])->name('product.view');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', [CartController::class, 'view'])->name('cart');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/checkout', function () {
@@ -127,6 +128,9 @@ Route::get('categories/all',[ControllersCategoryController::class, 'all'])->name
 Route::get('brands/all',[ControllersBrandController::class, 'all'])->name('brands.all');
 Route::get('topselling',[ProductController::class, 'topselling'])->name('topselling');
 Route::get('newarrivals',[ProductController::class, 'newArrivals'])->name('newarrivals');
+
+Route::get('skintypes/all',[SkintypesController::class, 'index'])->name('skintypesall');
+
 
 /*
 |--------------------------------------------------------------------------

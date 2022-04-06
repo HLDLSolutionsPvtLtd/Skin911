@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class SkintypesController extends Controller
 {
     //
-    public function all()
+    public function index()
     {
         return Skintype::all();
     }

@@ -41,6 +41,8 @@ class ProductController extends Controller
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
                     $q->where('name', $request->filter);
+                })->orWhereHas('skintype', function($q) use($request){
+                    $q->where('name', $request->filter);
                 })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(12);
             }
             else if($request->has('filter'))
@@ -50,6 +52,8 @@ class ProductController extends Controller
                 })->orWhereHas('category', function($q) use($request){
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('skintype', function($q) use($request){
                     $q->where('name', $request->filter);
                 })->with('discounts')->orderByRaw("CONVERT(`price`, unsigned) {$request->val}")->paginate(12);
             }
@@ -68,6 +72,8 @@ class ProductController extends Controller
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
                     $q->where('name', $request->filter);
+                })->orWhereHas('skintype', function($q) use($request){
+                    $q->where('name', $request->filter);
                 })->with('discounts')->orderBy($request->var, $request->val)->paginate(12);
             }
             else if($request->has('filter'))
@@ -77,6 +83,8 @@ class ProductController extends Controller
                 })->orWhereHas('category', function($q) use($request){
                     $q->where('name', $request->filter);
                 })->orWhereHas('discounts', function($q) use($request){
+                    $q->where('name', $request->filter);
+                })->orWhereHas('skintype', function($q) use($request){
                     $q->where('name', $request->filter);
                 })->with('discounts')->orderBy($request->var, $request->val)->paginate(12);
             }

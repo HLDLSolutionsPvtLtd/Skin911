@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sm:col-span-2 sm:ml-8 mt-2 sm:mt-0">
+                    <div v-if="addresses[0]" class="sm:col-span-2 sm:ml-8 mt-2 sm:mt-0">
                         <div class="border bg-white">
                             <div class="m-4 text-gray-600">
                                 <div class="flex border-b p-4 font-semibold tracking-widest text-xs uppercase justify-between">
@@ -317,26 +317,29 @@ export default {
         },
         addresses()
         {
-            this.form.selectedAddress = this.addresses[0].id;
-            var index =  this.addresses.findIndex(el =>{
-                if(el.id == this.form.selectedAddress)
-                {
-                    return true;
-                }
-            })
-            axios.get('/admin/shippingfee/calculate', {params: {'pincode': this.addresses[index].pincode , 'amount' : this.subtotal}})
-            .then(res => this.fee = res.data)
-            .then( ()=> {
-                if(this.fee != 'free')
-                {
-                    this.total = this.subtotal + this.fee;
+            if(this.addresses[0])
+            {
+                this.form.selectedAddress = this.addresses[0].id;
+                var index =  this.addresses.findIndex(el =>{
+                    if(el.id == this.form.selectedAddress)
+                    {
+                        return true;
+                    }
+                })
+                axios.get('/admin/shippingfee/calculate', {params: {'pincode': this.addresses[index].pincode , 'amount' : this.subtotal}})
+                .then(res => this.fee = res.data)
+                .then( ()=> {
+                    if(this.fee != 'free')
+                    {
+                        this.total = this.subtotal + this.fee;
 
-                }
-                else
-                {
-                    this.total = this.subtotal;
-                }
-            })
+                    }
+                    else
+                    {
+                        this.total = this.subtotal;
+                    }
+                })
+            }
         }
    },
 

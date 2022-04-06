@@ -267,6 +267,9 @@
                                     <div @click="filters = 'discounts'" :class="{'bg-gray-100 text-gray-600':filters == 'discounts'}" class="p-2 w-full cursor-pointer">
                                         <span>Discounts</span>
                                     </div>
+                                    <div @click="filters = 'skintype'" :class="{'bg-gray-100 text-gray-600':filters == 'skintype'}" class="p-2 w-full cursor-pointer">
+                                        <span>Skintype</span>
+                                    </div>
                                 </div>
                                 <div class="w-1/2 h-screen text-sm pb-12 bg-gray-100 overflow-y-scroll pl-4">
                                    <ul v-show="filters == 'brands'" class="overflow-y-scroll" >
@@ -283,6 +286,11 @@
                                    <ul v-show="filters == 'discounts'">
                                        <template v-for="discount in discounts" :key="discount.id">
                                             <li class="p-1 mt-2 list-none cursor-pointer" @click="key= discount.name, filter=!filter, productAll()">{{discount.name}}</li>
+                                        </template>
+                                   </ul>
+                                   <ul v-show="filters == 'skintype'">
+                                       <template v-for="skintype in skintypes" :key="skintype.id">
+                                            <li class="p-1 mt-2 list-none cursor-pointer" @click="key= skintype.name, filter=!filter, productAll()">{{skintype.name}}</li>
                                         </template>
                                    </ul>
                                 </div>
@@ -316,6 +324,7 @@ export default{
                 products: [],
                 brands: [],
                 categories: [],
+                skintypes: [],
                 discounts: [],
                 res: [],
                 form: this.$inertia.form({
@@ -326,7 +335,7 @@ export default{
                 success: false,
             }
         },
-    mounted() {
+    mounted(){
         this.key = new URL(location.href).searchParams.get("key");
         this.related = new URL(location.href).searchParams.get("related");
         this.productAll();
@@ -336,6 +345,8 @@ export default{
         .then(res => this.categories = res.data);
         axios.get('/discounts/all')
         .then(res => this.discounts = res.data);
+        axios.get('/skintypes/all')
+        .then(res => this.skintypes = res.data);
     },
     methods: {
         nextProd()
