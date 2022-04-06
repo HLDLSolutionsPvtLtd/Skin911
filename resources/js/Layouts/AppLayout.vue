@@ -41,7 +41,7 @@
                                             <div class="col-span-10 text-gray-700 border-gray-200">
                                                 <span class="">FEATURED CATEGORIES</span>
                                                 <ul class="grid grid-cols-4">
-                                                    <li v-for="category in categories" :key="category.id" class="hover:text-gray-300 pt-2">
+                                                    <li v-for="category in categories" :key="category.id" class="hover:text-gray-300 text-sm font-semibold tracking-wider pt-2">
                                                         <a :href="'/products?key='+category.name"> <span>{{category.name}}</span></a>
                                                     </li>
                                                     
@@ -72,7 +72,7 @@
                                             <div class="col-span-10 px-12 text-gray-700 border-gray-200">
                                                 <span class="">FEATURED BRANDS</span>
                                                 <ul class="grid grid-cols-4">
-                                                    <li v-for="brand in lbrands" :key="brand.id"  class="hover:text-gray-300 pt-2">
+                                                    <li v-for="brand in lbrands" :key="brand.id"  class="hover:text-gray-300 text-sm font-semibold tracking-wider pt-2">
                                                        <a :href="'/products?key='+brand.name"><span>{{brand.name}}</span></a>
                                                     </li>
                                                 </ul>

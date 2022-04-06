@@ -2233,8 +2233,8 @@ select {
 .pb-48 {
 	padding-bottom: 12rem;
 }
-.pl-8 {
-	padding-left: 2rem;
+.pl-7 {
+	padding-left: 1.75rem;
 }
 .pb-12 {
 	padding-bottom: 3rem;
@@ -2247,6 +2247,9 @@ select {
 }
 .pr-3 {
 	padding-right: 0.75rem;
+}
+.pl-8 {
+	padding-left: 2rem;
 }
 .text-left {
 	text-align: left;

@@ -214,20 +214,20 @@ class OrderController extends Controller
     {
         if($request->user()->id == $order->user_id)
         {
-            if($order->status != "out_for_delivery")
+            if($order->status == "placed")
             {
                 $order->status ='cancelled';
-                foreach($order->products as $product)
-                {
-                    if($product->pivot->variant)
-                    {
-                        $product->variant->where('id', $product->pivot->variant)->quantity = $product->variant->where('id', $product->pivot->variant)->quantity++;
-                    }
-                    else
-                    {
-                        $product->quantity = $product->quantity--;
-                    }
-                }
+                // foreach($order->products as $product)
+                // {
+                //     if($product->pivot->variant)
+                //     {
+                //         $product->variant->where('id', $product->pivot->variant)->first()->quantity = $product->variant->where('id', $product->pivot->variant)->first()->quantity++;
+                //     }
+                //     else
+                //     {
+                //         $product->quantity = $product->quantity++;
+                //     }
+                // }
                 $order->save();
                 return redirect()->back();
             }
