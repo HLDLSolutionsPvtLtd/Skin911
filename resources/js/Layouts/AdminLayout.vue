@@ -272,7 +272,6 @@
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
     import { Link } from '@inertiajs/inertia-vue3'
-    import Button from '../Jetstream/Button.vue'
 
     export default {
         

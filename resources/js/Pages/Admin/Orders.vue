@@ -113,7 +113,7 @@
                             </td>
                             
                             <td class="text-left font-bold p-1">
-                                <div class="flex flex-col">
+                                <div v-if="order.address" class="flex flex-col">
                                     <span>{{order.customer.name}}</span>
                                     <div class="flex gap-2">
                                         <span>{{order.address.name}},</span>

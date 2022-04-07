@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Address">
         <div class="w-full flex justify-center">
             <div class="w-10/12 m-2">
                 <div class="w-full m-2 border">

@@ -1,11 +1,11 @@
 <template>
-    <app-layout>
+    <app-layout title="Categories">
         <div class="flex flex-col sm:p-6 items-center w-full min-h-screen bg-white">
             <div class="mt-2 sm:mt-6">
                 <span class="text-xl tracking-wider font-bold">CATEGORIES</span>
             </div>
             <div class="w-full sm:grid sm:grid-cols-6 m-2">
-                <div v-for="category in categories" class="m-2 p-2 border">
+                <div v-for="category in categories" :key="category.id" class="m-2 p-2 border">
                      <a :href="'/products?key='+category.name">
                         <div>
                             <img class="w-full" :src="'/storage/'+category.img" alt="">

@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="AboutUs">
         <div class="min-h-screen">
             <div class="mx-2 sm:mx-12">
                 <div class="mt-4 flex justify-center">

@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout class="Buynow">
         <div class="w-full flex justify-center">
             <div v-show="success" class='modal__container shadow-md border bg-white'>
                 <div class="modal__content pt-12 relative">
@@ -36,8 +36,8 @@
                                 <div>
                                     <span class="text-xs font-bold tracking-wider">BILLING ADDRESS</span>
                                 </div>
-                                <div class="m-2">
-                                    <div v-if="addresses.length" class="pt-4" v-for="address in addresses" :key="address.id">
+                                <div v-if="addresses.length" class="m-2">
+                                    <div class="pt-4" v-for="address in addresses" :key="address.id">
                                         <div>
                                             <input type="radio" :value="address.id" v-model="form.selectedAddress" :checked="form.selectedAddress === address.id" class="mr-2">
                                             <span class="text-xs font-bold uppercase tracking-wider text-gray-800">{{address.name}}</span>
@@ -58,12 +58,13 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div v-else class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current mr-2 text-blue-400" viewBox="0 0 24 24">
-                                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/>
-                                        </svg>
-                                        <span class="text-sm tracking-wider font-semibold text-blue-400">Please add new Address first</span>
-                                    </div>
+                                    
+                                </div>
+                                <div v-else class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current mr-2 text-blue-400" viewBox="0 0 24 24">
+                                        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/>
+                                    </svg>
+                                    <span class="text-sm tracking-wider font-semibold text-blue-400">Please add new Address first</span>
                                 </div>
                                 <div class="pt-2 border-t">
                                     <a href="/address/new" class="text-white text-xs font-bold tracking-wider bg-green-500 rounded-md shadow-lg p-2">NEW ADDRESS</a>

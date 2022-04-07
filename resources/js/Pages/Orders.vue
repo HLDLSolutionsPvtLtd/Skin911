@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="My-Orders">
         <div class="sm:flex justify-center">
             <div class="sm:w-7/12 m-2">
                 <div class="w-full border">

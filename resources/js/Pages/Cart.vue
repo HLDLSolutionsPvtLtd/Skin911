@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Cart">
         <div class="w-full sm:flex min-h-screen justify-center">
             <div class="sm:w-10/12 m-2 mb-4">
                 <div class="w-full mb-2 border">

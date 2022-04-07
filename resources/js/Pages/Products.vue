@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Products">
         <div class="flex justify-center relative">
             <div v-show="success" class="modal z-50 w-5/6 md:w-1/4" id="modal">
                 <div class='modal__container shadow-md border bg-white'>

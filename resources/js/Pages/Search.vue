@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Search">
         <div class="flex justify-center w-full min-h-screen bg-white">
             <div class="w-full sm:m-0 sm:w-11/12 md:11/12 xl:w-10/12">
                 <div class="sm:grid sm:grid-cols-6 m-2 sm:mt-12 mb-12">

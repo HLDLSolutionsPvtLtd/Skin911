@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Blog">
         <div class="flex flex-col sm:p-6 items-center w-full min-h-screen bg-white">
             <div class="mt-2 sm:mt-6">
                 <span class="text-xl tracking-wider font-bold">BLOG</span>
