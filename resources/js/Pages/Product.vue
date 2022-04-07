@@ -24,8 +24,8 @@
             <div v-if="product" class=" sm:flex xxl:w-1/2 lg:w-7/12 sm:m-6">
                 <div class="flex flex-col sm:flex-1 bg-white p-2 border-b sm:border-0 shadow-lg sm:shadow-none">
                     <div class="flex border" style="height:calc(100vh - 400px)" >
-                        <div :class="{'fixed z-20 top-0 left-0 h-screen w-screen overflow-y-hidden': zoom}">
-                            <img  :src="'/storage/'+currentImg" alt="" class="w-full h-full">
+                        <div :class="{'fixed z-20 top-0 left-0 h-screen w-screen overflow-y-hidden flex items-center justify-center bg-white': zoom}">
+                            <img  :src="'/storage/'+currentImg" alt="" :class="{'h-auto w-auto': zoom}" class="w-full h-full">
                             <svg v-if="zoom" xmlns="http://www.w3.org/2000/svg" @click="zoom = !zoom" class="fill-current cursor-pointer text-red-400 absolute right-6 top-6" width="24" height="24" viewBox="0 0 24 24">
                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
                             </svg>
@@ -198,7 +198,7 @@
                     <div class="border w-5/12 sm:w-auto inline-block border-gray-100 mr-1 relative" v-for="sproduct in products" :key="sproduct.id">
                             <a :href="'/product/'+sproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img v-if="sproduct.image[0]" style="height:250px" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+sproduct.image[0].link" alt="">
+                                    <img v-if="sproduct.image[0]" style="height:250px" class="absolute  inset-0 h-full w-full object-cover" :src="'/storage/'+sproduct.image[0].link" alt="">
                                 </div>
                                 <div class="absolute ribbon top-4 left-0">
                                     <span v-if="sproduct.discounts[0]" class="flag-discount transform rotate-90">
@@ -351,18 +351,18 @@ import axios from 'axios';
                {
                    if(this.form.quantity == this.product.quantity)
                     {
-                            if(this.form.quantity >= 6)
-                            {
-                                this.qerror = "max quantity exceeded!!";
-                            }
-                            else
-                            {
-                                this.form.quantity++;
-                            }
+                        this.qerror = "max quantity exceeded!!";
                     }
                     else
                     {
-                        this.qerror = "max quantity exceeded!!";
+                        if(this.form.quantity >= 6)
+                        {
+                            this.qerror = "max quantity exceeded!!";
+                        }
+                        else
+                        {
+                            this.form.quantity++;
+                        }
                     }
                }
             }

@@ -112,11 +112,14 @@ export default {
             this.RZPScript.open();
         },
         cancel(id){
-            this.$inertia.post("/order/"+id+"/cancel", {
-                onSuccess: () =>{
-                    alert("success!");
-                }
-            })
+            if(confirm('Are sure you want to cancel your order?'))
+            {
+                this.$inertia.post("/order/"+id+"/cancel", {
+                    onSuccess: () =>{
+                        alert("success!");
+                    }
+                })
+            }
         }
     },
     mounted(){

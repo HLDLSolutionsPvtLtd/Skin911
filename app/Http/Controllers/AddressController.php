@@ -18,7 +18,7 @@ class AddressController extends Controller
         $user = $request->user();
         $validated = $request->validate([
             'name' => 'required',
-            'phone_number' => 'required',
+            'phone_number' => 'required|max:10|min:10',
             'state' => 'required',
             'city' => 'required',
             'district' => 'required',

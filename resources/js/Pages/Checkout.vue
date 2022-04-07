@@ -44,7 +44,7 @@
                                             <input type="radio" :value="address.id" v-model="form.selectedAddress" :checked="form.selectedAddress === address.id" class="mr-2">
                                             <span class="text-xs font-semibold uppercase tracking-wider text-gray-800">{{address.name}}</span>
                                             <div class="flex text-xs m-2 tracking-wider text-gray-700">
-                                                <span>{{address.house_no}}, {{address.street}}, Near {{address.landmark}}, {{address.district}}, {{address.state}}, 
+                                                <span>{{address.house_no}}, {{address.street}}, {{address.landmark}}, {{address.district}}, {{address.state}}, 
                                                     Phone No - {{address.phone_number}},
                                                     {{address.pincode}}
                                                 </span>

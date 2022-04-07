@@ -147,7 +147,7 @@
            newform:this.$inertia.form({
                     id: '',
                     title: '',
-                    body: 'adasdas',
+                    body: '',
                 }),
            form:this.$inertia.form({
                     title: '',
@@ -189,11 +189,6 @@
         
         update(){
             this.newform.post('/admin/blog/post/'+this.newform.id+'/update', {
-                onSuccess:() =>
-                {
-                    alert("Success");
-                   
-                 }
             })
         },
         deletePost(post){
@@ -213,8 +208,9 @@
             this.form.post('/admin/blog/post/create', {
                 onSuccess:() =>
                 {
-                    alert("Success");
                     this.newpost = false;
+                    this.form.title = '';
+                    this.form.body = ''
                 }
             })
         }
