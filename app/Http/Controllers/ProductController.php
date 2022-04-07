@@ -107,11 +107,12 @@ class ProductController extends Controller
 
     public function topSelling()
     {
-        $products = Product::withCount('orders')
-            ->with('discounts')->get()
-            ->sortBy('orders_count', SORT_REGULAR, true)
-            ->take(6);
-
+        // $products = Product::withCount('orders')
+        //     ->with('discounts')->get()
+        //     ->sortBy('orders_count', SORT_REGULAR, true)
+        //     ->take(6);
+        
+        $products = Product::where('tag', 'trending')->with('discounts')->get()->take(12);
         return $products;
     }
 
@@ -122,12 +123,14 @@ class ProductController extends Controller
      */
     public function newArrivals()
     {
-        $startDate = now()->subDays(32);
-        $endDate = now();
+        // $startDate = now()->subDays(32);
+        // $endDate = now();
 
-        $products = Product::whereDate('created_at', '>=', $startDate)
-            ->whereDate('created_at', '<=', $endDate)
-            ->with('discounts')->get();
+        // $products = Product::whereDate('created_at', '>=', $startDate)
+        //     ->whereDate('created_at', '<=', $endDate)
+        //     ->with('discounts')->get();
+
+        $products = Product::where('tag', 'just here')->with('discounts')->get();
 
         return $products;
     }
