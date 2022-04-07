@@ -25,7 +25,7 @@
                             <!-- Logo -->
                             <div class="flex justify-center text-center text-gray-700 items-center self-center">
                                 <Link class="flex" href="/">
-                                    <jet-logo></jet-logo>                                        
+                                    <jet-logo class="mb-2 py-2"></jet-logo>                                        
                                 </Link>
                             </div>
 

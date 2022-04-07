@@ -4,7 +4,7 @@
     <div class="col-span-2 bg-white shadow-lg border-r h-screen">
             <div class="border-b my-1">
                 <div class="p-4 flex justify-center">
-                    <jet-logo></jet-logo>
+                    <jet-logo class="p-2"></jet-logo>
                 </div>
             </div>
             <div class="">
