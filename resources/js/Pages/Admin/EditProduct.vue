@@ -8,36 +8,28 @@
        <div class="h-screen overflow-y-scroll p-5">
             
            <div class="mb-12">
-                    <div class="grid grid-cols-2 bg-white">
-                        <div class="col-span-1 p-4 mr-1 bg-white">
+                    <div class="bg-white">
+                        <div class="p-4 mr-1 bg-white">
                             <div class="flex text-sm border-b font-bold">
                                 <span class="p-2 ml-4 text-blue-400 tracking-wide">Product Deatils</span>
                             </div>
-                            <div class="m-6">
+                            <div class="m-6 grid grid-cols-2 gap-2">
                                     <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm font-bold my-1" for="productname" value="Name"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="productname" value="Name"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.name" class="mt-2" />
-                                                    <input id="productname" v-model="form.name" class="w-full my-1 text-sm rounded-md border border-gray-200" type="text" required autofocus/>
+                                                    <input id="productname" v-model="form.name" class="w-full my-1 text-xs rounded-md border border-gray-200" type="text" required autofocus/>
                                                 </div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-center mt-2">
-                                            <div class="w-full">
-                                                <jet-label class="text-sm font-bold my-1" for="description" value="Description"/>
-                                                <div> 
-                                                    <jet-input-error :message="form.errors.description" class="mt-2" />
-                                                    <textarea class="w-full text-sm my-1 rounded-md border border-gray-200" name="description" v-model="form.description" id="description" cols="30" rows="5" required/>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="flex mt-2 justify-center">
+                                    
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm font-bold my-1" for="brand" value="Brand"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="brand" value="Brand"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.brand_id" class="mt-2" />
-                                                    <select v-model="form.brand_id" class="w-full placeholder-gray-100 my-1 text-sm rounded-md border border-gray-200" id="Label" required>
+                                                    <select v-model="form.brand_id" class="w-full placeholder-gray-100 my-1 text-xs rounded-md border border-gray-200" id="Label" required>
                                                         <option selected value="">Select Brand</option>
                                                         <option v-for="brand in brands" :key="brand.id" :value="brand.id">{{brand.name}}</option>
                                                     </select>
@@ -45,60 +37,65 @@
                                             </div>
                                     </div>
                                     
-                                    <div class="flex mt-2 justify-center">
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm font-bold my-1" for="category" value="Category"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="category" value="Category"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.category_id" class="mt-2" />
-                                                    <select v-model="form.category_id" class="w-full placeholder-gray-100 text-sm my-1 rounded-md border border-gray-200" id="category" required>
+                                                    <select v-model="form.category_id" class="w-full placeholder-gray-100 text-xs my-1 rounded-md border border-gray-200" id="category" required>
                                                         <option selected value="">Select category</option>
                                                         <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                     </div>
-                                    <div class="flex mt-2 justify-center">
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm  tracking-wider my-1" for="category" value="Skintype"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold  tracking-wider my-1" for="category" value="Skintype"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.skintype_id" class="mt-2" />
-                                                    <select v-model="form.skintype_id" class="w-full placeholder-gray-100  tracking-wider text-sm my-1 rounded-md border border-gray-200" id="skintype" required>
+                                                    <select v-model="form.skintype_id" class="w-full placeholder-gray-100  tracking-wider text-xs my-1 rounded-md border border-gray-200" id="skintype" required>
                                                         <option selected value="">Select skintype</option>
                                                         <option v-for="skintype in skintypes" :key="skintype.id" :value="skintype.id">{{skintype.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                     </div>
-                                    <div class="flex mt-2 justify-center">
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                            <jet-label class="text-sm font-bold my-1" for="price" value="Price"/>
+                                            <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="price" value="Price"/>
                                             <div>
                                                 <jet-input-error :message="form.errors.price" class="mt-2" />
-                                                <input v-model="form.price" class="w-full text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="text" required/>
+                                                <input v-model="form.price" class="w-full text-xs placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="text" required/>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex mt-2 justify-center">
+                        
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                            <jet-label class="text-sm font-bold my-1" for="quantity" value="Quantity"/>
+                                            <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="quantity" value="Quantity"/>
                                             <div>
                                                 <jet-input-error :message="form.errors.quantity" class="mt-2" />
-                                                <input v-model="form.quantity" class="w-full text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="number" required/>
+                                                <input v-model="form.quantity" class="w-full text-xs placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="number" required/>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="flex justify-center">
+                                            <div class="w-full">
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="description" value="Description"/>
+                                                <div> 
+                                                    <jet-input-error :message="form.errors.description" class="mt-2" />
+                                                    <textarea class="w-full text-xs my-1 rounded-md border border-gray-200" name="description" v-model="form.description" id="description" cols="30" rows="5" required/>
+                                                </div>
+                                            </div>
+                                    </div>
                             </div>
-                            
-                        </div>
-                        
-                        <div class="col-span-1 bg-white ml-1 p-4">
-                            <div class="flex text-sm font-bold border-b">
-                                <span class="p-2 ml-4 text-blue-400 tracking-wide">Product Images</span>
+                            <div class="flex mx-6">
+                                <span style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600">PRODUCT IMAGES</span>
                             </div>
-                            <div class="p-6">
-                                    
-                                    <div class="p-12 border border-dashed border-gray-300">
-                                        <div class="text-sm text-blue-300 p-12 tracking-widest text-center items-center ">
+                            <div class="p-6 flex">
+                                    <div class="border border-dashed border-gray-300">
+                                        <div class="text-sm font-bold text-blue-400 p-12 tracking-wider text-center items-center ">
                                             <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
                                             <span>Drag and Drop / Click to Add images</span>
                                         </div>
@@ -131,25 +128,25 @@
                             <div v-show="editVariant" class="absolute shadow-lg m-4 p-4 w-full border border-gray-300 rounded-lg bg-white">
                                 <div class="flex justify-between border-b">
                                     <div>
-                                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Edit Variant</span>
+                                        <span style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600">EDIT VARIANT</span>
                                     </div>
                                    
                                 </div>
                                 <div class="flex gap-2 mt-2 text-gray-500">
                                     <div class="flex flex-col">
-                                        <label class="text-sm tracking-wider" for="name">Name</label>
+                                        <label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="name">Name</label>
                                         <div>
                                             <input type="text" v-model="selectedVariant.name" class="text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200">
                                         </div>
                                     </div>
                                     <div class="flex flex-col">
-                                        <label class="text-sm tracking-wider" for="name">Price</label>
+                                        <label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="name">Price</label>
                                         <div>
                                             <input type="text" v-model="selectedVariant.price" class="text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200">
                                         </div>
                                     </div>
                                     <div class="flex flex-col">
-                                        <label class="text-sm tracking-wider" for="name">Quantity</label>
+                                        <label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="name">Quantity</label>
                                         <div>
                                             <input type="text" v-model="selectedVariant.quantity" class="text-sm placeholder-gray-100 my-1 rounded-md border border-gray-200">
                                         </div>
@@ -164,11 +161,11 @@
                                     </div>
                                 </div>
                             </div>
-                        <div class="col-span-1 ">
-                            <div class="flex text-sm font-bold">
-                                <span class="p-2 ml-4 text-blue-400 tracking-wide">Variants</span>
+                        <div class="col-span-1 mx-8">
+                            <div class="flex">
+                                <span style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600">VARIANTS</span>
                             </div>
-                            <div class="mx-6">
+                            <div class="">
                                     <div class="flex justify-center">
                                         <div class="w-full my-1">
                                             
@@ -187,13 +184,13 @@
                                                     </div>
                                                     <div class="flex pt-2 gap-2" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm font-mono" for="size" value="Name"/>
+                                                            <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="size" value="Name"/>
                                                             <div >
                                                                 <input v-model="variant" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                             </div>
                                                         </div>
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm" for="units" value="Price"/>
+                                                            <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="units" value="Price"/>
                                                             <div >
                                                                 <input v-model="variant_price" class="w-full text-sm h-8 rounded-sm" type="text"/>
                                                             </div>
@@ -201,7 +198,7 @@
                                                     </div>
                                                     <div class="flex pt-2 gap-2" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm font-mono" for="quantity" value="Quantity"/>
+                                                            <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider my-1" for="quantity" value="Quantity"/>
                                                             <div >
                                                                 <input v-model="quantity" class="w-full text-sm h-8 rounded-sm" type="number"/>
                                                             </div>
@@ -216,22 +213,22 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="col-span-1 p-2 mt-9 bg-white overflow-hidden">
+                        <div class="col-span-1 p-2 bg-white overflow-hidden">
                             
                                 <div v-if="product.variant || form.variants" class="mx-8 overflow-hidden">
                                     <div class="flex text-sm font-bold">
-                                        <span class="">Variants</span>
+                                        <span style="font-size:10px" class="font-semibold tracking-wider text-gray-600">VARIANTS</span>
                                     </div>
                                     <div class="">
-                                        <table class="text-sm mt-4 border border-gray-700 w-full">
-                                            <tr class="">
+                                        <table class="text-sm mt-4 border border-gray-300 tracking-wider text-gray-500 w-full">
+                                            <tr class="text-xs tracking-wider">
                                                 <th class="text-center p-2 w-1/3">Name</th>
                                                 <th class="text-center p-2 w-1/3">Price</th>
                                                 <th class="text-center p-2 w-1/3">Quantity</th>
                                                 <th class="text-center p-2 w-1/3">Action</th>
                                             </tr>
                                             <template  v-for="variant in product.variant" :key="variant.name">
-                                                <tr class= "border border-gray-700 text-sm w-full">
+                                                <tr class= "border border-gray-300 text-sm w-full">
                                                     <td class="text-center w-1/4">
                                                         {{variant.name}}
                                                     </td>
@@ -244,13 +241,13 @@
                                                     <td  class="w-1/4 cursor-pointer"> 
                                                         <div class="flex justify-center items-centers gap-2 mx-2">
                                                             <button @click="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
-                                                                <svg  class="mx-auto" width="17" height="17" viewBox="0 0 24 24">
+                                                                <svg  class="mx-auto fill-current text-white" width="17" height="17"  viewBox="0 0 24 24">
                                                                     <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
                                                                 </svg>
                                                             </button>
                                                             <button @click="deleteVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
-                                                                <svg width="17" height="17" class="" viewBox="0 0 20 20">
-                                                                    <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
+                                                                <svg width="17" height="17" class="mx-auto fill-current text-white" viewBox="0 0 20 20">
+                                                                    <path d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
                                                                 </svg>
                                                             </button>
                                                         </div>
@@ -258,7 +255,7 @@
                                                 </tr>
                                             </template>
                                             <template  v-for="variant in form.variants" :key="variant.name">
-                                                <tr class= "border border-gray-700 text-sm w-full">
+                                                <tr class= "border border-gray-300 text-sm w-full">
                                                     <td class="text-center w-1/4">
                                                         {{variant.name}}
                                                     </td>
@@ -271,13 +268,13 @@
                                                     <td  class="w-1/4 cursor-pointer"> 
                                                         <div class="flex justify-center items-centers gap-2 mx-2">
                                                             <button @click="editVar(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
-                                                                <svg  class="mx-auto" width="17" height="17" viewBox="0 0 24 24">
+                                                                <svg  class="mx-auto fill-current text-white" width="17" height="17" viewBox="0 0 24 24">
                                                                     <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z"/>
                                                                 </svg>
                                                             </button>
                                                             <button @click="removeVariant(variant)" class="mx-auto p-2 m-2 rounded-md shadow-lg hover:bg-green-500 bg-green-400">
-                                                                <svg width="17" height="17" class="" viewBox="0 0 20 20">
-                                                                    <path class="fill-current text-red-600" d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
+                                                                <svg width="17" height="17" class="mx-auto fill-current text-white"  viewBox="0 0 20 20">
+                                                                    <path d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
                                                                 </svg>
                                                             </button>
                                                         </div>

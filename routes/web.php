@@ -209,6 +209,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->get('users', function () {
         return Inertia::render('Admin/Users', ['users' => User::all()]);
     })->name('admin.users')->middleware('is_admin');
+    Route::middleware(['auth:sanctum'])->get('/user/search',[UserAdminController::class, 'search'])->name('searchUser')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('/product/{product:id}/edit',[ProductsController::class, 'editProduct'])->name('editProduct')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->delete('/image/{image:id}/delete',[ProductsController::class, 'deleteProductImage'])->name('deleteProductImage')->middleware('is_admin');

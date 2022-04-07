@@ -24,7 +24,7 @@
                                         <span class="text-xs sm:tracking-widest font-bold italic">On {{formatDate(order.updated_at)}}</span>
                                     </div>
                                 </div>
-                                <div v-if="order.status == 'placed' || order.status == 'accepted'" class="flex border-l-2 pl-2 items-center">
+                                <div v-if="order.status == 'placed'" class="flex border-l-2 pl-2 items-center">
                                     <button @click="cancel(order.id)" class="text-xs sm:text-md font-bold tracking-wider p-2">CANCEL</button>
                                 </div>
                                
@@ -54,7 +54,7 @@
                             <div class="ml-2 p-2 flex justify-between">
                                 <div class="flex items-center gap-2" v-if="order.payment_type == 'rzp' && order.transaction">
                                     <span style="font-size: 10px;" class=" bg-pink-400 text-white p-2 rounded-sm font-bold tracking-widest uppercase">{{order.transaction.status}}</span>
-                                    <div v-if="order.transaction.status === 'pending'" class="">
+                                    <div v-if="order.transaction.status === 'pending' && order.status != 'denied' && order.status != 'cancelled'" class="">
                                         <button @click="selectedOrder = order.transaction" class="p-2 text-white bg-green-400 rounded-sm font-bold text-xs tracking-wider">Pay Now</button>
                                     </div>
                                 </div>

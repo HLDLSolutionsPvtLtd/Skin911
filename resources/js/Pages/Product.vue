@@ -190,7 +190,7 @@
                    <span class="text-gray-700 text-md font-bold sm:text-lg">RELATED PRODUCTS</span>
                    <div class="flex items-center">
                        <a :href="'/products?related='+product.brand.name+'&key='+product.category.name">
-                           <span class="text-xs sm:text-sm text-blue-500 font-bold underline tracking-wider">See All</span>
+                           <span class="text-xs text-blue-500 font-semibold underline tracking-widest">SEE ALL</span>
                        </a>
                    </div>
                </div>

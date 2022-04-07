@@ -10,37 +10,29 @@
            <div class="mb-12">
                <form action="">
                     
-                    <div class="grid grid-cols-2 bg-white">
-                        <div class="flex m-4 col-span-2 text-sm border-b font-bold">
+                    <div class="bg-white">
+                        <div class="flex m-4 text-sm border-b font-bold">
                             <span class="p-2 ml-4 text-gray-700 text-xs tracking-wide">PRODUCT DETAILS</span>
                         </div>
                         <div class="col-span-1 p-4 mr-1 bg-white">
                            
-                            <div class="mx-6">
+                            <div class="mx-6 grid grid-cols-2 gap-4">
                                     <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm  tracking-wider my-1" for="productname" value="Name"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider" for="productname" value="Name"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.name" class="mt-2" />
-                                                    <input id="productname" v-model="form.name" class="w-full  tracking-wider my-1 text-sm rounded-md border border-gray-200" type="text" required autofocus/>
+                                                    <input id="productname" v-model="form.name" class="w-full  tracking-wider text-xs rounded-md border border-gray-200" type="text" required autofocus/>
                                                 </div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-center mt-2">
-                                            <div class="w-full">
-                                                <jet-label class="text-sm  tracking-wider my-1" for="description" value="Description"/>
-                                                <div> 
-                                                    <jet-input-error :message="form.errors.description" class="mt-2" />
-                                                    <textarea class="w-full text-sm my-1 rounded-md  tracking-wider border border-gray-200" name="description" v-model="form.description" id="description" cols="30" rows="5" required/>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="flex mt-2 justify-center">
+                                    
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm  tracking-wider my-1" for="brand" value="Brand"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider" for="brand" value="Brand"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.brand_id" class="mt-2" />
-                                                    <select v-model="form.brand_id" class="w-full placeholder-gray-100 my-1  tracking-wider text-sm rounded-md border border-gray-200" id="Label" required>
+                                                    <select v-model="form.brand_id" class="w-full placeholder-gray-100  tracking-wider text-xs rounded-md border border-gray-200" id="Label" required>
                                                         <option selected value="">Select Brand</option>
                                                         <option v-for="brand in brands" :key="brand.id" :value="brand.id">{{brand.name}}</option>
                                                     </select>
@@ -48,60 +40,69 @@
                                             </div>
                                     </div>
                                     
-                                    <div class="flex mt-2 justify-center">
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm  tracking-wider my-1" for="category" value="Category"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider" for="category" value="Category"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.category_id" class="mt-2" />
-                                                    <select v-model="form.category_id" class="w-full placeholder-gray-100  tracking-wider text-sm my-1 rounded-md border border-gray-200" id="category" required>
+                                                    <select v-model="form.category_id" class="w-full placeholder-gray-100  tracking-wider text-xs rounded-md border border-gray-200" id="category" required>
                                                         <option selected value="">Select category</option>
                                                         <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                     </div>
-                                    <div class="flex mt-2 justify-center">
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                                <jet-label class="text-sm  tracking-wider my-1" for="category" value="Skintype"/>
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider" for="category" value="Skintype"/>
                                                 <div>
                                                     <jet-input-error :message="form.errors.skintype_id" class="mt-2" />
-                                                    <select v-model="form.skintype_id" class="w-full placeholder-gray-100  tracking-wider text-sm my-1 rounded-md border border-gray-200" id="skintype" required>
+                                                    <select v-model="form.skintype_id" class="w-full placeholder-gray-100  tracking-wider text-xs rounded-md border border-gray-200" id="skintype" required>
                                                         <option selected value="">Select skintype</option>
                                                         <option v-for="skintype in skintypes" :key="skintype.id" :value="skintype.id">{{skintype.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                     </div>
-                                    <div class="flex mt-2 justify-center">
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                            <jet-label class="text-sm  tracking-wider my-1" for="price" value="Price"/>
+                                            <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider" for="price" value="Price"/>
                                             <div>
                                                 <jet-input-error :message="form.errors.price" class="mt-2" />
-                                                <input v-model="form.price" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="text" required/>
+                                                <input v-model="form.price" class="w-full text-xs  tracking-wider placeholder-gray-100 rounded-md border border-gray-200" placeholder="&#8377;" type="text" required/>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex mt-2 justify-center">
+                                    <div class="flex justify-center">
                                         <div class="w-full">
-                                            <jet-label class="text-sm  tracking-wider my-1" for="quantity" value="Quantity"/>
+                                            <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider" for="quantity" value="Quantity"/>
                                             <div>
                                                 <jet-input-error :message="form.errors.quantity" class="mt-2" />
-                                                <input v-model="form.quantity" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" placeholder="&#8377;" type="number" required/>
+                                                <input v-model="form.quantity" class="w-full text-xs  tracking-wider placeholder-gray-100 rounded-md border border-gray-200" placeholder="&#8377;" type="number" required/>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="flex justify-center">
+                                            <div class="w-full">
+                                                <jet-label style="font-size:10px" class="uppercase font-semibold tracking-wider" for="description" value="Description"/>
+                                                <div> 
+                                                    <jet-input-error :message="form.errors.description" class="mt-2" />
+                                                    <textarea class="w-full text-xs rounded-md  tracking-wider border border-gray-200" name="description" v-model="form.description" id="description" cols="30" rows="5" required/>
+                                                </div>
+                                            </div>
                                     </div>
                             </div>
                             
                         </div>
                         
                         <div class="col-span-1 bg-white ml-1 p-4">
-                            <div class="mx-6">
-                                    <div class="flex text-sm font-bold border-b">
-                                        <span class="pb-2  tracking-wide">Image :</span>
-                                    </div>
-                                    <div class="p-12 border border-dashed border-gray-300">
-                                        <div class="text-sm text-blue-300 p-12 tracking-widest text-center items-center ">
-                                            <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
+                            <div class="flex mx-6">
+                                <span style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600">PRODUCT IMAGES</span>
+                            </div>
+                            <div class="p-6 flex">
+                                    <div class="border border-dashed border-gray-300">
+                                        <div class="text-sm font-bold text-blue-400 p-12 tracking-wider text-center items-center ">
+                                            <input id="image" class="opacity-0 p-8 mb-5 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
                                             <span>Drag and Drop / Click to Add images</span>
                                         </div>
                                     </div>
@@ -123,11 +124,11 @@
                     </div>
                     </form>
                     <div class="grid grid-cols-2 p-2 bg-white">
-                        <div class="col-span-1 ">
+                        <div class="col-span-1 mx-6">
                             <div class="flex">
-                                <span class="p-2 ml-4 uppercase text-xs font-bold tracking-wider">Variants </span>
+                                <span style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600">VARIANTS</span>
                             </div>
-                            <div class="mx-6">
+                            <div class="">
                                     <div class="flex justify-center">
                                         <div class="w-full my-1">
                                             
@@ -146,13 +147,13 @@
                                                     </div>
                                                     <div class="flex pt-2 gap-2" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm" for="size" value="Name"/>
+                                                            <jet-label style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600" for="size" value="NAME"/>
                                                             <div >
                                                                 <input v-model="variant" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" type="text"/>
                                                             </div>
                                                         </div>
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm" for="units" value="Price"/>
+                                                            <jet-label style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600" for="units" value="PRICE"/>
                                                             <div >
                                                                 <input v-model="variant_price" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" type="text"/>
                                                             </div>
@@ -160,7 +161,7 @@
                                                     </div>
                                                     <div class="flex pt-2 gap-2" >
                                                         <div class="w-1/2">
-                                                            <jet-label class="text-sm" for="quantity" value="Quantity"/>
+                                                            <jet-label style="font-size:10px" class="font-semibold tracking-wider my-1 text-gray-600" for="quantity" value="QUANTITY"/>
                                                             <div >
                                                                 <input v-model="quantity" class="w-full text-sm  tracking-wider placeholder-gray-100 my-1 rounded-md border border-gray-200" type="number"/>
                                                             </div>
@@ -175,22 +176,21 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="col-span-1 p-2 mt-2 bg-white overflow-hidden">
-                            
-                                <div v-if="form.variants[0]" class="mx -8 h-45 overflow-hidden">
-                                    <div class="flex text-sm font-bold">
-                                        <span class="">Variants</span>
+                        <div class="col-span-1 p-2 bg-white overflow-hidden">
+                                <div v-if="form.variants[0]" class="h-45 overflow-hidden">
+                                    <div class="flex">
+                                        <span style="font-size:10px" class="font-semibold tracking-wider text-gray-600">VARIANTS</span>
                                     </div>
                                     <div class="">
-                                        <table class="text-sm mt-4 border border-gray-700 w-full">
-                                            <tr>
-                                                <th class="text-center w-1/3">Name</th>
-                                                <th class="text-center w-1/3">Price</th>
-                                                <th class="text-center w-1/3">Quantity</th>
-                                                <th class="text-center w-1/3">Action</th>
+                                        <table class="text-sm mt-4 border border-gray-300 tracking-wider text-gray-500 w-full">
+                                            <tr class="text-xs tracking-wider">
+                                                <th class="text-center p-2 w-1/3">Name</th>
+                                                <th class="text-center p-2 w-1/3">Price</th>
+                                                <th class="text-center p-2 w-1/3">Quantity</th>
+                                                <th class="text-center p-2 w-1/3">Action</th>
                                             </tr>
                                             <template  v-for="variant in form.variants" :key="variant.name">
-                                                <tr class= "border border-gray-700 text-sm w-full">
+                                                <tr class= "border border-gray-300 text-sm w-full">
                                                     <td class="text-center w-1/4">
                                                         {{variant.name}}
                                                     </td>
@@ -243,6 +243,7 @@
                     description: '',
                     brand_id: '',
                     category_id: '',
+                    skintype_id: '',
                     price : '',
                     images: [],
                     variants : [],

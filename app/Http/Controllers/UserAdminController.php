@@ -1,12 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Inertia\Inertia;
 
 class UserAdminController extends Controller
 {
+
+    public function search(Request $request)
+    {
+        $users = User::where('name', 'like', "%$request->key%")->get();
+        return Inertia::render('Admin/Users', ['users' => $users]);
+    }
 
     public function authenticate(Request $request)
     {

@@ -47,7 +47,7 @@
                                 </ul>
                             </div>
                         </div>
-                         <div>
+                        <div>
                             <span class="text-md font-semibold text-pink-dark">Discounts</span>
                             <div>
                                 <ul class="text-gray-500 font-semibold text-sm border-l p-2">
@@ -57,6 +57,17 @@
                                 </ul>
                             </div>
                         </div>
+                        <div>
+                            <span class="text-md font-semibold text-pink-dark">Skintypes</span>
+                            <div>
+                                <ul class="text-gray-500 font-semibold text-sm border-l p-2">
+                                    <template v-for="skintype in skintypes" :key="skintype.id">
+                                        <li class="p-1 list-none cursor-pointer" @click="key = skintype.name, productAll()">{{skintype.name}}</li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="sm:col-span-5">
                         <div class="flex justify-between">
