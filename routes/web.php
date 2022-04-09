@@ -148,15 +148,15 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.dashboard')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('/admin.banners', function () {
-        return Inertia::render('Admin/Banner', ['banners' => Banner::all()]);
+        return Inertia::render('Admin/Banner', ['banners' => Banner::paginate(10)]);
     })->name('admin.banners')->middleware('is_admin');
 
     Route::post('admin.login',[UserAdminController::class,'authenticate'])->name('admin.login');
     Route::post('admin.logout',[UserAdminController::class,'logout'])->name('admin.logout');
 
-    Route::middleware(['auth:sanctum'])->get('products', function () {
-        return Inertia::render('Admin/Products', ['products' => Product::all()]);
-    })->name('admin.products')->middleware('is_admin');
+    // Route::middleware(['auth:sanctum'])->get('products', function () {
+    //     return Inertia::render('Admin/Products', ['products' => Product::all()->paginate(10)]);
+    // })->name('admin.products')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('discounts', function () {
         $discounts = Discount::all();
@@ -168,7 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('addproduct')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('blog', function () {
-        return Inertia::render('Admin/Blog', ['posts' => Blog::all()]);
+        return Inertia::render('Admin/Blog', ['posts' => Blog::paginate(10)]);
     })->name('admin.blog')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('admin.addbrand', function () {
@@ -176,7 +176,7 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.addbrand')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('brands', function () {
-        return Inertia::render('Admin/Brand');
+        return Inertia::render('Admin/Brand', ['brands' => Brand::paginate(10)]);
     })->name('admin.brands')->middleware('is_admin');
 
     // Route::middleware(['auth:sanctum'])->get('Orders', function () {
@@ -185,15 +185,15 @@ Route::group(['prefix' => 'admin'], function () {
     
 
     Route::middleware(['auth:sanctum'])->get('shipping', function () {
-        return Inertia::render('Admin/Shipping', ['fees' => Shipping::all()]);
+        return Inertia::render('Admin/Shipping', ['fees' => Shipping::paginate(10)]);
     })->name('admin.shipping')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('categories', function () {
-        return Inertia::render('Admin/Categories');
+        return Inertia::render('Admin/Categories', ['categories' => Category::paginate(10)]);
     })->name('admin.categories')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('skintype', function () {
-        return Inertia::render('Admin/Skintype', ['skintypes' => Skintype::all()]);
+        return Inertia::render('Admin/Skintype', ['skintypes' => Skintype::paginate(10)]);
     })->name('admin.skintype')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->post('addproduct',[ProductController::class, 'AddProduct'])->name('add.product')->middleware('is_admin');
@@ -203,11 +203,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum'])->post('/product/new',[ProductsController::class, 'addProduct'])->name('/product/new')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('allproducts', function () {
-        return Inertia::render('Admin/Products', ['products' => Product::all()]);
+        return Inertia::render('Admin/Products', ['products' => Product::paginate(20)]);
     })->name('allproducts')->middleware('is_admin');
 
     Route::middleware(['auth:sanctum'])->get('users', function () {
-        return Inertia::render('Admin/Users', ['users' => User::all()]);
+        return Inertia::render('Admin/Users', ['users' => User::paginate(10)]);
     })->name('admin.users')->middleware('is_admin');
     Route::middleware(['auth:sanctum'])->get('/user/search',[UserAdminController::class, 'search'])->name('searchUser')->middleware('is_admin');
 

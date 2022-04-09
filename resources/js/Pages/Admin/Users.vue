@@ -41,7 +41,7 @@
                             </th>
                         </tr>
                         
-                        <tr v-for="user in users" :key="user.id" class="border-b-2 text-sm font-semibold text-gray-500 tracking-wider border-gray-200">   
+                        <tr v-for="user in users.data" :key="user.id" class="border-b-2 text-sm font-semibold text-gray-500 tracking-wider border-gray-200">   
                             <td class="p-1 font-bold text-left text-gray-500 py-4">
                                {{user.id}}
                             </td>
@@ -55,6 +55,25 @@
                         </tr>
                         
                     </table>
+                    <div class="w-full mt-8">
+                        <div class="w-full flex justify-center items-center">
+                            <div class="flex gap-2 border justify-center items-center text-blue-500" v-for="(link, index) in users.links">
+                                <button @click="fetchData(link.url)" :disbled="link.active" :class="{'bg-gray-200': !link.active}" v-if="index == 0" class="border border-blue-400 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="p-1 fill-current text-blue-500" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M13 12l11-7v14l-11-7zm-11 0l11-7v14l-11-7zm-2 6h2v-12h-2v12z"/>
+                                    </svg>
+                                </button>
+                                <button @click="fetchData(link.url)" :disbled="link.active" :class="{'bg-gray-200': !link.active}" v-else-if="index == users.links.length - 1" class="border border-blue-400 cursor-pointer">
+                                    <svg class="p-1 fill-current text-blue-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M0 19v-14l11 7-11 7zm11 0v-14l11 7-11 7zm13-13h-2v12h2v-12z"/>
+                                    </svg>
+                                </button>
+                                <button @click="fetchData(link.url)" :disbled="link.active" :class="{'bg-gray-200': !link.active}" v-else class="px-2 font-bold border border-blue-400 cursor-pointer">
+                                    <span>{{link.label}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                </div>
            </div>
        </div>
@@ -64,6 +83,7 @@
 <script>
  
  import AdminLayout from '@/Layouts/AdminLayout'
+import { Inertia } from '@inertiajs/inertia';
 
 
  export default{
@@ -92,6 +112,10 @@
                 'key': this.key
             })
         },
+        fetchData(url)
+        {
+            Inertia.get(url)
+        }
     },
     mounted()
     {

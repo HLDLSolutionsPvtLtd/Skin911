@@ -207,6 +207,7 @@
                             </tr>
                             
                         </table>
+                        
                     </div>
                    
                     <div v-if="selectedDiscount" style="height:calc(100vh - 100px);scrollbar-width:thin" class="w-full no-scrollbar overflow-y-scroll border bg-white absolute top-0 shadow-lg rounded-lg">

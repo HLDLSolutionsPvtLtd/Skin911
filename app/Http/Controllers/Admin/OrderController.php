@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function view()
     {
-        return Inertia::render('Admin/Orders', ['orders' => Order::orderBy('created_at', 'desc')->get()]);
+        return Inertia::render('Admin/Orders', ['orders' => Order::orderBy('created_at', 'desc')->paginate(10)]);
     }
 
     public function updateStatus(Order $order, Request $request)

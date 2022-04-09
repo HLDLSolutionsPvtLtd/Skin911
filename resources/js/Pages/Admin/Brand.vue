@@ -112,7 +112,7 @@
                                 <th class="text-center p-2">Actions</th>
                             </tr>
                             
-                            <tr v-for="brand in brands" :key="brand.id" class="border-t-2 shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
+                            <tr v-for="brand in brands.data" :key="brand.id" class="border-t-2 shadow-sm text-sm text-gray-500 tracking-wider border-gray-100">   
                                 <td class="text-start border-gray-300 p-2">{{brand.name}}</td>
                                 <td class="p-2 flex border-gray-300"><img v-if="brand.img" class="h-14 w-14 flex mr-1" :src="'/storage/'+brand.img" alt=""></td>
                                 <td class="p-2">
@@ -131,6 +131,25 @@
                                 </td>
                             </tr>
                         </table>
+                        <div class="w-full mt-8">
+                            <div class="w-full flex justify-center items-center">
+                                <div class="flex gap-2 border justify-center items-center text-blue-500" v-for="(link, index) in brands.links">
+                                    <button @click="fetchData(link.url)" :disbled="link.active" :class="{'bg-gray-200': !link.active}" v-if="index == 0" class="border border-blue-400 cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="p-1 fill-current text-blue-500" width="24" height="24" viewBox="0 0 24 24">
+                                            <path d="M13 12l11-7v14l-11-7zm-11 0l11-7v14l-11-7zm-2 6h2v-12h-2v12z"/>
+                                        </svg>
+                                    </button>
+                                    <button @click="fetchData(link.url)" :disbled="link.active" :class="{'bg-gray-200': !link.active}" v-else-if="index == brands.links.length - 1" class="border border-blue-400 cursor-pointer">
+                                        <svg class="p-1 fill-current text-blue-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                            <path d="M0 19v-14l11 7-11 7zm11 0v-14l11 7-11 7zm13-13h-2v12h2v-12z"/>
+                                        </svg>
+                                    </button>
+                                    <button @click="fetchData(link.url)" :disbled="link.active" :class="{'bg-gray-200': !link.active}" v-else class="px-2 font-bold border border-blue-400 cursor-pointer">
+                                        <span>{{link.label}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                    </div>
                </div>
            </div>
@@ -149,9 +168,9 @@
 
 
  export default{
+    props: ['brands'],
     data(){
         return{
-           brands: [],
            newbrand: false,
            updatebrand: false,
            newform:this.$inertia.form({
@@ -246,15 +265,15 @@
                     this.form.name = '';
                 }
             })
+        },
+        fetchData(url)
+        {
+            Inertia.get(url)
         }
     },
     mounted()
     {
-        axios.get('/admin/brand/all')
-        .then(res => this.brands = res.data)
-        .then(error => {
-            console.error(error);
-        })
+        
     },
     watch:
     {
