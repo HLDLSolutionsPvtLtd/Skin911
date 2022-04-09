@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $user = User::insert([
+        $user = User::create([
             'name' => 'admin',
             'email' =>'admin@test.com',
             'password' => Hash::make('password'),
@@ -27,16 +27,16 @@ class DatabaseSeeder extends Seeder
             'is_admin' => '1',
         ]);  
 
-        Cart::create([
-            'user_id' => $user->id,
-        ]);
+        // Cart::create([
+        //     'user_id' => $user->id,
+        // ]);
 
-        Shipping::insert([
+        Shipping::create([
             'name' => 'default',
             'pincode' => '',
             'fee' => '100',
         ]);
-        Shipping::insert([
+        Shipping::create([
             'name' => 'free',
             'pincode' => '',
             'fee' => '2800',
