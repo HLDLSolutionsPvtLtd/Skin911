@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cart;
 use App\Models\Shipping;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -18,13 +19,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        User::insert([
+        $user = User::insert([
             'name' => 'admin',
             'email' =>'admin@test.com',
             'password' => Hash::make('password'),
             'phone_no' => Str::random(10),
             'is_admin' => '1',
         ]);  
+
+        Cart::create([
+            'user_id' => $user->id
+        ]);
 
         Shipping::insert([
             'name' => 'default',
