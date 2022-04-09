@@ -24,11 +24,11 @@ class DatabaseSeeder extends Seeder
             'email' =>'admin@test.com',
             'password' => Hash::make('password'),
             'phone_no' => Str::random(10),
-            'is_admin' => true,
+            'is_admin' => '1',
         ]);  
 
         Cart::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         Shipping::insert([
