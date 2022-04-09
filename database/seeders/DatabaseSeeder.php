@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'email' =>'admin@test.com',
             'password' => Hash::make('password'),
             'phone_no' => Str::random(10),
-            'is_admin' => '1',
+            'is_admin' => true,
         ]);  
 
         Cart::create([
