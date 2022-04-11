@@ -165,6 +165,7 @@
     import JetInputError from '@/Jetstream/InputError'
     import JetLabel from '@/Jetstream/Label'
     import JetValidationErrors from '@/Jetstream/ValidationErrors'
+import { Inertia } from '@inertiajs/inertia'
 
 
  export default{
