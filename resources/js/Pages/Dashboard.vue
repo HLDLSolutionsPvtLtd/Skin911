@@ -12,7 +12,7 @@
                         <p class="text-gray-700 text-sm tracking-wider font-bold text-center w-full">PRODUCT WAS SUCCESSFULLY ADDED TO YOUR CART</p>
                         <a href="/cart">
                             <button class="border border-blue-200 rounded-sm p-2 px-8 mt-4 tracking-widest font-bold text-gray-700 text-xs">VIEW CART</button>
-                        </a>
+                        </a>/ 
                     </div>
                     
                     <i @click="success=!success" class="absolute  right-4 top-4 cursor-pointer">
@@ -216,7 +216,8 @@
                             
                         </div>  
                         <div v-if="!tproduct.variant[0]" class="mt-2">
-                            <button v-show="!(tproduct.quantity <= 0)" @click="addToCart(tproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                            <button v-if="!(tproduct.quantity <= 0)" @click="addToCart(tproduct.id)" class="p-2 w-full font-bold bg-pink text-gray-800 text-xs tracking-widest">ADD TO CART</button>
+                            <button v-else class="w-full h-8"></button>
                         </div> 
                         <div v-else class="mt-2">
                             <a :href="'/product/'+tproduct.id+'/details'">

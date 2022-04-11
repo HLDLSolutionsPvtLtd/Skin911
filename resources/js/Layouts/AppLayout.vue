@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <!-- Primary Navigation Menu -->
-                <div class=" mx-auto px-4 sm:px-6 lg:px-8 z-50">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8 z-50">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
@@ -281,13 +281,13 @@
                             </div>
                         </div> -->
 
-                        <div style="font-family: futura-pt,arial,sans-serif;" class="mt-3 space-y-1">
-                            <div v-if="!$page.props.user" class="flex ml-4 gap-2">
-                                <div>
-                                    <a class="px-2 p-1 text-blue-400 text-sm border-blue-400 border rounded-md" :href="route('login')"><span>Log In</span></a>
+                        <div style="font-family: futura-pt,arial,sans-serif;" class="mt-1 space-y-1">
+                            <div v-if="!$page.props.user" class="my-4 gap-2">
+                                <div class="">
+                                    <a class="px-2 p-1 text-blue-400 text-sm font-bold border-blue-400 border rounded" :href="route('login')"><span class="">Log In</span></a>
                                 </div>
                                 <div>
-                                    <a class="px-2 p-1 text-blue-400 text-sm border-blue-400 border rounded-md" :href="route('register')"><span>Register</span></a>
+                                    <a class="px-2 p-1 text-blue-400 text-sm font-bold border-blue-400 border rounded" :href="route('register')"><span>Register</span></a>
                                 </div>
                             </div>
                             <jet-responsive-nav-link :href="route('/')" :active="route().current('/')">

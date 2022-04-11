@@ -141,6 +141,6 @@ class ProductController extends Controller
             $q->whereHas('discounts');
         })->orWhereHas('brand', function($q){
             $q->whereHas('discounts');
-        })->with('discounts')->paginate(2);
+        })->with('discounts')->paginate(25);
     }
 }

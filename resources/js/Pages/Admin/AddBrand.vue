@@ -45,8 +45,14 @@
                     <div class="">
                         <h5 class="flex text-ct font-mono justify-start">Product images:</h5>
                         <div class="flex justify-center border-dashed border border-gray-500">
-                            <input id="image" class="opacity-0 absolute -z-1" type="file" ref="files" v-on:change="onImageChange">
-                            <label class="p-12 text-center text-gray-400" for="image">Drag and Drop/Click to ADD image</label>
+                            <div class="border border-dashed border-gray-300">
+                                <div class="relative">
+                                    <input id="image" class="opacity-0 h-32 w-full absolute -z-1" type="file" ref="files" name="images[]" v-on:change="onImageChange">
+                                </div>
+                                <div class="flex text-sm font-bold text-blue-400 p-12 tracking-wider text-center items-center ">
+                                    <span>Drag and Drop / Click to Add images</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="flex">
                                 <img v-if="previews" class="flex w-full p-1" :src="previews" alt="PREVIEW">

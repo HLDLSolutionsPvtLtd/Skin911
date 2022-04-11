@@ -101,9 +101,13 @@
                             </div>
                             <div class="p-6 flex">
                                     <div class="border border-dashed border-gray-300">
-                                        <div class="text-sm font-bold text-blue-400 p-12 tracking-wider text-center items-center ">
-                                            <input id="image" class="opacity-0 p-8 mb-5 absolute -z-1" type="file" ref="files" name="images[]" multiple @change="newfile">
-                                            <span>Drag and Drop / Click to Add images</span>
+                                        <div class="">
+                                            <div class="relative">
+                                                <input id="image" class="opacity-0 h-32 w-full absolute -z-1" type="file" ref="files" name="images[]" @change="newfile">
+                                            </div>
+                                            <div class="flex text-sm font-bold text-blue-400 p-12 tracking-wider text-center items-center ">
+                                                <span>Drag and Drop / Click to Add images</span>
+                                            </div>
                                         </div>
                                     </div>
                             </div>
