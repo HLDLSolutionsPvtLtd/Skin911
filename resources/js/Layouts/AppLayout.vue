@@ -219,11 +219,11 @@
                                 </jet-dropdown>
                             </div>
                             <div v-else class="flex gap-2 ml-4">
-                                <div>
-                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('login')"><span>Log In</span></a>
+                                <div class="">
+                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md flex" :href="route('login')"><span>Log In</span></a>
                                 </div>
                                 <div>
-                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md" :href="route('register')"><span>Register</span></a>
+                                    <a class="px-2 p-1 text-blue-400 font-bold text-sm border-blue-400 border rounded-md flex" :href="route('register')"><span>Register</span></a>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +282,7 @@
                         </div> -->
 
                         <div style="font-family: futura-pt,arial,sans-serif;" class="mt-1 space-y-1">
-                            <div v-if="!$page.props.user" class="my-4 gap-2">
+                            <div v-if="!$page.props.user" class="my-4 ml-4 flex gap-2">
                                 <div class="">
                                     <a class="px-2 p-1 text-blue-400 text-sm font-bold border-blue-400 border rounded" :href="route('login')"><span class="">Log In</span></a>
                                 </div>
