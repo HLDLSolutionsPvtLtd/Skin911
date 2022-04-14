@@ -198,7 +198,7 @@
                     <div class="border w-5/12 sm:w-auto inline-block border-gray-100 mr-1 relative" v-for="sproduct in products" :key="sproduct.id">
                             <a :href="'/product/'+sproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img v-if="sproduct.image[0]" style="height:250px" class="absolute  inset-0 h-full w-full object-cover" :src="'/storage/'+sproduct.image[0].link" alt="">
+                                    <img v-if="sproduct.image[0]" style="height:250px" class="absolute  inset-0 h-full object-fit" :src="'/storage/'+sproduct.image[0].link" alt="">
                                 </div>
                                 <div class="absolute ribbon top-4 left-0">
                                     <span v-if="sproduct.discounts[0]" class="flag-discount transform rotate-90">
