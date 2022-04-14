@@ -104,7 +104,7 @@
                          <div class="">
                             <a :href="'/product/'+tproduct.id+'/details'" class="overflow-hidden relative">
                                 <div class="relative pb-48 overflow-hidden">
-                                    <img v-if="tproduct.image[0]" class="absolute inset-0 h-full w-full object-cover" :src="'/storage/'+tproduct.image[0].link" alt="">
+                                    <img v-if="tproduct.image[0]" class="absolute inset-0 h-full w-full object-conatin" :src="'/storage/'+tproduct.image[0].link" alt="">
                                     <div v-if="tproduct.quantity <= 0 && !tproduct.variant[0]" class="absolute top-10 flex items-center justify-center w-full">
                                         <span class="text-xs rounded-md p-1 m-1 border text-pink-500 bg-white border-gray-100 tracking-wider my-3 font-serif">Out Of Stock</span>
                                     </div>
