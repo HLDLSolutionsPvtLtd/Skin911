@@ -5,24 +5,24 @@
        </template>
        <div class="">
            <div style="height:calc(100vh - 80px);scrollbar-width:thin;" class="m-2 mx-4 container-fluid bg-white rounded p-1 relative">
-               <div v-show="variants.length" class="absolute w-full overflow-y-scroll z-30 bg-white shadow-lg">
+               <div v-show="variants.length" class="absolute inset-0 w-full overflow-y-scroll z-30 bg-white shadow-lg">
                     <div class="flex justify-between border-b p-4">
                         <div>
-                            <span class="text-sm font-bold tracking-wider">VARIANTS</span>
+                            <span class="text-xs font-bold tracking-wider">VARIANTS</span>
                         </div>
-                        <div @click="variants = ''" class="p-2 bg-red-400 border  rounded-full border-red-400 hover:bg-gray-400 hover:border-green-400">
-                            <svg  xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-white hover:text-red-600" viewBox="0 0 24 24">
+                        <div @click="variants = ''" class="p-2 border border-red-500 rounded-full border-red-400 hover:bg-gray-200">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-red-600 hover:text-red-600" viewBox="0 0 24 24">
                                 <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
                             </svg>
                         </div>                            
                     </div>
-                    <div v-for="product in variants" :key="product" class="m-4">
+                    <div v-for="product in variants" :key="product" class="m-4 ">
                         <div class="flex justify-between bg-white border text-gray-700 mb-2">
-                            <div class="flex p-1">
-                                <span class="font-bold tracking-wider text-md">{{product.name}}</span>
+                            <div class="flex pl-4 items-center p-1">
+                                <span class="font-semibold tracking-wider text-sm">{{product.name}}</span>
                             </div>
-                            <div class="flex items-center text-sm font-bold tracking-wider ">
-                                <span>QUANTITY : {{product.quantity}}</span>
+                            <div class="flex items-center text-sm font-semibold tracking-wider ">
+                                <span>Quantity : {{product.quantity}}</span>
                             </div>
                             <div class="flex items-center p-2 m-1">
                                 <span class="p-1 font-semibold">&#8377; {{product.price}}</span>

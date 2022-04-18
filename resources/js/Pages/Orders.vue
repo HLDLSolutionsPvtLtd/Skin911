@@ -18,6 +18,7 @@
                                         </svg>
                                         <div class="">
                                             <span class="pl-2 uppercase text-xs sm:text-sm font-bold tracking-wider">{{order.status}}</span>
+                                            <span v-if="order.remarks" class="pl-2 text-xs sm:text-sm font-bold text-white tracking-wider">- Due to {{order.remarks}}</span>
                                         </div>
                                     </div>
                                     <div class="pl-7">

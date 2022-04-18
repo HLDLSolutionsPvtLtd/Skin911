@@ -43,10 +43,10 @@
                         </div>
                     </div>
                 </div>
-                <div v-show="visible" class="absolute h-4/5 w-full overflow-y-scroll bg-white shadow-lg">
+                <div v-show="visible" class="absolute h-4/5 w-full inset-0 overflow-y-scroll bg-white shadow-lg">
                     <div class="flex justify-between border-b p-4">
                         <div>
-                            <span class="text-sm font-bold tracking-wider">ITEMS</span>
+                            <span class="text-sm font-semibold tracking-wider">ITEMS</span>
                         </div>
                         <div @click="visible = !visible" class="p-2 bg-red-400 border  rounded-full border-red-400 hover:bg-gray-400 hover:border-green-400">
                             <svg  xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="fill-current text-white hover:text-red-600" viewBox="0 0 24 24">
@@ -61,16 +61,16 @@
                                 <div class="flex m-4 text-gray-700 text-sm font-sans text-thin self-center">
                                     <div class="p-2">
                                         <div class="p-1 flex flex-col gap-2">
-                                            <span class="font-bold tracking-wider text-md">{{product.name}}</span>
+                                            <span class="font-semibold tracking-wider text-md">{{product.name}}</span>
                                             <span v-if="product.pivot.variant">{{variantName(product.pivot.variant, product.variant)}}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex items-center text-sm font-bold tracking-wider ">
+                            <div class="flex items-center text-xs font-semibold tracking-wider ">
                                 <span>QUANTITY : {{product.pivot.quantity}}</span>
                             </div>
-                            <div class="flex items-center p-2 m-1">
+                            <div class="flex items-center p-2 text-sm m-1">
                                 <span class="p-1 font-semibold" v-if="product.pivot.variant != ''">&#8377; {{variantPrice(product.pivot.variant, product.variant, product.pivot.quantity)}}</span>
                                 <span v-else class="p-1 font-semibold">&#8377; {{product.price}}</span>
                             </div>
@@ -139,7 +139,7 @@
                             </td>
                             <td class="flex flex-col p-1 text-xs uppercase py-6">
                                 <div v-if="order.status == 'placed'" class="mb-2">
-                                    <input v-model="remarks" type="text" class="border-gray-400 w-full h-8 rounded-md mr-2 focus:ring-0 focus:border-gray-400" placeholder="Remarks" name="" id="">
+                                    <input v-model="remarks[index]" type="text" class="border-gray-400 w-full h-8 rounded-md mr-2 focus:ring-0 focus:border-gray-400" placeholder="Remarks" name="" id="">
                                 </div>
                                 <select name="" id="" @change="markAs(order, index)" v-model="status" class="bg-green-200 border-0 text-green-800 focus:ring-0 text-xs uppercase rounded-md">
                                     <option value="" selected>Mark As</option>
@@ -211,7 +211,7 @@ import { Inertia } from '@inertiajs/inertia';
             products: [],
             status: '',
             key: '',
-            remarks: '',
+            remarks: [],
             index: '',
         }
     },
@@ -234,7 +234,7 @@ import { Inertia } from '@inertiajs/inertia';
             {
                this.$inertia.put('/admin/order/'+order.id+'/markas',{
                     'status': this.status,
-                    'remarks': this.remarks,
+                    'remarks': this.remarks[index],
                     
                 });
             }
@@ -242,6 +242,7 @@ import { Inertia } from '@inertiajs/inertia';
             {
                 this.$inertia.put('/admin/order/'+order.id+'/markas',{
                     'status': this.status,
+                    'remarks': this.remarks[index],
                 });
             }
             this.status = ''
